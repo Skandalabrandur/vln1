@@ -96,6 +96,9 @@ string get_menuitem(int i){
 }
 
 void Pizza::panta(){
+    
+    Pizza pizza;
+    
     cout << endl << "x - STAÐFESTA" << "\t\t" << "q - ENDURGERA" << endl;
     char yn;
     cout << "PIZZA AF MATSEÐLI? ";
@@ -108,33 +111,33 @@ void Pizza::panta(){
         menu_name = get_menuitem(input-1);
         cout << endl << get_menuitem(input-1) << endl;;
         cout << "BOTN: ";
-        cin >> botn;
-        while(botn != 'k' && botn != 'l' && botn != 'p'){
+        cin >> pizza.botn;
+        while(pizza.botn != 'k' && pizza.botn != 'l' && pizza.botn != 'p'){
             cout << "ERROR" << endl << "BOTN: ";
-            cin >> botn;
+            cin >> pizza.botn;
         }
-        if(botn != 'p'){
+        if(pizza.botn != 'p'){
             cout << "STÆRÐ: ";
-            cin >> size;
-            while(size != 'l' && size != 'm' && size != 's'){
+            cin >> pizza.size;
+            while(pizza.size != 'l' && pizza.size != 'm' && pizza.size != 's'){
                 cout << "ERROR" << endl << "SIZE: ";
-                cin >> size;
+                cin >> pizza.size;
             }
         }
     }else{
         cout << endl;
         cout << "BOTN: ";
-        cin >> botn;
-        while(botn != 'k' && botn != 'l' && botn != 'p'){
+        cin >> pizza.botn;
+        while(pizza.botn != 'k' && pizza.botn != 'l' && pizza.botn != 'p'){
             cout << "ERROR" << endl << "BOTN: ";
-            cin >> botn;
+            cin >> pizza.botn;
         }
-        if(botn != 'p'){
+        if(pizza.botn != 'p'){
             cout << "STÆRÐ: ";
-            cin >> size;
-            while(size != 'l' && size != 'm' && size != 's'){
+            cin >> pizza.size;
+            while(pizza.size != 'l' && pizza.size != 'm' && pizza.size != 's'){
                 cout << "ERROR" << endl << "SIZE: ";
-                cin >> size;
+                cin >> pizza.size;
             }
         }
         cout << "ÁLEGG: ";
@@ -143,16 +146,18 @@ void Pizza::panta(){
             cin >> input;
             if(input == 'x')
                 break;
-            alegg.push_back(input);
+            pizza.alegg.push_back(input);
         }
     }
     char greida;
     cout << "GREIÐA NÚNA? ";
     cin >> greida;
     if(greida == 'y'){
-        greitt = true;
+        pizza.greitt = true;
     }
+    
     get_info();
+    
 }
 
 void Pizza::get_info(){
