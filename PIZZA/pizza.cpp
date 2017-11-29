@@ -2,11 +2,11 @@
 //  pizza.cpp
 //  PIZZA
 //
-//  Created by Hlynur Hólm Hauksson on 28/11/2017.
-//  Copyright © 2017 Hlynur Hólm Hauksson. All rights reserved.
+//  Created by Hlynur HA3lm Hauksson on 28/11/2017.
+//  Copyright A(C) 2017 Hlynur HA3lm Hauksson. All rights reserved.
 //
 
-#include "pizza.hpp"
+#include "pizza.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -17,109 +17,40 @@ char get_type(){
     return type;
 }
 
-void open_menu(){
-    //Tjékka hvort bakari, sala, afhending eða admin
-    cout << "b - BAKARI" << endl;
-    cout << "s - SALA" << endl;
-    cout << "a - AFHENDING" << endl;
-    cout << "x - ADMIN" << endl;
-    char type = get_type();
-    cout << endl;
-    if(type == 'a')
-        open_afhending_menu();
-    if(type == 'b')
-        open_bakara_menu();
-    if(type == 's')
-        open_sala_menu();
-    if(type == 'x')
-        open_admin_menu();
-}
 
-void open_afhending_menu(){
-    cout << "g - MERKJA GREITT" << "\t" << "f - MERKJA FARIÐ" << "\t" << "b - TIL BAKA" << endl;
-    char input;
-    cin >> input;
-    if(input == 'b'){
-        open_menu();
-    }
-}
-
-void open_bakara_menu(){
-    //SÝNA PÍTSUR Í RÉTTRI TÍMARÖÐ, ELST EFST ÁSAMT TÍMA
-    cout << "k - MERKJA KLÁRAÐ" << "\t\t" << "b - TIL BAKA"  << endl;
-    char input;
-    cin >> input;
-    if(input == 'b'){
-        open_menu();
-    }
-}
-
-void open_sala_menu(){
-    char input;
-    cout << "s - SKRÁ PÖNTUN" << "\t\t" << "b - TIL BAKA"  << endl;
-    cin >> input;
-    if(input == 's'){
-        Pizza pizza;
-        pizza.panta();
-    }
-    if(input == 'b'){
-        open_menu();
-    }
-}
-
-void open_admin_menu(){
-    cout << "s - SJÁ VIRKAR PANTANIR" << "\t\t" << "b - TIL BAKA" << endl;
-    char input;
-    cin >> input;
-    if(input == 'b'){
-        open_menu();
-    }
-}
 
 void skra_pontun(){
     ofstream fout;
     fout.open("pontun.txt");
-    fout << "Pizza með engum ananas" << endl;
+    fout << "Pizza meA? engum ananas" << endl;
     fout.close();
-}
-
-void print_foodmenu(){
-    string menu[5] = {"MEAT 'N CHEESE", "CHAMPION", "TOKYO", "SURPRISE", "PRINSESSAN"};
-    for(int i = 0; i < 5; i++){
-        cout << i+1 << " - " << menu[i] << endl;
-    }
-}
-
-string get_menuitem(int i){
-    string menu[5] = {"MEAT 'N CHEESE", "CHAMPION", "TOKYO", "SURPRISE", "PRINSESSAN"};
-    return menu[i];
 }
 
 void Pizza::panta(){
     
     Pizza pizza;
     
-    cout << endl << "x - STAÐFESTA" << "\t\t" << "q - ENDURGERA" << endl;
+    cout << endl << "x - STAA?FESTA" << "\t\t" << "q - ENDURGERA" << endl;
     char yn;
-    cout << "PIZZA AF MATSEÐLI? ";
+    cout << "PIZZA AF MATSEA?LI? ";
     cin  >> yn;
     
     if(yn == 'y'){
-        print_foodmenu();
+        mainui.print_foodmenu();
         int input;
         cin >> input;
-        menu_name = get_menuitem(input-1);
-        cout << endl << get_menuitem(input-1) << endl;;
+        menu_name = mainui.get_menuitem(input-1);
+        cout << endl << mainui.get_menuitem(input-1) << endl;;
         cout << "BOTN: ";
         cin >> pizza.botn;
-        while(pizza.botn != 'k' && pizza.botn != 'l' && pizza.botn != 'p'){
+        while(pizza.botn != 'k' && pizza.botn != 'l' && pizza.botn != 'p'){
             cout << "ERROR" << endl << "BOTN: ";
             cin >> pizza.botn;
         }
         if(pizza.botn != 'p'){
-            cout << "STÆRÐ: ";
+            cout << "STA?RA?: ";
             cin >> pizza.size;
-            while(pizza.size != 'l' && pizza.size != 'm' && pizza.size != 's'){
+            while(pizza.size != 'l' && pizza.size != 'm' && pizza.size != 's'){
                 cout << "ERROR" << endl << "SIZE: ";
                 cin >> pizza.size;
             }
@@ -128,19 +59,19 @@ void Pizza::panta(){
         cout << endl;
         cout << "BOTN: ";
         cin >> pizza.botn;
-        while(pizza.botn != 'k' && pizza.botn != 'l' && pizza.botn != 'p'){
+        while(pizza.botn != 'k' && pizza.botn != 'l' && pizza.botn != 'p'){
             cout << "ERROR" << endl << "BOTN: ";
             cin >> pizza.botn;
         }
         if(pizza.botn != 'p'){
-            cout << "STÆRÐ: ";
+            cout << "STA?RA?: ";
             cin >> pizza.size;
-            while(pizza.size != 'l' && pizza.size != 'm' && pizza.size != 's'){
+            while(pizza.size != 'l' && pizza.size != 'm' && pizza.size != 's'){
                 cout << "ERROR" << endl << "SIZE: ";
                 cin >> pizza.size;
             }
         }
-        cout << "ÁLEGG: ";
+        cout << "A?LEGG: ";
         while(true){
             char input;
             cin >> input;
@@ -150,7 +81,7 @@ void Pizza::panta(){
         }
     }
     char greida;
-    cout << "GREIÐA NÚNA? ";
+    cout << "GREIA?A NA?NA? ";
     cin >> greida;
     if(greida == 'y'){
         pizza.greitt = true;
@@ -162,25 +93,25 @@ void Pizza::panta(){
 
 void Pizza::get_info(){
     if(size == 's'){
-        cout << "STÓR";
+        cout << "STA?R";
     }
     if(size == 'm'){
-        cout << "MIÐLUNGS";
+        cout << "MIA?LUNGS";
     }
     if(size == 'l'){
-        cout << "LÍTIL";
+        cout << "LA?TIL";
     }
     
     cout << "\t-\t";
     
     if(botn == 'k'){
-        cout << "KLASSÍK";
+        cout << "KLASSA?K";
     }
     if(botn == 'l'){
-        cout << "LÉTTUR";
+        cout << "LA?TTUR";
     }
     if(botn == 'p'){
-        cout << "PÖNNU";
+        cout << "PA?NNU";
     }
     
     cout << "\t-\t";
@@ -193,7 +124,7 @@ void Pizza::get_info(){
     if(greitt == true){
         cout << "GREITT";
     }else{
-        cout << "ÓGREITT";
+        cout << "A?GREITT";
     }
     
     cout << endl;

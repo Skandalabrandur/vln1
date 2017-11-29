@@ -2,17 +2,21 @@
 //  main.cpp
 //  PIZZA
 //
-//  Created by Hlynur Hólm Hauksson on 28/11/2017.
-//  Copyright © 2017 Hlynur Hólm Hauksson. All rights reserved.
+//  Created by Hlynur HA3lm Hauksson on 28/11/2017.
+//  Copyright A(C) 2017 Hlynur HA3lm Hauksson. All rights reserved.
 //
 
+#include "pizza.cpp"
 #include <iostream>
 #include <fstream>
-#include "pizza.hpp"
+#include "pizza.h"
+#include <string>
+#include "MainUI.cpp"
+
+
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    
-    
-    open_menu();
+    MainUI mainui;
+    mainui.open_menu();
 }
