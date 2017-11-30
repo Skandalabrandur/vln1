@@ -11,12 +11,9 @@ public:
   void clearScreen();
   void pressEnter();
   void startUI();
-  void managementUI();
   void salesUI();
   void bakersUI();
   void deliveryUI();
-  void manage_pizzas();
-  void manage_toppings();
 
 private:
 
