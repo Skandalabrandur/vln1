@@ -15,10 +15,11 @@
 using namespace std;
 
 
-//checks if character is found in the availableChoices string
-bool MainUI::good_choice(char chosen, string legitChoices, int numOfChoices) {
+//char chosen is input from user
+//legitChoices is a string of legit characters e.g. "aAbBcC"
+bool MainUI::good_choice(char chosen, string legitChoices) {
   bool legit = false; //initialize return to false
-
+  int numOfChoices = legitChoices.size();
   for(int i = 0; i < numOfChoices; i++) {
     if(chosen == legitChoices[i]) {
       legit = true;   //the function will now return true
@@ -52,7 +53,7 @@ void MainUI::startUI() {
     cout << endl << "Q - QUIT" << endl;
     cin >> choice;
 
-  } while( !good_choice(choice, "msbdqMSBDQ", 8));
+  } while( !good_choice(choice, "msbdqMSBDQ"));
 
   if(choice == 'm' || choice == 'M') {
     clearScreen();
@@ -86,7 +87,7 @@ void MainUI::managementUI() {
     cout << "T - Manage Toppings" << endl;
     cout << endl << "B - Go Back" << endl;
     cin >> choice;
-  } while( !good_choice(choice, "pPbBtT", 6));
+  } while( !good_choice(choice, "pPbBtT"));
 
   if(choice == 'P' || choice == 'p') {
     manage_pizzas();
@@ -121,7 +122,7 @@ void MainUI::manage_pizzas() {
     cout << "C - Create Pizza" << endl;
     cout << "Q - Quit" << endl;
     cin >> choice;
-  } while ( !good_choice(choice, "cqCQ", 4) );
+  } while ( !good_choice(choice, "cqCQ") );
 
   //We need to check if toppings exists
 
@@ -154,7 +155,7 @@ void MainUI::manage_toppings() {
     cout << "L - List Toppings" << endl;
     cout << "Q - Quit" << endl;
     cin >> choice;
-  } while ( !good_choice(choice, "cCqQlL", 6));
+  } while ( !good_choice(choice, "cCqQlL"));
 
   if(choice == 'c' || choice == 'C') {
     clearScreen();
