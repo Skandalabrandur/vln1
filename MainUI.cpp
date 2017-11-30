@@ -4,6 +4,14 @@
 #include "WRtopping.h"
 #include <string>
 
+//Solution taken from:
+//http://www.cplusplus.com/articles/4z18T05o/
+#ifdef __cplusplus__
+  #include <cstdlib>
+#else
+  #include <stdlib.h>
+#endif
+
 using namespace std;
 
 
@@ -21,9 +29,22 @@ bool MainUI::good_choice(char chosen, string legitChoices, int numOfChoices) {
   return legit;
 }
 
+void MainUI::clearScreen() {
+  //Solution from:
+  //http://www.cplusplus.com/articles/4z18T05o/
+  if (system("CLS")) system("clear");
+}
+
+void MainUI::pressEnter() {
+  cout << "Press enter to continue" << endl;
+  cin.ignore();     //ignore cin buffer (for instance if it contains '\n')
+  cin.get();        //Halts program until user presses the Enter key
+}
+
 void MainUI::startUI() {
   char choice;
   do {
+    clearScreen();
     cout << "M - MANAGEMENT" << endl;
     cout << "S - SALES" << endl;
     cout << "B - BAKERS" << endl;
@@ -34,6 +55,7 @@ void MainUI::startUI() {
   } while( !good_choice(choice, "msbdqMSBDQ", 8));
 
   if(choice == 'm' || choice == 'M') {
+    clearScreen();
     managementUI();
   }
 
@@ -54,6 +76,7 @@ void MainUI::startUI() {
     //trigger main menu again
     startUI();
   }
+
 }
 
 void MainUI::managementUI() {
@@ -76,15 +99,15 @@ void MainUI::managementUI() {
 }
 
 void MainUI::salesUI() {
-  cout << "SalesUI not yet implemented. You will return to main menu" << endl;
+  cout << "SalesUI not yet implemented. <enter>You will return to main menu" << endl;
 }
 
 void MainUI::bakersUI() {
-  cout << "bakersUI not yet implemented. You will return to main menu" << endl;
+  cout << "bakersUI not yet implemented. <enter>You will return to main menu" << endl;
 }
 
 void MainUI::deliveryUI() {
-  cout << "deliveryUI not yet implemented. You will return to main menu" << endl;
+  cout << "deliveryUI not yet implemented. <enter>You will return to main menu" << endl;
 }
 
 void MainUI::manage_pizzas() {
@@ -107,17 +130,28 @@ void MainUI::manage_pizzas() {
 void MainUI::manage_toppings() {
   char choice;
   do {
+    clearScreen();
     cout << "What do?" << endl << endl;
     cout << "T - Create Toppings" << endl;
+    cout << "L - List Toppings" << endl;
     cout << "Q - Quit" << endl;
     cin >> choice;
-  } while ( !good_choice(choice, "tTqQ", 4));
+  } while ( !good_choice(choice, "tTqQlL", 6));
 
   if(choice == 't' || choice == 'T') {
+    clearScreen();
     Topping topping;
     cin >> topping;
     cout << "Created: " << topping << endl;
     WRtopping writer;
     writer.saveNewTopping(topping);
+    pressEnter();
+  }
+
+  if(choice == 'l' || choice == 'L') {
+    clearScreen();
+    WRtopping reader;
+    reader.listToppings();
+    pressEnter();
   }
 }

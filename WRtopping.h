@@ -7,7 +7,8 @@ class WRtopping {
 
 public:
   void saveNewTopping(Topping topping);
-  Topping* retrieveToppings();
+  //Topping* retrieveToppings();
+  void listToppings();
   virtual ~WRtopping();
 private:
 

@@ -8,6 +8,8 @@ class MainUI {
 
 public:
   bool good_choice(char chosen, string legitChoices, int numOfChoices);
+  void clearScreen();
+  void pressEnter();
   void startUI();
   void managementUI();
   void salesUI();
