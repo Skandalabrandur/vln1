@@ -15,25 +15,21 @@ void WRtopping::saveNewTopping(Topping topping) {
 
 }
 
-/*
-Topping* WRtopping::retriveToppings() {
-  Topping* toppings;
+bool WRtopping::toppingsExist() {
   ifstream fin;
-  fin.open("files/toppingList.txt");
+  bool exists;
 
-  if(fin.is_open()) {
+  fin.open("files/toppinglist.txt");
+  exists = fin.is_open();
+  fin.close();
 
-  } else {
-
-  }
+  return exists;
 }
-*/
 
 void WRtopping::selectTopping(int index, Topping& topping) {
   ifstream fin;
   index--; //Program is 1-indexed
   fin.open("files/toppinglist.txt");
-  cout << "index is: " << index << endl;
   if(fin.is_open()) {
     int counter = 0;
     string line;

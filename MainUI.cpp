@@ -99,15 +99,18 @@ void MainUI::managementUI() {
 }
 
 void MainUI::salesUI() {
-  cout << "SalesUI not yet implemented. <enter>You will return to main menu" << endl;
+  cout << "SalesUI not yet implemented. You will return to main menu" << endl;
+  pressEnter();
 }
 
 void MainUI::bakersUI() {
   cout << "bakersUI not yet implemented. <enter>You will return to main menu" << endl;
+  pressEnter();
 }
 
 void MainUI::deliveryUI() {
   cout << "deliveryUI not yet implemented. <enter>You will return to main menu" << endl;
+  pressEnter();
 }
 
 void MainUI::manage_pizzas() {
@@ -115,18 +118,29 @@ void MainUI::manage_pizzas() {
   do {
     clearScreen();
     cout << "What do?" << endl << endl;
-    cout << "P - Create Pizza" << endl;
+    cout << "C - Create Pizza" << endl;
     cout << "Q - Quit" << endl;
     cin >> choice;
-  } while ( !good_choice(choice, "pqPQ", 4) );
+  } while ( !good_choice(choice, "cqCQ", 4) );
 
-  if(choice == 'p' || choice == 'P') {
+  //We need to check if toppings exists
+
+  if(choice == 'c' || choice == 'C') {
     clearScreen();
-    Pizza pizza;
-    cin >> pizza;
-    cout << "Created: " << pizza << endl;
     WRpizza writer;
-    writer.saveNewPizza(pizza);
+    WRtopping examiner;
+      if(examiner.toppingsExist()) {
+        Pizza pizza;
+        cin >> pizza;
+        cout << "Created: " << pizza << endl;
+        writer.saveNewPizza(pizza);
+        pressEnter();
+    } else {
+      cout << "No toppings exist" << endl;
+      cout << "Create some toppings in the system via" << endl;
+      cout << "\tManage->Manage Toppings->Create Topping" << endl;
+      pressEnter();
+    }
   }
 }
 
@@ -135,13 +149,13 @@ void MainUI::manage_toppings() {
   do {
     clearScreen();
     cout << "What do?" << endl << endl;
-    cout << "T - Create Toppings" << endl;
+    cout << "C - Create Topping" << endl;
     cout << "L - List Toppings" << endl;
     cout << "Q - Quit" << endl;
     cin >> choice;
-  } while ( !good_choice(choice, "tTqQlL", 6));
+  } while ( !good_choice(choice, "cCqQlL", 6));
 
-  if(choice == 't' || choice == 'T') {
+  if(choice == 'c' || choice == 'C') {
     clearScreen();
     Topping topping;
     cin >> topping;

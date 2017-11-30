@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Pizza.h"
 #include "WRtopping.h"
+#include "MainUI.h"
 
 
 using namespace std;
@@ -108,11 +109,18 @@ istream& operator >> (istream& in, Pizza& pizza) {
   pizza.resetToppingCount(numberOfToppings);
 
   WRtopping wrtopping;
+  MainUI clearFunction;
 
   for(int i = 0; i < numberOfToppings; i++) {
+    clearFunction.clearScreen();
     Topping newTopping;
     int numberOfAvailableToppings = wrtopping.listAndCountToppings();
     int selection;
+
+    if(pizza.vbose) {
+      cout << "Select ingredient " << (i+1) << " of " << numberOfToppings << endl;
+    }
+
     cin >> selection;
     wrtopping.selectTopping(selection, newTopping);
     pizza.addTopping(newTopping);
