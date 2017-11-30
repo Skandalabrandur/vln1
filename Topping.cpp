@@ -23,6 +23,14 @@ void Topping::setVerbose(bool set) {
   vbose = set;
 }
 
+void Topping::setName(string name) {
+  _name = name;
+}
+
+void Topping::setPrice(int price) {
+  _price = price;
+}
+
 //empty destructor
 Topping::~Topping() {
 

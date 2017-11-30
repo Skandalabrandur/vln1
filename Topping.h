@@ -11,6 +11,8 @@ public:
                                       //Intended for early testing purposes
   Topping(string name, int price);
   void setVerbose(bool set);
+  void setName(string name);
+  void setPrice(int price);
   virtual ~Topping();
 
   friend ostream& operator << (ostream& out, const Topping& topping);

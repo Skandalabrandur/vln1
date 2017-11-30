@@ -113,12 +113,15 @@ void MainUI::deliveryUI() {
 void MainUI::manage_pizzas() {
   char choice;
   do {
+    clearScreen();
     cout << "What do?" << endl << endl;
     cout << "P - Create Pizza" << endl;
     cout << "Q - Quit" << endl;
     cin >> choice;
   } while ( !good_choice(choice, "pqPQ", 4) );
+
   if(choice == 'p' || choice == 'P') {
+    clearScreen();
     Pizza pizza;
     cin >> pizza;
     cout << "Created: " << pizza << endl;

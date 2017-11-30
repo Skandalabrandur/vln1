@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "Pizza.h"
+#include "WRtopping.h"
 
 
 using namespace std;
@@ -106,13 +107,14 @@ istream& operator >> (istream& in, Pizza& pizza) {
   cin >> numberOfToppings;
   pizza.resetToppingCount(numberOfToppings);
 
+  WRtopping wrtopping;
+
   for(int i = 0; i < numberOfToppings; i++) {
     Topping newTopping;
-    if(pizza.vbose) {
-      cout << "Input topping " << (i+1) << " of " << pizza.toppingsCount << endl;
-      newTopping.setVerbose(true);
-    }
-    cin >> newTopping;
+    int numberOfAvailableToppings = wrtopping.listAndCountToppings();
+    int selection;
+    cin >> selection;
+    wrtopping.selectTopping(selection, newTopping);
     pizza.addTopping(newTopping);
   }
 
