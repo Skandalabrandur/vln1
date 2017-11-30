@@ -1,13 +1,13 @@
 #ifndef wrpizza_h
 #define wrpizza_h
 
-#include "Pizza.h"
+#include "AdminPizza.h"
 
 class WRpizza {
 
 public:
-  void saveNewPizza(Pizza& pizza);
-  Pizza* retrievePizzas();
+  void saveNewPizza(AdminPizza& pizza);
+  AdminPizza* retrievePizzas();
   virtual ~WRpizza();
 
 private:

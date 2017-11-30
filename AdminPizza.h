@@ -8,20 +8,20 @@
 using namespace std;
 
 
-class Pizza {
+class AdminPizza {
 
 public:
-  Pizza();                                  //empty constructor
-  Pizza(int numberOfToppings);              //non-empty constructor
+  AdminPizza();                                  //empty constructor
+  AdminPizza(int numberOfToppings);              //non-empty constructor
   void initialize(int numberOfToppings);
   void resetToppingCount(int numberOfToppings);
   void addTopping(Topping newTopping);
   void setPizzaName(string name);
   void setVerbose(bool set);
-  virtual ~Pizza();
+  virtual ~AdminPizza();
 
-  friend ostream& operator << (ostream& out, const Pizza& pizza);
-  friend istream& operator >> (istream& in, Pizza& pizza);
+  friend ostream& operator << (ostream& out, const AdminPizza& pizza);
+  friend istream& operator >> (istream& in, AdminPizza& pizza);
 
 private:
   Topping *toppings;    //A pointer for the dynamic array of toppings

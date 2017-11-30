@@ -5,14 +5,14 @@
 
 using namespace std;
 
-void WRpizza::saveNewPizza(Pizza& pizza) {
+void WRpizza::saveNewPizza(AdminPizza& pizza) {
   ofstream fout;
   fout.open("files/pizzalist.txt", ios::app);
   fout << pizza;
   fout.close();
 }
 
-Pizza* WRpizza::retrievePizzas() {
+AdminPizza* WRpizza::retrievePizzas() {
   ifstream fin;
 }
 

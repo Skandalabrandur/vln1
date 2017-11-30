@@ -1,8 +1,9 @@
 #include "MainUI.h"
-#include "Pizza.h"
+#include "AdminPizza.h"
 #include "WRpizza.h"
 #include "WRtopping.h"
 #include "UImanagement.h"
+#include "UIsales.h"
 #include <string>
 
 //Solution taken from:
@@ -84,8 +85,27 @@ void MainUI::startUI() {
 
 
 void MainUI::salesUI() {
-  cout << "SalesUI not yet implemented. You will return to main menu" << endl;
-  pressEnter();
+    clearScreen();
+    cout << "O - ORDER PIZZA" << endl;
+    cout << "M - ORDER PIZZA FROM MENU" << endl << endl;
+    cout << "B - BACK" << endl;
+    UIsales uisales;
+    char choice;
+    cin >> choice;
+    if(choice == 'o' || choice == 'O') {
+        clearScreen();
+        uisales.orderPizza();
+    }
+    
+    if(choice == 'm' || choice == 'M') {
+        clearScreen();
+        uisales.orderPizzaMenu();
+    }
+    //Gets called after users exits any chosen UI
+    if(choice != 'q' && choice != 'Q') {
+        //trigger main menu again
+        startUI();
+    }
 }
 
 void MainUI::bakersUI() {

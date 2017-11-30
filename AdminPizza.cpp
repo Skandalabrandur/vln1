@@ -1,24 +1,24 @@
 #include <string>
 #include <iostream>
-#include "Pizza.h"
+#include "AdminPizza.h"
 #include "WRtopping.h"
 #include "MainUI.h"
 
 
 using namespace std;
 
-//Empty constructor. Initializes Pizza to 0 toppings
-Pizza::Pizza() {
+//Empty constructor. Initializes AdminPizza to 0 toppings
+AdminPizza::AdminPizza() {
   toppings = 0;   //avoids segmentation fault
   initialize(0);
 }
 
-Pizza::Pizza(int numberOfToppings) {
+AdminPizza::AdminPizza(int numberOfToppings) {
   toppings = 0;   //avoids segmentation fault
   initialize(numberOfToppings);
 }
 
-void Pizza::initialize(int numberOfToppings) {
+void AdminPizza::initialize(int numberOfToppings) {
   //If pizza toppings have been initalized then we have to
   //delete that dynamic array
   if(toppings != 0) {
@@ -34,7 +34,7 @@ void Pizza::initialize(int numberOfToppings) {
   vbose = true;
 }
 
-void Pizza::resetToppingCount(int numberOfToppings) {
+void AdminPizza::resetToppingCount(int numberOfToppings) {
   if(toppings != 0) {
     delete[] toppings;
   }
@@ -44,7 +44,7 @@ void Pizza::resetToppingCount(int numberOfToppings) {
   toppingCounter = 0;
 }
 
-void Pizza::addTopping(Topping newTopping) {
+void AdminPizza::addTopping(Topping newTopping) {
   //If we still have room for toppings
   if(toppingCounter < toppingsCount) {
     toppings[toppingCounter] = newTopping;  //add the topping
@@ -52,15 +52,15 @@ void Pizza::addTopping(Topping newTopping) {
   }
 }
 
-void Pizza::setPizzaName(string name) {
+void AdminPizza::setPizzaName(string name) {
   pizzaName = name;
 }
 
-void Pizza::setVerbose(bool set) {
+void AdminPizza::setVerbose(bool set) {
   vbose = set;
 }
 
-Pizza::~Pizza() {
+AdminPizza::~AdminPizza() {
   //destructor
 
   //let's avoid the nullpointer exception
@@ -72,12 +72,12 @@ Pizza::~Pizza() {
 
 //friend functions
 
-//Pizza data is on the form
+//AdminPizza data is on the form
 //pizzaName bottomType
 //or if pizzaName is literally "custom" then
 //pizzaName bottomType numberOfToppings <list of toppings>
 
-ostream& operator << (ostream& out, const Pizza& pizza) {
+ostream& operator << (ostream& out, const AdminPizza& pizza) {
   out << pizza.pizzaName << " " << pizza.bottomType << " ";
   out << pizza.toppingsCount << " ";
 
@@ -89,7 +89,7 @@ ostream& operator << (ostream& out, const Pizza& pizza) {
   return out;
 }
 
-istream& operator >> (istream& in, Pizza& pizza) {
+istream& operator >> (istream& in, AdminPizza& pizza) {
 
   if(pizza.vbose) {
     cout << "Name of pizza: ";

@@ -38,7 +38,7 @@ void UImanagement::manage_pizzas() {
     WRpizza writer;
     WRtopping examiner;
       if(examiner.toppingsExist()) {
-        Pizza pizza;
+        AdminPizza pizza;
         cin >> pizza;
         ui.clearScreen();
         cout << endl << "Created: " << pizza << endl;
