@@ -132,7 +132,8 @@ void MainUI::manage_pizzas() {
       if(examiner.toppingsExist()) {
         Pizza pizza;
         cin >> pizza;
-        cout << "Created: " << pizza << endl;
+        clearScreen();
+        cout << endl << "Created: " << pizza << endl;
         writer.saveNewPizza(pizza);
         pressEnter();
     } else {
