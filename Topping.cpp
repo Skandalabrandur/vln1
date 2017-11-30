@@ -39,7 +39,7 @@ Topping::~Topping() {
 
 ostream& operator << (ostream& out, const Topping& topping) {
   out << topping._name << " ";
-  out << topping._price;
+  out << topping._price << "kr";
 
   return out;
 }
