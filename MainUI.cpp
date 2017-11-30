@@ -2,6 +2,7 @@
 #include "Pizza.h"
 #include "WRpizza.h"
 #include "WRtopping.h"
+#include "UImanagement.h"
 #include <string>
 
 //Solution taken from:
@@ -15,10 +16,11 @@
 using namespace std;
 
 
-//checks if character is found in the availableChoices string
-bool MainUI::good_choice(char chosen, string legitChoices, int numOfChoices) {
+//char chosen is input from user
+//legitChoices is a string of legit characters e.g. "aAbBcC"
+bool MainUI::good_choice(char chosen, string legitChoices) {
   bool legit = false; //initialize return to false
-
+  int numOfChoices = legitChoices.size();
   for(int i = 0; i < numOfChoices; i++) {
     if(chosen == legitChoices[i]) {
       legit = true;   //the function will now return true
@@ -52,11 +54,12 @@ void MainUI::startUI() {
     cout << endl << "Q - QUIT" << endl;
     cin >> choice;
 
-  } while( !good_choice(choice, "msbdqMSBDQ", 8));
+  } while( !good_choice(choice, "msbdqMSBDQ"));
 
   if(choice == 'm' || choice == 'M') {
+    UImanagement uimanagement;
     clearScreen();
-    managementUI();
+    uimanagement.managementUI();
   }
 
   if(choice == 's' || choice == 'S') {
@@ -79,24 +82,6 @@ void MainUI::startUI() {
 
 }
 
-void MainUI::managementUI() {
-  char choice;
-  do {
-    cout << "P - Manage Pizzas" << endl;
-    cout << "T - Manage Toppings" << endl;
-    cout << endl << "B - Go Back" << endl;
-    cin >> choice;
-  } while( !good_choice(choice, "pPbBtT", 6));
-
-  if(choice == 'P' || choice == 'p') {
-    manage_pizzas();
-  }
-
-  if(choice == 't' || choice == 'T') {
-    manage_toppings();
-  }
-
-}
 
 void MainUI::salesUI() {
   cout << "SalesUI not yet implemented. You will return to main menu" << endl;
@@ -111,65 +96,4 @@ void MainUI::bakersUI() {
 void MainUI::deliveryUI() {
   cout << "deliveryUI not yet implemented. <enter>You will return to main menu" << endl;
   pressEnter();
-}
-
-void MainUI::manage_pizzas() {
-  char choice;
-  do {
-    clearScreen();
-    cout << "What do?" << endl << endl;
-    cout << "C - Create Pizza" << endl;
-    cout << "Q - Quit" << endl;
-    cin >> choice;
-  } while ( !good_choice(choice, "cqCQ", 4) );
-
-  //We need to check if toppings exists
-
-  if(choice == 'c' || choice == 'C') {
-    clearScreen();
-    WRpizza writer;
-    WRtopping examiner;
-      if(examiner.toppingsExist()) {
-        Pizza pizza;
-        cin >> pizza;
-        clearScreen();
-        cout << endl << "Created: " << pizza << endl;
-        writer.saveNewPizza(pizza);
-        pressEnter();
-    } else {
-      cout << "No toppings exist" << endl;
-      cout << "Create some toppings in the system via" << endl;
-      cout << "\tManage->Manage Toppings->Create Topping" << endl;
-      pressEnter();
-    }
-  }
-}
-
-void MainUI::manage_toppings() {
-  char choice;
-  do {
-    clearScreen();
-    cout << "What do?" << endl << endl;
-    cout << "C - Create Topping" << endl;
-    cout << "L - List Toppings" << endl;
-    cout << "Q - Quit" << endl;
-    cin >> choice;
-  } while ( !good_choice(choice, "cCqQlL", 6));
-
-  if(choice == 'c' || choice == 'C') {
-    clearScreen();
-    Topping topping;
-    cin >> topping;
-    cout << "Created: " << topping << endl;
-    WRtopping writer;
-    writer.saveNewTopping(topping);
-    pressEnter();
-  }
-
-  if(choice == 'l' || choice == 'L') {
-    clearScreen();
-    WRtopping reader;
-    reader.listToppings();
-    pressEnter();
-  }
 }

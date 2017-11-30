@@ -5,6 +5,7 @@
 Topping::Topping() {
   _name  = "Topping";
   _price = 1337;
+  vbose = true;
 }
 
 Topping::Topping(string name) {
