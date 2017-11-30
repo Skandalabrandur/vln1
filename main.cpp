@@ -1,5 +1,5 @@
 #include <iostream>
-#include "MainUI.cpp"
+#include "MainUI.h"
 
 using namespace std;
 
@@ -7,7 +7,7 @@ using namespace std;
 int main() {
 
   MainUI mainui;
-  mainui.create_pizza();
+  mainui.startUI();
   return 0;
 
 }

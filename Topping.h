@@ -2,6 +2,7 @@
 #define topping_h
 
 #include <iostream>
+using namespace std;
 
 class Topping {
 public:

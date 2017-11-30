@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "Topping.cpp"
+#include "Topping.h"
 
 using namespace std;
 

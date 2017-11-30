@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Topping.h"
 
 Topping::Topping() {
@@ -29,7 +30,7 @@ Topping::~Topping() {
 
 
 ostream& operator << (ostream& out, const Topping& topping) {
-  out << topping._name;
+  out << topping._name << " ";
   out << topping._price;
 
   return out;
