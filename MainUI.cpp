@@ -3,7 +3,7 @@
 #include "WRpizza.h"
 #include "WRtopping.h"
 #include "UImanagement.h"
-#include "UIsales.h"
+#include "UIbaker.h"
 #include <string>
 
 //Solution taken from:
@@ -68,7 +68,10 @@ void MainUI::startUI() {
   }
 
   if(choice == 'b' || choice == 'B') {
-    bakersUI();
+    //bakersUI();
+    UIbaker uibaker;
+    clearScreen();
+    uibaker.bakerUI();
   }
 
   if(choice == 'd' || choice == 'D') {
@@ -85,27 +88,8 @@ void MainUI::startUI() {
 
 
 void MainUI::salesUI() {
-    clearScreen();
-    cout << "O - ORDER PIZZA" << endl;
-    cout << "M - ORDER PIZZA FROM MENU" << endl << endl;
-    cout << "B - BACK" << endl;
-    UIsales uisales;
-    char choice;
-    cin >> choice;
-    if(choice == 'o' || choice == 'O') {
-        clearScreen();
-        uisales.orderPizza();
-    }
-    
-    if(choice == 'm' || choice == 'M') {
-        clearScreen();
-        uisales.orderPizzaMenu();
-    }
-    //Gets called after users exits any chosen UI
-    if(choice != 'q' && choice != 'Q') {
-        //trigger main menu again
-        startUI();
-    }
+  cout << "SalesUI not yet implemented. You will return to main menu" << endl;
+  pressEnter();
 }
 
 void MainUI::bakersUI() {

@@ -4,7 +4,6 @@
 #include "WRtopping.h"
 #include "MainUI.h"
 
-
 using namespace std;
 
 //Empty constructor. Initializes AdminPizza to 0 toppings
@@ -31,6 +30,7 @@ void AdminPizza::initialize(int numberOfToppings) {
   toppingsCount = numberOfToppings;
   toppingCounter = 0;
   pizzaName = "";
+  placeName = "";
   vbose = true;
 }
 
@@ -107,6 +107,7 @@ istream& operator >> (istream& in, AdminPizza& pizza) {
   int numberOfToppings;
   cin >> numberOfToppings;
   pizza.resetToppingCount(numberOfToppings);
+
 
   WRtopping wrtopping;
   MainUI clearFunction;

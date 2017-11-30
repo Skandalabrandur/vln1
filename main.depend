@@ -1,0 +1,104 @@
+# depslib dependency file v1.0
+1512044787 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\main.cpp
+	<iostream>
+	"MainUI.h"
+
+1512044787 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.h
+	<string>
+
+1512054745 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.cpp
+	"MainUI.h"
+	"AdminPizza.h"
+	"WRpizza.h"
+	"WRtopping.h"
+	"UImanagement.h"
+	"UIbaker.h"
+	<string>
+	<cstdlib>
+	<stdlib.h>
+
+1512050554 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\pizza.h
+	<iostream>
+	<string>
+	"Topping.h"
+
+1512042446 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\topping.h
+	<iostream>
+
+1512053872 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.h
+	"AdminPizza.h"
+
+1512042446 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrtopping.h
+	"Topping.h"
+
+1512050554 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\pizza.cpp
+	<string>
+	<iostream>
+	"Pizza.h"
+	"WRtopping.h"
+	"MainUI.h"
+
+1512053872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\topping.cpp
+	<iostream>
+	<string>
+	"Topping.h"
+
+1512053872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.cpp
+	"WRpizza.h"
+	<iostream>
+	<fstream>
+
+1512051831 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrtopping.cpp
+	"WRtopping.h"
+	<iostream>
+	<fstream>
+
+1512054026 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\orders.cpp
+
+1512053880 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uimanagement.h
+	<string>
+	"MainUI.h"
+
+1512053880 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uimanagement.cpp
+	"UImanagement.h"
+	"WRpizza.h"
+	"WRtopping.h"
+	"WRplace.h"
+
+1512048153 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\orders.h
+	<iostream>
+	"Pizza.h"
+
+1512054756 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.h
+	<iostream>
+	"MainUI.h"
+
+1512054767 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.cpp
+	"UIbaker.h"
+
+1512053880 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\place.cpp
+	"Place.h"
+
+1512053880 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\place.h
+	<iostream>
+
+1512053880 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrplace.cpp
+	"WRplace.h"
+	<iostream>
+	<fstream>
+
+1512054026 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrplace.h
+	"Place.h"
+
+1512053880 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\adminpizza.h
+	<iostream>
+	<string>
+	"Topping.h"
+
+1512053880 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\adminpizza.cpp
+	<string>
+	<iostream>
+	"AdminPizza.h"
+	"WRtopping.h"
+	"MainUI.h"
+

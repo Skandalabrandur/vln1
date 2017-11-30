@@ -30,6 +30,7 @@ private:
   int toppingCounter;   //How many toppings have we added so far?
   string pizzaName;     //What is the name of the pizza?
   bool vbose;           //Will the pizza creation be verbose?
+  string placeName;
 };
 
 
