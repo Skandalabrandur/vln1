@@ -1,2 +1,6 @@
 *.xcodeproj
 main
+main.layout
+main.depends
+bin/
+obj/
