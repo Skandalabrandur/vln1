@@ -11,7 +11,6 @@ public:
   void clearScreen();
   void pressEnter();
   void startUI();
-  void deliveryUI();
 
 private:
 

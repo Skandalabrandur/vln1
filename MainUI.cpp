@@ -77,7 +77,8 @@ void MainUI::startUI() {
   }
 
   if(choice == 'd' || choice == 'D') {
-    deliveryUI();
+    cout << "Not yet implemented. <enter>You will return to main menu" << endl;
+  pressEnter();
   }
 
   //Gets called after users exits any chosen UI
@@ -86,10 +87,4 @@ void MainUI::startUI() {
     startUI();
   }
 
-}
-
-
-void MainUI::deliveryUI() {
-  cout << "deliveryUI not yet implemented. <enter>You will return to main menu" << endl;
-  pressEnter();
 }

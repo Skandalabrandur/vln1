@@ -101,9 +101,11 @@ void UImanagement::manage_places(){
   if(choice == 'n' || choice == 'N'){
     ui.clearScreen();
     Place place;
+    place.setVerbose(true);
     cin >> place;
     cout << "Created: " << place << endl;
     WRplace writer;
+    place.setVerbose(false);
     writer.saveNewPlace(place);
     ui.pressEnter();
   }

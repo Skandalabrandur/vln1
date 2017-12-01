@@ -3,10 +3,10 @@
 	<iostream>
 	"MainUI.h"
 
-1512129594 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.h
+1512130756 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.h
 	<string>
 
-1512129594 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.cpp
+1512130756 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.cpp
 	"MainUI.h"
 	"AdminPizza.h"
 	"WRpizza.h"
@@ -26,7 +26,7 @@
 1512042446 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\topping.h
 	<iostream>
 
-1512126826 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.h
+1512130356 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.h
 	"AdminPizza.h"
 
 1512042446 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrtopping.h
@@ -44,7 +44,7 @@
 	<string>
 	"Topping.h"
 
-1512126923 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.cpp
+1512130356 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.cpp
 	"WRpizza.h"
 	<iostream>
 	<fstream>
@@ -63,7 +63,7 @@
 	<string>
 	"MainUI.h"
 
-1512124783 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uimanagement.cpp
+1512133546 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uimanagement.cpp
 	"UImanagement.h"
 	"WRpizza.h"
 	"WRtopping.h"
@@ -73,13 +73,14 @@
 	<iostream>
 	<string>
 
-1512129236 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.h
+1512132742 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.h
 	<iostream>
 	"MainUI.h"
 	"WRplace.h"
 	"SalesPizza.h"
+	"WRsalespizza.h"
 
-1512129388 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.cpp
+1512133261 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.cpp
 	"UIbaker.h"
 
 1512123040 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\place.cpp
@@ -108,7 +109,7 @@
 	"WRtopping.h"
 	"MainUI.h"
 
-1512053872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\salespizza.cpp
+1512131224 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\salespizza.cpp
 	<string>
 	<iostream>
 	"WRtopping.h"
@@ -116,7 +117,7 @@
 	"SalesPizza.h"
 	"Topping.h"
 
-1512053872 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\salespizza.h
+1512131202 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\salespizza.h
 	<stdio.h>
 	<string>
 	"Topping.h"
@@ -128,4 +129,11 @@
 1512129594 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uisales.h
 	<stdio.h>
 	"MainUI.h"
+
+1512132360 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrsalespizza.cpp
+	"WRsalespizza.h"
+
+1512132040 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrsalespizza.h
+	"fstream"
+	"SalesPizza.h"
 

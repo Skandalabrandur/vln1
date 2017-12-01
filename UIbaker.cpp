@@ -34,7 +34,7 @@ void UIbaker::bakerUI() {
 void UIbaker::chooseActionForPizza(){
     char choice;
     do {
-        cout << endl << "Choose action: " << endl;
+        cout << endl << "Choose action for pizza: " << endl;
         cout << "P - In progress" << endl;
         cout << "R - Ready" << endl;
         cout << "B - Go Back" << endl;

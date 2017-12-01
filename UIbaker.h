@@ -4,6 +4,7 @@
 #include "MainUI.h"
 #include "WRplace.h"
 #include "SalesPizza.h"
+#include "WRsalespizza.h"
 
 using namespace std;
 
