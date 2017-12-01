@@ -110,7 +110,7 @@ void UImanagement::manage_places(){
   else if(choice == 'l' || choice == 'L'){
     ui.clearScreen();
     WRplace reader;
-    reader.listPlaces();
+    int count = reader.listAndCountPlaces();
     ui.pressEnter();
   }
 

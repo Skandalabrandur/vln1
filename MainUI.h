@@ -11,8 +11,6 @@ public:
   void clearScreen();
   void pressEnter();
   void startUI();
-  void salesUI();
-  void bakersUI();
   void deliveryUI();
 
 private:

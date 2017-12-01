@@ -3,16 +3,17 @@
 	<iostream>
 	"MainUI.h"
 
-1512044787 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.h
+1512129594 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.h
 	<string>
 
-1512054745 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.cpp
+1512129594 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\mainui.cpp
 	"MainUI.h"
 	"AdminPizza.h"
 	"WRpizza.h"
 	"WRtopping.h"
 	"UImanagement.h"
 	"UIbaker.h"
+	"UIsales.h"
 	<string>
 	<cstdlib>
 	<stdlib.h>
@@ -25,7 +26,7 @@
 1512042446 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\topping.h
 	<iostream>
 
-1512053872 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.h
+1512126826 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.h
 	"AdminPizza.h"
 
 1512042446 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrtopping.h
@@ -43,62 +44,88 @@
 	<string>
 	"Topping.h"
 
-1512053872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.cpp
+1512126923 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrpizza.cpp
 	"WRpizza.h"
 	<iostream>
 	<fstream>
 
-1512051831 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrtopping.cpp
+1512124418 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrtopping.cpp
 	"WRtopping.h"
 	<iostream>
 	<fstream>
 
-1512054026 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\orders.cpp
+1512055261 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\orders.cpp
+	<string>
+	<iostream>
+	"Orders.h"
 
 1512053880 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uimanagement.h
 	<string>
 	"MainUI.h"
 
-1512053880 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uimanagement.cpp
+1512124783 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uimanagement.cpp
 	"UImanagement.h"
 	"WRpizza.h"
 	"WRtopping.h"
 	"WRplace.h"
 
-1512048153 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\orders.h
+1512055261 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\orders.h
 	<iostream>
-	"Pizza.h"
+	<string>
 
-1512054756 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.h
+1512129236 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.h
 	<iostream>
 	"MainUI.h"
+	"WRplace.h"
+	"SalesPizza.h"
 
-1512054767 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.cpp
+1512129388 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uibaker.cpp
 	"UIbaker.h"
 
-1512053880 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\place.cpp
+1512123040 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\place.cpp
 	"Place.h"
 
 1512053880 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\place.h
 	<iostream>
 
-1512053880 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrplace.cpp
+1512124754 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrplace.cpp
 	"WRplace.h"
 	<iostream>
 	<fstream>
 
-1512054026 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrplace.h
+1512124754 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\wrplace.h
 	"Place.h"
 
-1512053880 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\adminpizza.h
+1512129236 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\adminpizza.h
 	<iostream>
 	<string>
 	"Topping.h"
 
-1512053880 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\adminpizza.cpp
+1512123853 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\adminpizza.cpp
 	<string>
 	<iostream>
 	"AdminPizza.h"
 	"WRtopping.h"
+	"MainUI.h"
+
+1512053872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\salespizza.cpp
+	<string>
+	<iostream>
+	"WRtopping.h"
+	"MainUI.h"
+	"SalesPizza.h"
+	"Topping.h"
+
+1512053872 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\salespizza.h
+	<stdio.h>
+	<string>
+	"Topping.h"
+
+1512129786 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uisales.cpp
+	"UIsales.h"
+	"SalesPizza.h"
+
+1512129594 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\uisales.h
+	<stdio.h>
 	"MainUI.h"
 

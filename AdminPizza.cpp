@@ -56,6 +56,10 @@ void AdminPizza::setPizzaName(string name) {
   pizzaName = name;
 }
 
+void AdminPizza::setPlaceName(string name) {
+  placeName = name;
+}
+
 void AdminPizza::setVerbose(bool set) {
   vbose = set;
 }
@@ -76,7 +80,7 @@ AdminPizza::~AdminPizza() {
 //pizzaName bottomType
 //or if pizzaName is literally "custom" then
 //pizzaName bottomType numberOfToppings <list of toppings>
-
+//For making pizza on menu
 ostream& operator << (ostream& out, const AdminPizza& pizza) {
   out << pizza.pizzaName << " " << pizza.bottomType << " ";
   out << pizza.toppingsCount << " ";

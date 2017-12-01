@@ -34,7 +34,7 @@ ostream& operator << (ostream& out, const Place& place){
 istream& operator >> (istream& in, Place& place){
 
     if(place._vbose) {
-        cout << "Input name of place: ";
+        cout << "Name of place: ";
     }
     in >> place._place;
 

@@ -21,6 +21,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="AdminPizza.cpp" />
+		<Unit filename="AdminPizza.h" />
 		<Unit filename="MainUI.cpp" />
 		<Unit filename="MainUI.h" />
 		<Unit filename="Orders.cpp" />

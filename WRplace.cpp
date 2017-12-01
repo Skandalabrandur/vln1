@@ -14,23 +14,28 @@ void WRplace::saveNewPlace(Place place){
     fout.close();
 }
 
-void WRplace::listPlaces(){
+int WRplace::listAndCountPlaces(){
 
     ifstream fin;
     fin.open("files/placeslist.txt");
+    int counter = 0;
     if(fin.is_open()) {
         string line;
         while(!fin.eof()) {
           getline(fin, line);
-          cout << line << endl;
+          counter++;
+          //check end of file again so it doesn't print extra line
+          if(!fin.eof()){
+            cout << counter << "-\t" << line << endl;
+          }
         }
-
         fin.close();
+        return counter;
     }
     else {
         cout << "ERROR: NO PLACES FOUND!" << endl;
         cout << "Possible solution:" << endl;
         cout << "\tHave management create places!" << endl;
     }
-
+    return counter;
 }

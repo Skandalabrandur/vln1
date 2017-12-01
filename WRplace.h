@@ -9,7 +9,7 @@ class WRplace
 
     public:
         void saveNewPlace(Place place);
-        void listPlaces();
+        int listAndCountPlaces();
 };
 
 #endif // WRPLACE_H

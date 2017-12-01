@@ -67,6 +67,7 @@ void WRtopping::listToppings() {
     cout << "Possible solution:" << endl;
     cout << "\tHave management create toppings!" << endl;
   }
+
 }
 
 //Begs the question if listToppings() is now deprecated

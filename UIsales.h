@@ -1,6 +1,6 @@
 //
 //  UIsales.hpp
-//  
+//
 //
 //  Created by Hlynur Hólm Hauksson on 30/11/2017.
 //
@@ -13,11 +13,12 @@
 using namespace std;
 
 class UIsales {
-    
+
 public:
+    void salesUI();
     void orderPizza();
     void orderPizzaMenu();
-    
+
 private:
     MainUI ui;
 };

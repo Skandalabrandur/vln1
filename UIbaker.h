@@ -1,8 +1,9 @@
-
 #ifndef UIBAKER_H
 #define UIBAKER_H
 #include <iostream>
 #include "MainUI.h"
+#include "WRplace.h"
+#include "SalesPizza.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ class UIbaker
 
     public:
         void bakerUI();
+        void chooseActionForPizza();
 };
 
 #endif // UIBAKER_H

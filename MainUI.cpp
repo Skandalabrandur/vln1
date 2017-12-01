@@ -4,6 +4,7 @@
 #include "WRtopping.h"
 #include "UImanagement.h"
 #include "UIbaker.h"
+#include "UIsales.h"
 #include <string>
 
 //Solution taken from:
@@ -64,11 +65,12 @@ void MainUI::startUI() {
   }
 
   if(choice == 's' || choice == 'S') {
-    salesUI();
+    UIsales UIsales;
+    clearScreen();
+    UIsales.salesUI();
   }
 
   if(choice == 'b' || choice == 'B') {
-    //bakersUI();
     UIbaker uibaker;
     clearScreen();
     uibaker.bakerUI();
@@ -86,16 +88,6 @@ void MainUI::startUI() {
 
 }
 
-
-void MainUI::salesUI() {
-  cout << "SalesUI not yet implemented. You will return to main menu" << endl;
-  pressEnter();
-}
-
-void MainUI::bakersUI() {
-  cout << "bakersUI not yet implemented. <enter>You will return to main menu" << endl;
-  pressEnter();
-}
 
 void MainUI::deliveryUI() {
   cout << "deliveryUI not yet implemented. <enter>You will return to main menu" << endl;

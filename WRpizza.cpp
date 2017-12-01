@@ -12,8 +12,13 @@ void WRpizza::saveNewPizza(AdminPizza& pizza) {
   fout.close();
 }
 
-AdminPizza* WRpizza::retrievePizzas() {
+AdminPizza WRpizza::retrievePizzas() {
   ifstream fin;
+  AdminPizza pizza;
+  fin.open("files/pizzalist.txt");
+  fin >> pizza;
+  fin.close();
+  return pizza;
 }
 
 WRpizza::~WRpizza() {

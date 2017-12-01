@@ -7,7 +7,7 @@ class WRpizza {
 
 public:
   void saveNewPizza(AdminPizza& pizza);
-  AdminPizza* retrievePizzas();
+  AdminPizza retrievePizzas();
   virtual ~WRpizza();
 
 private:

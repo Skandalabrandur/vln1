@@ -17,6 +17,7 @@ public:
   void resetToppingCount(int numberOfToppings);
   void addTopping(Topping newTopping);
   void setPizzaName(string name);
+  void setPlaceName(string name);
   void setVerbose(bool set);
   virtual ~AdminPizza();
 
@@ -30,7 +31,7 @@ private:
   int toppingCounter;   //How many toppings have we added so far?
   string pizzaName;     //What is the name of the pizza?
   bool vbose;           //Will the pizza creation be verbose?
-  string placeName;
+  string placeName;     //Name of place the pizza is made/sold in
 };
 
 
