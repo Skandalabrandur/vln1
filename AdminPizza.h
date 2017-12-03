@@ -23,13 +23,13 @@ public:
 
   friend ostream& operator << (ostream& out, const AdminPizza& pizza);
   friend istream& operator >> (istream& in, AdminPizza& pizza);
+    
+    string pizzaName;     //What is the name of the pizza?
 
 private:
   Topping *toppings;    //A pointer for the dynamic array of toppings
-  char bottomType;      //Type of pizza bottom (classic, italian, etc)
   int toppingsCount;    //How many toppings will be on the pizza?
   int toppingCounter;   //How many toppings have we added so far?
-  string pizzaName;     //What is the name of the pizza?
   bool vbose;           //Will the pizza creation be verbose?
   string placeName;     //Name of place the pizza is made/sold in
 };

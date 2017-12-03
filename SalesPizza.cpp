@@ -4,14 +4,14 @@
 #include "MainUI.h"
 #include "SalesPizza.h"
 #include "Topping.h"
+#include "WRpizza.h"
 
 SalesPizza::SalesPizza(){
     toppings = 0; //pointer
     bottomType = ' ';
     toppingsCount = 0;
     toppingCounter = 0;
-    pizzaName = "";
-    placeName = "";
+    placeID = 0;
     vbose = true;
 }
 
@@ -46,31 +46,54 @@ ostream& operator << (ostream& out, const SalesPizza& pizza) {
 }
 
 istream& operator >> (istream& in, SalesPizza& pizza) {
-    if(pizza.vbose) {
-        cout << "Number of toppings on pizza: ";
-    }
-    int numberOfToppings;
-    cin >> numberOfToppings;
-    pizza.resetToppingCount(numberOfToppings);
-
-    WRtopping wrtopping;
     MainUI clearFunction;
-
-    for(int i = 0; i < numberOfToppings; i++) {
-        clearFunction.clearScreen();
-        Topping newTopping;
-        int numberOfAvailableToppings = wrtopping.listAndCountToppings();
-        int selection;
-
-        if(pizza.vbose) {
-            cout << "Select ingredient " << (i+1) << " of " << numberOfToppings << endl;
-        }
-
-        cin >> selection;
-        wrtopping.selectTopping(selection, newTopping);
-        pizza.addTopping(newTopping);
+    clearFunction.clearScreen();
+    if(pizza.vbose) {
+        cout << "What store: " << endl;
+        cout << "1 - Skeifan" << endl;
+        cout << "2 - Akureyri" << endl;
+        cout << "3 - Kringlan" << endl;
     }
+    in >> pizza.placeID;
+    
+    if(pizza.vbose) {
+        cout << "Pizza from menu (y/n): ";
+    }
+    char i;
+    in >> i;
+    if(i == 'y' || i == 'Y'){
+        // EF PÍTSAN ER Á MENUI
+        WRpizza menu;
+        menu.retrievePizzas();
+        cin << pizza.menuIndex;
+    }
+    if(i == 'n' || i == 'N'){
+        if(pizza.vbose) {
+            cout << "Number of toppings on pizza: ";
+        }
+        int numberOfToppings;
+        cin >> numberOfToppings;
+        pizza.resetToppingCount(numberOfToppings);
 
+        WRtopping wrtopping;
+        MainUI clearFunction;
+
+        for(int i = 0; i < numberOfToppings; i++) {
+            clearFunction.clearScreen();
+            Topping newTopping;
+            int numberOfAvailableToppings = wrtopping.listAndCountToppings();
+            int selection;
+
+            if(pizza.vbose) {
+                cout << "Select ingredient " << (i+1) << " of " << numberOfToppings << endl;
+            }
+
+            cin >> selection;
+            wrtopping.selectTopping(selection, newTopping);
+            pizza.addTopping(newTopping);
+        }
+    }
+    
     if(pizza.vbose) {
         cout << "Type of pizza bottom: ";
     }

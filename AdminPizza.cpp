@@ -26,7 +26,6 @@ void AdminPizza::initialize(int numberOfToppings) {
   toppings = new Topping[numberOfToppings];
 
   //Reset member variables
-  bottomType = ' ';
   toppingsCount = numberOfToppings;
   toppingCounter = 0;
   pizzaName = "";
@@ -77,13 +76,12 @@ AdminPizza::~AdminPizza() {
 //friend functions
 
 //AdminPizza data is on the form
-//pizzaName bottomType
+//pizzaName
 //or if pizzaName is literally "custom" then
 //pizzaName bottomType numberOfToppings <list of toppings>
 //For making pizza on menu
 ostream& operator << (ostream& out, const AdminPizza& pizza) {
-  out << pizza.pizzaName << " " << pizza.bottomType << " ";
-  out << pizza.toppingsCount << " ";
+  out << pizza.pizzaName << " ";
 
   for(int i = 0; i < pizza.toppingsCount; i++) {
     out << pizza.toppings[i] << " ";
@@ -99,11 +97,6 @@ istream& operator >> (istream& in, AdminPizza& pizza) {
     cout << "Name of pizza: ";
   }
   in >> pizza.pizzaName;
-
-  if(pizza.vbose) {
-    cout << "Type of pizza bottom: ";
-  }
-  in >> pizza.bottomType;
 
   if(pizza.vbose) {
     cout << "Number of toppings on pizza: ";

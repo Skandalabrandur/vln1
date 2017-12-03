@@ -17,7 +17,7 @@ class UIsales {
 public:
     void salesUI();
     void orderPizza();
-    void orderPizzaMenu();
+    void showActive();
 
 private:
     MainUI ui;
