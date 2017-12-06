@@ -3,22 +3,24 @@
 using namespace std;
 
 //splits string on spaces, newlines and string end \0
-//builds words
-//when space is found
-//push word to vector
-//and reset builder
+//Example:
+//  vector<string> words = stringfunc.split("dingo bingo gringo thingo");
+//  words[0] → "dingo"
+// ...
+// words[3] → "thingo"
 vector<string> stringFunctions::split(string str) {
-  vector<string> words;
-  string builder;
+  vector<string> words;               //initialize vector
+  string builder;                     //initialize string for building words
   for(int i = 0; i < str.size(); i++) {
     if(str[i] != ' ' && str[i] != '\n') {
-      builder = builder + str[i];
+      builder = builder + str[i];  //until delimiter, add character to builder
 
-      //We do this instead of being crazy and accessing the '\0' out of bounds
+      //We do this if instead of being crazy and accessing the '\0' out of bounds
       if( i == (str.size() - 1) ) {
         words.push_back(builder);
       }
     } else {
+      //we have
       words.push_back(builder);
       builder = "";
     }

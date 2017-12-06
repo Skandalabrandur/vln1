@@ -5,12 +5,12 @@
 using namespace std;
 
 class bakerUI {
-    
+
 public:
     void displayBakerMenu();
     void viewPizzas();
-    
+
 private:
-    
+
 };
 #endif /* bakerUI_h */

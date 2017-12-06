@@ -32,13 +32,16 @@ bool UIFunctions::goodInput(char userChoice, const char legalChoices[]) {
   return false;
 }
 
+//Confirmed to work for most linux/mac terminal applications
+//Works for cmd.exe
+//Not sure if powershell supports this
 void UIFunctions::clearScreen() {
   //Solution from:
   //http://www.cplusplus.com/articles/4z18T05o/
   if (system("CLS")) system("clear");
 }
 
-//Works for cases where cin buffer has something
+//Works for cases where cin buffer is not empty
 void UIFunctions::pressEnter() {
   cout << "Press enter to continue" << endl;
   cin.ignore();     //ignore cin buffer (for instance if it contains '\n')
@@ -47,11 +50,16 @@ void UIFunctions::pressEnter() {
 
 //If nothing is in the cin buffer then this one will work
 //as intented
+//No real use cases really, unless you're testing in
+//main.cpp before any user input happens
 void UIFunctions::rawPressEnter() {
   cout << "Press enter to continue" << endl;
   cin.get();
 }
 
+//easy to declare a system wide prompt
+//if we ever want to change the look
+//  declared in UIFunctions.h under private:
 string UIFunctions::prompt() {
   return _prompt;
 }

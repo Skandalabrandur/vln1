@@ -12,6 +12,7 @@ class orderService {
 
 public:
   void createNewOrder();
+  void setPrice();
 
 private:
   fileOperations fo;

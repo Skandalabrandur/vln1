@@ -58,8 +58,8 @@ void orderService::setPrice(){
     int panBottomPrice = 800;
     double sizeMultiplier = 1;
     int price = 0;
-    
-    for(int i = 0; i pizzaCount){
+
+    for(int i = 0; i < pizzaCount; i++){
         if(isMenuPizza){
             price += priceMenuPizza * sizeMultiplier;
             if(bottom == 'p'){
@@ -72,7 +72,7 @@ void orderService::setPrice(){
             if(size == 's'){
                 sizeMultiplier = 2;
             }
-            
+
             if(bottom == 'k'){
                 price += sizeMultiplier * classicBottomPrice;
             }
@@ -84,7 +84,7 @@ void orderService::setPrice(){
             }
         }
     }
-    
+
     price += sodaCount * sodaPrice;
     price += breadstickCount * breadstickPrice;
 }

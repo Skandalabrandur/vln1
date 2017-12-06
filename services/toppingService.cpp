@@ -8,14 +8,19 @@ Topping toppingService::getToppingAt(int index) {
   return topping;
 }
 
+//Lists all toppings without indices
 void toppingService::listToppings() {
   fo.printLines("data/toppings.txt");
 }
 
+//Useful for selections
+//Note... this is not zero-based but one-based indexing.
 void toppingService::listToppingsWithIndex() {
   fo.printLinesWithIndices("data/toppings.txt");
 }
 
+//Creates a new topping from the admin menu.
+//Not inteded for use out of admin menu.
 void toppingService::createNewTopping() {
   string name;
   int price;
@@ -36,6 +41,7 @@ void toppingService::createNewTopping() {
   uf.pressEnter();
 }
 
+//Returns a topping object that matches name EXACTLY
 Topping toppingService::lookupTopping(string name) {
   int lineCount = fo.countLines("data/toppings.txt");
 
@@ -44,6 +50,7 @@ Topping toppingService::lookupTopping(string name) {
     words = fo.getWordsFromLine(i, "data/toppings.txt");
 
     if(words[0] == name) {
+      //creates the topping with the topping(name, price) constructor
       Topping topping(words[0], stringfunc.stringToInt(words[1]));
       return topping;
     }

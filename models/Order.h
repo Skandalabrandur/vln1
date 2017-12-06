@@ -16,6 +16,7 @@ public:
 private:
   string _customer;
   int _orderID;
+  string _place;
   vector<Pizza> _pizzas;
 
   stringFunctions stringfunc;

@@ -11,6 +11,8 @@ class mainUI {
 public:
   void displayMainMenu();
 
+//Classes as member variables for
+//quick and easy function access in mainUI.cpp
 private:
   UIFunctions uf;
 
