@@ -1,11 +1,7 @@
-#include <iostream>
-#include "MainUI.h"
-
-using namespace std;
-
+#include "mainUI.h"
 
 int main() {
-  MainUI mainui;        //Create a container for UI functions
-  mainui.startUI();     //Call the function to start up the main ui
+  mainUI mu;
+  mu.displayMainMenu();
   return 0;
 }
