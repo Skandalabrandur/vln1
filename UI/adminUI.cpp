@@ -25,16 +25,18 @@ void adminUI::displayAdminMenu() {
 }
 
 void adminUI::displayPizzaMenu() {
-  char userInput = 'i';     //init to invalid just in case
+  char userInput;
   while(userInput != 'b') {
     do {
+      userInput = 'i'; //for invalid so that we don't end up with an infinte loop
       uf.clearScreen();
       cout << "C - CREATE A NEW MENU PIZZA" << endl;
       cout << "L - LIST MENU PIZZAS" << endl;
+      cout << "D - DELETE MENU PIZZA" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
-    } while(!uf.goodInput(userInput, "clb"));
+    } while(!uf.goodInput(userInput, "cldb"));
 
     userInput = tolower(userInput);
 
@@ -45,6 +47,12 @@ void adminUI::displayPizzaMenu() {
     if(userInput == 'l') {
       uf.clearScreen();
       pizza_service.listMenuPizzas();
+      uf.pressEnter();
+    }
+
+    if(userInput == 'd') {
+      uf.clearScreen();
+      pizza_service.deleteMenuPizza();
       uf.pressEnter();
     }
   }

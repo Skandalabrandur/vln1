@@ -39,6 +39,18 @@ void fileOperations::appendLineToFile(string line, const char file[]) {
   fout.close();
 }
 
+//WARNING: This function overwrites files
+void fileOperations::writeFile(vector<string> lines, const char file[]) {
+  ofstream fout;
+  fout.open(file);  //don't flag for ios::app to overwrite
+  for(int i = 0; i < lines.size(); i++) {
+    if(!lines[i].empty()) {
+      fout << lines[i] << endl;
+    }
+  }
+  fout.close();
+}
+
 void fileOperations::printLines(const char file[]) {
   vector<string> lines;
   lines = getLinesFromFile(file);

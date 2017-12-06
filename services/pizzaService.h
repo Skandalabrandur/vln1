@@ -15,6 +15,8 @@ public:
   void createAndAppendMenuPizza();
   void listMenuPizzas();
   void listMenuPizzasWithIndices();
+  void deleteMenuPizza();
+  
   int howManyPizzasOnMenu();
   Pizza getMenuPizza(int index);
   void storeOrderPizza(Pizza pizza);

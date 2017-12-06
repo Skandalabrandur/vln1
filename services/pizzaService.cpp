@@ -66,14 +66,55 @@ void pizzaService::listMenuPizzasWithIndices() {
   //Let's customize this a bit more
   int lineCount = fo.countLines("data/menuPizzas.txt");
 
+  //let's sacrifice speed for beauty
+  int longestPizzaNameLength = 0;
+  for(int i = 0; i < lineCount; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/menuPizzas.txt");
+    if(words[0].size() > longestPizzaNameLength) {
+      longestPizzaNameLength = words[0].size();
+    }
+  }
+
   for(int i = 0; i < lineCount; i++) {
       vector<string> words = fo.getWordsFromLine(i, "data/menuPizzas.txt");
-      cout << (i+1) << " - " << "██ " << words[0] << " ██\t";
+
+      //padding for equal display length
+      string extraSpaces = " ";
+      for(int i = 0; i < (longestPizzaNameLength - words[0].size()); i++) {
+        extraSpaces += " ";
+      }
+
+      cout << (i+1) << " - " << "| " << words[0] << extraSpaces << "|\t";
       for(int i = 2; i < words.size(); i++) {
         cout << words[i] << " ";
       }
       cout << endl;
   }
+}
+
+void pizzaService::deleteMenuPizza() {
+
+  int menuSize = howManyPizzasOnMenu();
+  int selection = -1;
+
+  while(selection < 1 || selection > menuSize) {
+    //uf.clearScreen()
+    listMenuPizzasWithIndices();
+    cout << endl << "Select a pizza to delete from menu: ";
+    cin >> selection;
+  }
+  //Get this info before delete to show user later
+  Pizza selectedPizza = getMenuPizza(selection-1);  //selection is 1-based
+
+  vector<string> menuPizzaFile = fo.getLinesFromFile("data/menuPizzas.txt");
+
+  //erase selection from the vector representing the file
+  menuPizzaFile.erase(menuPizzaFile.begin() + (selection-1));
+
+  //overwrite
+  fo.writeFile(menuPizzaFile, "data/menuPizzas.txt");
+
+  cout << "Deleted: " << selectedPizza.getName() << endl;
 }
 
 int pizzaService::howManyPizzasOnMenu() {

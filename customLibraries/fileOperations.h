@@ -12,6 +12,7 @@ public:
   vector<string> getLinesFromFile(const char file[]);
   vector<string> getWordsFromLine(int index, const char file[]);
   void appendLineToFile(string line, const char file[]);
+  void writeFile(vector<string> lines, const char file[]);
   void printLines(const char file[]);
   void printLinesWithIndices(const char file[]);
   string getLineAt(int index, const char file[]);

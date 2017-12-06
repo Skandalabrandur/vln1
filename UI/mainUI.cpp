@@ -30,7 +30,10 @@ void mainUI::displayMainMenu() {
       sales_ui.displaySalesMenu();
     }
     if(userInput == 'b') {
-        baker_ui.displayBakerMenu();
+      baker_ui.displayBakerMenu();
+    }
+    if(userInput == 'd') {
+      //delivery_ui.displayBakerMenu();
     }
   }
 }
