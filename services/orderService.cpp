@@ -40,3 +40,51 @@ void orderService::createNewOrder() {
   cout << customer << endl;
   uf.pressEnter();
 }
+
+void orderService::setPrice(){
+    //ATH Á EFTIR AÐ SETJA VALUE
+    int pizzaCount;
+    char size;
+    char bottom;
+    vector<char> toppings;
+    bool isMenuPizza;
+    int priceMenuPizza;
+    int sodaCount;
+    int breadstickCount;
+    int breadstickPrice;
+    int sodaPrice = 350;
+    int classicBottomPrice = 600;
+    int lightBottomPrice = 500;
+    int panBottomPrice = 800;
+    double sizeMultiplier = 1;
+    int price = 0;
+    
+    for(int i = 0; i pizzaCount){
+        if(isMenuPizza){
+            price += priceMenuPizza * sizeMultiplier;
+            if(bottom == 'p'){
+                price += 200;
+            }
+        }else{
+            if(size == 'm'){
+                sizeMultiplier = 1.5;
+            }
+            if(size == 's'){
+                sizeMultiplier = 2;
+            }
+            
+            if(bottom == 'k'){
+                price += sizeMultiplier * classicBottomPrice;
+            }
+            if(bottom == 'l'){
+                price += sizeMultiplier * lightBottomPrice;
+            }
+            if(bottom == 'p'){
+                price += sizeMultiplier * panBottomPrice;
+            }
+        }
+    }
+    
+    price += sodaCount * sodaPrice;
+    price += breadstickCount * breadstickPrice;
+}
