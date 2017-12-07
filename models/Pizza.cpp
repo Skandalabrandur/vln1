@@ -35,8 +35,28 @@ void Pizza::setOrderID(int set) {
   _orderID = set;
 }
 
+void Pizza::setBottomType(char set){
+    _bottomType = set;
+};
+
+void Pizza::setSize(char set){
+    _size = set;
+};
+
+char Pizza::getBottomType(){
+    return _bottomType;
+};
+
+char Pizza::getSize(){
+    return _size;
+};
+
 void Pizza::setBaked(bool set) {
   _baked = set;
+}
+
+void Pizza::setPrice(int set) {
+    _price = set;
 }
 
 void Pizza::setPaid(bool set) {
@@ -57,7 +77,9 @@ builder += stringfunc.intToString(_orderID) + " ";
       builder += _toppings[i].getName() + " ";
     }
   }
-
+    //LAGA ÞETTA, ÞETTA ER ÁSTÆÐAN FYRIR "CHARACTER NAME:" OG "NAME:"
+    builder += _bottomType + " ";
+    builder += _size + " ";
   builder += stringfunc.intToString(_price) + " ";
 
   if(_baked) {

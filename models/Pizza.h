@@ -18,6 +18,11 @@ public:
   bool isDelivered();
 
   void setOrderID(int set);
+    void setBottomType(char set);
+    void setSize(char set);
+    char getBottomType();
+    char getSize();
+    void setPrice(int set);
   void setBaked(bool set);
   void setPaid(bool set);
   void setDelivered(bool set);
@@ -26,6 +31,8 @@ public:
 
 private:
     int _orderID;
+    char _bottomType;
+    char _size;
   string _name;
   vector<Topping> _toppings;
   int _price;
