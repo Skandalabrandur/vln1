@@ -88,3 +88,14 @@ void orderService::setPrice(){
     price += sodaCount * sodaPrice;
     price += breadstickCount * breadstickPrice;
 }
+
+
+void orderService::listOrdersWithIndices(){
+    int lineCount = fo.countLines("data/orders.txt");
+
+  for(int i = 0; i < lineCount; i++) {
+      vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
+      //order id and name of customer
+      cout << words[1] << " - " << "| " << words[0] << endl;
+  }
+}

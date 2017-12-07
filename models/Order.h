@@ -13,6 +13,10 @@ public:
   void addPizza(Pizza pizza);
   string toString();
 
+  string getCustomerName();
+  string getPlace();
+  int getOrderID();
+
 private:
   string _customer;
   int _orderID;

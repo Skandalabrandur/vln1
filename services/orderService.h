@@ -13,6 +13,7 @@ class orderService {
 public:
   void createNewOrder();
   void setPrice();
+  void listOrdersWithIndices();
 
 private:
   fileOperations fo;

@@ -33,7 +33,7 @@ void mainUI::displayMainMenu() {
       baker_ui.displayBakerMenu();
     }
     if(userInput == 'd') {
-      //delivery_ui.displayBakerMenu();
+      delivery_ui.displayDeliveryMenu();
     }
   }
 }
