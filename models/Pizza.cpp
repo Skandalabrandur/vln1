@@ -59,9 +59,24 @@ builder += stringfunc.intToString(_orderID) + " ";
   }
 
   builder += stringfunc.intToString(_price) + " ";
-  builder += stringfunc.boolToString(_baked) + " ";
-  builder += stringfunc.boolToString(_paid) + " ";
-  builder += stringfunc.boolToString(_delivered) + " ";
+
+  if(_baked) {
+    builder += "baked ";
+  } else {
+    builder += "unbaked ";
+  }
+
+  if(_paid) {
+    builder += "paid ";
+  } else {
+    builder += "unpaid ";
+  }
+
+  if(_delivered) {
+    builder += "delivered";
+  } else {
+    builder += "undelivered";
+  }
 
   return builder;
 }

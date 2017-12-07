@@ -9,17 +9,20 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <iostream>
 
 class pizzaService {
 public:
   void createAndAppendMenuPizza();
   void listMenuPizzas();
+  void listActivePizzas();
   void listMenuPizzasWithIndices();
+  void listActivePizzasWithIndices();
   void deleteMenuPizza();
-  
   int howManyPizzasOnMenu();
   Pizza getMenuPizza(int index);
   void storeOrderPizza(Pizza pizza);
+  void setActivePizzaStatus(int index, string field, bool truthValue);
 
 private:
   fileOperations fo;

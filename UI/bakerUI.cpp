@@ -1,46 +1,57 @@
 #include "bakerUI.h"
-#include "UIFunctions.h"
-#include <iostream>
-#include <fstream>
-#include <string>
+
 using namespace std;
 
 void bakerUI::displayBakerMenu() {
     char userInput;
-    UIFunctions uf;
     while (userInput != 'b') {
         do {
             uf.clearScreen();
             cout << "L - LIST PIZZAS" << endl;
+            cout << "M - MARK PIZZA AS BAKED" << endl;
+            cout << "U - MARK PIZZA AS UNBAKED" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "bl"));
-        
+        } while(!uf.goodInput(userInput, "mblu"));
+
         userInput = tolower(userInput);
-        
+
         if(userInput == 'l') {
-            viewPizzas();
-            char yn;
-            cin >> yn;
+          viewPizzas();
         }
+
+        if(userInput == 'm') {
+          selectAndMarkPizzaAsBaked();
+        }
+
+        if(userInput == 'u') {
+          selectAndMarkPizzaAsUnbaked();
+        }
+
     }
 }
 
-void bakerUI::viewPizzas(){
-    string pizza;
-    ifstream fin;
-    fin.open("data/activePizzas.txt");
-    if(fin.is_open()){
-        while(!fin.eof()){
-            for(int i = 0; i < 15; i++){
-                getline(fin,pizza);
-                if(pizza != "")
-                    cout << pizza << endl;
-            }
-        }
-        fin.close();
-    }else{
-        cout << "Ekki hægt að lesa úr skrá" << endl;
-    }
+void bakerUI::viewPizzas() {
+  uf.clearScreen();
+  pizza_service.listActivePizzas();
+  uf.pressEnter();
+}
+
+void bakerUI::selectAndMarkPizzaAsBaked() {
+  uf.clearScreen();
+  int index;
+  pizza_service.listActivePizzasWithIndices();
+  cout << "Please select a pizza to mark as BAKED: ";
+  cin >> index;
+  pizza_service.setActivePizzaStatus((index-1), "baked", true);
+}
+
+void bakerUI::selectAndMarkPizzaAsUnbaked() {
+  uf.clearScreen();
+  int index;
+  pizza_service.listActivePizzasWithIndices();
+  cout << "Please select a pizza to mark as UNBAKED!";
+  cin >> index;
+  pizza_service.setActivePizzaStatus((index-1), "baked", false);
 }

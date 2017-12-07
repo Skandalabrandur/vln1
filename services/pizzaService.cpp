@@ -57,6 +57,10 @@ void pizzaService::listMenuPizzas() {
   fo.printLines("data/menuPizzas.txt");
 }
 
+void pizzaService::listActivePizzas() {
+  fo.printLines("data/activePizzas.txt");
+}
+
 void pizzaService::listMenuPizzasWithIndices() {
   //we could use:
   //fo.printLinesWithIndices("data/menuPizzas.txt");
@@ -85,6 +89,36 @@ void pizzaService::listMenuPizzasWithIndices() {
       }
 
       cout << (i+1) << " - " << "| " << words[0] << extraSpaces << "|\t";
+      for(int i = 2; i < words.size(); i++) {
+        cout << words[i] << " ";
+      }
+      cout << endl;
+  }
+}
+
+void pizzaService::listActivePizzasWithIndices() {
+  int lineCount = fo.countLines("data/activePizzas.txt");
+
+  //let's sacrifice speed for beauty
+  int longestPizzaNameLength = 0;
+  for(int i = 0; i < lineCount; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+    if(words[0].size() > longestPizzaNameLength) {
+      longestPizzaNameLength = words[1].size();
+    }
+  }
+
+  for(int i = 0; i < lineCount; i++) {
+      vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+
+      //padding for equal display length
+      string extraSpaces = " ";
+      for(int i = 0; i < (longestPizzaNameLength - words[1].size()); i++) {
+        extraSpaces += " ";
+      }
+
+      cout << (i+1) << " - " << "| " << words[0] << "-";
+      cout << words[1] << extraSpaces << "|\t";
       for(int i = 2; i < words.size(); i++) {
         cout << words[i] << " ";
       }
@@ -143,4 +177,53 @@ Pizza pizzaService::getMenuPizza(int index) {
 
 void pizzaService::storeOrderPizza(Pizza pizza) {
   fo.appendLineToFile(pizza.toString(false), "data/activePizzas.txt");
+}
+
+void pizzaService::setActivePizzaStatus(int index, string field, bool truthValue) {
+  vector<string> words = fo.getWordsFromLine(index, "data/activePizzas.txt");
+
+  if(field == "baked") {
+    if(truthValue) {
+      words[3] = "baked";
+    } else {
+      words[3] = "unbaked";
+    }
+  }
+
+  if(field == "paid") {
+    if(truthValue) {
+      words[4] = "paid";
+    } else {
+      words[4] = "unpaid";
+    }
+  }
+
+  if(field == "delivered") {
+    if(truthValue && words[3] == "baked" && words[4] == "paid") {
+      words[5] = "delivered";
+      //TODO make sure active pizza is stored in legacy file now!
+    } else {
+      cout << "ERROR: You cannot deliver a pizza that hasn't been ";
+
+      if(words[4] == "unpaid") {
+        cout << "paid" << endl;
+      } else {
+        cout << "baked" << endl;
+      }
+    }
+  }
+
+  string lineReplacement = words[0];
+
+  for(int i = 1; i < words.size(); i++) {
+    lineReplacement += " " + words[i];    //space first => no trailing spaces
+  }
+
+  vector<string> lines = fo.getLinesFromFile("data/activePizzas.txt");
+
+  lines[index] = lineReplacement;
+
+  fo.writeFile(lines, "data/activePizzas.txt");
+
+  cout << "New pizza status: " << lineReplacement << endl;
 }
