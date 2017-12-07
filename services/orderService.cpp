@@ -30,61 +30,61 @@ void orderService::createNewOrder() {
     } while(selection < 1 || selection > numberOfMenuPizzas);
 
       Pizza pizza = pizza_service.getMenuPizza(selection - 1);
-
+      
+      char size;
+      char bottomType;
+      cout << "Select Size: " << endl;
+      cin >> size;
+      cout << "Select Bottom: " << endl;
+      cin >> bottomType;
+      
+      pizza.setSize(size);
+      pizza.setBottomType(bottomType);
       pizza.setOrderID(orderID);
-
+      pizza.setPrice(generatePrice(Pizza pizza));
       pizza_service.storeOrderPizza(pizza);
   }
   fo.appendLineToFile(order.toString(), "data/orders.txt");
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
-  cout << customer << endl;
+    cout << customer << endl;
   uf.pressEnter();
 }
 
-void orderService::setPrice(){
+int orderService::generatePrice(Pizza pizza){
     //ATH Á EFTIR AÐ SETJA VALUE
-    int pizzaCount;
-    char size;
-    char bottom;
+    char size = pizza.getSize();
+    char bottom = pizza.getBottomType();
     vector<char> toppings;
-    bool isMenuPizza;
-    int priceMenuPizza;
-    int sodaCount;
-    int breadstickCount;
-    int breadstickPrice;
-    int sodaPrice = 350;
+    bool isMenuPizza = true;
+    int priceMenuPizza = 500;
     int classicBottomPrice = 600;
     int lightBottomPrice = 500;
-    int panBottomPrice = 800;
+    int panBottomPrice = 900;
     double sizeMultiplier = 1;
     int price = 0;
 
-    for(int i = 0; i < pizzaCount; i++){
-        if(isMenuPizza){
-            price += priceMenuPizza * sizeMultiplier;
-            if(bottom == 'p'){
-                price += 200;
-            }
-        }else{
-            if(size == 'm'){
-                sizeMultiplier = 1.5;
-            }
-            if(size == 's'){
-                sizeMultiplier = 2;
-            }
-
-            if(bottom == 'k'){
-                price += sizeMultiplier * classicBottomPrice;
-            }
-            if(bottom == 'l'){
-                price += sizeMultiplier * lightBottomPrice;
-            }
-            if(bottom == 'p'){
-                price += sizeMultiplier * panBottomPrice;
-            }
+    if(size == 'm'){
+        sizeMultiplier = 1.5;
+    }
+    if(size == 's'){
+        sizeMultiplier = 2;
+    }
+    
+    if(isMenuPizza){
+        price += priceMenuPizza;
+        if(bottom == 'p'){
+            price = priceMenuPizza + panBottomPrice;
+        }
+        if(bottom == 'k'){
+            price += sizeMultiplier * classicBottomPrice;
+        }
+        if(bottom == 'l'){
+            price += sizeMultiplier * lightBottomPrice;
+        }
+        if(bottom == 'p'){
+            price +=  panBottomPrice;
         }
     }
-
-    price += sodaCount * sodaPrice;
-    price += breadstickCount * breadstickPrice;
+    //BÆTA VIÐ VERÐ Á TOPPINGS
+    return price;
 }

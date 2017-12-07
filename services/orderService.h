@@ -12,7 +12,7 @@ class orderService {
 
 public:
   void createNewOrder();
-  void setPrice();
+  int generatePrice(Pizza pizza);
 
 private:
   fileOperations fo;
