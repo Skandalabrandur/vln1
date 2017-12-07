@@ -33,7 +33,7 @@ void deliveryUI::displayDeliveryMenu(){
 
 void deliveryUI::viewOrders(){
     uf.clearScreen();
-    order_service.listOrdersWithIndices();
+    //list orders
     uf.pressEnter();
 }
 

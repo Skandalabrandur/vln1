@@ -12,6 +12,7 @@ class stringFunctions {
 public:
   vector<string> split(string str);
   string intToString(int integer);
+  string cToStr(char c);  //char to string
   int stringToInt(string str);
   string boolToString(bool ean);
 

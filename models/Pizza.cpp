@@ -1,11 +1,23 @@
 #include "Pizza.h"
 
+Pizza::Pizza() {
+  _name = "";
+  _price = -1;
+  _orderID = -1;
+  _baked = false;
+  _paid = false;
+  _delivered = false;
+  _bottomType = ' ';
+  _size = ' ';
+}
+
 Pizza::Pizza(string name, vector<Topping> toppings, int price) {
   _name = name;
   _toppings = toppings;
   _price = price;
-
   _orderID = -1;
+  _bottomType = ' ';
+  _size = ' ';
   _baked = false;
   _paid = false;
   _delivered = false;
@@ -15,8 +27,20 @@ string Pizza::getName() {
   return _name;
 }
 
+void Pizza::setName(string name) {
+  _name = name;
+}
+
 int Pizza::getOrderID() {
   return _orderID;
+}
+
+void Pizza::setToppings(vector<Topping> toppings) {
+  _toppings = toppings;
+}
+
+vector<Topping> Pizza::getToppings() {
+  return _toppings;
 }
 
 bool Pizza::isBaked() {
@@ -35,8 +59,32 @@ void Pizza::setOrderID(int set) {
   _orderID = set;
 }
 
+void Pizza::setBottomType(char set){
+    _bottomType = set;
+}
+
+void Pizza::setSize(char set){
+    _size = set;
+}
+
+char Pizza::getBottomType(){
+    return _bottomType;
+}
+
+char Pizza::getSize(){
+    return _size;
+}
+
 void Pizza::setBaked(bool set) {
   _baked = set;
+}
+
+void Pizza::setPrice(int set) {
+    _price = set;
+}
+
+int Pizza::getPrice() {
+  return _price;
 }
 
 void Pizza::setPaid(bool set) {
@@ -58,6 +106,8 @@ builder += stringfunc.intToString(_orderID) + " ";
     }
   }
 
+  builder += stringfunc.cToStr(_bottomType) + " ";
+  builder += stringfunc.cToStr(_size) + " ";
   builder += stringfunc.intToString(_price) + " ";
 
   if(_baked) {

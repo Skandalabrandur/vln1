@@ -15,6 +15,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include/UI" />
+					<Add directory="UI" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -26,6 +27,8 @@
 		<Unit filename="UI/adminUI.h" />
 		<Unit filename="UI/bakerUI.cpp" />
 		<Unit filename="UI/bakerUI.h" />
+		<Unit filename="UI/deliveryUI.cpp" />
+		<Unit filename="UI/deliveryUI.h" />
 		<Unit filename="UI/mainUI.cpp" />
 		<Unit filename="UI/mainUI.h" />
 		<Unit filename="UI/salesUI.cpp" />
@@ -36,7 +39,6 @@
 		<Unit filename="customLibraries/fileOperations.h" />
 		<Unit filename="customLibraries/stringFunctions.cpp" />
 		<Unit filename="customLibraries/stringFunctions.h" />
-		<Unit filename="include/UI/deliveryUI.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="models/Order.cpp" />
 		<Unit filename="models/Order.h" />
@@ -50,7 +52,6 @@
 		<Unit filename="services/pizzaService.h" />
 		<Unit filename="services/toppingService.cpp" />
 		<Unit filename="services/toppingService.h" />
-		<Unit filename="src/UI/deliveryUI.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
