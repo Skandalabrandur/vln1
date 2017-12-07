@@ -20,6 +20,7 @@ public:
   void listActivePizzasWithIndices();
   void deleteMenuPizza();
   int howManyPizzasOnMenu();
+  int howManyActivePizzas();
   Pizza getMenuPizza(int index);
   void storeOrderPizza(Pizza pizza);
   void setActivePizzaStatus(int index, string field, bool truthValue);

@@ -155,6 +155,10 @@ int pizzaService::howManyPizzasOnMenu() {
   return fo.countLines("data/menuPizzas.txt");
 }
 
+int pizzaService::howManyActivePizzas() {
+  return fo.countLines("data/activePizzas.txt");
+}
+
 Pizza pizzaService::getMenuPizza(int index) {
   vector<string> words = fo.getWordsFromLine(index, "data/menuPizzas.txt");
 
@@ -179,33 +183,38 @@ void pizzaService::storeOrderPizza(Pizza pizza) {
   fo.appendLineToFile(pizza.toString(false), "data/activePizzas.txt");
 }
 
+//IMPORTANT!!!
+//For this function to work the activePizzas.txt must have the
+//last three fields be: baked, paid, delivered.
 void pizzaService::setActivePizzaStatus(int index, string field, bool truthValue) {
   vector<string> words = fo.getWordsFromLine(index, "data/activePizzas.txt");
+  int nof = words.size();     //number of fields
+
 
   if(field == "baked") {
     if(truthValue) {
-      words[3] = "baked";
+      words[nof-3] = "baked";
     } else {
-      words[3] = "unbaked";
+      words[nof-3] = "unbaked";
     }
   }
 
   if(field == "paid") {
     if(truthValue) {
-      words[4] = "paid";
+      words[nof-2] = "paid";
     } else {
-      words[4] = "unpaid";
+      words[nof-2] = "unpaid";
     }
   }
 
   if(field == "delivered") {
-    if(truthValue && words[3] == "baked" && words[4] == "paid") {
-      words[5] = "delivered";
+    if(truthValue && words[nof-3] == "baked" && words[nof-2] == "paid") {
+      words[nof-1] = "delivered";
       //TODO make sure active pizza is stored in legacy file now!
     } else {
       cout << "ERROR: You cannot deliver a pizza that hasn't been ";
 
-      if(words[4] == "unpaid") {
+      if(words[nof-2] == "unpaid") {
         cout << "paid" << endl;
       } else {
         cout << "baked" << endl;
