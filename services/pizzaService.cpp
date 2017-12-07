@@ -2,6 +2,32 @@
 #include "toppingService.h"
 using namespace std;
 
+Pizza pizzaService::convertActivePizzaVector(vector<string> pizzaWords) {
+  int nol = fo.countLines("data/menuPizzas.txt");
+  vector<Topping> toppings;
+  Pizza pizza;
+  for(int i = 0; i < nol; i++) {
+    Pizza potential = getMenuPizza(i);
+
+    if(potential.getName() == pizzaWords[1]) {
+      toppings = potential.getToppings();
+    }
+  }
+
+  pizza.setToppings(toppings);
+  pizza.setOrderID(stringfunc.stringToInt(pizzaWords[0]));
+  pizza.setName(pizzaWords[1]);
+  pizza.setBottomType(pizzaWords[2][0]);
+  pizza.setSize(pizzaWords[3][0]);
+  pizza.setPrice(stringfunc.stringToInt(pizzaWords[4]));
+
+  pizza.setBaked((pizzaWords[5] == "baked"));
+  pizza.setPaid((pizzaWords[6] == "paid"));
+  pizza.setDelivered((pizzaWords[7] == "delivered"));
+
+  return pizza;
+}
+
 void pizzaService::createAndAppendMenuPizza() {
   string builder = "";
   string name;

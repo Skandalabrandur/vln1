@@ -61,6 +61,9 @@ void fileOperations::printLines(const char file[]) {
 }
 
 //One indexed
+//Might be deprecated since customization takes place much more
+//with getLinesFromFile/getWordsFromLine combos where fields are
+//given different weights
 void fileOperations::printLinesWithIndices(const char file[]) {
   ifstream fin;
 

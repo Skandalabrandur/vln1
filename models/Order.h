@@ -9,7 +9,14 @@ using namespace std;
 class Order {
 
 public:
+  Order();
   Order(string customer, int orderID);
+  string getCustomer();
+  void setCustomer(string customer);
+  int getOrderID();
+  void setOrderID(int orderID);
+  string getPlace();
+  void setPlace(string place);
   void addPizza(Pizza pizza);
   string toString();
 
@@ -20,7 +27,6 @@ private:
   vector<Pizza> _pizzas;
 
   stringFunctions stringfunc;
-
 };
 
 #endif

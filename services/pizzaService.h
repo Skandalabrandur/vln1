@@ -13,6 +13,7 @@
 
 class pizzaService {
 public:
+  Pizza convertActivePizzaVector(vector<string> pizzaWords);
   void createAndAppendMenuPizza();
   void listMenuPizzas();
   void listActivePizzas();
