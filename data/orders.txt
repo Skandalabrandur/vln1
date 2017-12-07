@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 hermina 1
 herobrina 2
 Hlynur 3
@@ -6,3 +7,7 @@ Hlynur 5
 Hlynur 6
 Hlynur 7
 Hlynur 8
+=======
+hehehe 1
+hohoho 2
+>>>>>>> 0be8a11a3dcb3ae7d36de25dac71a226521b647f

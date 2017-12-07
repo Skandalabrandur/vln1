@@ -74,8 +74,8 @@ void pizzaService::listMenuPizzasWithIndices() {
   int longestPizzaNameLength = 0;
   for(int i = 0; i < lineCount; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/menuPizzas.txt");
-    if(words[0].size() > longestPizzaNameLength) {
-      longestPizzaNameLength = words[0].size();
+    if(words[0].length() > longestPizzaNameLength) {
+      longestPizzaNameLength = words[0].length();
     }
   }
 
@@ -84,13 +84,13 @@ void pizzaService::listMenuPizzasWithIndices() {
 
       //padding for equal display length
       string extraSpaces = " ";
-      for(int i = 0; i < (longestPizzaNameLength - words[0].size()); i++) {
+      for(int j = 0; j < (longestPizzaNameLength - words[0].length()); j++) {
         extraSpaces += " ";
       }
 
       cout << (i+1) << " - " << "| " << words[0] << extraSpaces << "|\t";
-      for(int i = 2; i < words.size(); i++) {
-        cout << words[i] << " ";
+      for(int j = 2; j < words.size(); j++) {
+        cout << words[j] << " ";
       }
       cout << endl;
   }
@@ -103,8 +103,8 @@ void pizzaService::listActivePizzasWithIndices() {
   int longestPizzaNameLength = 0;
   for(int i = 0; i < lineCount; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-    if(words[0].size() > longestPizzaNameLength) {
-      longestPizzaNameLength = words[1].size();
+    if(words[1].length() > longestPizzaNameLength) {
+      longestPizzaNameLength = words[1].length();
     }
   }
 
@@ -113,14 +113,14 @@ void pizzaService::listActivePizzasWithIndices() {
 
       //padding for equal display length
       string extraSpaces = " ";
-      for(int i = 0; i < (longestPizzaNameLength - words[1].size()); i++) {
+      for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
         extraSpaces += " ";
       }
 
       cout << (i+1) << " - " << "| " << words[0] << "-";
       cout << words[1] << extraSpaces << "|\t";
-      for(int i = 2; i < words.size(); i++) {
-        cout << words[i] << " ";
+      for(int j = 2; j < words.size(); j++) {
+        cout << words[j] << " ";
       }
       cout << endl;
   }
