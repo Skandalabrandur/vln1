@@ -18,19 +18,23 @@ void locationService::listLocationsWithIndex() {
 void locationService::createNewLocation() {
     string name;
     int id;
-    
+
     uf.clearScreen();
     cout << "Enter location name: ";
     cin >> name;
-    
+
     uf.clearScreen();
     cout << "Enter location ID: ";
     cin >> id;
-    
+
     Location location(name, id);
     fo.appendLineToFile(location.toString(), "data/locations.txt");
-    
+
     uf.clearScreen();
     cout << "Location: \"" << location.toString() << "\" created!" << endl;
     uf.pressEnter();
+}
+
+int locationService::howManyLocations() {
+  return fo.countLines("data/locations.txt");
 }

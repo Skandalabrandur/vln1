@@ -1,21 +1,3 @@
-Ham 300
-Bacon 400
-Cheddar 200
-Mozzarella 999
-Artichoke 120
-Popcorn 500
-Nachos 250
-BlueCheese 1214
-Acorns 333
-Bernaise 100
-Chocolate 150
-Gum 222
-Toenails 1
-Habanergo 124
-Formaggio 129
-Kengura 8999
-<<<<<<< HEAD
 tomato 100
-=======
-Gunpowder 929
->>>>>>> b74ff57771d80d91b6fda083ea674f4ac312a622
+broccoli 50
+paprika 200

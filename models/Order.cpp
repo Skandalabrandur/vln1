@@ -5,7 +5,7 @@ using namespace std;
 Order::Order() {
   _customer = "";
   _orderID  = -1;
-  _place = "";
+  _location = "";
 }
 
 Order::Order(string customer, int orderID) {
@@ -29,15 +29,21 @@ void Order::setOrderID(int orderID) {
   _orderID = orderID;
 }
 
-string Order::getPlace() {
-  return _place;
+string Order::getLocation() {
+  return _location;
 }
 
-void Order::setPlace(string place) {
-  _place = place;
+void Order::setLocation(string location) {
+  _location = location;
 }
 
+void Order::setLocationID(int locationID){
+    _locationID = locationID;
+}
 
+int Order::getLocationID(){
+    return _locationID;
+}
 
 
 string Order::toString() {

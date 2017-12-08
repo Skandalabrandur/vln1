@@ -1,9 +1,2 @@
-<<<<<<< HEAD
-hermina 1
-herobrina 2
-janet 3
-brad 4
-=======
-hebegodo 1
-Guddibolli 2
->>>>>>> b74ff57771d80d91b6fda083ea674f4ac312a622
+bluey 1
+pippi 2

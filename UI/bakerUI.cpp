@@ -3,6 +3,10 @@
 using namespace std;
 
 void bakerUI::displayBakerMenu() {
+    //DO DO: choose location
+    uf.clearScreen();
+    chooseLocation();
+
     char userInput;
     while (userInput != 'b') {
         do {
@@ -30,6 +34,18 @@ void bakerUI::displayBakerMenu() {
         }
 
     }
+}
+
+void bakerUI::chooseLocation(){
+    //lists locations from file, user inputs their location
+    location_service.listLocationsWithIndex();
+    int numLocations = location_service.howManyLocations();
+    int choice;
+    do{
+        cout << "Select your location: ";
+        cin >> choice;
+    }while(choice <= 0 || choice > numLocations);
+    //TO DO: how to keep location info, private variable?
 }
 
 void bakerUI::viewPizzas() {

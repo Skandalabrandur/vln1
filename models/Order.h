@@ -15,15 +15,18 @@ public:
   void setCustomer(string customer);
   int getOrderID();
   void setOrderID(int orderID);
-  string getPlace();
-  void setPlace(string place);
+  void setLocationID(int locationID);
+  int getLocationID();
+  string getLocation();
+  void setLocation(string place);
   void addPizza(Pizza pizza);
   string toString();
 
 private:
   string _customer;
   int _orderID;
-  string _place;
+  int _locationID;
+  string _location;
   vector<Pizza> _pizzas;
 
   stringFunctions stringfunc;

@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-1 hobobobo 700 baked unpaid undelivered
-1 svetlana 9149 unbaked unpaid undelivered
-1 svetlana 9149 unbaked unpaid undelivered
-2 ubububububububububububu 1215 unbaked unpaid undelivered
-2 baobabs 683 unbaked unpaid undelivered
-3 baobabs 683 unbaked unpaid undelivered
-4 ubububububububububububu 1215 unbaked unpaid undelivered
-4 ubububububububububububu 1215 unbaked unpaid undelivered
-=======
-1 Svetlana k m 500 unbaked unpaid undelivered
-1 HellsAngels k m 500 unbaked unpaid undelivered
-1 Labbakuturinn k m 500 unbaked unpaid undelivered
-2 Svetlana p m 1400 unbaked unpaid undelivered
-2 Svetlana p m 1400 unbaked unpaid undelivered
-2 Labbakuturinn p m 1400 unbaked unpaid undelivered
-2 HellsAngels p m 1400 unbaked unpaid undelivered
->>>>>>> b74ff57771d80d91b6fda083ea674f4ac312a622
+1 paris l l 1500 unbaked unpaid undelivered
+1 paris l l 1500 unbaked unpaid undelivered
+1 paris c l 1700 unbaked unpaid undelivered
+2 janetx2 l l 1500 baked unpaid undelivered

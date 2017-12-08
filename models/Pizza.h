@@ -23,9 +23,9 @@ public:
   char getSize();
   void setPrice(int set);
   int getPrice();
+  void setToppings();
   void setBaked(bool set);
   void setPaid(bool set);
-    void setToppings();
   void setDelivered(bool set);
   bool isBaked();
   bool isPaid();
