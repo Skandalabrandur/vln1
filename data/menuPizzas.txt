@@ -1,3 +1,0 @@
-janet 2 tomato broccoli 150
-paris 5 broccoli broccoli broccoli paprika tomato 450
-veggie 3 tomato broccoli paprika 350

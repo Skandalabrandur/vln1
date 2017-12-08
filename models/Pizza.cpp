@@ -97,6 +97,10 @@ void Pizza::setDelivered(bool set) {
   _delivered = set;
 }
 
+void Pizza::setStoreID(int set) {
+    _storeID = set;
+}
+
 void Pizza::setToppings(){
     toppingService ts;
     int i = 0;
