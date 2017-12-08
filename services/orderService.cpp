@@ -1,5 +1,6 @@
 #include "orderService.h"
 #include "Pizza.h"
+#include "locationService.h"
 using namespace std;
 
 //Returns an Order model
@@ -89,6 +90,11 @@ void orderService::createNewOrder() {
       } while(!(size == 'l' || size == 'm' || size == 's') &&
               !(bottomType == 'p' || bottomType == 'c' || bottomType == 'l'));
 
+      cout << "Select store: " << endl;
+      location_service.listLocationsWithIndex();
+      int store;
+      cin >> store;
+      pizza.setStoreID(store);
       pizza.setSize(size);
       pizza.setBottomType(bottomType);
       pizza.setOrderID(orderID);

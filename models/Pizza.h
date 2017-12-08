@@ -27,6 +27,7 @@ public:
   void setPaid(bool set);
     void setToppings();
   void setDelivered(bool set);
+    void setStoreID(int set);
   bool isBaked();
   bool isPaid();
   bool isDelivered();
@@ -43,6 +44,7 @@ private:
   bool _baked;
   bool _paid;
   bool _delivered;
+    int _storeID;
 
   stringFunctions stringfunc;
 };
