@@ -37,7 +37,6 @@ void orderService::createNewOrder() {
 
   int numberOfMenuPizzas = pizza_service.howManyPizzasOnMenu();
   for(int i = 0; i < numberOfPizzas; i++) {
-<<<<<<< HEAD
       cout << "Pizza off menu? (y/n) " << endl;
       char yn;
       cin >> yn;
@@ -56,7 +55,7 @@ void orderService::createNewOrder() {
           cout << "Select toppings, press 0 to confirm: " << endl;
           pizza.setToppings();
       }
-=======
+
     int selection;
 
     do {
@@ -67,9 +66,8 @@ void orderService::createNewOrder() {
       cin >> selection;
     } while(selection < 1 || selection > numberOfMenuPizzas);
 
-      Pizza pizza = pizza_service.getMenuPizza(selection - 1);
+      pizza = pizza_service.getMenuPizza(selection - 1);
 
->>>>>>> ac6db157233d9f4e990e9941ce172e7f31c814d9
       char size;
       char bottomType;
       do {
@@ -94,14 +92,12 @@ void orderService::createNewOrder() {
       pizza.setSize(size);
       pizza.setBottomType(bottomType);
       pizza.setOrderID(orderID);
-<<<<<<< HEAD
-      pizza.setPrice(generatePrice(pizza));
-=======
+
       //TODO allow a custom pizza to be made
       //  That would result in a call for:
       //    pizza.setPrice(generatePrice(pizza,false));
       pizza.setPrice(generatePrice(pizza, true));
->>>>>>> ac6db157233d9f4e990e9941ce172e7f31c814d9
+
       pizza_service.storeOrderPizza(pizza);
   }
   fo.appendLineToFile(order.toString(), "data/orders.txt");

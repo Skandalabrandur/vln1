@@ -3,17 +3,20 @@
 #include "UIFunctions.h"
 #include "pizzaService.h"
 #include "toppingService.h"
+#include "locationService.h"
 
 class adminUI {
 public:
   void displayAdminMenu();
   void displayPizzaMenu();
   void displayToppingMenu();
+    void displayLocationMenu();
 
 private:
   UIFunctions uf;
   pizzaService pizza_service;
   toppingService topping_service;
+    locationService location_service;
 };
 
 #endif

@@ -25,16 +25,6 @@ Pizza::Pizza(string name, vector<Topping> toppings, int price) {
   _delivered = false;
 }
 
-Pizza::Pizza(){
-    _name = "";
-    _price = 0;
-    
-    _orderID = -1;
-    _baked = false;
-    _paid = false;
-    _delivered = false;
-};
-
 string Pizza::getName() {
   return _name;
 }

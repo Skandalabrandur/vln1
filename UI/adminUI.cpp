@@ -7,10 +7,11 @@ void adminUI::displayAdminMenu() {
       uf.clearScreen();
       cout << "P - MANAGE PIZZAS" << endl;
       cout << "T - MANAGE TOPPINGS" << endl;
+      cout << "L - MANAGE LOCATIONS" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
-    } while(!uf.goodInput(userInput, "ptb"));
+    } while(!uf.goodInput(userInput, "ptbl"));
 
     userInput = tolower(userInput);
 
@@ -21,6 +22,10 @@ void adminUI::displayAdminMenu() {
     if(userInput == 't') {
       displayToppingMenu();
     }
+      
+      if(userInput == 'l') {
+          displayLocationMenu();
+      }
   }
 }
 
@@ -82,4 +87,30 @@ void adminUI::displayToppingMenu() {
       uf.pressEnter();
     }
   }
+}
+
+void adminUI::displayLocationMenu() {
+    char userInput = 'i';     //init to invalid just in case
+    while(userInput != 'b') {
+        do {
+            uf.clearScreen();
+            cout << "C - CREATE NEW LOCATION" << endl;
+            cout << "L - LIST LOCATIONS" << endl;
+            cout << "B - BACK" << endl;
+            cout << endl << uf.prompt();
+            cin >> userInput;
+        } while(!uf.goodInput(userInput, "clb"));
+        
+        userInput = tolower(userInput);
+        
+        if(userInput == 'c') {
+            location_service.createNewLocation();
+        }
+        
+        if(userInput == 'l') {
+            uf.clearScreen();
+            location_service.listLocations();
+            uf.pressEnter();
+        }
+    }
 }
