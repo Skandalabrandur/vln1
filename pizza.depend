@@ -89,12 +89,12 @@
 1512566595 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\topping.cpp
 	"Topping.h"
 
-1512763418 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.cpp
+1512763873 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.cpp
 	"orderService.h"
 	"Pizza.h"
 	"locationService.h"
 
-1512762876 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.h
+1512763839 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.h
 	"fileOperations.h"
 	"UIFunctions.h"
 	"stringFunctions.h"

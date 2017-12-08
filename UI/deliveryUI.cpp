@@ -75,13 +75,18 @@ void deliveryUI::selectAndMarkOrderAsPaid(){
     }
     int orderID = order_service.getOrderID(index);
     order_service.MarkPizzaAsPaidByOrderID(orderID);
-    /*int adjustedIndex = pizza_service.adjustDeliveryIndexForPaid(false, index);
-    pizza_service.setActivePizzaStatus((adjustedIndex), "paid", true);
-    */
     uf.pressEnter();
 }
 
 void deliveryUI::selectAndMarkOrderAsDelivered(){
-
+    int index = -1;
+    while(index < 1 || index > order_service.howManyOrders()) {
+        uf.clearScreen();
+        order_service.listOrderOverviewWithIndices();
+        cout << "Please select a order to mark as DELIVERED: ";
+        cin >> index;
+    }
+    int orderID = order_service.getOrderID(index);
+    order_service.MarkPizzaAsDeliveredByOrderID(orderID);
     uf.pressEnter();
 }

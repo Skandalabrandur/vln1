@@ -28,6 +28,7 @@ public:
   int getOrderID(int index);
 
   void MarkPizzaAsPaidByOrderID(int OrderID);
+  void MarkPizzaAsDeliveredByOrderID(int orderID);
 
 private:
   fileOperations fo;

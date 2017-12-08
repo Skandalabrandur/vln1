@@ -3,6 +3,6 @@
 2 island 1 s 500 unbaked paid undelivered
 2 flamingo c m 1400 unbaked paid undelivered
 2 veggie c l 1700 unbaked paid undelivered
-3 veggie p m 1400 unbaked unpaid undelivered
+3 veggie p m 1400 baked paid delivered
 4 bananaz l l 1500 unbaked unpaid undelivered
 4 flamingo c s 1100 unbaked unpaid undelivered
