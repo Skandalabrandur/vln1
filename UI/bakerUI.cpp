@@ -39,15 +39,15 @@ void bakerUI::viewPizzas() {
 }
 
 void bakerUI::selectAndMarkPizzaAsBaked() {
-
   int index = -1;
-while(index < 1 || index > pizza_service.howManyActivePizzas()) {
+  while(index < 1 || index > pizza_service.howManyActivePizzas()) {
     uf.clearScreen();
-    pizza_service.listActivePizzasWithIndices();
+    pizza_service.listActivePizzasWithIndicesForBakery(false);
     cout << "Please select a pizza to mark as BAKED: ";
     cin >> index;
   }
-  pizza_service.setActivePizzaStatus((index-1), "baked", true);
+  int adjustedIndex = pizza_service.adjustBakerIndexForBaked(false, index);
+  pizza_service.setActivePizzaStatus((adjustedIndex), "baked", true);
   uf.pressEnter();
 }
 
@@ -55,10 +55,11 @@ void bakerUI::selectAndMarkPizzaAsUnbaked() {
   int index = -1;
   while(index < 1 || index > pizza_service.howManyActivePizzas()) {
     uf.clearScreen();
-    pizza_service.listActivePizzasWithIndices();
+    pizza_service.listActivePizzasWithIndicesForBakery(true);
     cout << "Please select a pizza to mark as UNBAKED: ";
     cin >> index;
   }
-  pizza_service.setActivePizzaStatus((index-1), "baked", false);
+  int adjustedIndex = pizza_service.adjustBakerIndexForBaked(true, index);
+  pizza_service.setActivePizzaStatus(adjustedIndex, "baked", false);
   uf.pressEnter();
 }

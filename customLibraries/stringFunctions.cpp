@@ -38,6 +38,15 @@ string stringFunctions::intToString(int integer) {
   return str;
 }
 
+//I cannot believe that the + operator doesn't do this
+//by default
+string stringFunctions::cToStr(char c) {
+  stringstream sout;
+  sout << c;
+  string str = sout.str();
+  return str;
+}
+
 int stringFunctions::stringToInt(string str) {
   int value;
   stringstream sin(str);

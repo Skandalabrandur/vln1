@@ -2,6 +2,32 @@
 #include "toppingService.h"
 using namespace std;
 
+Pizza pizzaService::convertActivePizzaVector(vector<string> pizzaWords) {
+  int nol = fo.countLines("data/menuPizzas.txt");
+  vector<Topping> toppings;
+  Pizza pizza;
+  for(int i = 0; i < nol; i++) {
+    Pizza potential = getMenuPizza(i);
+
+    if(potential.getName() == pizzaWords[1]) {
+      toppings = potential.getToppings();
+    }
+  }
+
+  pizza.setToppings(toppings);
+  pizza.setOrderID(stringfunc.stringToInt(pizzaWords[0]));
+  pizza.setName(pizzaWords[1]);
+  pizza.setBottomType(pizzaWords[2][0]);
+  pizza.setSize(pizzaWords[3][0]);
+  pizza.setPrice(stringfunc.stringToInt(pizzaWords[4]));
+
+  pizza.setBaked((pizzaWords[5] == "baked"));
+  pizza.setPaid((pizzaWords[6] == "paid"));
+  pizza.setDelivered((pizzaWords[7] == "delivered"));
+
+  return pizza;
+}
+
 void pizzaService::createAndAppendMenuPizza() {
   string builder = "";
   string name;
@@ -88,7 +114,7 @@ void pizzaService::listMenuPizzasWithIndices() {
         extraSpaces += " ";
       }
 
-      cout << (i+1) << " - " << "| " << words[0] << extraSpaces << "|\t";
+      cout << (i+1) << " -\t" << "| " << words[0] << extraSpaces << "|\t";
       for(int j = 2; j < words.size(); j++) {
         cout << words[j] << " ";
       }
@@ -96,8 +122,9 @@ void pizzaService::listMenuPizzasWithIndices() {
   }
 }
 
-void pizzaService::listActivePizzasWithIndices() {
+void pizzaService::listActivePizzasWithIndicesForBakery(bool baked) {
   int lineCount = fo.countLines("data/activePizzas.txt");
+  int nof;    //number of fields/words per line
 
   //let's sacrifice speed for beauty
   int longestPizzaNameLength = 0;
@@ -105,24 +132,49 @@ void pizzaService::listActivePizzasWithIndices() {
     vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
     if(words[1].length() > longestPizzaNameLength) {
       longestPizzaNameLength = words[1].length();
+      nof = words.size();
     }
   }
 
+
+  int counter = 1;
   for(int i = 0; i < lineCount; i++) {
-      vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
 
-      //padding for equal display length
-      string extraSpaces = " ";
-      for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
-        extraSpaces += " ";
-      }
+    //we know that baked is in 3rd position from right
+    //so words.count - 3 is the index for baked
 
-      cout << (i+1) << " - " << "| " << words[0] << "-";
+    //padding for equal display length
+    string extraSpaces = " ";
+    for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
+      extraSpaces += " ";
+    }
+    if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
+      cout << counter << " -\t" << "| " << words[0] << "-";
       cout << words[1] << extraSpaces << "|\t";
       for(int j = 2; j < words.size(); j++) {
         cout << words[j] << " ";
       }
       cout << endl;
+      counter++;
+    }
+  }
+}
+
+int pizzaService::adjustBakerIndexForBaked(bool baked, int pseudoIndex) {
+  int lineCount = fo.countLines("data/activePizzas.txt");
+  int adjustedIndex = 0;
+
+  for(int i = 0; i < lineCount; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+    if((baked && words[(words.size()) - 3] == "baked") || (!baked && words[(words.size()) -3] == "unbaked") ) {
+        pseudoIndex--;
+
+        if(pseudoIndex == 0) {
+          return adjustedIndex;
+        }
+    }
+    adjustedIndex++;
   }
 }
 

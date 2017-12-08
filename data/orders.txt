@@ -1,13 +1,9 @@
 <<<<<<< HEAD
 hermina 1
 herobrina 2
-Hlynur 3
-Hlynur 4
-Hlynur 5
-Hlynur 6
-Hlynur 7
-Hlynur 8
+janet 3
+brad 4
 =======
-hehehe 1
-hohoho 2
->>>>>>> 0be8a11a3dcb3ae7d36de25dac71a226521b647f
+hebegodo 1
+Guddibolli 2
+>>>>>>> b74ff57771d80d91b6fda083ea674f4ac312a622

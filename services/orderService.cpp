@@ -2,6 +2,23 @@
 #include "Pizza.h"
 using namespace std;
 
+//Returns an Order model
+//Basically the opposite of Order::toString()
+Order orderService::convertVector(vector<string> input) {
+  //see generated data in orders.txt for reference
+  Order order;
+
+  order.setCustomer(input[0]);
+  order.setOrderID(stringfunc.stringToInt(input[1]));
+
+  vector<Pizza> pizzas = getPizzasFromOrderId(order.getOrderID());
+
+  for(int i = 0; i < pizzas.size(); i++) {
+    order.addPizza(pizzas[i]);
+  }
+  return order;
+}
+
 void orderService::createNewOrder() {
   string customer;
   int orderID = 1 + fo.countLines("data/orders.txt");
@@ -14,12 +31,13 @@ void orderService::createNewOrder() {
   Order order(customer, orderID);
 
   int numberOfPizzas;
-  cout << "Number of pizzas for order: " << endl;
+  cout << "Number of pizzas for order: ";
 
   cin >> numberOfPizzas;
 
   int numberOfMenuPizzas = pizza_service.howManyPizzasOnMenu();
   for(int i = 0; i < numberOfPizzas; i++) {
+<<<<<<< HEAD
       cout << "Pizza off menu? (y/n) " << endl;
       char yn;
       cin >> yn;
@@ -38,60 +56,132 @@ void orderService::createNewOrder() {
           cout << "Select toppings, press 0 to confirm: " << endl;
           pizza.setToppings();
       }
+=======
+    int selection;
+
+    do {
+      uf.clearScreen();
+      selection = -1;
+      cout << "Select Pizza " << (i+1) << " of " << numberOfPizzas << endl;
+      pizza_service.listMenuPizzasWithIndices();
+      cin >> selection;
+    } while(selection < 1 || selection > numberOfMenuPizzas);
+
+      Pizza pizza = pizza_service.getMenuPizza(selection - 1);
+
+>>>>>>> ac6db157233d9f4e990e9941ce172e7f31c814d9
       char size;
       char bottomType;
-      cout << "Select Size: " << endl;
-      cin >> size;
-      cout << "Select Bottom: " << endl;
-      cin >> bottomType;
-      
+      do {
+        uf.clearScreen();
+        cout << "For pizza " << (i+1) << " of " << numberOfPizzas << endl;
+
+        cout << "Select Bottom (p)an/(l)ight/(c)lassic: ";
+        cin >> bottomType;
+        bottomType = tolower(bottomType);
+
+        //g.r.f. að pönnupizza sé bara af einni stærð?
+        if(!(bottomType == 'p')) {
+          cout << "Select Size (l)arge/(m)edium/(s)mall: ";
+          cin >> size;
+          size = tolower(size);
+        } else {
+          size = 'm';
+        }
+      } while(!(size == 'l' || size == 'm' || size == 's') &&
+              !(bottomType == 'p' || bottomType == 'c' || bottomType == 'l'));
+
       pizza.setSize(size);
       pizza.setBottomType(bottomType);
       pizza.setOrderID(orderID);
+<<<<<<< HEAD
       pizza.setPrice(generatePrice(pizza));
+=======
+      //TODO allow a custom pizza to be made
+      //  That would result in a call for:
+      //    pizza.setPrice(generatePrice(pizza,false));
+      pizza.setPrice(generatePrice(pizza, true));
+>>>>>>> ac6db157233d9f4e990e9941ce172e7f31c814d9
       pizza_service.storeOrderPizza(pizza);
   }
   fo.appendLineToFile(order.toString(), "data/orders.txt");
+  uf.clearScreen();
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
     cout << customer << endl;
   uf.pressEnter();
 }
 
-int orderService::generatePrice(Pizza pizza){
-    //ATH Á EFTIR AÐ SETJA VALUE
+void orderService::listOrderOverviewWithIndices() {
+  vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
+  int nol = fo.countLines("data/orders.txt");
+  for(int i = 0; i < nol; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
+    Order order = convertVector(words);
+    cout << (i+1) << " -\t" << order.getCustomer() << endl;
+  }
+}
+
+//This starts mattering when order numbers get really big
+//It is a way to abstract the user from how high the orders are getting
+int orderService::getOrderIdFromIndexSelection(int index) {
+  vector<string> words = fo.getWordsFromLine(index, "data/orders.txt");
+  return stringfunc.stringToInt(words[1]);
+}
+
+vector<Pizza> orderService::getPizzasFromOrderId(int order_id) {
+  vector<Pizza> pizzas;
+
+  int nol = fo.countLines("data/activePizzas.txt");
+
+  for(int i = 0; i < nol; i++) {
+      vector<string> pizzaWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+      Pizza pizza = pizza_service.convertActivePizzaVector(pizzaWords);
+      if (pizza.getOrderID() == order_id) {
+        pizzas.push_back(pizza);
+      }
+  }
+  return pizzas;
+}
+
+void orderService::listSpecificOrderWithInfo(int order_id) {
+  vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
+
+  for(int i = 0; i < orderPizzas.size(); i++) {
+    cout << orderPizzas[i].toString(false) << endl;
+  }
+}
+
+int orderService::generatePrice(Pizza pizza, bool isMenuPizza){
     char size = pizza.getSize();
     char bottom = pizza.getBottomType();
-    vector<char> toppings;
-    bool isMenuPizza = true;
+    vector<Topping> toppings;
     int priceMenuPizza = 500;
     int classicBottomPrice = 600;
     int lightBottomPrice = 500;
     int panBottomPrice = 900;
-    double sizeMultiplier = 1;
+    double sizeMultiplier = 2;
     int price = 0;
 
     if(size == 'm'){
         sizeMultiplier = 1.5;
     }
     if(size == 's'){
-        sizeMultiplier = 2;
+        sizeMultiplier = 1;
     }
-    
+
     if(isMenuPizza){
         price += priceMenuPizza;
         if(bottom == 'p'){
             price = priceMenuPizza + panBottomPrice;
         }
-        if(bottom == 'k'){
+        if(bottom == 'c'){
             price += sizeMultiplier * classicBottomPrice;
         }
         if(bottom == 'l'){
             price += sizeMultiplier * lightBottomPrice;
         }
-        if(bottom == 'p'){
-            price +=  panBottomPrice;
-        }
+    } else {
+
     }
-    //BÆTA VIÐ VERÐ Á TOPPINGS
     return price;
 }

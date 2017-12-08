@@ -13,11 +13,13 @@
 
 class pizzaService {
 public:
+  Pizza convertActivePizzaVector(vector<string> pizzaWords);
   void createAndAppendMenuPizza();
   void listMenuPizzas();
   void listActivePizzas();
   void listMenuPizzasWithIndices();
-  void listActivePizzasWithIndices();
+  void listActivePizzasWithIndicesForBakery(bool baked);
+  int adjustBakerIndexForBaked(bool baked, int pseudoIndex);
   void deleteMenuPizza();
   int howManyPizzasOnMenu();
   int howManyActivePizzas();
