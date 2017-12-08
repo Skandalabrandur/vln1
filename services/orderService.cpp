@@ -123,6 +123,16 @@ void orderService::listOrderOverviewWithIndices() {
   }
 }
 
+void orderService::listOrderFromLocationWithIndices() {
+  vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
+  int nol = fo.countLines("data/orders.txt");
+  for(int i = 0; i < nol; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
+    Order order = convertVector(words);
+    cout << (i+1) << " -\t" << order.getCustomer() << endl;
+  }
+}
+
 int orderService::howManyOrders() {
   return fo.countLines("data/orders.txt");
 }
@@ -137,7 +147,7 @@ int orderService::getOrderID(int index){
     return orderID;
 }
 
-void orderService::MarkPizzaAsPaidByOrderID(int orderID){
+void orderService::markPizzaAsPaidByOrderID(int orderID){
     int numPizzas = pizza_service.howManyActivePizzas();
 
     for(int i = 0; i < numPizzas; i++){
@@ -150,7 +160,7 @@ void orderService::MarkPizzaAsPaidByOrderID(int orderID){
     }
 }
 
-void orderService::MarkPizzaAsDeliveredByOrderID(int orderID){
+void orderService::markPizzaAsDeliveredByOrderID(int orderID){
     int numPizzas = pizza_service.howManyActivePizzas();
 
     for(int i = 0; i < numPizzas; i++){

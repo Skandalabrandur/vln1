@@ -27,8 +27,9 @@ public:
   int howManyOrders();
   int getOrderID(int index);
 
-  void MarkPizzaAsPaidByOrderID(int OrderID);
-  void MarkPizzaAsDeliveredByOrderID(int orderID);
+  void markPizzaAsPaidByOrderID(int OrderID);
+  void markPizzaAsDeliveredByOrderID(int orderID);
+  void listOrderFromLocationWithIndices();
 
 private:
   fileOperations fo;

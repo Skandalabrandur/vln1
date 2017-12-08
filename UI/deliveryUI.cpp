@@ -23,11 +23,11 @@ void deliveryUI::displayDeliveryMenu(){
           viewOrders();
         }
 
-        if(userInput == 'p') {
+        else if(userInput == 'p') {
           selectAndMarkOrderAsPaid();
         }
 
-        if(userInput == 'd') {
+        else if(userInput == 'd') {
           selectAndMarkOrderAsDelivered();
         }
     }
@@ -74,7 +74,7 @@ void deliveryUI::selectAndMarkOrderAsPaid(){
         cin >> index;
     }
     int orderID = order_service.getOrderID(index);
-    order_service.MarkPizzaAsPaidByOrderID(orderID);
+    order_service.markPizzaAsPaidByOrderID(orderID);
     uf.pressEnter();
 }
 
@@ -87,6 +87,6 @@ void deliveryUI::selectAndMarkOrderAsDelivered(){
         cin >> index;
     }
     int orderID = order_service.getOrderID(index);
-    order_service.MarkPizzaAsDeliveredByOrderID(orderID);
+    order_service.markPizzaAsDeliveredByOrderID(orderID);
     uf.pressEnter();
 }
