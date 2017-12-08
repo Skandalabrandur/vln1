@@ -3,3 +3,5 @@ Dalbraut 2
 Nybylavegur 3
 Keflavik 4
 Selfoss 5
+Egilsstadir 6
+arbaer 7

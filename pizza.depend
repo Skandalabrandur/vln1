@@ -81,7 +81,7 @@
 	<string>
 	"stringFunctions.h"
 
-1512732197 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\pizza.cpp
+1512736813 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\pizza.cpp
 	"Pizza.h"
 	"Topping.h"
 	"toppingService.h"
@@ -89,21 +89,23 @@
 1512566595 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\topping.cpp
 	"Topping.h"
 
-1512732197 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.cpp
+1512763418 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.cpp
 	"orderService.h"
 	"Pizza.h"
+	"locationService.h"
 
-1512682649 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.h
+1512762876 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.h
 	"fileOperations.h"
 	"UIFunctions.h"
 	"stringFunctions.h"
 	"Pizza.h"
 	"Order.h"
 	"pizzaService.h"
+	"locationService.h"
 	<iostream>
 	<vector>
 
-1512682473 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\pizzaservice.h
+1512761529 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\pizzaservice.h
 	"fileOperations.h"
 	"UIFunctions.h"
 	"stringFunctions.h"
@@ -124,7 +126,7 @@
 	<fstream>
 	<vector>
 
-1512682473 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\pizzaservice.cpp
+1512761529 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\pizzaservice.cpp
 	"pizzaService.h"
 	"toppingService.h"
 
@@ -177,13 +179,13 @@
 	"orderService.h"
 	<iostream>
 
-1512735963 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\deliveryui.h
+1512759668 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\deliveryui.h
 	"UIFunctions.h"
 	"orderService.h"
 	"locationService.h"
 	<iostream>
 
-1512735746 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\deliveryui.cpp
+1512763565 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\deliveryui.cpp
 	"deliveryUI.h"
 
 1512733762 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\location.cpp
@@ -194,7 +196,7 @@
 	<string>
 	"stringFunctions.h"
 
-1512735014 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\locationservice.cpp
+1512748886 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\locationservice.cpp
 	"locationService.h"
 	"Location.h"
 

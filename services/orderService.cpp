@@ -123,6 +123,33 @@ void orderService::listOrderOverviewWithIndices() {
   }
 }
 
+int orderService::howManyOrders() {
+  return fo.countLines("data/orders.txt");
+}
+
+int orderService::getOrderID(int index){
+    int numOrder = howManyOrders();
+    vector<string> orderWords;
+    orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
+    //orderID is at index 1 in line
+    int orderID;
+    orderID = stringfunc.stringToInt(orderWords.at(1));
+    return orderID;
+}
+
+void orderService::MarkPizzaAsPaidByOrderID(int OrderID){
+    int numPizzas = pizza_service.howManyActivePizzas();
+
+    for(int i = 0; i < numPizzas; i++){
+        vector<string> orderWords;
+        orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+        int id = stringfunc.stringToInt(orderWords.at(0));
+        if(id == OrderID){
+            pizza_service.setActivePizzaStatus(i, "paid", true);
+        }
+    }
+}
+
 //This starts mattering when order numbers get really big
 //It is a way to abstract the user from how high the orders are getting
 int orderService::getOrderIdFromIndexSelection(int index) {

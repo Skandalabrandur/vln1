@@ -1,8 +1,8 @@
-1 hobobobo 700 baked unpaid undelivered
-1 svetlana 9149 unbaked unpaid undelivered
-1 svetlana 9149 unbaked unpaid undelivered
-2 ubububububububububububu 1215 unbaked unpaid undelivered
-2 baobabs 683 unbaked unpaid undelivered
-3 baobabs 683 unbaked unpaid undelivered
-4 ubububububububububububu 1215 unbaked unpaid undelivered
-4 ubububububububububububu 1215 unbaked unpaid undelivered
+1 bananaz l m 1250 unbaked unpaid undelivered
+1 bananaz c s 1100 unbaked unpaid undelivered
+2 island 1 s 500 unbaked paid undelivered
+2 flamingo c m 1400 unbaked paid undelivered
+2 veggie c l 1700 unbaked paid undelivered
+3 veggie p m 1400 unbaked unpaid undelivered
+4 bananaz l l 1500 unbaked unpaid undelivered
+4 flamingo c s 1100 unbaked unpaid undelivered

@@ -17,15 +17,15 @@ void locationService::listLocationsWithIndex() {
 //Not inteded for use out of admin menu.
 void locationService::createNewLocation() {
     string name;
-    int id;
 
     uf.clearScreen();
     cout << "Enter location name: ";
     cin >> name;
 
-    uf.clearScreen();
-    cout << "Enter location ID: ";
-    cin >> id;
+    //Find location id
+    int id = howManyLocations() + 1;
+    cout << name << " ID is " << id << endl;
+    uf.pressEnter();
 
     Location location(name, id);
     fo.appendLineToFile(location.toString(), "data/locations.txt");

@@ -44,26 +44,40 @@ void deliveryUI::chooseLocation(){
         cin >> choice;
     }while(choice <= 0 || choice > numLocations);
     //TO DO: how to keep location info, private variable?
+    //If it is possible to delete locations then this does not work
+    _locationID = choice;
 }
 
 void deliveryUI::viewOrders(){
     uf.clearScreen();
-    int id = 1;
+    int choice = 1; //So the value is not 0
     do{
+        //TO DO: list orders from chosen location
         order_service.listOrderOverviewWithIndices();
         cout << "Select an order for more info (0 to quit): ";
-        if(id != 0){
-            cin >> id;
+        if(choice != 0){
+            cin >> choice;
             uf.clearScreen();
-            order_service.listSpecificOrderWithInfo(id);
+            order_service.listSpecificOrderWithInfo(choice);
             uf.pressEnter();
             uf.clearScreen();
         }
-    }while(id != 0);
+    }while(choice != 0);
 }
 
 void deliveryUI::selectAndMarkOrderAsPaid(){
-
+    int index = -1;
+    while(index < 1 || index > order_service.howManyOrders()) {
+        uf.clearScreen();
+        order_service.listOrderOverviewWithIndices();
+        cout << "Please select a order to mark as PAID: ";
+        cin >> index;
+    }
+    int orderID = order_service.getOrderID(index);
+    order_service.MarkPizzaAsPaidByOrderID(orderID);
+    /*int adjustedIndex = pizza_service.adjustDeliveryIndexForPaid(false, index);
+    pizza_service.setActivePizzaStatus((adjustedIndex), "paid", true);
+    */
     uf.pressEnter();
 }
 

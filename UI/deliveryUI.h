@@ -16,9 +16,11 @@ class deliveryUI
         void selectAndMarkOrderAsDelivered();
 
     private:
+        int _locationID;
         UIFunctions uf;
         orderService order_service;
         locationService location_service;
+        pizzaService pizza_service;
 };
 
 #endif // DELIVERYUI_H
