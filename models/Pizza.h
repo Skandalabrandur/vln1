@@ -10,6 +10,7 @@ class Pizza {
 public:
 
   Pizza(string name, vector<Topping> toppings, int price);
+    Pizza();
 
   string getName();
   int getOrderID();
@@ -25,6 +26,7 @@ public:
     void setPrice(int set);
   void setBaked(bool set);
   void setPaid(bool set);
+    void setToppings();
   void setDelivered(bool set);
 
   string toString(bool showToppings);

@@ -1,4 +1,6 @@
 #include "Pizza.h"
+#include "Topping.h"
+#include "toppingService.h"
 
 Pizza::Pizza(string name, vector<Topping> toppings, int price) {
   _name = name;
@@ -10,6 +12,16 @@ Pizza::Pizza(string name, vector<Topping> toppings, int price) {
   _paid = false;
   _delivered = false;
 }
+
+Pizza::Pizza(){
+    _name = "";
+    _price = 0;
+    
+    _orderID = -1;
+    _baked = false;
+    _paid = false;
+    _delivered = false;
+};
 
 string Pizza::getName() {
   return _name;
@@ -66,6 +78,21 @@ void Pizza::setPaid(bool set) {
 void Pizza::setDelivered(bool set) {
   _delivered = set;
 }
+
+void Pizza::setToppings(){
+    toppingService ts;
+    int i = 0;
+    int input;
+    ts.listToppingsWithIndex();
+    while(true){
+        cin >> input;
+        if(input != 0){
+            _toppings[i] = ts.getToppingAt(input-1);
+        }else{
+            break;
+        }
+    }
+};
 
 string Pizza::toString(bool showToppings) {
   string builder = "";

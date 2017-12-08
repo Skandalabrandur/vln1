@@ -1,4 +1,5 @@
 #include "orderService.h"
+#include "Pizza.h"
 using namespace std;
 
 void orderService::createNewOrder() {
@@ -19,18 +20,24 @@ void orderService::createNewOrder() {
 
   int numberOfMenuPizzas = pizza_service.howManyPizzasOnMenu();
   for(int i = 0; i < numberOfPizzas; i++) {
-    int selection;
-
-    do {
-      uf.clearScreen();
-      selection = -1;
-      cout << "Select Pizza " << (i+1) << " of " << numberOfPizzas << endl;
-      pizza_service.listMenuPizzasWithIndices();
-      cin >> selection;
-    } while(selection < 1 || selection > numberOfMenuPizzas);
-
-      Pizza pizza = pizza_service.getMenuPizza(selection - 1);
-      
+      cout << "Pizza off menu? (y/n) " << endl;
+      char yn;
+      cin >> yn;
+      Pizza pizza;
+      if(yn == 'y'){
+        int selection;
+        do {
+            uf.clearScreen();
+            selection = -1;
+            cout << "Select Pizza " << (i+1) << " of " << numberOfPizzas << endl;
+            pizza_service.listMenuPizzasWithIndices();
+            cin >> selection;
+        } while(selection < 1 || selection > numberOfMenuPizzas);
+        pizza = pizza_service.getMenuPizza(selection - 1);
+      }else{
+          cout << "Select toppings, press 0 to confirm: " << endl;
+          pizza.setToppings();
+      }
       char size;
       char bottomType;
       cout << "Select Size: " << endl;
@@ -41,7 +48,7 @@ void orderService::createNewOrder() {
       pizza.setSize(size);
       pizza.setBottomType(bottomType);
       pizza.setOrderID(orderID);
-      pizza.setPrice(generatePrice(Pizza pizza));
+      pizza.setPrice(generatePrice(pizza));
       pizza_service.storeOrderPizza(pizza);
   }
   fo.appendLineToFile(order.toString(), "data/orders.txt");
