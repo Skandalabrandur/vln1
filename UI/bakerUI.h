@@ -18,9 +18,11 @@ public:
     void selectAndMarkPizzaAsUnbaked();
 
 private:
+  int _locationID;
   UIFunctions uf;
   pizzaService pizza_service;
   locationService location_service;
+  //orderService order_service;
 
 };
 #endif /* bakerUI_h */

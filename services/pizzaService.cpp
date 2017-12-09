@@ -88,6 +88,22 @@ void pizzaService::listActivePizzas() {
   fo.printLines("data/activePizzas.txt");
 }
 
+void pizzaService::listFromLocationActivePizzas(int locationID){
+    int numPizzas = howManyActivePizzas();
+    string location = stringfunc.intToString(locationID);
+
+    for(unsigned int i = 0; i < numPizzas; i++){
+        bool show = false;
+        vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+            if(words[5] == location){
+                for(unsigned int i = 0; i < words.size(); i++){
+                    cout << words.at(i) << " ";
+                }
+                cout << endl;
+            }
+    }
+}
+
 void pizzaService::listMenuPizzasWithIndices() {
   //we could use:
   //fo.printLinesWithIndices("data/menuPizzas.txt");

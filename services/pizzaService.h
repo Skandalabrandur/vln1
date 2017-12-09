@@ -27,6 +27,8 @@ public:
   void storeOrderPizza(Pizza pizza);
   void setActivePizzaStatus(int index, string field, bool truthValue);
 
+  void listFromLocationActivePizzas(int locationID);
+
 private:
   fileOperations fo;
   UIFunctions uf;

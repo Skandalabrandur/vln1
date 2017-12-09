@@ -45,15 +45,18 @@ void bakerUI::chooseLocation(){
         cout << "Select your location: ";
         cin >> choice;
     }while(choice <= 0 || choice > numLocations);
-    //TO DO: how to keep location info, private variable?
+    //If changed so admin can delete locations then this does probably not work
+    //Could make a function getLocationID(choice)
+    _locationID = choice;
 }
 
 void bakerUI::viewPizzas() {
   uf.clearScreen();
-  pizza_service.listActivePizzas();
+  pizza_service.listFromLocationActivePizzas(_locationID);
   uf.pressEnter();
 }
 
+//TO DO: only show chosen location
 void bakerUI::selectAndMarkPizzaAsBaked() {
   int index = -1;
   while(index < 1 || index > pizza_service.howManyActivePizzas()) {
@@ -67,6 +70,7 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
   uf.pressEnter();
 }
 
+//TO DO: only show chosen location
 void bakerUI::selectAndMarkPizzaAsUnbaked() {
   int index = -1;
   while(index < 1 || index > pizza_service.howManyActivePizzas()) {
