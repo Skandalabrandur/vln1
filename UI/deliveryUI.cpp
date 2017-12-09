@@ -10,12 +10,13 @@ void deliveryUI::displayDeliveryMenu(){
         do {
             uf.clearScreen();
             cout << "L - LIST ORDERS" << endl;
+            cout << "R - LIST READY ORDERS" << endl;
             cout << "P - MARK ORDER AS PAID" << endl;
             cout << "D - MARK ORDER AS DELIVERED" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "pbld"));
+        } while(!uf.goodInput(userInput, "pbldr"));
 
         userInput = tolower(userInput);
 
@@ -29,6 +30,12 @@ void deliveryUI::displayDeliveryMenu(){
 
         else if(userInput == 'd') {
           selectAndMarkOrderAsDelivered();
+        }
+
+        else if(userInput == 'r') {
+          uf.clearScreen();
+          cout << "Not yet implemented." << endl;
+          uf.pressEnter();
         }
     }
 
