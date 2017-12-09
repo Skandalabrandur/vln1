@@ -8,9 +8,10 @@ Order::Order() {
   _location = "";
 }
 
-Order::Order(string customer, int orderID) {
+Order::Order(string customer, int orderID, int locationID) {
   _customer = customer;
   _orderID = orderID;
+  _locationID = locationID;
 }
 
 string Order::getCustomer() {
@@ -47,7 +48,7 @@ int Order::getLocationID(){
 
 
 string Order::toString() {
-  return _customer + " " + stringfunc.intToString(_orderID);
+  return _customer + " " + stringfunc.intToString(_orderID) + " " + stringfunc.intToString(_locationID);
 }
 
 void Order::addPizza(Pizza pizza) {

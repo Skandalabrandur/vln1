@@ -11,6 +11,7 @@ Order orderService::convertVector(vector<string> input) {
 
   order.setCustomer(input[0]);
   order.setOrderID(stringfunc.stringToInt(input[1]));
+  order.setLocationID(stringfunc.stringToInt(input[2]));
 
   vector<Pizza> pizzas = getPizzasFromOrderId(order.getOrderID());
 
@@ -29,7 +30,12 @@ void orderService::createNewOrder() {
   cout << "Enter customer name: ";
   cin >> customer;
 
-  Order order(customer, orderID);
+  cout << "Select location: " << endl;
+  location_service.listLocationsWithIndex();
+  int location;
+  cin >> location;
+
+  Order order(customer, orderID, location);
 
   int numberOfPizzas;
   cout << "Number of pizzas for order: ";
@@ -90,11 +96,7 @@ void orderService::createNewOrder() {
       } while(!(size == 'l' || size == 'm' || size == 's') &&
               !(bottomType == 'p' || bottomType == 'c' || bottomType == 'l'));
 
-      cout << "Select store: " << endl;
-      location_service.listLocationsWithIndex();
-      int store;
-      cin >> store;
-      pizza.setStoreID(store);
+      pizza.setStoreID(location);
       pizza.setSize(size);
       pizza.setBottomType(bottomType);
       pizza.setOrderID(orderID);
@@ -123,13 +125,26 @@ void orderService::listOrderOverviewWithIndices() {
   }
 }
 
-void orderService::listOrderFromLocationWithIndices() {
+void orderService::listOrderFromLocationWithID(int locationID) {
   vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
   int nol = fo.countLines("data/orders.txt");
   for(int i = 0; i < nol; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
     Order order = convertVector(words);
-    cout << (i+1) << " -\t" << order.getCustomer() << endl;
+    if(order.getLocationID() == locationID){
+        cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
+    }
+  }
+}
+
+void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
+  vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
+
+  //string locationID = stringfunc.intToString(location_ID);
+  for(int i = 0; i < orderPizzas.size(); i++) {
+    if(orderPizzas[i].getStoreID() == location_ID){
+        cout << orderPizzas[i].toString(false) << endl;
+    }
   }
 }
 

@@ -10,7 +10,7 @@ class Order {
 
 public:
   Order();
-  Order(string customer, int orderID);
+  Order(string customer, int orderID, int locationID);
   string getCustomer();
   void setCustomer(string customer);
   int getOrderID();

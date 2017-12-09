@@ -1,7 +1,7 @@
 #include "deliveryUI.h"
 
 void deliveryUI::displayDeliveryMenu(){
-    //DO DO: choose location
+    //TO DO: choose location
     uf.clearScreen();
     chooseLocation();
 
@@ -35,7 +35,8 @@ void deliveryUI::displayDeliveryMenu(){
 }
 
 void deliveryUI::chooseLocation(){
-    //lists locations from file, user inputs their location
+    _locationID = 0;
+    //Lists locations from file, user inputs their location
     location_service.listLocationsWithIndex();
     int numLocations = location_service.howManyLocations();
     int choice;
@@ -43,22 +44,25 @@ void deliveryUI::chooseLocation(){
         cout << "Select your location: ";
         cin >> choice;
     }while(choice <= 0 || choice > numLocations);
-    //TO DO: how to keep location info, private variable?
-    //If it is possible to delete locations then this does not work
+    //If changed so admin can delete locations then this does probably not work
+    //Could make a function getLocationID(choice)
     _locationID = choice;
+}
+
+int deliveryUI::getLocationID(){
+    return _locationID;
 }
 
 void deliveryUI::viewOrders(){
     uf.clearScreen();
     int choice = 1; //So the value is not 0
     do{
-        //TO DO: list orders from chosen location
-        order_service.listOrderOverviewWithIndices();
+        order_service.listOrderFromLocationWithID(_locationID);
         cout << "Select an order for more info (0 to quit): ";
         if(choice != 0){
             cin >> choice;
             uf.clearScreen();
-            order_service.listSpecificOrderWithInfo(choice);
+            order_service.listSpecificOrderFromLocationWithInfo(choice, _locationID);
             uf.pressEnter();
             uf.clearScreen();
         }
@@ -67,10 +71,12 @@ void deliveryUI::viewOrders(){
 
 void deliveryUI::selectAndMarkOrderAsPaid(){
     int index = -1;
-    while(index < 1 || index > order_service.howManyOrders()) {
+    while(index < 0 || index > order_service.howManyOrders()) {
+        //TO FIX: If user inputs a number that is not on the list
+        //but is an order in the file it will get changed
         uf.clearScreen();
-        order_service.listOrderOverviewWithIndices();
-        cout << "Please select a order to mark as PAID: ";
+        order_service.listOrderFromLocationWithID(_locationID);
+        cout << "Please select a order to mark as PAID (0 to quit): ";
         cin >> index;
     }
     int orderID = order_service.getOrderID(index);
@@ -80,10 +86,12 @@ void deliveryUI::selectAndMarkOrderAsPaid(){
 
 void deliveryUI::selectAndMarkOrderAsDelivered(){
     int index = -1;
-    while(index < 1 || index > order_service.howManyOrders()) {
+    while(index < 0 || index > order_service.howManyOrders()) {
+        //TO FIX: If user inputs a number that is not on the list
+        //but is an order in the file it will get changed
         uf.clearScreen();
-        order_service.listOrderOverviewWithIndices();
-        cout << "Please select a order to mark as DELIVERED: ";
+        order_service.listOrderFromLocationWithID(_locationID);
+        cout << "Please select a order to mark as DELIVERED (0 to quit): ";
         cin >> index;
     }
     int orderID = order_service.getOrderID(index);

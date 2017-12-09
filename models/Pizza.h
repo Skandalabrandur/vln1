@@ -28,6 +28,7 @@ public:
   void setPaid(bool set);
   void setDelivered(bool set);
     void setStoreID(int set);
+    int getStoreID();
   bool isBaked();
   bool isPaid();
   bool isDelivered();

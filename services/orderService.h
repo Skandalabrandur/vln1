@@ -29,7 +29,8 @@ public:
 
   void markPizzaAsPaidByOrderID(int OrderID);
   void markPizzaAsDeliveredByOrderID(int orderID);
-  void listOrderFromLocationWithIndices();
+  void listOrderFromLocationWithID(int locationID);
+  void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID);
 
 private:
   fileOperations fo;

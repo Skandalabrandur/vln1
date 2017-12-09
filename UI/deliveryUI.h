@@ -14,6 +14,7 @@ class deliveryUI
         void viewOrders();
         void selectAndMarkOrderAsPaid();
         void selectAndMarkOrderAsDelivered();
+        int getLocationID();
 
     private:
         int _locationID;
