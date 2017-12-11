@@ -13,8 +13,8 @@ void locationService::listLocationsWithIndex() {
     fo.printLinesWithIndices("data/locations.txt");
 }
 
-//Creates a new topping from the admin menu.
-//Not inteded for use out of admin menu.
+//Creates a new location from the admin menu.
+//Not intended for use out of admin menu.
 void locationService::createNewLocation() {
     string name;
 

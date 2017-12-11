@@ -22,14 +22,16 @@ void salesUI::displaySalesMenu() {
     else if(userInput == 'l') {
       uf.clearScreen();
       order_service.listOrderOverviewWithIndices();
-
-      int selection;
-      cout << "Select an order for more info: ";
-      cin >> selection;
-
-      int adjustedSelection = order_service.getOrderIdFromIndexSelection(selection-1);
-      uf.clearScreen();
-      order_service.listSpecificOrderWithInfo(adjustedSelection);
+      int selection = -1;
+      do{
+          cout << "Select an order for more info (0 to quit): ";
+          cin >> selection;
+          if(selection > 1 && selection <= order_service.howManyOrders()){
+              int adjustedSelection = order_service.getOrderIdFromIndexSelection(selection-1);
+              uf.clearScreen();
+              order_service.listSpecificOrderWithInfo(adjustedSelection);
+          }
+      }while((selection < 0) || (selection > order_service.howManyOrders()));
       uf.pressEnter();
     }
 
@@ -41,10 +43,10 @@ void salesUI::displaySalesMenu() {
 
 void salesUI::selectAndMarkOrderAsDelivered(){
     int index = -1;
-    while(index < 1 || index > order_service.howManyOrders()) {
+    while(index < 0 || index > order_service.howManyOrders()) {
         uf.clearScreen();
         order_service.listOrderOverviewWithIndices();
-        cout << "Please select a order to mark as DELIVERED: ";
+        cout << "Please select a order to mark as DELIVERED (0 to quit): ";
         cin >> index;
     }
     int orderID = order_service.getOrderID(index);

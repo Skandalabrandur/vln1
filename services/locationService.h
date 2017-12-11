@@ -1,5 +1,6 @@
 #ifndef locationservice_h
 #define locationservice_h
+
 #include "UIFunctions.h"
 #include "fileOperations.h"
 #include "stringFunctions.h"
