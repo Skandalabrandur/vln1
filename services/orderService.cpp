@@ -128,7 +128,7 @@ void orderService::createNewOrder() {
   fo.appendLineToFile(order.toString(), "data/orders.txt");
   uf.clearScreen();
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
-    cout << customer << endl;
+  cout << customer << endl;
   uf.pressEnter();
 }
 
@@ -185,7 +185,6 @@ int orderService::howManyOrders() {
 }
 
 int orderService::getOrderID(int index){
-    int numOrder = howManyOrders();
     vector<string> orderWords;
     orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
     //orderID is at index 1 in line

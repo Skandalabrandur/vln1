@@ -10,7 +10,8 @@ public:
   void displayAdminMenu();
   void displayPizzaMenu();
   void displayToppingMenu();
-    void displayLocationMenu();
+  void displayLocationMenu();
+  void displayAdditionalProductsMenu();
 
 private:
   UIFunctions uf;

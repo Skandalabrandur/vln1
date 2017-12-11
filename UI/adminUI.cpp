@@ -8,10 +8,11 @@ void adminUI::displayAdminMenu() {
       cout << "P - MANAGE PIZZAS" << endl;
       cout << "T - MANAGE TOPPINGS" << endl;
       cout << "L - MANAGE LOCATIONS" << endl;
+      cout << "A - MANAGE ADDITIONAL PRODUCTS" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
-    } while(!uf.goodInput(userInput, "ptbl"));
+    } while(!uf.goodInput(userInput, "ptbla"));
 
     userInput = tolower(userInput);
 
@@ -22,10 +23,14 @@ void adminUI::displayAdminMenu() {
     if(userInput == 't') {
       displayToppingMenu();
     }
-      
-      if(userInput == 'l') {
-          displayLocationMenu();
-      }
+
+    if(userInput == 'l') {
+        displayLocationMenu();
+    }
+
+    if(userInput == 'a') {
+        displayAdditionalProductsMenu();
+    }
   }
 }
 
@@ -100,16 +105,44 @@ void adminUI::displayLocationMenu() {
             cout << endl << uf.prompt();
             cin >> userInput;
         } while(!uf.goodInput(userInput, "clb"));
-        
+
         userInput = tolower(userInput);
-        
+
         if(userInput == 'c') {
             location_service.createNewLocation();
         }
-        
+
         if(userInput == 'l') {
             uf.clearScreen();
             location_service.listLocations();
+            uf.pressEnter();
+        }
+    }
+}
+
+void adminUI::displayAdditionalProductsMenu(){
+    char userInput = 'i';     //init to invalid just in case
+    while(userInput != 'b') {
+        do {
+            uf.clearScreen();
+            cout << "C - CREATE NEW ADDITIONAL PRODUCT" << endl;
+            cout << "L - LIST ADDITIONAL PRODUCTS" << endl;
+            cout << "B - BACK" << endl;
+            cout << endl << uf.prompt();
+            cin >> userInput;
+        } while(!uf.goodInput(userInput, "clb"));
+
+        userInput = tolower(userInput);
+
+        if(userInput == 'c') {
+            uf.clearScreen();
+
+            uf.pressEnter();
+        }
+
+        if(userInput == 'l') {
+            uf.clearScreen();
+
             uf.pressEnter();
         }
     }

@@ -7,4 +7,4 @@
 4 bananaz c l 1700 6 unbaked unpaid undelivered
 5 island c m 1400 1 unbaked paid undelivered
 6 bananaz p m 1400 4 unbaked unpaid undelivered
-7 island l l 1500 1 unbaked unpaid undelivered
+7 island l l 1500 1 baked unpaid undelivered
