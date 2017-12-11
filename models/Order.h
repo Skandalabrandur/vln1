@@ -11,7 +11,7 @@ class Order {
 
 public:
   Order();
-  Order(string customer, int orderID, int locationID);
+  Order(string customer, int orderID, int locationID, bool pickUp);
   string getCustomer();
   void setCustomer(string customer);
   int getOrderID();
@@ -30,6 +30,7 @@ private:
   int _orderID;
   int _locationID;
   string _location;
+  bool _pickUp;
   vector<Pizza> _pizzas;
   Comment _comment;
 
