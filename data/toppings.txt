@@ -4,3 +4,4 @@ mushroom 10
 banana 20
 apple 35
 broccoli 40
+nono 123

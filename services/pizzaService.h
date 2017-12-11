@@ -18,8 +18,8 @@ public:
   void listMenuPizzas();
   void listActivePizzas();
   void listMenuPizzasWithIndices();
-  void listActivePizzasWithIndicesForBakery(bool baked);
-  int adjustBakerIndexForBaked(bool baked, int pseudoIndex);
+  void listActiveWithIndicesForBakeryAndLocation(bool baked, int locationID);
+  int adjustBakerIndexForBaked(bool baked, int locationID, int pseudoIndex);
   void deleteMenuPizza();
   int howManyPizzasOnMenu();
   int howManyActivePizzas();

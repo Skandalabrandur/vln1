@@ -4,13 +4,14 @@
 #include <vector>
 #include "stringFunctions.h"
 #include "Pizza.h"
+#include "Comment.h"
 using namespace std;
 
 class Order {
 
 public:
   Order();
-  Order(string customer, int orderID, int locationID);
+  Order(string customer, int orderID, int locationID, bool pickUp);
   string getCustomer();
   void setCustomer(string customer);
   int getOrderID();
@@ -20,6 +21,8 @@ public:
   string getLocation();
   void setLocation(string place);
   void addPizza(Pizza pizza);
+  void setComment(string comment);
+  Comment getComment();
   string toString();
 
 private:
@@ -27,7 +30,9 @@ private:
   int _orderID;
   int _locationID;
   string _location;
+  bool _pickUp;
   vector<Pizza> _pizzas;
+  Comment _comment;
 
   stringFunctions stringfunc;
 };
