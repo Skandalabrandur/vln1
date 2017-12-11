@@ -59,27 +59,31 @@ void bakerUI::viewPizzas() {
 //TO DO: only show chosen location
 void bakerUI::selectAndMarkPizzaAsBaked() {
   int index = -1;
-  while(index < 1 || index > pizza_service.howManyActivePizzas()) {
+  while(index < 0 || index > pizza_service.howManyActivePizzas()) {
     uf.clearScreen();
-    pizza_service.listActivePizzasWithIndicesForBakery(false);
-    cout << "Please select a pizza to mark as BAKED: ";
+    pizza_service.listActiveWithIndicesForBakeryAndLocation(false, _locationID);
+    cout << "Please select a pizza to mark as BAKED (0 to cancel): ";
     cin >> index;
   }
-  int adjustedIndex = pizza_service.adjustBakerIndexForBaked(false, index);
-  pizza_service.setActivePizzaStatus((adjustedIndex), "baked", true);
-  uf.pressEnter();
+  if(index != 0) {
+  int adjustedIndex = pizza_service.adjustBakerIndexForBaked(false, _locationID, index);
+    pizza_service.setActivePizzaStatus((adjustedIndex), "baked", true);
+    uf.pressEnter();
+  }
 }
 
 //TO DO: only show chosen location
 void bakerUI::selectAndMarkPizzaAsUnbaked() {
   int index = -1;
-  while(index < 1 || index > pizza_service.howManyActivePizzas()) {
+  while(index < 0 || index > pizza_service.howManyActivePizzas()) {
     uf.clearScreen();
-    pizza_service.listActivePizzasWithIndicesForBakery(true);
-    cout << "Please select a pizza to mark as UNBAKED: ";
+    pizza_service.listActiveWithIndicesForBakeryAndLocation(true, _locationID);
+    cout << "Please select a pizza to mark as UNBAKED (0 to cancel): ";
     cin >> index;
   }
-  int adjustedIndex = pizza_service.adjustBakerIndexForBaked(true, index);
-  pizza_service.setActivePizzaStatus(adjustedIndex, "baked", false);
-  uf.pressEnter();
+  if(index != 0) {
+    int adjustedIndex = pizza_service.adjustBakerIndexForBaked(true, _locationID, index);
+    pizza_service.setActivePizzaStatus(adjustedIndex, "baked", false);
+    uf.pressEnter();
+  }
 }
