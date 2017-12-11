@@ -32,6 +32,11 @@ void orderService::createNewOrder() {
 
   cout << "Select location: " << endl;
   location_service.listLocationsWithIndex();
+  if(fo.countLines("data/locations.txt") == 0) {
+    cout << "No locations exist. Contact administrator!" << endl;
+    uf.pressEnter();
+    return;
+  }
   int location;
   cin >> location;
 
