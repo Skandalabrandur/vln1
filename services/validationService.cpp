@@ -31,3 +31,7 @@ bool validationService::locationsExist() {
 bool validationService::ordersExist() {
   return (fo.countLines("data/orders.txt") != 0);
 }
+
+bool validationService::addProductsExist() {
+  return (fo.countLines("data/additionalProducts.txt"));
+}

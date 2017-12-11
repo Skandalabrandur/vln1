@@ -161,8 +161,13 @@ void adminUI::displayAdditionalProductsMenu(){
         }
 
         if(userInput == 'l') {
+          if(vs.addProductsExist()) {
             uf.clearScreen();
             additionalProduct_service.listAdditionalProducts();
+          } else {
+            cout << "No additional products exist!" << endl;
+            uf.pressEnter();
+          }
         }
     }
 }

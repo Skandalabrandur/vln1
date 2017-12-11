@@ -14,6 +14,7 @@ public:
   bool toppingsExist();
   bool locationsExist();
   bool ordersExist();
+  bool addProductsExist();
 
 private:
   fileOperations fo;
