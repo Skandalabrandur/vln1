@@ -11,7 +11,7 @@ void bakerUI::displayBakerMenu() {
     while (userInput != 'b') {
         do {
             uf.clearScreen();
-            cout << "L - LIST ALL PIZZAS" << endl;
+            cout << "L - LIST PIZZAS FOR YOUR PLACE" << endl;
             cout << "O - LIST PIZZAS BY ORDERS" << endl;
             cout << "M - MARK PIZZA AS BAKED" << endl;
             cout << "U - MARK PIZZA AS UNBAKED" << endl;
@@ -23,29 +23,43 @@ void bakerUI::displayBakerMenu() {
         userInput = tolower(userInput);
 
         if(userInput == 'l') {
-          viewPizzas();
+          if(vs.pizzasExistForLocationID(_locationID)) {
+            viewPizzas();
+          } else {
+            cout << "No pizzas exist for your location!" << endl;
+            cout << "A good opportunity to relax :)" << endl;
+            uf.pressEnter();
+          }
         }
 
         if(userInput == 'o') {
-          uf.clearScreen();
-          order_service.listOrderOverviewWithIndicesForLocation(_locationID);
-
-          int selection;
-          cout << "Select an order for more info: ";
-          cin >> selection;
-
-          int adjustedSelection = order_service.getOrderIdFromIndexSelectionForLocation(selection, _locationID);
-          uf.clearScreen();
-          order_service.listSpecificOrderWithInfo(adjustedSelection);
+          if(vs.pizzasExistForLocationID(_locationID)) {
+            listByOrders();
+          } else {
+            cout << "No pizzas exist for your location!" << endl;
+            cout << "A good opportunity to relax :)" << endl;
+          }
           uf.pressEnter();
         }
 
         if(userInput == 'm') {
-          selectAndMarkPizzaAsBaked();
+          if(vs.pizzasExistForLocationID(_locationID)) {
+            selectAndMarkPizzaAsBaked();
+          } else {
+            cout << "No pizzas exist for your location!" << endl;
+            cout << "A good opportunity to relax :)" << endl;
+            uf.pressEnter();
+          }
         }
 
         if(userInput == 'u') {
-          selectAndMarkPizzaAsUnbaked();
+          if(vs.pizzasExistForLocationID(_locationID)) {
+            selectAndMarkPizzaAsUnbaked();
+          } else {
+            cout << "No pizzas exist for your location!" << endl;
+            cout << "A good opportunity to relax :)" << endl;
+            uf.pressEnter();
+          }
         }
 
     }
@@ -101,4 +115,17 @@ void bakerUI::selectAndMarkPizzaAsUnbaked() {
     pizza_service.setActivePizzaStatus(adjustedIndex, "baked", false);
     uf.pressEnter();
   }
+}
+
+void bakerUI::listByOrders() {
+  uf.clearScreen();
+  order_service.listOrderOverviewWithIndicesForLocation(_locationID);
+
+  int selection;
+  cout << "Select an order for more info: ";
+  cin >> selection;
+
+  int adjustedSelection = order_service.getOrderIdFromIndexSelectionForLocation(selection, _locationID);
+  uf.clearScreen();
+  order_service.listSpecificOrderWithInfo(adjustedSelection);
 }

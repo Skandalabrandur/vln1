@@ -5,7 +5,7 @@ bool validationService::deliveryMenuValid() {
 }
 
 bool validationService::bakerMenuValid() {
-  return locationsExist();
+  return locationsExist() && activePizzasExist();
 }
 
 bool validationService::salesMenuValid() {
@@ -34,4 +34,36 @@ bool validationService::ordersExist() {
 
 bool validationService::addProductsExist() {
   return (fo.countLines("data/additionalProducts.txt"));
+}
+
+bool validationService::pizzasExistForOrderID(int orderID) {
+  int counter = 0;
+
+  vector<string> lines = fo.getLinesFromFile("data/activePizzas.txt");
+
+  for(int i = 0; i < lines.size(); i++) {
+    vector<string> words = stringfunc.split(lines.at(i));
+
+    if(stringfunc.stringToInt(words.at(0)) == orderID) {
+      counter ++;
+    }
+  }
+
+  return (counter > 0);
+}
+
+bool validationService::pizzasExistForLocationID(int locationID) {
+  int counter = 0;
+
+  vector<string> lines = fo.getLinesFromFile("data/activePizzas.txt");
+
+  for(int i = 0; i < lines.size(); i++) {
+    vector<string> words = stringfunc.split(lines.at(i));
+
+    if(stringfunc.stringToInt(words.at(5)) == locationID) {
+      counter ++;
+    }
+  }
+
+  return (counter > 0);
 }

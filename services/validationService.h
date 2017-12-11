@@ -2,6 +2,10 @@
 #define validationservice_h
 
 #include "fileOperations.h"
+#include "stringFunctions.h"
+#include <string>
+#include <iostream>
+#include <vector>
 
 
 class validationService {
@@ -15,9 +19,12 @@ public:
   bool locationsExist();
   bool ordersExist();
   bool addProductsExist();
+  bool pizzasExistForOrderID(int orderID);
+  bool pizzasExistForLocationID(int locationID);
 
 private:
   fileOperations fo;
+  stringFunctions stringfunc;
 
 };
 

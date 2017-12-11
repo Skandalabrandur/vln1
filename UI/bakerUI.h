@@ -4,6 +4,7 @@
 #include "pizzaService.h"
 #include "locationService.h"
 #include "orderService.h"
+#include "validationService.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -17,6 +18,7 @@ public:
     void viewPizzas();
     void selectAndMarkPizzaAsBaked();
     void selectAndMarkPizzaAsUnbaked();
+    void listByOrders();
 
 private:
   int _locationID;
@@ -24,7 +26,7 @@ private:
   pizzaService pizza_service;
   locationService location_service;
   orderService order_service;
-  //orderService order_service;
+  validationService vs;
 
 };
 #endif /* bakerUI_h */
