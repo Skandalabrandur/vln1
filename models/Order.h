@@ -5,6 +5,7 @@
 #include "stringFunctions.h"
 #include "Pizza.h"
 #include "Comment.h"
+#include "AdditionalProduct.h"
 using namespace std;
 
 class Order {
@@ -33,6 +34,7 @@ private:
   bool _pickUp;
   vector<Pizza> _pizzas;
   Comment _comment;
+  vector<AdditionalProduct> _additionalProducts;
 
   stringFunctions stringfunc;
 };

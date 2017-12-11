@@ -59,7 +59,7 @@ Comment Order::getComment() {
 
 
 string Order::toString() {
-    char pickup_delivery = ' ';
+  char pickup_delivery = ' ';
   if(_pickUp){
     pickup_delivery = 'p';
   }
@@ -72,3 +72,4 @@ string Order::toString() {
 void Order::addPizza(Pizza pizza) {
   _pizzas.push_back(pizza);
 }
+

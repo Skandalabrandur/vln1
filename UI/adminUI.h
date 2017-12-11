@@ -4,6 +4,7 @@
 #include "pizzaService.h"
 #include "toppingService.h"
 #include "locationService.h"
+#include "additionalProductService.h"
 
 class adminUI {
 public:
@@ -18,6 +19,7 @@ private:
   pizzaService pizza_service;
   toppingService topping_service;
   locationService location_service;
+  additionalProductService additionalProduct_service;
 };
 
 #endif

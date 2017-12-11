@@ -11,9 +11,10 @@ using namespace std;
 class additionalProductService
 {
     public:
-        void listAdditionalProduct();
+        void listAdditionalProducts();
+        void listAdditionalProductsWithIndexes();
         void createNewAdditionalProduct();
-        int howManyAdditionalProduct();
+        int howManyAdditionalProducts();
 
     private:
         fileOperations fo;
