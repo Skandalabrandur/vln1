@@ -107,18 +107,19 @@ int Pizza::getStoreID(){
 
 void Pizza::setToppings(){
     toppingService ts;
+    _name = "custom";
     int i = 0;
     int input;
     ts.listToppingsWithIndex();
     while(true){
         cin >> input;
         if(input != 0){
-            _toppings[i] = ts.getToppingAt(input-1);
+            _toppings.push_back(ts.getToppingAt(input-1));
         }else{
             break;
         }
     }
-};
+}
 
 string Pizza::toString(bool showToppings) {
   string builder = "";

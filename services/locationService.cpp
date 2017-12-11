@@ -25,12 +25,10 @@ void locationService::createNewLocation() {
     //Find location id
     int id = howManyLocations() + 1;
     cout << name << " ID is " << id << endl;
-    uf.pressEnter();
 
     Location location(name, id);
     fo.appendLineToFile(location.toString(), "data/locations.txt");
 
-    uf.clearScreen();
     cout << "Location: \"" << location.toString() << "\" created!" << endl;
     uf.pressEnter();
 }

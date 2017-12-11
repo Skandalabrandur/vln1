@@ -48,6 +48,12 @@ void pizzaService::createAndAppendMenuPizza() {
 
   int howManyToppingsExist = fo.countLines("data/toppings.txt");
 
+  if(howManyToppingsExist == 0) {
+    cout << "No toppings exist!" << endl;
+    uf.pressEnter();
+    return;
+  }
+
   for(int i = 0; i < numberOfToppings; i++) {
     int selection;
 

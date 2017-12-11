@@ -12,6 +12,7 @@ class additionalProductService
 {
     public:
         void listAdditionalProducts();
+        void listAdditionalProductsWithIndexes();
         void createNewAdditionalProduct();
         int howManyAdditionalProducts();
 

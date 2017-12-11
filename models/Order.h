@@ -22,7 +22,6 @@ public:
   string getLocation();
   void setLocation(string place);
   void addPizza(Pizza pizza);
-  void addAdditionalProduct(AdditionalProduct additionalProduct);
   void setComment(string comment);
   Comment getComment();
   string toString();

@@ -32,6 +32,11 @@ void orderService::createNewOrder() {
 
   cout << "Select location: " << endl;
   location_service.listLocationsWithIndex();
+  if(location_service.howManyLocations() == 0) {
+    cout << "No locations exist. Contact administrator!" << endl;
+    uf.pressEnter();
+    return;
+  }
   int location;
   cin >> location;
 
@@ -55,7 +60,7 @@ void orderService::createNewOrder() {
   Order order(customer, orderID, location, pickUp);
 
   string comment = "";
-  cout << "Comment <enter for blank>: " << endl;
+  cout << "Comment <enter for blank> " << endl;
   cin >> ws;
   getline(cin, comment);
 
@@ -87,17 +92,7 @@ void orderService::createNewOrder() {
           pizza.setToppings();
       }
 
-    int selection;
 
-    do {
-      uf.clearScreen();
-      selection = -1;
-      cout << "Select Pizza " << (i+1) << " of " << numberOfPizzas << endl;
-      pizza_service.listMenuPizzasWithIndices();
-      cin >> selection;
-    } while(selection < 1 || selection > numberOfMenuPizzas);
-
-      pizza = pizza_service.getMenuPizza(selection - 1);
 
       char size;
       char bottomType;
@@ -152,6 +147,20 @@ void orderService::listOrderOverviewWithIndices() {
     vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
     Order order = convertVector(words);
     cout << (i+1) << " -\t" << order.getCustomer() << endl;
+  }
+}
+
+void orderService::listOrderOverviewWithIndicesForLocation(int locationID) {
+  vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
+  int nol = fo.countLines("data/orders.txt");
+  int counter = 1;
+  for(int i = 0; i < nol; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
+    if(stringfunc.stringToInt(words[2]) == locationID) {
+      Order order = convertVector(words);
+      cout << counter << " -\t" << order.getCustomer() << endl;
+      counter++;
+    }
   }
 }
 
@@ -241,6 +250,22 @@ void orderService::markPizzaAsDeliveredByOrderID(int orderID){
 int orderService::getOrderIdFromIndexSelection(int index) {
   vector<string> words = fo.getWordsFromLine(index, "data/orders.txt");
   return stringfunc.stringToInt(words[1]);
+}
+
+int orderService::getOrderIdFromIndexSelectionForLocation(int index, int locationID) {
+  vector<string> lines = fo.getLinesFromFile("data/orders.txt");
+
+  int counter = 0;
+  for(int i = 0; i < lines.size(); i++) {
+    vector<string> words = stringfunc.split(lines.at(i));
+    if(stringfunc.stringToInt(words.at(2)) == locationID) {
+      counter++;
+    }
+    if(counter == index) {
+        return stringfunc.stringToInt(words[1]);
+    }
+  }
+
 }
 
 vector<Pizza> orderService::getPizzasFromOrderId(int order_id) {

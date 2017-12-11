@@ -5,6 +5,11 @@ void additionalProductService::listAdditionalProducts(){
     uf.pressEnter();
 }
 
+void additionalProductService::listAdditionalProductsWithIndexes(){
+    fo.printLinesWithIndices("data/additionalProducts.txt");
+    uf.pressEnter();
+}
+
 void additionalProductService::createNewAdditionalProduct(){
     string name;
 

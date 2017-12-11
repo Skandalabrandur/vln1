@@ -21,7 +21,9 @@ public:
   Order convertVector(vector<string> input);
   void createNewOrder();
   void listOrderOverviewWithIndices();
+  void listOrderOverviewWithIndicesForLocation(int locationID);
   int getOrderIdFromIndexSelection(int index);
+  int getOrderIdFromIndexSelectionForLocation(int index, int locationID);
   vector<Pizza> getPizzasFromOrderId(int order_id);
   void listSpecificOrderWithInfo(int order_id);
   int generatePrice(Pizza pizza, bool isMenuPizza);
