@@ -37,6 +37,13 @@ void orderService::createNewOrder() {
 
   Order order(customer, orderID, location);
 
+  string comment = "";
+  cout << "Comment <enter for blank>: " << endl;
+  cin >> ws;
+  getline(cin, comment);
+
+  order.setComment(comment);
+
   int numberOfPizzas;
   cout << "Number of pizzas for order: ";
 
@@ -109,6 +116,12 @@ void orderService::createNewOrder() {
       pizza_service.storeOrderPizza(pizza);
   }
   fo.appendLineToFile(order.toString(), "data/orders.txt");
+
+  //if comment is not empty
+  if( !(( order.getComment().getCommentString()).empty() ) ) {
+    comment_service.writeComment(order.getComment());
+  }
+
   uf.clearScreen();
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
     cout << customer << endl;

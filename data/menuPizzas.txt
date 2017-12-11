@@ -2,3 +2,5 @@ veggie 4 tomato paprika mushroom broccoli 450
 bananaz 3 banana banana apple 75
 flamingo 3 tomato paprika apple 435
 island 4 mushroom mushroom broccoli tomato 160
+hobonagger 2 tomato apple 135
+hlhlhle 3 tomato apple broccoli 175
