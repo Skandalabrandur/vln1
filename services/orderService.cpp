@@ -35,7 +35,24 @@ void orderService::createNewOrder() {
   int location;
   cin >> location;
 
-  Order order(customer, orderID, location);
+  //Pick up or delivery
+  bool pickUp;
+  char choice = ' ';
+  do{
+      cout << "Select:" << endl;
+      cout << "1 - Pick up" << endl;
+      cout << "2 - Delivery" << endl;
+      cin >> choice;
+  }while(choice != '1' && choice != '2');
+
+  if(choice == '1'){
+    pickUp = true;
+  }
+  else{
+    pickUp = false;
+  }
+  //Make the order
+  Order order(customer, orderID, location, pickUp);
 
   int numberOfPizzas;
   cout << "Number of pizzas for order: ";
@@ -125,14 +142,30 @@ void orderService::listOrderOverviewWithIndices() {
   }
 }
 
-void orderService::listOrderFromLocationWithID(int locationID) {
+void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
   vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
   int nol = fo.countLines("data/orders.txt");
   for(int i = 0; i < nol; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
     Order order = convertVector(words);
     if(order.getLocationID() == locationID){
-        cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
+        //If we only want show ready orders
+        if(isReady){
+            bool ready = true;
+            vector<Pizza> orderPizzas = getPizzasFromOrderId(i + 1);
+            for(int i = 0; i < orderPizzas.size(); i++) {
+                if(!(orderPizzas[i].isBaked() && orderPizzas[i].isPaid())){
+                    ready = false;
+                }
+            }
+            if(ready){
+                    cout << orderPizzas[i].getOrderID() << " -\t" << order.getCustomer() << endl;
+            }
+        }
+        //Show all orders
+        else{
+            cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
+        }
     }
   }
 }
@@ -140,7 +173,6 @@ void orderService::listOrderFromLocationWithID(int locationID) {
 void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
 
-  //string locationID = stringfunc.intToString(location_ID);
   for(int i = 0; i < orderPizzas.size(); i++) {
     if(orderPizzas[i].getStoreID() == location_ID){
         cout << orderPizzas[i].toString(false) << endl;

@@ -11,7 +11,7 @@ class deliveryUI
     public:
         void displayDeliveryMenu();
         void chooseLocation();
-        void viewOrders();
+        void viewOrders(bool isReady);
         void selectAndMarkOrderAsPaid();
         void selectAndMarkOrderAsDelivered();
         int getLocationID();

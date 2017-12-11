@@ -29,7 +29,7 @@ public:
 
   void markPizzaAsPaidByOrderID(int OrderID);
   void markPizzaAsDeliveredByOrderID(int orderID);
-  void listOrderFromLocationWithID(int locationID);
+  void listOrderFromLocationWithID(int locationID, bool isReady);
   void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID);
 
 private:

@@ -1,4 +1,7 @@
-Janet 1 1
-Clementine 2 4
-Rosanna 3 7
-Roxanne 4 6
+Janet 1 1 p
+Clementine 2 4 p
+Rosanna 3 7 d
+Roxanne 4 6 d
+Winnie 5 1 p
+Britta 6 4 p
+Ann 7 1 d

@@ -21,7 +21,15 @@ void deliveryUI::displayDeliveryMenu(){
         userInput = tolower(userInput);
 
         if(userInput == 'l') {
-          viewOrders();
+          //False to show all orders not just ready orders
+          viewOrders(false);
+        }
+
+        else if(userInput == 'r') {
+          uf.clearScreen();
+          //True to show only ready orders
+          viewOrders(true);
+          uf.pressEnter();
         }
 
         else if(userInput == 'p') {
@@ -30,12 +38,6 @@ void deliveryUI::displayDeliveryMenu(){
 
         else if(userInput == 'd') {
           selectAndMarkOrderAsDelivered();
-        }
-
-        else if(userInput == 'r') {
-          uf.clearScreen();
-          cout << "Not yet implemented." << endl;
-          uf.pressEnter();
         }
     }
 
@@ -60,11 +62,11 @@ int deliveryUI::getLocationID(){
     return _locationID;
 }
 
-void deliveryUI::viewOrders(){
+void deliveryUI::viewOrders(bool isReady){
     uf.clearScreen();
     int choice = 1; //So the value is not 0
     do{
-        order_service.listOrderFromLocationWithID(_locationID);
+        order_service.listOrderFromLocationWithID(_locationID, isReady);
         cout << "Select an order for more info (0 to quit): ";
         if(choice != 0){
             cin >> choice;
@@ -82,7 +84,8 @@ void deliveryUI::selectAndMarkOrderAsPaid(){
         //TO FIX: If user inputs a number that is not on the list
         //but is an order in the file it will get changed
         uf.clearScreen();
-        order_service.listOrderFromLocationWithID(_locationID);
+        //False to show all orders not just ready orders
+        order_service.listOrderFromLocationWithID(_locationID, false);
         cout << "Please select a order to mark as PAID (0 to quit): ";
         cin >> index;
     }
@@ -97,7 +100,8 @@ void deliveryUI::selectAndMarkOrderAsDelivered(){
         //TO FIX: If user inputs a number that is not on the list
         //but is an order in the file it will get changed
         uf.clearScreen();
-        order_service.listOrderFromLocationWithID(_locationID);
+        //False to show all orders not just ready orders
+        order_service.listOrderFromLocationWithID(_locationID, false);
         cout << "Please select a order to mark as DELIVERED (0 to quit): ";
         cin >> index;
     }

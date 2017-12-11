@@ -1,7 +1,10 @@
 1 bananaz l l 1500 1 baked paid undelivered
 1 flamingo c m 1400 1 baked paid undelivered
-2 island c s 1100 4 baked unpaid undelivered
+2 island c s 1100 4 unbaked unpaid undelivered
 3 veggie p m 1400 7 unbaked unpaid undelivered
 3 bananaz l l 1500 7 unbaked unpaid undelivered
 3 island l m 1250 7 unbaked unpaid undelivered
 4 bananaz c l 1700 6 unbaked unpaid undelivered
+5 island c m 1400 1 unbaked paid undelivered
+6 bananaz p m 1400 4 unbaked unpaid undelivered
+7 island l l 1500 1 unbaked unpaid undelivered
