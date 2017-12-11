@@ -27,13 +27,28 @@ void mainUI::displayMainMenu() {
       admin_ui.displayAdminMenu();
     }
     if(userInput == 's') {
-      sales_ui.displaySalesMenu();
+      if(vs.salesMenuValid()) {
+        sales_ui.displaySalesMenu();
+      } else {
+        cout << "Not a valid choice. Some data is missing!" << endl << "Please contact administrator" << endl;
+        uf.pressEnter();
+      }
     }
     if(userInput == 'b') {
-      baker_ui.displayBakerMenu();
+      if(vs.bakerMenuValid()) {
+        baker_ui.displayBakerMenu();
+      } else {
+        cout << "Not a valid choice. Some data is missing!" << endl << "Please contact administrator" << endl;
+        uf.pressEnter();
+      }
     }
     if(userInput == 'd') {
-      delivery_ui.displayDeliveryMenu();
+      if(vs.deliveryMenuValid()) {
+        delivery_ui.displayDeliveryMenu();
+      } else {
+        cout << "Not a valid choice. Some data is missing!" << endl << "Please contact administrator" << endl;
+        uf.pressEnter();
+      }
     }
   }
 }

@@ -16,6 +16,7 @@ public:
   void listToppingsWithIndex();
   void createNewTopping();
   Topping lookupTopping(string name);
+  int howManyToppings();
 
 private:
   fileOperations fo;
