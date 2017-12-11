@@ -26,9 +26,10 @@ void salesUI::displaySalesMenu() {
       do{
           cout << "Select an order for more info (0 to quit): ";
           cin >> selection;
-          if(selection > 1 && selection <= order_service.howManyOrders()){
+          if(selection >= 1 && selection <= order_service.howManyOrders()){
               int adjustedSelection = order_service.getOrderIdFromIndexSelection(selection-1);
               uf.clearScreen();
+              cout << adjustedSelection << endl;
               order_service.listSpecificOrderWithInfo(adjustedSelection);
           }
       }while((selection < 0) || (selection > order_service.howManyOrders()));

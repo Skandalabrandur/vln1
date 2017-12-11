@@ -32,7 +32,7 @@ void orderService::createNewOrder() {
 
   cout << "Select location: " << endl;
   location_service.listLocationsWithIndex();
-  if(fo.countLines("data/locations.txt") == 0) {
+  if(location_service.howManyLocations() == 0) {
     cout << "No locations exist. Contact administrator!" << endl;
     uf.pressEnter();
     return;
@@ -60,7 +60,7 @@ void orderService::createNewOrder() {
   Order order(customer, orderID, location, pickUp);
 
   string comment = "";
-  cout << "Comment <enter for blank>: " << endl;
+  cout << "Comment <enter for blank> " << endl;
   cin >> ws;
   getline(cin, comment);
 
@@ -92,17 +92,7 @@ void orderService::createNewOrder() {
           pizza.setToppings();
       }
 
-    int selection;
 
-    do {
-      uf.clearScreen();
-      selection = -1;
-      cout << "Select Pizza " << (i+1) << " of " << numberOfPizzas << endl;
-      pizza_service.listMenuPizzasWithIndices();
-      cin >> selection;
-    } while(selection < 1 || selection > numberOfMenuPizzas);
-
-      pizza = pizza_service.getMenuPizza(selection - 1);
 
       char size;
       char bottomType;
