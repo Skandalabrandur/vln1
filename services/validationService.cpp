@@ -9,7 +9,7 @@ bool validationService::bakerMenuValid() {
 }
 
 bool validationService::salesMenuValid() {
-  return ordersExist() && locationsExist();
+  return locationsExist();
 }
 
 bool validationService::menuPizzasExist() {
