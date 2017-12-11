@@ -136,14 +136,12 @@ void adminUI::displayAdditionalProductsMenu(){
 
         if(userInput == 'c') {
             uf.clearScreen();
-
-            uf.pressEnter();
+            additionalProduct_service.createNewAdditionalProduct();
         }
 
         if(userInput == 'l') {
             uf.clearScreen();
-
-            uf.pressEnter();
+            additionalProduct_service.listAdditionalProducts();
         }
     }
 }

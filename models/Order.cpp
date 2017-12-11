@@ -72,3 +72,7 @@ string Order::toString() {
 void Order::addPizza(Pizza pizza) {
   _pizzas.push_back(pizza);
 }
+
+void Order::addAdditionalProduct(AdditionalProduct additionalProduct){
+    _additionalProducts.push_back(additionalProduct);
+}

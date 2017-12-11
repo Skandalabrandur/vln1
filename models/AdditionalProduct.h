@@ -11,14 +11,14 @@ class AdditionalProduct
 {
     public:
         AdditionalProduct();
-        AdditionalProduct(string name, int productID);
+        AdditionalProduct(string name, int price);
         string getAdditionalProductName();
-        int getProductID();
+        int getPrice();
         string toString();
 
     private:
         string _name;
-        int _productID;
+        int _price;
 
         stringFunctions stringfunc;
 };

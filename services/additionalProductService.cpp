@@ -1,7 +1,8 @@
 #include "additionalProductService.h"
 
-void additionalProductService::listAdditionalProduct(){
+void additionalProductService::listAdditionalProducts(){
     fo.printLines("data/additionalProducts.txt");
+    uf.pressEnter();
 }
 
 void additionalProductService::createNewAdditionalProduct(){
@@ -11,12 +12,11 @@ void additionalProductService::createNewAdditionalProduct(){
     cout << "Enter product name: ";
     cin >> name;
 
-    //Find location id
-    int id = howManyAdditionalProduct() + 1;
-    cout << name << " product ID is " << id << endl;
-    uf.pressEnter();
+    int price = 0;
+    cout << "Enter price: ";
+    cin >> price;
 
-    AdditionalProduct product(name, id);
+    AdditionalProduct product(name, price);
     fo.appendLineToFile(product.toString(), "data/additionalProducts.txt");
 
     uf.clearScreen();
@@ -24,6 +24,6 @@ void additionalProductService::createNewAdditionalProduct(){
     uf.pressEnter();
 }
 
-int additionalProductService::howManyAdditionalProduct(){
+int additionalProductService::howManyAdditionalProducts(){
     return fo.countLines("data/additionalProducts.txt");
 }

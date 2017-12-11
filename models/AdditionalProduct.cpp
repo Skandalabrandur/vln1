@@ -3,21 +3,22 @@
 AdditionalProduct::AdditionalProduct()
 {
     _name = "";
-    _productID = 0;
+    _price = 0;
 }
 
-AdditionalProduct::AdditionalProduct(string name, int productID){
+AdditionalProduct::AdditionalProduct(string name, int price){
     _name = name;
-    _productID = productID;
+    _price = price;
 }
 
 string AdditionalProduct::toString(){
-     return _name + " " + stringfunc.intToString(_productID);
+     return _name + " " + stringfunc.intToString(_price);
 }
 
 string AdditionalProduct::getAdditionalProductName(){
     return _name;
 }
-int AdditionalProduct::getProductID(){
-    return _productID;
+
+int AdditionalProduct::getPrice(){
+    return _price;
 }
