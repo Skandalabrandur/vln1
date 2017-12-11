@@ -139,7 +139,7 @@ void pizzaService::listMenuPizzasWithIndices() {
   }
 }
 
-void pizzaService::listActivePizzasWithIndicesForBakery(bool baked) {
+void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int locationID) {
   int lineCount = fo.countLines("data/activePizzas.txt");
   int nof;    //number of fields/words per line
 
@@ -147,12 +147,11 @@ void pizzaService::listActivePizzasWithIndicesForBakery(bool baked) {
   int longestPizzaNameLength = 0;
   for(int i = 0; i < lineCount; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-    if(words[1].length() > longestPizzaNameLength) {
+    if((words[1].length() > longestPizzaNameLength) && stringfunc.stringToInt(words[5]) == locationID) {
       longestPizzaNameLength = words[1].length();
       nof = words.size();
     }
   }
-
 
   int counter = 1;
   for(int i = 0; i < lineCount; i++) {
@@ -163,33 +162,37 @@ void pizzaService::listActivePizzasWithIndicesForBakery(bool baked) {
 
     //padding for equal display length
     string extraSpaces = " ";
-    for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
-      extraSpaces += " ";
-    }
-    if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
-      cout << counter << " -\t" << "| " << words[0] << "-";
-      cout << words[1] << extraSpaces << "|\t";
-      for(int j = 2; j < words.size(); j++) {
-        cout << words[j] << " ";
+    if(stringfunc.stringToInt(words[5]) == locationID) {
+      for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
+        extraSpaces += " ";
       }
-      cout << endl;
-      counter++;
+      if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
+        cout << counter << " -\t" << "| " << words[0] << "-";
+        cout << words[1] << extraSpaces << "|\t";
+        for(int j = 2; j < words.size(); j++) {
+          cout << words[j] << " ";
+        }
+        cout << endl;
+        counter++;
+      }
     }
   }
 }
 
-int pizzaService::adjustBakerIndexForBaked(bool baked, int pseudoIndex) {
+int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseudoIndex) {
   int lineCount = fo.countLines("data/activePizzas.txt");
   int adjustedIndex = 0;
 
   for(int i = 0; i < lineCount; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
     if((baked && words[(words.size()) - 3] == "baked") || (!baked && words[(words.size()) -3] == "unbaked") ) {
+      if(stringfunc.stringToInt(words[5]) == locationID) {
         pseudoIndex--;
 
         if(pseudoIndex == 0) {
           return adjustedIndex;
         }
+      }
     }
     adjustedIndex++;
   }

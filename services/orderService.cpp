@@ -102,7 +102,7 @@ void orderService::createNewOrder() {
         cin >> bottomType;
         bottomType = tolower(bottomType);
 
-        //g.r.f. að pönnupizza sé bara af einni stærð?
+        //g.r.f. að pönnupizza sé bara af einni stærð
         if(!(bottomType == 'p')) {
           cout << "Select Size (l)arge/(m)edium/(s)mall: ";
           cin >> size;
