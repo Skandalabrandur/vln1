@@ -16,7 +16,9 @@ vector<string> fileOperations::getLinesFromFile(const char file[]) {
     while(!fin.eof()) {
       string line;
       getline(fin, line);
-      lines.push_back(line);
+      if(!line.empty()) {
+        lines.push_back(line);
+      }
     }
   } else {
     lines.push_back("ERROR");
@@ -34,7 +36,9 @@ void fileOperations::appendLineToFile(string line, const char file[]) {
   ofstream fout;
   //no check needed since fileNotExists triggers file creation
   fout.open(file, ios::app);    //ios::app for append
-  fout << line << endl;
+  if(!line.empty()) {
+    fout << line << endl;
+  }
   fout.close();
 }
 

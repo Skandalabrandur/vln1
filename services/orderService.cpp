@@ -185,7 +185,11 @@ void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
 
 void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
-
+  string comment = comment_service.getCommentTextFromOrderID(order_id);
+  if(!comment.empty()) {
+    cout << "Comment: " << comment << endl << endl;
+  }
+  cout << "Pizzas: " << endl;
   for(int i = 0; i < orderPizzas.size(); i++) {
     if(orderPizzas[i].getStoreID() == location_ID){
         cout << orderPizzas[i].toString(false) << endl;
@@ -257,6 +261,11 @@ vector<Pizza> orderService::getPizzasFromOrderId(int order_id) {
 
 void orderService::listSpecificOrderWithInfo(int order_id) {
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
+
+  string comment = comment_service.getCommentTextFromOrderID(order_id);
+  if(!comment.empty()) {
+    cout << "Comment: " << comment << endl << endl;
+  }
 
   for(int i = 0; i < orderPizzas.size(); i++) {
     cout << orderPizzas[i].toString(false) << endl;

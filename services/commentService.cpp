@@ -9,14 +9,14 @@ Comment commentService::getCommentFromOrderID(int orderID) {
   string commentText = "";
   for(int i = 0; i < lines.size(); i++) {
     vector<string> words = stringfunc.split(lines.at(i));
-    if(stringfunc.stringToInt(words[0]) == orderID) {
-      for(int i = 1; i < words.size(); i++) {
-        commentText += words.at(i) + " ";
+    if(stringfunc.stringToInt(words.at(0)) == orderID) {
+      for(int j = 1; j < words.size(); j++) {
+        commentText += words.at(j) + " ";
       }
-      Comment newComment(commentText, orderID);
-      return newComment;
     }
   }
+  Comment newComment(commentText, orderID);
+  return newComment;
 }
 
 string commentService::getCommentTextFromOrderID(int orderID) {
