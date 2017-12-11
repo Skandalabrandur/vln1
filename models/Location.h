@@ -7,15 +7,18 @@ using namespace std;
 
 class Location {
 
-public:
-  Location();
-    Location(string name, int price);
-  string toString();
-private:
-  string _name;
-  int _id;
+    public:
+      Location();
+      Location(string name, int price);
+      string toString();
+      int getID();
+      string getLocationName();
 
-  stringFunctions stringfunc;
+    private:
+      string _name;
+      int _id;
+
+      stringFunctions stringfunc;
 };
 
 #endif

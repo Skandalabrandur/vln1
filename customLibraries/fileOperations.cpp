@@ -30,7 +30,6 @@ vector<string> fileOperations::getWordsFromLine(int index, const char file[]) {
   return stringFunc.split(line);
 }
 
-
 void fileOperations::appendLineToFile(string line, const char file[]) {
   ofstream fout;
   //no check needed since fileNotExists triggers file creation

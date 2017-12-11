@@ -40,12 +40,16 @@
 		<Unit filename="customLibraries/stringFunctions.cpp" />
 		<Unit filename="customLibraries/stringFunctions.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="models/Location.cpp" />
+		<Unit filename="models/Location.h" />
 		<Unit filename="models/Order.cpp" />
 		<Unit filename="models/Order.h" />
 		<Unit filename="models/Pizza.cpp" />
 		<Unit filename="models/Pizza.h" />
 		<Unit filename="models/Topping.cpp" />
 		<Unit filename="models/Topping.h" />
+		<Unit filename="services/locationService.cpp" />
+		<Unit filename="services/locationService.h" />
 		<Unit filename="services/orderService.cpp" />
 		<Unit filename="services/orderService.h" />
 		<Unit filename="services/pizzaService.cpp" />

@@ -7,10 +7,11 @@ void salesUI::displaySalesMenu() {
       uf.clearScreen();
       cout << "P - PLACE ORDER" << endl;
       cout << "L - LIST ORDERS" << endl;
+      cout << "D - MARK ORDER AS DELIVERED" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
-    } while(!uf.goodInput(userInput, "plb"));
+    } while(!uf.goodInput(userInput, "plbd"));
 
     userInput = tolower(userInput);
 
@@ -18,7 +19,7 @@ void salesUI::displaySalesMenu() {
       order_service.createNewOrder();
     }
 
-    if(userInput == 'l') {
+    else if(userInput == 'l') {
       uf.clearScreen();
       order_service.listOrderOverviewWithIndices();
 
@@ -31,5 +32,22 @@ void salesUI::displaySalesMenu() {
       order_service.listSpecificOrderWithInfo(adjustedSelection);
       uf.pressEnter();
     }
+
+    else if(userInput == 'd') {
+        selectAndMarkOrderAsDelivered();
+    }
   }
+}
+
+void salesUI::selectAndMarkOrderAsDelivered(){
+    int index = -1;
+    while(index < 1 || index > order_service.howManyOrders()) {
+        uf.clearScreen();
+        order_service.listOrderOverviewWithIndices();
+        cout << "Please select a order to mark as DELIVERED: ";
+        cin >> index;
+    }
+    int orderID = order_service.getOrderID(index);
+    order_service.markPizzaAsDeliveredByOrderID(orderID);
+    uf.pressEnter();
 }

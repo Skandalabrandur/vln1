@@ -12,11 +12,12 @@ public:
     void listLocations();
     void listLocationsWithIndex();
     void createNewLocation();
+    int howManyLocations();
 
 private:
-  fileOperations fo;
-  stringFunctions stringfunc;
-  UIFunctions uf;
+    fileOperations fo;
+    stringFunctions stringfunc;
+    UIFunctions uf;
 };
 
 #endif

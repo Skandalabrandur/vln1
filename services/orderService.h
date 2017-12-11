@@ -24,6 +24,13 @@ public:
   vector<Pizza> getPizzasFromOrderId(int order_id);
   void listSpecificOrderWithInfo(int order_id);
   int generatePrice(Pizza pizza, bool isMenuPizza);
+  int howManyOrders();
+  int getOrderID(int index);
+
+  void markPizzaAsPaidByOrderID(int OrderID);
+  void markPizzaAsDeliveredByOrderID(int orderID);
+  void listOrderFromLocationWithID(int locationID);
+  void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID);
 
 private:
   fileOperations fo;

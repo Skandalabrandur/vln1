@@ -16,7 +16,7 @@ private:
   UIFunctions uf;
   pizzaService pizza_service;
   toppingService topping_service;
-    locationService location_service;
+  locationService location_service;
 };
 
 #endif

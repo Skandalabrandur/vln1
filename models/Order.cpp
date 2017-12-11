@@ -5,12 +5,13 @@ using namespace std;
 Order::Order() {
   _customer = "";
   _orderID  = -1;
-  _place = "";
+  _location = "";
 }
 
-Order::Order(string customer, int orderID) {
+Order::Order(string customer, int orderID, int locationID) {
   _customer = customer;
   _orderID = orderID;
+  _locationID = locationID;
 }
 
 string Order::getCustomer() {
@@ -29,19 +30,25 @@ void Order::setOrderID(int orderID) {
   _orderID = orderID;
 }
 
-string Order::getPlace() {
-  return _place;
+string Order::getLocation() {
+  return _location;
 }
 
-void Order::setPlace(string place) {
-  _place = place;
+void Order::setLocation(string location) {
+  _location = location;
 }
 
+void Order::setLocationID(int locationID){
+    _locationID = locationID;
+}
 
+int Order::getLocationID(){
+    return _locationID;
+}
 
 
 string Order::toString() {
-  return _customer + " " + stringfunc.intToString(_orderID);
+  return _customer + " " + stringfunc.intToString(_orderID) + " " + stringfunc.intToString(_locationID);
 }
 
 void Order::addPizza(Pizza pizza) {

@@ -20,10 +20,11 @@ Pizza pizzaService::convertActivePizzaVector(vector<string> pizzaWords) {
   pizza.setBottomType(pizzaWords[2][0]);
   pizza.setSize(pizzaWords[3][0]);
   pizza.setPrice(stringfunc.stringToInt(pizzaWords[4]));
+  pizza.setStoreID(stringfunc.stringToInt(pizzaWords[5]));
 
-  pizza.setBaked((pizzaWords[5] == "baked"));
-  pizza.setPaid((pizzaWords[6] == "paid"));
-  pizza.setDelivered((pizzaWords[7] == "delivered"));
+  pizza.setBaked((pizzaWords[6] == "baked"));
+  pizza.setPaid((pizzaWords[7] == "paid"));
+  pizza.setDelivered((pizzaWords[8] == "delivered"));
 
   return pizza;
 }
@@ -85,6 +86,22 @@ void pizzaService::listMenuPizzas() {
 
 void pizzaService::listActivePizzas() {
   fo.printLines("data/activePizzas.txt");
+}
+
+void pizzaService::listFromLocationActivePizzas(int locationID){
+    int numPizzas = howManyActivePizzas();
+    string location = stringfunc.intToString(locationID);
+
+    for(unsigned int i = 0; i < numPizzas; i++){
+        bool show = false;
+        vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+            if(words[5] == location){
+                for(unsigned int i = 0; i < words.size(); i++){
+                    cout << words.at(i) << " ";
+                }
+                cout << endl;
+            }
+    }
 }
 
 void pizzaService::listMenuPizzasWithIndices() {

@@ -4,11 +4,12 @@
 #include "orderService.h"
 
 class salesUI {
-public:
-  void displaySalesMenu();
-private:
-  UIFunctions uf;
-  orderService order_service;
+    public:
+        void displaySalesMenu();
+        void selectAndMarkOrderAsDelivered();
+    private:
+        UIFunctions uf;
+        orderService order_service;
 };
 
 #endif

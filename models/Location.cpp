@@ -13,3 +13,11 @@ Location::Location(string name, int id) {
 string Location::toString() {
   return _name + " " + stringfunc.intToString(_id);
 }
+
+int Location::getID(){
+    return _id;
+}
+
+string Location::getLocationName(){
+    return _name;
+}

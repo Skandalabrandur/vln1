@@ -101,6 +101,10 @@ void Pizza::setStoreID(int set) {
     _storeID = set;
 }
 
+int Pizza::getStoreID(){
+    return _storeID;
+}
+
 void Pizza::setToppings(){
     toppingService ts;
     int i = 0;
@@ -130,6 +134,7 @@ builder += stringfunc.intToString(_orderID) + " ";
   builder += stringfunc.cToStr(_bottomType) + " ";
   builder += stringfunc.cToStr(_size) + " ";
   builder += stringfunc.intToString(_price) + " ";
+  builder += stringfunc.intToString(_storeID) + " ";
 
   if(_baked) {
     builder += "baked ";
