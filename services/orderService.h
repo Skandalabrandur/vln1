@@ -7,6 +7,7 @@
 #include "Order.h"
 #include "pizzaService.h"
 #include "locationService.h"
+#include "commentService.h"
 #include <iostream>
 #include <vector>
 
@@ -38,7 +39,8 @@ private:
   stringFunctions stringfunc;
 
   pizzaService pizza_service;
-    locationService location_service;
+  locationService location_service;
+  commentService comment_service;
 };
 
 #endif

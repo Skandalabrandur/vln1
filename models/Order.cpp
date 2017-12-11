@@ -48,6 +48,15 @@ int Order::getLocationID(){
     return _locationID;
 }
 
+void Order::setComment(string comment) {
+  Comment newComment(comment, _orderID);
+  _comment = newComment;
+}
+
+Comment Order::getComment() {
+  return _comment;
+}
+
 
 string Order::toString() {
     char pickup_delivery = ' ';
@@ -63,4 +72,3 @@ string Order::toString() {
 void Order::addPizza(Pizza pizza) {
   _pizzas.push_back(pizza);
 }
-
