@@ -2,8 +2,8 @@
 
 int main() {
 
-  mainUI mu;
-  mu.displayMainMenu();
+    mainUI mu;
+    mu.displayMainMenu();
 
-  return 0;
+    return 0;
 }

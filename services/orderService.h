@@ -8,6 +8,7 @@
 #include "pizzaService.h"
 #include "locationService.h"
 #include "commentService.h"
+#include "additionalProductService.h"
 #include <iostream>
 #include <vector>
 
@@ -26,9 +27,10 @@ public:
   int getOrderIdFromIndexSelectionForLocation(int index, int locationID);
   vector<Pizza> getPizzasFromOrderId(int order_id);
   void listSpecificOrderWithInfo(int order_id);
-  int generatePrice(Pizza pizza, bool isMenuPizza);
+  int generatePizzaPrice(Pizza pizza, bool isMenuPizza);
   int howManyOrders();
   int getOrderID(int index);
+  int getOrderPrice(Order order);
 
   void markPizzaAsPaidByOrderID(int OrderID);
   void markPizzaAsDeliveredByOrderID(int orderID);
@@ -43,6 +45,7 @@ private:
   pizzaService pizza_service;
   locationService location_service;
   commentService comment_service;
+  additionalProductService additionalProduct_service;
 };
 
 #endif

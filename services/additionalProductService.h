@@ -15,6 +15,9 @@ class additionalProductService
         void listAdditionalProductsWithIndexes();
         void createNewAdditionalProduct();
         int howManyAdditionalProducts();
+        AdditionalProduct getAdditionalProductAt(int index);
+        void saveAdditionalProducts(int orderID);
+        vector<AdditionalProduct> getSavedProductFromOrderID(int orderID);
 
     private:
         fileOperations fo;

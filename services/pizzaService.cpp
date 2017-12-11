@@ -114,8 +114,7 @@ void pizzaService::listMenuPizzasWithIndices() {
   //we could use:
   //fo.printLinesWithIndices("data/menuPizzas.txt");
   //but that would also display the number of toppings
-  //inside the selection which isn't all that
-  //exciting.
+  //inside the selection which isn't all that exciting.
   //Let's customize this a bit more
   int lineCount = fo.countLines("data/menuPizzas.txt");
 

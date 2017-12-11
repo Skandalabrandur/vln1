@@ -24,6 +24,7 @@ public:
   void addPizza(Pizza pizza);
   void setComment(string comment);
   Comment getComment();
+  void setAdditionalProducts(int orderID);
   string toString();
 
 private:
@@ -34,7 +35,6 @@ private:
   bool _pickUp;
   vector<Pizza> _pizzas;
   Comment _comment;
-  vector<AdditionalProduct> _additionalProducts;
 
   stringFunctions stringfunc;
 };

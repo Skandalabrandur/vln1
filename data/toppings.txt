@@ -1,3 +1,5 @@
-hubbur 1
-slubbur 14
-hebebe 14141
+Tomato 10
+Paprika 50
+Banana 15
+Mushroom 40
+Spinach 25
