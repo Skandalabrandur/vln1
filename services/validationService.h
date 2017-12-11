@@ -1,9 +1,6 @@
 #ifndef validationservice_h
 #define validationservice_h
 
-#include "locationService.h"
-#include "orderService.h"
-#include "toppingService.h"
 #include "fileOperations.h"
 
 
@@ -12,11 +9,13 @@ public:
   bool deliveryMenuValid();
   bool bakerMenuValid();
   bool salesMenuValid();
+  bool menuPizzasExist();
+  bool activePizzasExist();
+  bool toppingsExist();
+  bool locationsExist();
+  bool ordersExist();
 
 private:
-  toppingService topping_service;
-  orderService order_service;
-  locationService location_service;
   fileOperations fo;
 
 };
