@@ -51,18 +51,31 @@ void adminUI::displayPizzaMenu() {
     userInput = tolower(userInput);
 
     if(userInput == 'c') {
-      pizza_service.createAndAppendMenuPizza();
+      if(vs.toppingsExist()) {
+        pizza_service.createAndAppendMenuPizza();
+      } else {
+        cout << "No toppings exist!" << endl;
+        uf.pressEnter();
+      }
     }
 
     if(userInput == 'l') {
       uf.clearScreen();
-      pizza_service.listMenuPizzas();
+      if(vs.menuPizzasExist()) {
+          pizza_service.listMenuPizzas();
+      } else {
+        cout << "No menu pizzas exist!" << endl;
+      }
       uf.pressEnter();
     }
 
     if(userInput == 'd') {
       uf.clearScreen();
-      pizza_service.deleteMenuPizza();
+      if(vs.menuPizzasExist()) {
+        pizza_service.deleteMenuPizza();
+      } else {
+        cout << "No menu pizzas exist!" << endl;
+      }
       uf.pressEnter();
     }
   }
@@ -87,8 +100,12 @@ void adminUI::displayToppingMenu() {
     }
 
     if(userInput == 'l') {
-      uf.clearScreen();
-      topping_service.listToppings();
+      if(vs.toppingsExist()) {
+        uf.clearScreen();
+        topping_service.listToppings();
+      } else {
+        cout << "No toppings exist!" << endl;
+      }
       uf.pressEnter();
     }
   }
@@ -113,9 +130,13 @@ void adminUI::displayLocationMenu() {
         }
 
         if(userInput == 'l') {
+          if(vs.locationsExist()) {
             uf.clearScreen();
             location_service.listLocations();
-            uf.pressEnter();
+          } else {
+              cout << "No locations exist!" << endl;
+          }
+          uf.pressEnter();
         }
     }
 }
