@@ -20,24 +20,21 @@ void salesUI::displaySalesMenu() {
     }
 
     else if(userInput == 'l') {
-      uf.clearScreen();
-      order_service.listOrderOverviewWithIndices();
-      int selection = -1;
-      do{
-          cout << "Select an order for more info (0 to quit): ";
-          cin >> selection;
-          if(selection >= 1 && selection <= order_service.howManyOrders()){
-              int adjustedSelection = order_service.getOrderIdFromIndexSelection(selection-1);
-              uf.clearScreen();
-              cout << adjustedSelection << endl;
-              order_service.listSpecificOrderWithInfo(adjustedSelection);
-          }
-      }while((selection < 0) || (selection > order_service.howManyOrders()));
+      if(vs.ordersExist()) {
+        listOrders();
+      } else {
+        cout << "No orders exist!" << endl;
+      }
       uf.pressEnter();
     }
 
     else if(userInput == 'd') {
+      if(vs.ordersExist()) {
         selectAndMarkOrderAsDelivered();
+      } else {
+        cout << "No orders exist!" << endl;
+        uf.pressEnter();
+      }
     }
   }
 }
@@ -53,4 +50,20 @@ void salesUI::selectAndMarkOrderAsDelivered(){
     int orderID = order_service.getOrderID(index);
     order_service.markPizzaAsDeliveredByOrderID(orderID);
     uf.pressEnter();
+}
+
+void salesUI::listOrders() {
+  uf.clearScreen();
+  order_service.listOrderOverviewWithIndices();
+  int selection = -1;
+  do{
+      cout << "Select an order for more info (0 to quit): ";
+      cin >> selection;
+      if(selection >= 1 && selection <= order_service.howManyOrders()){
+          int adjustedSelection = order_service.getOrderIdFromIndexSelection(selection-1);
+          uf.clearScreen();
+          cout << adjustedSelection << endl;
+          order_service.listSpecificOrderWithInfo(adjustedSelection);
+      }
+  }while((selection < 0) || (selection > order_service.howManyOrders()));
 }

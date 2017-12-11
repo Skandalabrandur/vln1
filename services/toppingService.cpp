@@ -56,3 +56,7 @@ Topping toppingService::lookupTopping(string name) {
     }
   }
 }
+
+int toppingService::howManyToppings() {
+  return fo.countLines("data/toppings.txt");
+}
