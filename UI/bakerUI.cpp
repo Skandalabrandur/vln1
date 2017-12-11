@@ -11,18 +11,33 @@ void bakerUI::displayBakerMenu() {
     while (userInput != 'b') {
         do {
             uf.clearScreen();
-            cout << "L - LIST PIZZAS" << endl;
+            cout << "L - LIST ALL PIZZAS" << endl;
+            cout << "O - LIST PIZZAS BY ORDERS" << endl;
             cout << "M - MARK PIZZA AS BAKED" << endl;
             cout << "U - MARK PIZZA AS UNBAKED" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "mblu"));
+        } while(!uf.goodInput(userInput, "mblou"));
 
         userInput = tolower(userInput);
 
         if(userInput == 'l') {
           viewPizzas();
+        }
+
+        if(userInput == 'o') {
+          uf.clearScreen();
+          order_service.listOrderOverviewWithIndicesForLocation(_locationID);
+
+          int selection;
+          cout << "Select an order for more info: ";
+          cin >> selection;
+
+          int adjustedSelection = order_service.getOrderIdFromIndexSelectionForLocation(selection, _locationID);
+          uf.clearScreen();
+          order_service.listSpecificOrderWithInfo(adjustedSelection);
+          uf.pressEnter();
         }
 
         if(userInput == 'm') {
