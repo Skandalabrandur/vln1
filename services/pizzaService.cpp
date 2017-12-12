@@ -343,3 +343,16 @@ void pizzaService::setActivePizzaStatus(int index, string field, bool truthValue
 
   cout << "New pizza status: " << lineReplacement << endl;
 }
+
+
+void pizzaService::deletePizzas(vector<Pizza> pizzas) {
+  vector<string> pizzaFile = fo.getLinesFromFile("data/activePizzas.txt");
+
+  for(int i = 0; i < pizzas.size(); i++) {
+    for(int j = 0; j < pizzaFile.size(); j++) {
+      if(pizzas.at(i).toString(false) == pizzaFile.at(j)) {
+        pizzaFile.erase(pizzaFile.begin() + j);
+      }
+    }
+  }
+}

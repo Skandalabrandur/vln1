@@ -30,6 +30,7 @@ public:
   void listFromLocationActivePizzas(int locationID);
   void saveCustomToppings(Pizza pizza);
   vector<Topping> getCustomToppings(Pizza pizza);
+  void deletePizzas(vector<Pizza> pizzas);
 
 private:
   fileOperations fo;

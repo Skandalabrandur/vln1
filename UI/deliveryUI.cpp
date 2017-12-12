@@ -113,5 +113,6 @@ void deliveryUI::selectAndMarkOrderAsDelivered(){
     }
     int orderID = order_service.getOrderID(index);
     order_service.markPizzaAsDeliveredByOrderID(orderID);
+    order_service.moveToLegacyFile(orderID);
     uf.pressEnter();
 }

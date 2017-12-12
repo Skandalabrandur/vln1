@@ -21,6 +21,7 @@ public:
 
   public:
   Order convertVector(vector<string> input);
+  Order getOrderAt(int index);
   void createNewOrder();
   void listOrderOverviewWithIndices();
   void listOrderOverviewWithIndicesForLocation(int locationID);
@@ -37,6 +38,8 @@ public:
   void markPizzaAsDeliveredByOrderID(int orderID);
   void listOrderFromLocationWithID(int locationID, bool isReady);
   void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID);
+  void deleteOrderWithOrderID(int orderID);
+  void moveToLegacyFile(int orderID);
 
 private:
   fileOperations fo;
