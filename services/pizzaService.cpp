@@ -82,7 +82,6 @@ void pizzaService::createAndAppendMenuPizza() {
   fo.appendLineToFile(builder, "data/menuPizzas.txt");
   uf.clearScreen();
   cout << "Menu pizza: \"" << builder << "\" created!" << endl;
-  uf.pressEnter();
 }
 
 void pizzaService::listMenuPizzas() {
@@ -99,13 +98,22 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
 
     for(unsigned int i = 0; i < numPizzas; i++){
         vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-            if(words[5] == location){
-                for(unsigned int i = 0; i < words.size(); i++){
-                    cout << words.at(i) << " ";
+        if(words[5] == location){
+            cout << words[1] << " " << words[2] << " "
+            << words[3] << " " << words[6] << " ";
+
+
+            if(words[1] == "custom"){
+                int orderID = stringfunc.stringToInt(words[0]);
+                vector<Topping> toppings = getCustomToppings(orderID);
+                for(unsigned int i = 0; i < toppings.size(); i++){
+                    cout << toppings[i].getName() << " ";
                 }
-                cout << endl;
             }
+            cout << endl;
+        }
     }
+
 }
 
 void pizzaService::saveCustomToppings(Pizza pizza){
@@ -118,14 +126,13 @@ void pizzaService::saveCustomToppings(Pizza pizza){
     }
 }
 
-vector<Topping> pizzaService::getCustomToppings(Pizza pizza){
+vector<Topping> pizzaService::getCustomToppings(int orderID){
     int numProducts = fo.countLines("data/customPizzaToppings.txt");
     vector<Topping> toppings;
     for(unsigned int i = 0; i < numProducts; i++){
         vector<string> toppingFromFile = fo.getWordsFromLine(i, "data/customPizzaToppings.txt");
-        int pizzaOrderID = pizza.getOrderID();
         int ID = stringfunc.stringToInt(toppingFromFile[0]);
-        if(ID == pizzaOrderID){
+        if(ID == orderID){
           Topping topping(toppingFromFile[1], stringfunc.stringToInt(toppingFromFile[2]));
           toppings.push_back(topping);
         }
@@ -160,7 +167,7 @@ void pizzaService::listMenuPizzasWithIndices() {
       }
 
       cout << (i+1) << " -\t" << "| " << words[0] << extraSpaces << "|\t";
-      for(int j = 2; j < words.size(); j++) {
+      for(int j = 2; j < words.size() - 1; j++) {
         cout << words[j] << " ";
       }
       cout << endl;

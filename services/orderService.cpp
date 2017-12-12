@@ -373,6 +373,7 @@ void orderService::listSpecificOrderWithInfo(int order_id) {
 int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){
     char size = pizza.getSize();
     char bottom = pizza.getBottomType();
+    int orderID = pizza.getOrderID();
     vector<Topping> toppings;
     int priceMenuPizza = 500;
     int classicBottomPrice = 600;
@@ -411,7 +412,7 @@ int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){
             price += sizeMultiplier * lightBottomPrice;
         }
 
-        toppings = pizza_service.getCustomToppings(pizza);
+        toppings = pizza_service.getCustomToppings(orderID);
         for(unsigned int i = 0; i < toppings.size(); i++){
             price += toppings.at(i).getPrice();
         }

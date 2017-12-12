@@ -99,7 +99,6 @@ void bakerUI::viewPizzas() {
   uf.pressEnter();
 }
 
-//TO DO: only show chosen location
 void bakerUI::selectAndMarkPizzaAsBaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {
@@ -114,7 +113,6 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
   }
 }
 
-//TO DO: only show chosen location
 void bakerUI::selectAndMarkPizzaAsUnbaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {

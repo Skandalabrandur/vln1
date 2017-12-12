@@ -46,7 +46,6 @@ void toppingService::createNewTopping() {
 
   uf.clearScreen();
   cout << "Topping: \"" << topping.toString() << "\" created!" << endl;
-  uf.pressEnter();
 }
 
 //Returns a topping object that matches name EXACTLY
