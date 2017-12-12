@@ -64,10 +64,6 @@ void adminUI::displayPizzaMenu() {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE MENU PIZZAS/CREATE NEW MENU PIZZA" << endl << endl;
         pizza_service.createAndAppendMenuPizza();
-        //ath sýnir ekki cout setnigu í fallinu
-        cin >> ws;
-        uf.pressEnter();
-        uf.clearScreen();
       } else {
         cout << "No toppings exist!" << endl;
       }
