@@ -18,6 +18,7 @@ public:
   void createNewTopping();
   Topping lookupTopping(string name);
   int howManyToppings();
+  void deleteTopping();
 
 private:
   fileOperations fo;

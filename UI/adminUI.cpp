@@ -88,15 +88,26 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
       cout << "C - CREATE NEW TOPPING" << endl;
       cout << "L - LIST TOPPINGS" << endl;
+      cout << "D - DELETE TOPPING" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
-    } while(!uf.goodInput(userInput, "clb"));
+    } while(!uf.goodInput(userInput, "cldb"));
 
     userInput = tolower(userInput);
 
     if(userInput == 'c') {
       topping_service.createNewTopping();
+    }
+
+    if(userInput == 'd') {
+      if(vs.toppingsExist()) {
+        uf.clearScreen();
+        topping_service.deleteTopping();
+      } else {
+        cout << "No toppings exist!" << endl;
+      }
+      uf.pressEnter();
     }
 
     if(userInput == 'l') {
@@ -148,10 +159,11 @@ void adminUI::displayAdditionalProductsMenu(){
             uf.clearScreen();
             cout << "C - CREATE NEW ADDITIONAL PRODUCT" << endl;
             cout << "L - LIST ADDITIONAL PRODUCTS" << endl;
+            cout << "D - DELETE ADDITIONAL PRODUCT" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "clb"));
+        } while(!uf.goodInput(userInput, "cldb"));
 
         userInput = tolower(userInput);
 
@@ -168,6 +180,16 @@ void adminUI::displayAdditionalProductsMenu(){
             cout << "No additional products exist!" << endl;
             uf.pressEnter();
           }
+        }
+
+        if(userInput == 'd') {
+          if(vs.addProductsExist()) {
+            uf.clearScreen();
+            additionalProduct_service.deleteAdditionalProduct();
+          } else {
+            cout << "No additional products exist!" << endl;
+          }
+          uf.pressEnter();
         }
     }
 }
