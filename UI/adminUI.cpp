@@ -19,7 +19,6 @@ void adminUI::displayAdminMenu() {
 
     if(userInput == 'p') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl;
       displayPizzaMenu();
     }
 
@@ -48,6 +47,7 @@ void adminUI::displayPizzaMenu() {
   while(userInput != 'b') {
     do {
       userInput = 'i'; //for invalid so that we don't end up with an infinte loop
+      cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl;
       cout << "C - CREATE A NEW MENU PIZZA" << endl;
       cout << "L - LIST MENU PIZZAS" << endl;
       cout << "D - DELETE MENU PIZZA" << endl;
@@ -63,6 +63,10 @@ void adminUI::displayPizzaMenu() {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE MENU PIZZAS/CREATE NEW MENU PIZZA" << endl;
         pizza_service.createAndAppendMenuPizza();
+        //ath sýnir ekki cout setnigu í fallinu
+        cin >> ws;
+        uf.pressEnter();
+        uf.clearScreen();
       } else {
         cout << "No toppings exist!" << endl;
         uf.pressEnter();
@@ -111,6 +115,8 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
       cout << "HOME/ADMIN/MANAGE TOPPINGS/CREATE NEW TOPPING" << endl;
       topping_service.createNewTopping();
+      uf.pressEnter();
+      uf.clearScreen();
     }
 
     if(userInput == 'd') {
@@ -121,6 +127,7 @@ void adminUI::displayToppingMenu() {
         cout << "No toppings exist!" << endl;
       }
       uf.pressEnter();
+      uf.clearScreen();
     }
 
     if(userInput == 'l') {
@@ -132,6 +139,7 @@ void adminUI::displayToppingMenu() {
         cout << "No toppings exist!" << endl;
       }
       uf.pressEnter();
+      uf.clearScreen();
     }
   }
 }
@@ -154,6 +162,8 @@ void adminUI::displayLocationMenu() {
             uf.clearScreen();
             cout << "HOME/ADMIN/MANAGE LOCATIONS/CREATE NEW LOCATION" << endl;
             location_service.createNewLocation();
+            uf.pressEnter();
+            uf.clearScreen();
         }
 
         if(userInput == 'l') {
@@ -165,6 +175,7 @@ void adminUI::displayLocationMenu() {
               cout << "No locations exist!" << endl;
           }
           uf.pressEnter();
+          uf.clearScreen();
         }
 
         if(userInput == 'd') {
@@ -175,6 +186,7 @@ void adminUI::displayLocationMenu() {
               cout << "No locations exist!" << endl;
           }
           uf.pressEnter();
+          uf.clearScreen();
         }
     }
 }
@@ -197,6 +209,8 @@ void adminUI::displayAdditionalProductsMenu(){
             uf.clearScreen();
             cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS/CREATE NEW PRODUCT" << endl;
             additionalProduct_service.createNewAdditionalProduct();
+            uf.pressEnter();
+            uf.clearScreen();
         }
 
         if(userInput == 'l') {
@@ -207,6 +221,7 @@ void adminUI::displayAdditionalProductsMenu(){
           } else {
             cout << "No additional products exist!" << endl;
             uf.pressEnter();
+            uf.clearScreen();
           }
         }
 
@@ -218,6 +233,7 @@ void adminUI::displayAdditionalProductsMenu(){
             cout << "No additional products exist!" << endl;
           }
           uf.pressEnter();
+          uf.clearScreen();
         }
     }
 }

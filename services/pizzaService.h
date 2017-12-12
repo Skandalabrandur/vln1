@@ -29,7 +29,7 @@ public:
   void setActivePizzaStatus(int index, string field, bool truthValue);
   void listFromLocationActivePizzas(int locationID);
   void saveCustomToppings(Pizza pizza);
-  vector<Topping> getCustomToppings(Pizza pizza);
+  vector<Topping> getCustomToppings(int orderID);
 
 private:
   fileOperations fo;

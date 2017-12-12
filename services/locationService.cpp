@@ -40,7 +40,6 @@ void locationService::createNewLocation() {
     fo.appendLineToFile(location.toString(), "data/locations.txt");
 
     cout << "Location: \"" << location.toString() << "\" created!" << endl;
-    uf.pressEnter();
 }
 
 int locationService::howManyLocations() {

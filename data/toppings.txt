@@ -3,3 +3,4 @@ Paprika 50
 Banana 15
 Mushroom 40
 Spinach 25
+Broccoli 20

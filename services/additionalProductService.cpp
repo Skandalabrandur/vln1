@@ -33,7 +33,6 @@ void additionalProductService::createNewAdditionalProduct(){
 
     uf.clearScreen();
     cout << "Product: \"" << product.toString() << "\" created!" << endl;
-    uf.pressEnter();
 }
 
 int additionalProductService::howManyAdditionalProducts(){
