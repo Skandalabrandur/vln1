@@ -99,6 +99,7 @@ void orderService::createNewOrder() {
       char yn;
       cin >> yn;
       Pizza pizza;
+      pizza.setOrderID(orderID);
       if(yn == 'y'){
         int selection;
         do {
@@ -116,8 +117,9 @@ void orderService::createNewOrder() {
         } while(selection < 1 || selection > numberOfMenuPizzas);
         pizza = pizza_service.getMenuPizza(selection - 1);
       }else{
-          cout << "Select toppings, press c to confirm: " << endl;
+          cout << "Select toppings, press 0 to confirm: " << endl;
           pizza.setCustomToppings();
+          pizza_service.saveCustomToppings(pizza);
       }
 
       char size;
@@ -141,10 +143,10 @@ void orderService::createNewOrder() {
       } while(!(size == 'l' || size == 'm' || size == 's') &&
               !(bottomType == 'p' || bottomType == 'c' || bottomType == 'l'));
 
+      pizza.setOrderID(orderID);
       pizza.setStoreID(location);
       pizza.setSize(size);
       pizza.setBottomType(bottomType);
-      pizza.setOrderID(orderID);
 
       //Generate price for pizza on menu
       if(yn == 'y'){
@@ -168,6 +170,8 @@ void orderService::createNewOrder() {
     additionalProduct_service.saveAdditionalProducts(orderID);
   }
 
+  int orderPrice = getOrderPrice(order);
+
   fo.appendLineToFile(order.toString(), "data/orders.txt");
 
   //if comment is not empty
@@ -177,7 +181,7 @@ void orderService::createNewOrder() {
 
   uf.clearScreen();
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
-  cout << customer << endl;
+  cout << customer << ". Price: " << orderPrice <<  endl;
   uf.pressEnter();
 }
 
@@ -378,11 +382,10 @@ int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){
             price += sizeMultiplier * lightBottomPrice;
         }
 
-        toppings = pizza.getToppings();
+        toppings = pizza_service.getCustomToppings(pizza);
         for(unsigned int i = 0; i < toppings.size(); i++){
             price += toppings.at(i).getPrice();
         }
-
     }
     return price;
 }
