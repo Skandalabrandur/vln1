@@ -7,7 +7,7 @@
 class salesUI {
     public:
         void displaySalesMenu();
-        void selectAndMarkOrderAsDelivered();
+        void selectAndMarkOrderAsPaid();
         void listOrders();
     private:
         UIFunctions uf;

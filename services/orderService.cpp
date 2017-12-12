@@ -279,6 +279,19 @@ int orderService::getOrderLocationID(int index){
     return locationID;
 }
 
+void orderService::markPizzaAsPaidByOrderID(int orderID) {
+  int numPizzas = pizza_service.howManyActivePizzas();
+
+  for(int i = 0; i < numPizzas; i++){
+      vector<string> orderWords;
+      orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+      int id = stringfunc.stringToInt(orderWords.at(0));
+      if(id == orderID){
+          pizza_service.setActivePizzaStatus(i, "paid", true);
+      }
+  }
+}
+
 void orderService::markPizzaAsPaidByOrderIDAndLocation(int orderID, int locationID){
     int numPizzas = pizza_service.howManyActivePizzas();
 
