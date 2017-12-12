@@ -3,10 +3,10 @@
 using namespace std;
 
 Pizza pizzaService::convertActivePizzaVector(vector<string> pizzaWords) {
-  int nol = fo.countLines("data/menuPizzas.txt");
+  int numberOfLines = fo.countLines("data/menuPizzas.txt");
   vector<Topping> toppings;
   Pizza pizza;
-  for(int i = 0; i < nol; i++) {
+  for(int i = 0; i < numberOfLines; i++) {
     Pizza potential = getMenuPizza(i);
 
     if(potential.getName() == pizzaWords[1]) {
@@ -44,6 +44,12 @@ void pizzaService::createAndAppendMenuPizza() {
     uf.clearScreen();
     cout << "Enter number of toppings: ";
     cin >> numberOfToppings;
+
+    if(cin.fail()) {
+      cin.clear();              //reset error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      numberOfToppings = -1;    //continue selection
+    }
   } while(numberOfToppings <= 0);
 
   int howManyToppingsExist = fo.countLines("data/toppings.txt");
@@ -204,10 +210,15 @@ void pizzaService::deleteMenuPizza() {
   int selection = -1;
 
   while(selection < 1 || selection > menuSize) {
-    //uf.clearScreen()
+    uf.clearScreen();
     listMenuPizzasWithIndices();
     cout << endl << "Select a pizza to delete from menu: ";
     cin >> selection;
+    if(cin.fail()) {
+      cin.clear();      //reset error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      selection = -1;   //set selection to continue
+    }
   }
   //Get this info before delete to show user later
   Pizza selectedPizza = getMenuPizza(selection-1);  //selection is 1-based

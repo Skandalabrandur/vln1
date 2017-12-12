@@ -29,9 +29,18 @@ void toppingService::createNewTopping() {
   cout << "Enter topping name: ";
   cin >> name;
 
-  uf.clearScreen();
-  cout << "Enter topping price: ";
-  cin >> price;
+  do {
+    uf.clearScreen();
+    cout << "Enter topping price: ";
+    cin >> price;
+
+    if(cin.fail()) {
+      cin.clear();    //clear error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      price = -1;     //select price to continue
+    }
+  } while (price < 0);
+
 
   Topping topping(name, price);
   fo.appendLineToFile(topping.toString(), "data/toppings.txt");

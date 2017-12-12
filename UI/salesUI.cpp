@@ -44,8 +44,12 @@ void salesUI::selectAndMarkOrderAsDelivered(){
     while(index < 0 || index > order_service.howManyOrders()) {
         uf.clearScreen();
         order_service.listOrderOverviewWithIndices();
-        cout << "Please select a order to mark as DELIVERED (0 to quit): ";
+        cout << "Please select an order to mark as DELIVERED (c to cancel): ";
         cin >> index;
+        if(cin.fail()) {
+          cin.clear();  //clear error flags
+          index = 0;    //appropriate quit condition
+        }
     }
     int orderID = order_service.getOrderID(index);
     order_service.markPizzaAsDeliveredByOrderID(orderID);
@@ -57,8 +61,12 @@ void salesUI::listOrders() {
   order_service.listOrderOverviewWithIndices();
   int selection = -1;
   do{
-      cout << "Select an order for more info (0 to quit): ";
+      cout << "Select an order for more info (c to cancel): ";
       cin >> selection;
+      if(cin.fail()) {
+        cin.clear();    //clear error flags
+        selection = 0;  //appropriate quit condition
+      }
       if(selection >= 1 && selection <= order_service.howManyOrders()){
           int adjustedSelection = order_service.getOrderIdFromIndexSelection(selection-1);
           uf.clearScreen();

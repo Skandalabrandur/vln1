@@ -32,45 +32,67 @@ void orderService::createNewOrder() {
 
   cout << "Select location: " << endl;
   location_service.listLocationsWithIndex();
-  if(location_service.howManyLocations() == 0) {
-    cout << "No locations exist. Contact administrator!" << endl;
-    uf.pressEnter();
-    return;
-  }
+
   int location;
-  cin >> location;
+  do {
+    cin >> location;
+
+    if(cin.fail()) {
+      cin.clear();    //reset error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      location = 0;   //set location to continue loop
+    }
+  } while(location < 1 || location > location_service.howManyLocations());
 
   //Pick up or delivery
   bool pickUp;
-  char choice = ' ';
+  int choice = 0;
   do{
       cout << "Select:" << endl;
       cout << "1 - Pick up" << endl;
       cout << "2 - Delivery" << endl;
       cin >> choice;
-  }while(choice != '1' && choice != '2');
 
-  if(choice == '1'){
-    pickUp = true;
-  }
-  else{
-    pickUp = false;
-  }
+      if(cin.fail()) {
+        cin.clear();    //clear error flags
+        cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+        choice = 0;     //set choice to continue loop
+      }
+  } while(choice != 1 && choice != 2);
+
+  pickUp = (choice == 1);
   //Make the order
   Order order(customer, orderID, location, pickUp);
 
-  string comment = "";
-  cout << "Comment <enter for blank> " << endl;
-  cin >> ws;
-  getline(cin, comment);
+  cout << "Include comment? (y/n)" << endl;
+  char commentSelection = ' ';
+  do {
+    cin >> commentSelection;
+  } while(!uf.goodInput(commentSelection, "yn"));
 
-  order.setComment(comment);
+  commentSelection = tolower(commentSelection);
+
+  if(commentSelection == 'y') {
+    string comment = "";
+    cout << "Comment: ";
+    cin >> ws;  //flush whitespace and \n in cin buffer before getline()
+    getline(cin, comment);
+    order.setComment(comment);
+  }
+
 
   int numberOfPizzas;
   cout << "Number of pizzas for order: ";
 
-  cin >> numberOfPizzas;
+  do {
+    cin >> numberOfPizzas;
 
+    if(cin.fail()) {
+      cin.clear();          //reset error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      numberOfPizzas = -1;  //set numberOfPizzas to continue loop
+    }
+  } while(numberOfPizzas < 1);
   int numberOfMenuPizzas = pizza_service.howManyPizzasOnMenu();
   for(int i = 0; i < numberOfPizzas; i++) {
       cout << "Pizza off menu? (y/n) " << endl;
@@ -85,11 +107,17 @@ void orderService::createNewOrder() {
             cout << "Select Pizza " << (i+1) << " of " << numberOfPizzas << endl;
             pizza_service.listMenuPizzasWithIndices();
             cin >> selection;
+
+            if(cin.fail()) {
+              cin.clear();      //reset error flags
+              cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+              selection = -1;   //set selection to continue loop
+            }
         } while(selection < 1 || selection > numberOfMenuPizzas);
         pizza = pizza_service.getMenuPizza(selection - 1);
       }else{
-          cout << "Select toppings, press 0 to confirm: " << endl;
-          pizza.setToppings();
+          cout << "Select toppings, press c to confirm: " << endl;
+          pizza.setCustomToppings();
       }
 
       char size;

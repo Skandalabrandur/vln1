@@ -105,11 +105,11 @@ int Pizza::getStoreID(){
     return _storeID;
 }
 
-void Pizza::setToppings(){
+void Pizza::setCustomToppings(){
     toppingService ts;
     _name = "custom";
     int i = 0;
-    int input;
+    int input = -1;
     int howManyToppingsExist = ts.howManyToppings();
     ts.listToppingsWithIndex();
 
