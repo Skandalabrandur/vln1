@@ -13,3 +13,6 @@
 4 Tomato 10
 4 Tomato 10
 5 Tomato 10
+7 Paprika 50
+7 Spinach 25
+7 Broccoli 20
