@@ -23,7 +23,7 @@ public:
   char getSize();
   void setPrice(int set);
   int getPrice();
-  void setToppings();
+  void setCustomToppings();
   void setBaked(bool set);
   void setPaid(bool set);
   void setDelivered(bool set);

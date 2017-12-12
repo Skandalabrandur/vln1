@@ -1,7 +1,7 @@
 #include "adminUI.h"
 
 void adminUI::displayAdminMenu() {
-  char userInput;
+  char userInput = 'i';     //init to invalid just in case
   while (userInput != 'b') {
     do {
       uf.clearScreen();

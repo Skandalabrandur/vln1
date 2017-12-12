@@ -73,6 +73,12 @@ void bakerUI::chooseLocation(){
     do{
         cout << "Select your location: ";
         cin >> choice;
+
+        if(cin.fail()) {
+          cin.clear();    //reset error flags
+          cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+          choice = 0;     //set choice to continue loop
+        }
     }while(choice <= 0 || choice > numLocations);
     //If changed so admin can delete locations then this does probably not work
     //Could make a function getLocationID(choice)

@@ -17,8 +17,17 @@ void additionalProductService::createNewAdditionalProduct(){
     cin >> name;
 
     int price = 0;
-    cout << "Enter price: ";
-    cin >> price;
+
+    do {
+      cout << "Enter price: ";
+      cin >> price;
+
+      if(cin.fail()) {
+        cin.clear();    //reset error flags
+        cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+        price = -1;     //set price to continue
+      }
+    } while(price < 0);
 
     AdditionalProduct product(name, price);
     fo.appendLineToFile(product.toString(), "data/additionalProducts.txt");
