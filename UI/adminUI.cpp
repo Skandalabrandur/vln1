@@ -5,7 +5,7 @@ void adminUI::displayAdminMenu() {
   while (userInput != 'b') {
     do {
       uf.clearScreen();
-      cout << "HOME/ADMIN" << endl;
+      cout << "HOME/ADMIN" << endl << endl;
       cout << "P - MANAGE MENU PIZZAS" << endl;
       cout << "T - MANAGE TOPPINGS" << endl;
       cout << "L - MANAGE STORE LOCATIONS" << endl;
@@ -19,25 +19,25 @@ void adminUI::displayAdminMenu() {
 
     if(userInput == 'p') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl;
+      cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl << endl;
       displayPizzaMenu();
     }
 
     if(userInput == 't') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE TOPPINGS" << endl;
+      cout << "HOME/ADMIN/MANAGE TOPPINGS" << endl << endl;
       displayToppingMenu();
     }
 
     if(userInput == 'l') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE LOCATIONS" << endl;
+      cout << "HOME/ADMIN/MANAGE LOCATIONS" << endl << endl;
       displayLocationMenu();
     }
 
     if(userInput == 'a') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS" << endl;
+      cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS" << endl << endl;
       displayAdditionalProductsMenu();
     }
   }
@@ -61,7 +61,7 @@ void adminUI::displayPizzaMenu() {
     if(userInput == 'c') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
-        cout << "HOME/ADMIN/MANAGE MENU PIZZAS/CREATE NEW MENU PIZZA" << endl;
+        cout << "HOME/ADMIN/MANAGE MENU PIZZAS/CREATE NEW MENU PIZZA" << endl << endl;
         pizza_service.createAndAppendMenuPizza();
       } else {
         cout << "No toppings exist!" << endl;
@@ -72,7 +72,7 @@ void adminUI::displayPizzaMenu() {
     if(userInput == 'l') {
       if(vs.menuPizzasExist()) {
           uf.clearScreen();
-          cout << "HOME/ADMIN/MANAGE MENU PIZZAS/LIST MENU PIZZAS" << endl;
+          cout << "HOME/ADMIN/MANAGE MENU PIZZAS/LIST MENU PIZZAS" << endl << endl;
           pizza_service.listMenuPizzas();
       } else {
         cout << "No menu pizzas exist!" << endl;
@@ -83,7 +83,7 @@ void adminUI::displayPizzaMenu() {
     if(userInput == 'd') {
       if(vs.menuPizzasExist()) {
         uf.clearScreen();
-        cout << "HOME/ADMIN/MANAGE MENU PIZZAS/DELETE MENU PIZZA" << endl;
+        cout << "HOME/ADMIN/MANAGE MENU PIZZAS/DELETE MENU PIZZA" << endl << endl;
         pizza_service.deleteMenuPizza();
       } else {
         cout << "No menu pizzas exist!" << endl;
@@ -109,7 +109,7 @@ void adminUI::displayToppingMenu() {
 
     if(userInput == 'c') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE TOPPINGS/CREATE NEW TOPPING" << endl;
+      cout << "HOME/ADMIN/MANAGE TOPPINGS/CREATE NEW TOPPING" << endl << endl;
       topping_service.createNewTopping();
     }
 
@@ -126,7 +126,7 @@ void adminUI::displayToppingMenu() {
     if(userInput == 'l') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
-        cout << "HOME/ADMIN/MANAGE TOPPINGS/LIST TOPPINGS" << endl;
+        cout << "HOME/ADMIN/MANAGE TOPPINGS/LIST TOPPINGS" << endl << endl;
         topping_service.listToppings();
       } else {
         cout << "No toppings exist!" << endl;
@@ -152,14 +152,14 @@ void adminUI::displayLocationMenu() {
 
         if(userInput == 'c') {
             uf.clearScreen();
-            cout << "HOME/ADMIN/MANAGE LOCATIONS/CREATE NEW LOCATION" << endl;
+            cout << "HOME/ADMIN/MANAGE LOCATIONS/CREATE NEW LOCATION" << endl << endl;
             location_service.createNewLocation();
         }
 
         if(userInput == 'l') {
           if(vs.locationsExist()) {
             uf.clearScreen();
-            cout << "HOME/ADMIN/MANAGE LOCATIONS/LIST LOCATIONS" << endl;
+            cout << "HOME/ADMIN/MANAGE LOCATIONS/LIST LOCATIONS" << endl << endl;
             location_service.listLocations();
           } else {
               cout << "No locations exist!" << endl;
@@ -195,14 +195,14 @@ void adminUI::displayAdditionalProductsMenu(){
 
         if(userInput == 'c') {
             uf.clearScreen();
-            cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS/CREATE NEW PRODUCT" << endl;
+            cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS/CREATE NEW PRODUCT" << endl << endl;
             additionalProduct_service.createNewAdditionalProduct();
         }
 
         if(userInput == 'l') {
           if(vs.addProductsExist()) {
             uf.clearScreen();
-            cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS/LIST PRODUCTS" << endl;
+            cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS/LIST PRODUCTS" << endl << endl;
             additionalProduct_service.listAdditionalProducts();
           } else {
             cout << "No additional products exist!" << endl;

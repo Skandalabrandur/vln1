@@ -9,7 +9,7 @@ void deliveryUI::displayDeliveryMenu(){
     while (userInput != 'b') {
         do {
             uf.clearScreen();
-            cout << "HOME/DELIVERY" << endl;
+            cout << "HOME/DELIVERY" << endl << endl;
             cout << "L - LIST ALL ORDERS FOR YOUR PLACE" << endl;
             cout << "R - LIST READY ORDERS FOR YOUR PLACE" << endl;
             cout << "P - MARK ORDER AS PAID" << endl;
@@ -24,7 +24,7 @@ void deliveryUI::displayDeliveryMenu(){
         if(userInput == 'l') {
           if(vs.ordersExistForLocationID(_locationID)){
               uf.clearScreen();
-              cout << "HOME/DELIVERY/LIST ALL ORDERS" << endl;
+              cout << "HOME/DELIVERY/LIST ALL ORDERS" << endl << endl;
               //False to show all orders not just ready orders
               viewOrders(false);
           } else {
@@ -36,7 +36,7 @@ void deliveryUI::displayDeliveryMenu(){
         else if(userInput == 'r') {
           if(vs.ordersExistForLocationID(_locationID)){
               uf.clearScreen();
-              cout << "HOME/DELIVERY/LIST READY ORDERS" << endl;
+              cout << "HOME/DELIVERY/LIST READY ORDERS" << endl << endl;
               //True to show only ready orders
               viewOrders(true);
           } else{
@@ -48,7 +48,7 @@ void deliveryUI::displayDeliveryMenu(){
         else if(userInput == 'p') {
             if(vs.ordersExistForLocationID(_locationID)){
               uf.clearScreen();
-              cout << "HOME/DELIVERY/MARK PAID" << endl;
+              cout << "HOME/DELIVERY/MARK PAID" << endl << endl;
               selectAndMarkOrderAsPaid();
             } else{
               cout << "No orders exist for your location!" << endl;
@@ -59,7 +59,7 @@ void deliveryUI::displayDeliveryMenu(){
         else if(userInput == 'd') {
             if(vs.ordersExistForLocationID(_locationID)){
               uf.clearScreen();
-              cout << "HOME/DELIVERY/MARK DELIVERED" << endl;
+              cout << "HOME/DELIVERY/MARK DELIVERED" << endl << endl;
               selectAndMarkOrderAsDelivered();
             } else{
               cout << "No orders exist for your location!" << endl;

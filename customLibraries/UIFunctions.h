@@ -4,6 +4,7 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+#include "logoService.h"
 
 using namespace std;
 
@@ -14,10 +15,11 @@ public:
   void pressEnter();
   void rawPressEnter();
   string prompt();
+  void printLogo();
 
 private:
   string _prompt = ">>>";
-
+  logoService logo_service;
 };
 
 #endif
