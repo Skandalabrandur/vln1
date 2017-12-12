@@ -9,7 +9,7 @@ void deliveryUI::displayDeliveryMenu(){
     while (userInput != 'b') {
         do {
             uf.clearScreen();
-            cout << "L - LIST ORDERS" << endl;
+            cout << "L - LIST ORDERS FOR YOUR PLACE" << endl;
             cout << "R - LIST READY ORDERS" << endl;
             cout << "P - MARK ORDER AS PAID" << endl;
             cout << "D - MARK ORDER AS DELIVERED" << endl;
