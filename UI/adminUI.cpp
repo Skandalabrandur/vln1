@@ -129,10 +129,11 @@ void adminUI::displayLocationMenu() {
             uf.clearScreen();
             cout << "C - CREATE NEW LOCATION" << endl;
             cout << "L - LIST LOCATIONS" << endl;
+            cout << "D - DELETE LOCATION" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "clb"));
+        } while(!uf.goodInput(userInput, "cldb"));
 
         userInput = tolower(userInput);
 
@@ -144,6 +145,16 @@ void adminUI::displayLocationMenu() {
           if(vs.locationsExist()) {
             uf.clearScreen();
             location_service.listLocations();
+          } else {
+              cout << "No locations exist!" << endl;
+          }
+          uf.pressEnter();
+        }
+
+        if(userInput == 'd') {
+          if(vs.locationsExist()) {
+            uf.clearScreen();
+            location_service.deleteLocation();
           } else {
               cout << "No locations exist!" << endl;
           }

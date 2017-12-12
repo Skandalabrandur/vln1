@@ -12,6 +12,7 @@ class Location {
       Location(string name, int price);
       string toString();
       int getID();
+      void setID(int id);
       string getLocationName();
 
     private:
