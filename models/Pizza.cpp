@@ -127,7 +127,7 @@ void Pizza::setToppings(){
 
 string Pizza::toString(bool showToppings) {
   string builder = "";
-builder += stringfunc.intToString(_orderID) + " ";
+  builder += stringfunc.intToString(_orderID) + " ";
   builder += _name + " ";
 
   if(showToppings) {

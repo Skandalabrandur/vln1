@@ -77,6 +77,7 @@ void orderService::createNewOrder() {
       char yn;
       cin >> yn;
       Pizza pizza;
+      pizza.setOrderID(orderID);
       if(yn == 'y'){
         int selection;
         do {
@@ -90,6 +91,7 @@ void orderService::createNewOrder() {
       }else{
           cout << "Select toppings, press 0 to confirm: " << endl;
           pizza.setToppings();
+          pizza_service.saveCustomToppings(pizza);
       }
 
       char size;
@@ -116,7 +118,6 @@ void orderService::createNewOrder() {
       pizza.setStoreID(location);
       pizza.setSize(size);
       pizza.setBottomType(bottomType);
-      pizza.setOrderID(orderID);
 
       //Generate price for pizza on menu
       if(yn == 'y'){
@@ -140,6 +141,8 @@ void orderService::createNewOrder() {
     additionalProduct_service.saveAdditionalProducts(orderID);
   }
 
+  int orderPrice = getOrderPrice(order);
+
   fo.appendLineToFile(order.toString(), "data/orders.txt");
 
   //if comment is not empty
@@ -149,7 +152,7 @@ void orderService::createNewOrder() {
 
   uf.clearScreen();
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
-  cout << customer << endl;
+  cout << customer << ". Price: " << orderPrice <<  endl;
   uf.pressEnter();
 }
 
@@ -350,11 +353,10 @@ int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){
             price += sizeMultiplier * lightBottomPrice;
         }
 
-        toppings = pizza.getToppings();
+        toppings = pizza_service.getCustomToppings(pizza);
         for(unsigned int i = 0; i < toppings.size(); i++){
             price += toppings.at(i).getPrice();
         }
-
     }
     return price;
 }

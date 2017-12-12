@@ -41,7 +41,6 @@ AdditionalProduct additionalProductService::getAdditionalProductAt(int index) {
 
 void additionalProductService::saveAdditionalProducts(int orderID){
     string ID = stringfunc.intToString(orderID);
-    string builder = ID + " ";
     AdditionalProduct product;
     int input;
     listAdditionalProductsWithIndexes();
@@ -49,13 +48,12 @@ void additionalProductService::saveAdditionalProducts(int orderID){
         cin >> input;
         if(input != 0){
             product = getAdditionalProductAt(input-1);
-            builder += product.toString() + " ";
+            string builder = ID + " " + product.toString();
+            fo.appendLineToFile(builder, "data/activeAdditionalProducts.txt");
         }else{
             break;
         }
     }
-
-    fo.appendLineToFile(builder, "data/activeAdditionalProducts.txt");
 }
 
 vector<AdditionalProduct> additionalProductService::getSavedProductFromOrderID(int orderID) {

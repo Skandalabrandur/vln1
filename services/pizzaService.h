@@ -27,6 +27,8 @@ public:
   void storeOrderPizza(Pizza pizza);
   void setActivePizzaStatus(int index, string field, bool truthValue);
   void listFromLocationActivePizzas(int locationID);
+  void saveCustomToppings(Pizza pizza);
+  vector<Topping> getCustomToppings(Pizza pizza);
 
 private:
   fileOperations fo;

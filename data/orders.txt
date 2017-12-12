@@ -1,6 +1,2 @@
 Janet 1 1 p
-Coraline 2 1 p
-Brad 3 1 d
-Maria 4 2 d
-Henry 5 1 p
-Emily 6 3 p
+Jane 2 2 d

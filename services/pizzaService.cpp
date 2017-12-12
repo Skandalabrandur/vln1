@@ -94,7 +94,6 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
     string location = stringfunc.intToString(locationID);
 
     for(unsigned int i = 0; i < numPizzas; i++){
-        bool show = false;
         vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
             if(words[5] == location){
                 for(unsigned int i = 0; i < words.size(); i++){
@@ -103,6 +102,31 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
                 cout << endl;
             }
     }
+}
+
+void pizzaService::saveCustomToppings(Pizza pizza){
+    string ID = stringfunc.intToString(pizza.getOrderID());
+    vector<Topping> toppings = pizza.getToppings();
+    for(unsigned int i = 0; i < toppings.size(); i++){
+        string price = stringfunc.intToString(toppings[i].getPrice());
+        string builder = ID + " " + toppings[i].getName() + " " + price;
+        fo.appendLineToFile(builder, "data/customPizzaToppings.txt");
+    }
+}
+
+vector<Topping> pizzaService::getCustomToppings(Pizza pizza){
+    int numProducts = fo.countLines("data/customPizzaToppings.txt");
+    vector<Topping> toppings;
+    for(unsigned int i = 0; i < numProducts; i++){
+        vector<string> toppingFromFile = fo.getWordsFromLine(i, "data/customPizzaToppings.txt");
+        int pizzaOrderID = pizza.getOrderID();
+        int ID = stringfunc.stringToInt(toppingFromFile[0]);
+        if(ID == pizzaOrderID){
+          Topping topping(toppingFromFile[1], stringfunc.stringToInt(toppingFromFile[2]));
+          toppings.push_back(topping);
+        }
+    }
+    return toppings;
 }
 
 void pizzaService::listMenuPizzasWithIndices() {
