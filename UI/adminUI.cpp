@@ -3,6 +3,13 @@
 void adminUI::displayAdminMenu() {
   char userInput = 'i';     //init to invalid just in case
   while (userInput != 'b') {
+      string id;
+      while(id != "pw"){
+      uf.clearScreen();
+      cout << "Admin password: " << endl;
+      cout << endl << uf.prompt();
+      cin >> id;
+      }
     do {
       uf.clearScreen();
       cout << "HOME/ADMIN" << endl << endl;
