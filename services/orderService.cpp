@@ -115,6 +115,7 @@ void orderService::createNewOrder() {
       } while(!(size == 'l' || size == 'm' || size == 's') &&
               !(bottomType == 'p' || bottomType == 'c' || bottomType == 'l'));
 
+      pizza.setOrderID(orderID);
       pizza.setStoreID(location);
       pizza.setSize(size);
       pizza.setBottomType(bottomType);
