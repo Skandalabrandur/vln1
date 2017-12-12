@@ -21,6 +21,12 @@ Order orderService::convertVector(vector<string> input) {
   return order;
 }
 
+Order orderService::getOrderAt(int index) {
+  vector<string> orders = fo.getLinesFromFile("data/orders.txt");
+  vector<string> orderWords = stringfunc.split(orders.at(index));
+  return convertVector(orderWords);
+}
+
 void orderService::createNewOrder() {
   string customer;
   int orderID = 1 + fo.countLines("data/orders.txt");
@@ -420,4 +426,38 @@ int orderService::getOrderPrice(Order order){
     }
 
     return price;
+}
+
+void orderService::deleteOrderWithOrderID(int orderID) {
+  vector<string> ordersFile = fo.getLinesFromFile("data/orders.txt");
+  for(int i = 0; i < ordersFile.size(); i++) {
+      if(getOrderID(i+1) == orderID) {
+        ordersFile.erase(ordersFile.begin() + i);
+      }
+      vector<Pizza> pizzas = getPizzasFromOrderId(orderID);
+      pizza_service.deletePizzas(pizzas);
+  }
+
+  fo.writeFile(ordersFile, "data/orders.txt");
+}
+
+void orderService::moveToLegacyFile(int orderID) {
+  vector<string> ordersFile = fo.getLinesFromFile("data/orders.txt");
+  for(int i = 0; i < ordersFile.size(); i++) {
+
+    if(getOrderID(i+1) == orderID) {
+      fo.appendLineToFile(ordersFile.at(i), "data/legacy.txt");
+      vector<Pizza> pizzas = getPizzasFromOrderId(orderID);
+
+      for(int j = 0; j < pizzas.size(); j++) {
+        fo.appendLineToFile("\t" + pizzas.at(j).toString(true), "data/legacy.txt");
+      }
+
+      fo.appendLineToFile("", "data/legacy.txt"); //make order line separated
+    }
+  }
+
+  //once moved, delete from relevant files
+  deleteOrderWithOrderID(orderID);
+
 }

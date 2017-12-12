@@ -39,6 +39,8 @@ void UIFunctions::clearScreen() {
   //Solution from:
   //http://www.cplusplus.com/articles/4z18T05o/
   if (system("CLS")) system("clear");
+
+  printLogo();
 }
 
 //Works for cases where cin buffer is not empty
@@ -62,4 +64,12 @@ void UIFunctions::rawPressEnter() {
 //  declared in UIFunctions.h under private:
 string UIFunctions::prompt() {
   return _prompt;
+}
+
+void UIFunctions::printLogo() {
+  vector<string> logo = logo_service.getLogo();
+
+  for(int i = 0; i < logo.size(); i++) {
+    cout << logo.at(i) << endl;
+  }
 }
