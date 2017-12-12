@@ -65,8 +65,8 @@ void adminUI::displayPizzaMenu() {
         pizza_service.createAndAppendMenuPizza();
       } else {
         cout << "No toppings exist!" << endl;
-        uf.pressEnter();
       }
+      uf.pressEnter();
     }
 
     if(userInput == 'l') {
