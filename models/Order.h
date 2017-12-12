@@ -5,6 +5,7 @@
 #include "stringFunctions.h"
 #include "Pizza.h"
 #include "Comment.h"
+#include "AdditionalProduct.h"
 using namespace std;
 
 class Order {
@@ -23,6 +24,7 @@ public:
   void addPizza(Pizza pizza);
   void setComment(string comment);
   Comment getComment();
+  void setAdditionalProducts(int orderID);
   string toString();
 
 private:

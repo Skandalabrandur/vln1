@@ -23,16 +23,15 @@ public:
   char getSize();
   void setPrice(int set);
   int getPrice();
-  void setToppings();
+  void setCustomToppings();
   void setBaked(bool set);
   void setPaid(bool set);
   void setDelivered(bool set);
-    void setStoreID(int set);
-    int getStoreID();
+  void setStoreID(int set);
+  int getStoreID();
   bool isBaked();
   bool isPaid();
   bool isDelivered();
-
   string toString(bool showToppings);
 
 private:
@@ -45,7 +44,7 @@ private:
   bool _baked;
   bool _paid;
   bool _delivered;
-    int _storeID;
+  int _storeID;
 
   stringFunctions stringfunc;
 };

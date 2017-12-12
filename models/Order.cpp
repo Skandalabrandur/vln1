@@ -59,7 +59,7 @@ Comment Order::getComment() {
 
 
 string Order::toString() {
-    char pickup_delivery = ' ';
+  char pickup_delivery = ' ';
   if(_pickUp){
     pickup_delivery = 'p';
   }

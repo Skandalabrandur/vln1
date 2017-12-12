@@ -11,26 +11,64 @@ void bakerUI::displayBakerMenu() {
     while (userInput != 'b') {
         do {
             uf.clearScreen();
-            cout << "L - LIST PIZZAS" << endl;
+            cout << "HOME/BAKER" << endl << endl;
+            cout << "L - LIST PIZZAS FOR YOUR PLACE" << endl;
+            cout << "O - LIST PIZZAS BY ORDERS" << endl;
             cout << "M - MARK PIZZA AS BAKED" << endl;
             cout << "U - MARK PIZZA AS UNBAKED" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "mblu"));
+        } while(!uf.goodInput(userInput, "mblou"));
 
         userInput = tolower(userInput);
 
         if(userInput == 'l') {
-          viewPizzas();
+          if(vs.pizzasExistForLocationID(_locationID)) {
+            uf.clearScreen();
+            cout << "HOME/BAKER/LIST PIZZAS" << endl << endl;
+            viewPizzas();
+          } else {
+            cout << "No pizzas exist for your location!" << endl;
+            cout << "A good opportunity to relax :)" << endl;
+            uf.pressEnter();
+          }
+        }
+
+        if(userInput == 'o') {
+          if(vs.pizzasExistForLocationID(_locationID)) {
+            uf.clearScreen();
+            cout << "HOME/BAKER/LIST PIZZAS BY ORDERS" << endl << endl;
+            listByOrders();
+          } else {
+            cout << "No pizzas exist for your location!" << endl;
+            cout << "A good opportunity to relax :)" << endl;
+          }
+          uf.pressEnter();
         }
 
         if(userInput == 'm') {
-          selectAndMarkPizzaAsBaked();
+          if(vs.pizzasExistForLocationID(_locationID)) {
+            cout << "HOME/BAKER/MARK BAKED" << endl << endl;
+            uf.clearScreen();
+            selectAndMarkPizzaAsBaked();
+          } else {
+            cout << "No pizzas exist for your location!" << endl;
+            cout << "A good opportunity to relax :)" << endl;
+            uf.pressEnter();
+          }
         }
 
         if(userInput == 'u') {
-          selectAndMarkPizzaAsUnbaked();
+          if(vs.pizzasExistForLocationID(_locationID)) {
+            cout << "HOME/BAKER/MARK UNBAKED" << endl << endl;
+            uf.clearScreen();
+            selectAndMarkPizzaAsUnbaked();
+          } else {
+            cout << "No pizzas exist for your location!" << endl;
+            cout << "A good opportunity to relax :)" << endl;
+            uf.pressEnter();
+          }
         }
 
     }
@@ -44,6 +82,12 @@ void bakerUI::chooseLocation(){
     do{
         cout << "Select your location: ";
         cin >> choice;
+
+        if(cin.fail()) {
+          cin.clear();    //reset error flags
+          cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+          choice = 0;     //set choice to continue loop
+        }
     }while(choice <= 0 || choice > numLocations);
     //If changed so admin can delete locations then this does probably not work
     //Could make a function getLocationID(choice)
@@ -51,16 +95,13 @@ void bakerUI::chooseLocation(){
 }
 
 void bakerUI::viewPizzas() {
-  uf.clearScreen();
   pizza_service.listFromLocationActivePizzas(_locationID);
   uf.pressEnter();
 }
 
-//TO DO: only show chosen location
 void bakerUI::selectAndMarkPizzaAsBaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {
-    uf.clearScreen();
     pizza_service.listActiveWithIndicesForBakeryAndLocation(false, _locationID);
     cout << "Please select a pizza to mark as BAKED (0 to cancel): ";
     cin >> index;
@@ -72,11 +113,9 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
   }
 }
 
-//TO DO: only show chosen location
 void bakerUI::selectAndMarkPizzaAsUnbaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {
-    uf.clearScreen();
     pizza_service.listActiveWithIndicesForBakeryAndLocation(true, _locationID);
     cout << "Please select a pizza to mark as UNBAKED (0 to cancel): ";
     cin >> index;
@@ -86,4 +125,16 @@ void bakerUI::selectAndMarkPizzaAsUnbaked() {
     pizza_service.setActivePizzaStatus(adjustedIndex, "baked", false);
     uf.pressEnter();
   }
+}
+
+void bakerUI::listByOrders() {
+  order_service.listOrderOverviewWithIndicesForLocation(_locationID);
+
+  int selection;
+  cout << "Select an order for more info: ";
+  cin >> selection;
+
+  int adjustedSelection = order_service.getOrderIdFromIndexSelectionForLocation(selection, _locationID);
+  uf.clearScreen();
+  order_service.listSpecificOrderWithInfo(adjustedSelection);
 }

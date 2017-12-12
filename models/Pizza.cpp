@@ -105,24 +105,29 @@ int Pizza::getStoreID(){
     return _storeID;
 }
 
-void Pizza::setToppings(){
+void Pizza::setCustomToppings(){
     toppingService ts;
+    _name = "custom";
     int i = 0;
-    int input;
+    int input = -1;
+    int howManyToppingsExist = ts.howManyToppings();
     ts.listToppingsWithIndex();
+
     while(true){
         cin >> input;
         if(input != 0){
-            _toppings[i] = ts.getToppingAt(input-1);
+            if(input <= howManyToppingsExist) {
+              _toppings.push_back(ts.getToppingAt(input-1));
+            }
         }else{
             break;
         }
     }
-};
+}
 
 string Pizza::toString(bool showToppings) {
   string builder = "";
-builder += stringfunc.intToString(_orderID) + " ";
+  builder += stringfunc.intToString(_orderID) + " ";
   builder += _name + " ";
 
   if(showToppings) {

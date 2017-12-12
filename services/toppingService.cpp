@@ -25,20 +25,27 @@ void toppingService::createNewTopping() {
   string name;
   int price;
 
-  uf.clearScreen();
   cout << "Enter topping name: ";
   cin >> name;
 
-  uf.clearScreen();
-  cout << "Enter topping price: ";
-  cin >> price;
+  do {
+    uf.clearScreen();
+    cout << "Enter topping price: ";
+    cin >> price;
+
+    if(cin.fail()) {
+      cin.clear();    //clear error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      price = -1;     //select price to continue
+    }
+  } while (price < 0);
+
 
   Topping topping(name, price);
   fo.appendLineToFile(topping.toString(), "data/toppings.txt");
 
   uf.clearScreen();
   cout << "Topping: \"" << topping.toString() << "\" created!" << endl;
-  uf.pressEnter();
 }
 
 //Returns a topping object that matches name EXACTLY
@@ -55,4 +62,38 @@ Topping toppingService::lookupTopping(string name) {
       return topping;
     }
   }
+}
+
+int toppingService::howManyToppings() {
+  return fo.countLines("data/toppings.txt");
+}
+
+void toppingService::deleteTopping() {
+  int howManyToppingsExist = howManyToppings();
+  int selection = -1;
+
+  while(selection < 1 || selection > howManyToppingsExist) {
+    uf.clearScreen();
+    listToppingsWithIndex();
+    cout << endl << "Select a topping to delete: ";
+    cin >> selection;
+    if(cin.fail()) {
+      cin.clear();      //reset error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      selection = -1;   //set selection to continue
+    }
+  }
+  //Get this info before delete to show user later
+  Topping selectedTopping = getToppingAt(selection-1);  //selection is 1-based
+
+  vector<string> toppingFile = fo.getLinesFromFile("data/toppings.txt");
+
+  //erase selection from the vector representing the file
+  //file is 0-indexed, selection is 1-indexed
+  toppingFile.erase(toppingFile.begin() + (selection-1));
+
+  //overwrite
+  fo.writeFile(toppingFile, "data/toppings.txt");
+
+  cout << "Deleted: " << selectedTopping.getName() << endl;
 }

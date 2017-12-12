@@ -6,6 +6,9 @@
 #include "salesUI.h"
 #include "bakerUI.h"
 #include "deliveryUI.h"
+#include "locationService.h"
+#include "validationService.h"
+#include "orderService.h"
 #include <iostream>
 
 class mainUI {
@@ -21,6 +24,10 @@ private:
   salesUI sales_ui;
   bakerUI baker_ui;
   deliveryUI delivery_ui;
+
+  locationService location_service;
+  orderService order_service;
+  validationService vs;
 };
 
 #endif

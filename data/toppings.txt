@@ -1,7 +1,6 @@
-tomato 100
-paprika 300
-mushroom 10
-banana 20
-apple 35
-broccoli 40
-nono 123
+Tomato 10
+Paprika 50
+Banana 15
+Mushroom 40
+Spinach 25
+Broccoli 20

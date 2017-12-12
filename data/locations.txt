@@ -1,7 +1,3 @@
 Skeifan 1
-Dalbraut 2
-Nybylavegur 3
-Keflavik 4
-Selfoss 5
-Egilsstadir 6
-Arbaer 7
+Mosfellsbaer 2
+Selfoss 3

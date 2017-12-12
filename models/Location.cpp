@@ -18,6 +18,10 @@ int Location::getID(){
     return _id;
 }
 
+void Location::setID(int id) {
+  _id = id;
+}
+
 string Location::getLocationName(){
     return _name;
 }

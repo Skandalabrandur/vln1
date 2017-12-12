@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <limits>
 using namespace std;
 
 class toppingService {
@@ -16,6 +17,8 @@ public:
   void listToppingsWithIndex();
   void createNewTopping();
   Topping lookupTopping(string name);
+  int howManyToppings();
+  void deleteTopping();
 
 private:
   fileOperations fo;

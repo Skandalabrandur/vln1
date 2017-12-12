@@ -10,6 +10,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include <limits>
 
 class pizzaService {
 public:
@@ -26,8 +27,11 @@ public:
   Pizza getMenuPizza(int index);
   void storeOrderPizza(Pizza pizza);
   void setActivePizzaStatus(int index, string field, bool truthValue);
-
   void listFromLocationActivePizzas(int locationID);
+  void saveCustomToppings(Pizza pizza);
+  vector<Topping> getCustomToppings(int orderID);
+  void deletePizzas(vector<Pizza> pizzas);
+
 
 private:
   fileOperations fo;
