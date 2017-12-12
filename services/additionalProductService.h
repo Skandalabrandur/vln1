@@ -19,6 +19,7 @@ class additionalProductService
         AdditionalProduct getAdditionalProductAt(int index);
         void saveAdditionalProducts(int orderID);
         vector<AdditionalProduct> getSavedProductFromOrderID(int orderID);
+        void deleteAdditionalProduct();
 
     private:
         fileOperations fo;

@@ -77,3 +77,35 @@ vector<AdditionalProduct> additionalProductService::getSavedProductFromOrderID(i
     }
     return products;
 }
+
+void additionalProductService::deleteAdditionalProduct() {
+  int howManyAdditionalProductsExist = howManyAdditionalProducts();
+  int selection = -1;
+
+  while(selection < 1 || selection > howManyAdditionalProductsExist) {
+    uf.clearScreen();
+    listAdditionalProductsWithIndexes();
+    cout << endl << "Select a topping to delete: ";
+    cin >> selection;
+    if(cin.fail()) {
+      cin.clear();      //reset error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      selection = -1;   //set selection to continue
+    }
+  }
+
+  vector<string> additionalProductsFile = fo.getLinesFromFile("data/additionalProducts.txt");
+
+  //Get name of deleted product
+  //reminder: split returns a vector from a string
+  string deletedAdditionalProductName =  stringfunc.split(additionalProductsFile.at(selection-1)).at(0);
+
+  //erase selection from the vector representing the file
+  //file is 0-indexed, selection is 1-indexed
+  additionalProductsFile.erase(additionalProductsFile.begin() + (selection-1));
+
+  //overwrite
+  fo.writeFile(additionalProductsFile, "data/additionalProducts.txt");
+
+  cout << "Deleted: " << deletedAdditionalProductName << endl;
+}

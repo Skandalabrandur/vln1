@@ -99,10 +99,11 @@ void adminUI::displayToppingMenu() {
     do {
       cout << "C - CREATE NEW TOPPING" << endl;
       cout << "L - LIST TOPPINGS" << endl;
+      cout << "D - DELETE TOPPING" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
-    } while(!uf.goodInput(userInput, "clb"));
+    } while(!uf.goodInput(userInput, "cldb"));
 
     userInput = tolower(userInput);
 
@@ -110,6 +111,16 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
       cout << "HOME/ADMIN/MANAGE TOPPINGS/CREATE NEW TOPPING" << endl;
       topping_service.createNewTopping();
+    }
+
+    if(userInput == 'd') {
+      if(vs.toppingsExist()) {
+        uf.clearScreen();
+        topping_service.deleteTopping();
+      } else {
+        cout << "No toppings exist!" << endl;
+      }
+      uf.pressEnter();
     }
 
     if(userInput == 'l') {
@@ -131,10 +142,11 @@ void adminUI::displayLocationMenu() {
         do {
             cout << "C - CREATE NEW STORE LOCATION" << endl;
             cout << "L - LIST STORE LOCATIONS" << endl;
+            cout << "D - DELETE LOCATION" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "clb"));
+        } while(!uf.goodInput(userInput, "cldb"));
 
         userInput = tolower(userInput);
 
@@ -154,6 +166,16 @@ void adminUI::displayLocationMenu() {
           }
           uf.pressEnter();
         }
+
+        if(userInput == 'd') {
+          if(vs.locationsExist()) {
+            uf.clearScreen();
+            location_service.deleteLocation();
+          } else {
+              cout << "No locations exist!" << endl;
+          }
+          uf.pressEnter();
+        }
     }
 }
 
@@ -163,10 +185,11 @@ void adminUI::displayAdditionalProductsMenu(){
         do {
             cout << "C - CREATE NEW ADDITIONAL PRODUCT" << endl;
             cout << "L - LIST ADDITIONAL PRODUCTS" << endl;
+            cout << "D - DELETE ADDITIONAL PRODUCT" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "clb"));
+        } while(!uf.goodInput(userInput, "cldb"));
 
         userInput = tolower(userInput);
 
@@ -185,6 +208,16 @@ void adminUI::displayAdditionalProductsMenu(){
             cout << "No additional products exist!" << endl;
             uf.pressEnter();
           }
+        }
+
+        if(userInput == 'd') {
+          if(vs.addProductsExist()) {
+            uf.clearScreen();
+            additionalProduct_service.deleteAdditionalProduct();
+          } else {
+            cout << "No additional products exist!" << endl;
+          }
+          uf.pressEnter();
         }
     }
 }

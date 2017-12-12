@@ -68,3 +68,33 @@ Topping toppingService::lookupTopping(string name) {
 int toppingService::howManyToppings() {
   return fo.countLines("data/toppings.txt");
 }
+
+void toppingService::deleteTopping() {
+  int howManyToppingsExist = howManyToppings();
+  int selection = -1;
+
+  while(selection < 1 || selection > howManyToppingsExist) {
+    uf.clearScreen();
+    listToppingsWithIndex();
+    cout << endl << "Select a topping to delete: ";
+    cin >> selection;
+    if(cin.fail()) {
+      cin.clear();      //reset error flags
+      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      selection = -1;   //set selection to continue
+    }
+  }
+  //Get this info before delete to show user later
+  Topping selectedTopping = getToppingAt(selection-1);  //selection is 1-based
+
+  vector<string> toppingFile = fo.getLinesFromFile("data/toppings.txt");
+
+  //erase selection from the vector representing the file
+  //file is 0-indexed, selection is 1-indexed
+  toppingFile.erase(toppingFile.begin() + (selection-1));
+
+  //overwrite
+  fo.writeFile(toppingFile, "data/toppings.txt");
+
+  cout << "Deleted: " << selectedTopping.getName() << endl;
+}

@@ -6,14 +6,21 @@
 #include "stringFunctions.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <string>
+#include <limits>
+#include "Location.h"
 using namespace std;
 
 class locationService {
 public:
+    Location convertLocationVector(vector<string> locationWords);
+    Location getLocationAt(int index);
     void listLocations();
     void listLocationsWithIndex();
     void createNewLocation();
     int howManyLocations();
+    void deleteLocation();
 
 private:
     fileOperations fo;

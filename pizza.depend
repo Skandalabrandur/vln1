@@ -124,7 +124,7 @@
 	<iostream>
 	<limits>
 
-1513086348 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\toppingservice.h
+1513092872 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\toppingservice.h
 	"Topping.h"
 	"UIFunctions.h"
 	"fileOperations.h"
@@ -138,7 +138,7 @@
 	"pizzaService.h"
 	"toppingService.h"
 
-1513089623 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\toppingservice.cpp
+1513092872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\toppingservice.cpp
 	"toppingService.h"
 
 1513089801 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\adminui.cpp
@@ -206,24 +206,27 @@
 1513092525 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\deliveryui.cpp
 	"deliveryUI.h"
 
-1512733762 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\location.cpp
+1513092872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\location.cpp
 	"Location.h"
 
-1512733762 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\location.h
+1513092872 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\location.h
 	<iostream>
 	<string>
 	"stringFunctions.h"
 
-1513089801 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\locationservice.cpp
+1513092872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\locationservice.cpp
 	"locationService.h"
-	"Location.h"
 
-1512995950 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\locationservice.h
+1513092872 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\locationservice.h
 	"UIFunctions.h"
 	"fileOperations.h"
 	"stringFunctions.h"
 	<iostream>
 	<fstream>
+	<vector>
+	<string>
+	<limits>
+	"Location.h"
 
 1513005769 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\additionalproduct.cpp
 	"AdditionalProduct.h"
@@ -233,10 +236,10 @@
 	<string>
 	<iostream>
 
-1513089801 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\additionalproductservice.cpp
+1513092872 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\additionalproductservice.cpp
 	"additionalProductService.h"
 
-1513086348 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\additionalproductservice.h
+1513092872 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\additionalproductservice.h
 	"UIFunctions.h"
 	"fileOperations.h"
 	"stringFunctions.h"
