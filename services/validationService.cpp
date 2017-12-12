@@ -67,3 +67,19 @@ bool validationService::pizzasExistForLocationID(int locationID) {
 
   return (counter > 0);
 }
+
+bool validationService::ordersExistForLocationID(int locationID) {
+  int counter = 0;
+
+  vector<string> lines = fo.getLinesFromFile("data/orders.txt");
+
+  for(int i = 0; i < lines.size(); i++) {
+    vector<string> words = stringfunc.split(lines.at(i));
+
+    if(stringfunc.stringToInt(words.at(2)) == locationID) {
+      counter ++;
+    }
+  }
+
+  return (counter > 0);
+}

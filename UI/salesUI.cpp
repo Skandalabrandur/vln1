@@ -5,6 +5,7 @@ void salesUI::displaySalesMenu() {
   while (userInput != 'b') {
     do {
       uf.clearScreen();
+      cout << "HOME/SALES" << endl;
       cout << "P - PLACE ORDER" << endl;
       cout << "L - LIST ORDERS" << endl;
       cout << "D - MARK ORDER AS DELIVERED" << endl;
@@ -16,11 +17,16 @@ void salesUI::displaySalesMenu() {
     userInput = tolower(userInput);
 
     if(userInput == 'p') {
+      uf.clearScreen();
+      cout << "HOME/SALES/PLACE ORDER" << endl;
       order_service.createNewOrder();
+      uf.pressEnter();
     }
 
     else if(userInput == 'l') {
       if(vs.ordersExist()) {
+        uf.clearScreen();
+        cout << "HOME/SALES/LIST ORDERS" << endl;
         listOrders();
       } else {
         cout << "No orders exist!" << endl;
@@ -30,6 +36,8 @@ void salesUI::displaySalesMenu() {
 
     else if(userInput == 'd') {
       if(vs.ordersExist()) {
+        uf.clearScreen();
+        cout << "HOME/SALES/MARK DELIVERED" << endl;
         selectAndMarkOrderAsDelivered();
       } else {
         cout << "No orders exist!" << endl;
@@ -42,7 +50,6 @@ void salesUI::displaySalesMenu() {
 void salesUI::selectAndMarkOrderAsDelivered(){
     int index = -1;
     while(index < 0 || index > order_service.howManyOrders()) {
-        uf.clearScreen();
         order_service.listOrderOverviewWithIndices();
         cout << "Please select an order to mark as DELIVERED (c to cancel): ";
         cin >> index;
@@ -52,12 +59,13 @@ void salesUI::selectAndMarkOrderAsDelivered(){
         }
     }
     int orderID = order_service.getOrderID(index);
-    order_service.markPizzaAsDeliveredByOrderID(orderID);
+    int locationID = order_service.getOrderLocationID(index);
+    order_service.markPizzaAsDeliveredByOrderIDAndLocation(orderID, locationID);
+    //move to legacy file
     uf.pressEnter();
 }
 
 void salesUI::listOrders() {
-  uf.clearScreen();
   order_service.listOrderOverviewWithIndices();
   int selection = -1;
   do{

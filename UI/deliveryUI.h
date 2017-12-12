@@ -3,6 +3,7 @@
 #include "UIFunctions.h"
 #include "orderService.h"
 #include "locationService.h"
+#include "validationService.h"
 #include <iostream>
 using namespace std;
 
@@ -22,6 +23,7 @@ class deliveryUI
         orderService order_service;
         locationService location_service;
         pizzaService pizza_service;
+        validationService vs;
 };
 
 #endif // DELIVERYUI_H

@@ -12,7 +12,6 @@ void additionalProductService::listAdditionalProductsWithIndexes(){
 void additionalProductService::createNewAdditionalProduct(){
     string name;
 
-    uf.clearScreen();
     cout << "Enter product name: ";
     cin >> name;
 

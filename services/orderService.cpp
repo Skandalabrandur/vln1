@@ -25,7 +25,6 @@ void orderService::createNewOrder() {
   string customer;
   int orderID = 1 + fo.countLines("data/orders.txt");
 
-  uf.clearScreen();
   cout << "Creating order number " << orderID << endl << endl;
   cout << "Enter customer name: ";
   cin >> customer;
@@ -182,7 +181,6 @@ void orderService::createNewOrder() {
   uf.clearScreen();
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
   cout << customer << ". Price: " << orderPrice <<  endl;
-  uf.pressEnter();
 }
 
 void orderService::listOrderOverviewWithIndices() {
@@ -243,7 +241,9 @@ void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int locat
   if(!comment.empty()) {
     cout << "Comment: " << comment << endl << endl;
   }
-  cout << "Pizzas: " << endl;
+  if(!orderPizzas.empty()){
+    cout << "Pizzas: " << endl;
+  }
   for(int i = 0; i < orderPizzas.size(); i++) {
     if(orderPizzas[i].getStoreID() == location_ID){
         cout << orderPizzas[i].toString(false) << endl;
@@ -264,27 +264,37 @@ int orderService::getOrderID(int index){
     return orderID;
 }
 
-void orderService::markPizzaAsPaidByOrderID(int orderID){
+int orderService::getOrderLocationID(int index){
+    vector<string> orderWords;
+    orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
+    //orderID is at index 1 in line
+    int locationID;
+    locationID = stringfunc.stringToInt(orderWords.at(2));
+    return locationID;
+}
+
+void orderService::markPizzaAsPaidByOrderIDAndLocation(int orderID, int locationID){
     int numPizzas = pizza_service.howManyActivePizzas();
 
     for(int i = 0; i < numPizzas; i++){
         vector<string> orderWords;
         orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
         int id = stringfunc.stringToInt(orderWords.at(0));
-        if(id == orderID){
+        int location_id = stringfunc.stringToInt(orderWords.at(5));
+        if(id == orderID && location_id == locationID){
             pizza_service.setActivePizzaStatus(i, "paid", true);
         }
     }
 }
 
-void orderService::markPizzaAsDeliveredByOrderID(int orderID){
+void orderService::markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int locationID){
     int numPizzas = pizza_service.howManyActivePizzas();
 
     for(int i = 0; i < numPizzas; i++){
-        vector<string> orderWords;
-        orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+        vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
         int id = stringfunc.stringToInt(orderWords.at(0));
-        if(id == orderID){
+        int location_id = stringfunc.stringToInt(orderWords.at(5));
+        if(id == orderID && location_id == locationID){
             pizza_service.setActivePizzaStatus(i, "delivered", true);
         }
     }

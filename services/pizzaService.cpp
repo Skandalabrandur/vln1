@@ -35,8 +35,6 @@ void pizzaService::createAndAppendMenuPizza() {
   int numberOfToppings;
   vector<Topping> toppings;
 
-
-  uf.clearScreen();
   cout << "Enter name of pizza: ";
   cin >> name;
 
@@ -234,7 +232,6 @@ void pizzaService::deleteMenuPizza() {
   int selection = -1;
 
   while(selection < 1 || selection > menuSize) {
-    uf.clearScreen();
     listMenuPizzasWithIndices();
     cout << endl << "Select a pizza to delete from menu: ";
     cin >> selection;
