@@ -7,7 +7,8 @@ void mainUI::displayMainMenu() {
   //Instead of quitting after choices are made elsewhere
   while(userInput != 'q') {
     do {
-      uf.clearScreen();              //see UIFunctions.cpp
+      uf.clearScreen();
+      cout << "HOME" << endl;              //see UIFunctions.cpp
       cout << "A - ADMIN" << endl;
       cout << "S - SALES" << endl;
       cout << "B - BAKER" << endl;

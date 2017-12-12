@@ -29,7 +29,6 @@ void locationService::listLocationsWithIndex() {
 void locationService::createNewLocation() {
     string name;
 
-    uf.clearScreen();
     cout << "Enter location name: ";
     cin >> name;
 

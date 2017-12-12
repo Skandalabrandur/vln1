@@ -32,10 +32,11 @@ public:
   int generatePizzaPrice(Pizza pizza, bool isMenuPizza);
   int howManyOrders();
   int getOrderID(int index);
+  int getOrderLocationID(int index);
   int getOrderPrice(Order order);
 
-  void markPizzaAsPaidByOrderID(int OrderID);
-  void markPizzaAsDeliveredByOrderID(int orderID);
+  void markPizzaAsPaidByOrderIDAndLocation(int OrderID, int locationID);
+  void markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int locationID);
   void listOrderFromLocationWithID(int locationID, bool isReady);
   void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID);
   void deleteOrderWithOrderID(int orderID);

@@ -25,7 +25,6 @@ void toppingService::createNewTopping() {
   string name;
   int price;
 
-  uf.clearScreen();
   cout << "Enter topping name: ";
   cin >> name;
 

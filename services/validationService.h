@@ -9,6 +9,7 @@
 
 
 class validationService {
+
 public:
   bool deliveryMenuValid();
   bool bakerMenuValid();
@@ -21,6 +22,7 @@ public:
   bool addProductsExist();
   bool pizzasExistForOrderID(int orderID);
   bool pizzasExistForLocationID(int locationID);
+  bool ordersExistForLocationID(int locationID);
 
 private:
   fileOperations fo;

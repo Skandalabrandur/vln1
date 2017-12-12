@@ -9,8 +9,9 @@ void deliveryUI::displayDeliveryMenu(){
     while (userInput != 'b') {
         do {
             uf.clearScreen();
-            cout << "L - LIST ORDERS" << endl;
-            cout << "R - LIST READY ORDERS" << endl;
+            cout << "HOME/DELIVERY" << endl;
+            cout << "L - LIST ALL ORDERS FOR YOUR PLACE" << endl;
+            cout << "R - LIST READY ORDERS FOR YOUR PLACE" << endl;
             cout << "P - MARK ORDER AS PAID" << endl;
             cout << "D - MARK ORDER AS DELIVERED" << endl;
             cout << "B - BACK" << endl;
@@ -21,23 +22,49 @@ void deliveryUI::displayDeliveryMenu(){
         userInput = tolower(userInput);
 
         if(userInput == 'l') {
-          //False to show all orders not just ready orders
-          viewOrders(false);
+          if(vs.ordersExistForLocationID(_locationID)){
+              uf.clearScreen();
+              cout << "HOME/DELIVERY/LIST ALL ORDERS" << endl;
+              //False to show all orders not just ready orders
+              viewOrders(false);
+          } else {
+              cout << "No orders exist for your location!" << endl;
+              uf.pressEnter();
+          }
         }
 
         else if(userInput == 'r') {
-          uf.clearScreen();
-          //True to show only ready orders
-          viewOrders(true);
-          uf.pressEnter();
+          if(vs.ordersExistForLocationID(_locationID)){
+              uf.clearScreen();
+              cout << "HOME/DELIVERY/LIST READY ORDERS" << endl;
+              //True to show only ready orders
+              viewOrders(true);
+          } else{
+              cout << "No orders exist for your location!" << endl;
+              uf.pressEnter();
+          }
         }
 
         else if(userInput == 'p') {
-          selectAndMarkOrderAsPaid();
+            if(vs.ordersExistForLocationID(_locationID)){
+              uf.clearScreen();
+              cout << "HOME/DELIVERY/MARK PAID" << endl;
+              selectAndMarkOrderAsPaid();
+            } else{
+              cout << "No orders exist for your location!" << endl;
+            }
+            uf.pressEnter();
         }
 
         else if(userInput == 'd') {
-          selectAndMarkOrderAsDelivered();
+            if(vs.ordersExistForLocationID(_locationID)){
+              uf.clearScreen();
+              cout << "HOME/DELIVERY/MARK DELIVERED" << endl;
+              selectAndMarkOrderAsDelivered();
+            } else{
+              cout << "No orders exist for your location!" << endl;
+            }
+            uf.pressEnter();
         }
     }
 
@@ -69,7 +96,6 @@ int deliveryUI::getLocationID(){
 }
 
 void deliveryUI::viewOrders(bool isReady){
-    uf.clearScreen();
     int choice = 1; //So the value is not 0
     do{
         order_service.listOrderFromLocationWithID(_locationID, isReady);
@@ -87,32 +113,30 @@ void deliveryUI::viewOrders(bool isReady){
 void deliveryUI::selectAndMarkOrderAsPaid(){
     int index = -1;
     while(index < 0 || index > order_service.howManyOrders()) {
-        //TO FIX: If user inputs a number that is not on the list
+        //TO FIX: If user inputs a number that is not on the location list
         //but is an order in the file it will get changed
-        uf.clearScreen();
+
         //False to show all orders not just ready orders
         order_service.listOrderFromLocationWithID(_locationID, false);
         cout << "Please select a order to mark as PAID (0 to quit): ";
         cin >> index;
     }
     int orderID = order_service.getOrderID(index);
-    order_service.markPizzaAsPaidByOrderID(orderID);
-    uf.pressEnter();
+    order_service.markPizzaAsPaidByOrderIDAndLocation(orderID, _locationID);
 }
 
 void deliveryUI::selectAndMarkOrderAsDelivered(){
     int index = -1;
     while(index < 0 || index > order_service.howManyOrders()) {
-        //TO FIX: If user inputs a number that is not on the list
+        //TO FIX: If user inputs a number that is not on the location list
         //but is an order in the file it will get changed
-        uf.clearScreen();
+
         //False to show all orders not just ready orders
         order_service.listOrderFromLocationWithID(_locationID, false);
         cout << "Please select a order to mark as DELIVERED (0 to quit): ";
         cin >> index;
     }
     int orderID = order_service.getOrderID(index);
-    order_service.markPizzaAsDeliveredByOrderID(orderID);
+    order_service.markPizzaAsDeliveredByOrderIDAndLocation(orderID, _locationID);
     order_service.moveToLegacyFile(orderID);
-    uf.pressEnter();
 }
