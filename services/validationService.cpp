@@ -1,7 +1,7 @@
 #include "validationService.h"
 
 bool validationService::deliveryMenuValid() {
-  return locationsExist();
+  return locationsExist() && activePizzasExist();
 }
 
 bool validationService::bakerMenuValid() {
@@ -9,7 +9,7 @@ bool validationService::bakerMenuValid() {
 }
 
 bool validationService::salesMenuValid() {
-  return locationsExist();
+  return locationsExist() && toppingsExist();
 }
 
 bool validationService::menuPizzasExist() {

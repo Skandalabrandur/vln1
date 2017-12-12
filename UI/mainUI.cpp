@@ -31,7 +31,15 @@ void mainUI::displayMainMenu() {
       if(vs.salesMenuValid()) {
         sales_ui.displaySalesMenu();
       } else {
-        cout << "Not a valid choice. Some data is missing!" << endl << "Please contact administrator" << endl;
+        if(!vs.toppingsExist()) {
+          cout << "There are no toppings in the system. " << endl;
+        }
+        cout << endl;
+        if(!vs.locationsExist()) {
+          cout << "There are no store locations in the system" << endl;
+        }
+
+        cout << endl << "Please contact Administrator" << endl;
         uf.pressEnter();
       }
     }
@@ -39,7 +47,16 @@ void mainUI::displayMainMenu() {
       if(vs.bakerMenuValid()) {
         baker_ui.displayBakerMenu();
       } else {
-        cout << "Not a valid choice. Some data is missing!" << endl << "Please contact administrator" << endl;
+        if(!vs.activePizzasExist()) {
+          cout << "There are no pizzas active in the system. Nothing to bake!" << endl;
+          cout << "I suggest you go clean the kitchen in the meanwhile, if needed" << endl;
+        }
+
+        if(!vs.locationsExist()) {
+          cout << "There are no store locations in the system." << endl;
+          cout << "If you're in a kitchen right now it techically shouldn't exist!" << endl;
+          cout << "Please contact an administrator!" << endl;
+        }
         uf.pressEnter();
       }
     }
@@ -47,7 +64,18 @@ void mainUI::displayMainMenu() {
       if(vs.deliveryMenuValid()) {
         delivery_ui.displayDeliveryMenu();
       } else {
-        cout << "Not a valid choice. Some data is missing!" << endl << "Please contact administrator" << endl;
+        if(!vs.locationsExist()) {
+          cout << "There are no store locations in the system." << endl;
+          cout << "If you're working the register somewhere then techically..." << endl;
+          cout << "\tThat place shouldn't exist." << endl;
+          cout << "Please contact and administrator" << endl;
+        }
+
+        if(!vs.activePizzasExist()) {
+          cout << "There are no active pizzas in the system" << endl;
+          cout << "Relax, read a book. But don't complain about your minimum wages" << endl;
+          cout << "\t ...please." << endl;
+        }
         uf.pressEnter();
       }
     }
