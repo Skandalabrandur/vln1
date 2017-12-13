@@ -1,4 +1,0 @@
-1 Flamingo l l 1500 1 unbaked unpaid undelivered
-2 Paris l l 1500 1 baked paid undelivered
-3 custom l l 1300 2 unbaked unpaid undelivered
-4 custom l l 1045 2 unbaked unpaid undelivered

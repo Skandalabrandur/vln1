@@ -1,4 +1,0 @@
-Janet 1 1 p
-Joe 2 1 p
-Jane 3 2 d
-Karmen 4 2 d

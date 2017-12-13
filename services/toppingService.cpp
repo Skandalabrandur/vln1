@@ -10,7 +10,13 @@ Topping toppingService::getToppingAt(int index) {
 
 //Lists all toppings without indices
 void toppingService::listToppings() {
-  fo.printLines("data/toppings.txt");
+  //fo.printLines("data/toppings.txt");
+  vector<string> headers;
+  headers.push_back("Name");
+  headers.push_back("Price");
+
+  vector<string> lines = fo.getLinesFromFile("data/toppings.txt");
+  uf.printItNice(lines, headers);
 }
 
 //Useful for selections
@@ -25,9 +31,9 @@ void toppingService::createNewTopping() {
   string name;
   int price;
 
-  cout << "Enter topping name or 0 to cancel: ";
+  cout << "Enter topping name (c to cancel): ";
   cin >> name;
-    if(name != "0"){
+    if(name != "c"){
   do {
     uf.clearScreen();
     cout << "Enter topping price: ";

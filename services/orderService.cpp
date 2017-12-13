@@ -32,14 +32,16 @@ void orderService::createNewOrder() {
   int orderID = 1 + fo.countLines("data/orders.txt");
 
   cout << "Creating order number " << orderID << endl << endl;
-  cout << "Enter customer name: ";
+    cout << "Enter customer name (c to cancel): ";
   cin >> customer;
+    if(customer != "c"){
 
-  cout << "Select location: " << endl;
+  cout << endl << "Select location: " << endl;
   location_service.listLocationsWithIndex();
 
-  int location;
+  int location = 0;
   do {
+      uf.prompt();
     cin >> location;
 
     if(cin.fail()) {
@@ -53,7 +55,7 @@ void orderService::createNewOrder() {
   bool pickUp;
   int choice = 0;
   do{
-      cout << "Select:" << endl;
+      cout << endl << "Select:" << endl;
       cout << "1 - Pick up" << endl;
       cout << "2 - Delivery" << endl;
       cin >> choice;
@@ -69,7 +71,7 @@ void orderService::createNewOrder() {
   //Make the order
   Order order(customer, orderID, location, pickUp);
 
-  cout << "Include comment? (y/n)" << endl;
+  cout << endl << "Include comment? (y/n)" << endl;
   char commentSelection = ' ';
   do {
     cin >> commentSelection;
@@ -79,7 +81,7 @@ void orderService::createNewOrder() {
 
   if(commentSelection == 'y') {
     string comment = "";
-    cout << "Comment: ";
+    cout << endl << "Comment: ";
     cin >> ws;  //flush whitespace and \n in cin buffer before getline()
     getline(cin, comment);
     order.setComment(comment);
@@ -87,7 +89,7 @@ void orderService::createNewOrder() {
 
 
   int numberOfPizzas;
-  cout << "Number of pizzas for order: ";
+  cout << endl << "Number of pizzas for order: ";
 
   do {
     cin >> numberOfPizzas;
@@ -104,7 +106,7 @@ void orderService::createNewOrder() {
     char yn;
     bool legitChoice;
     do {
-      cout << "Pizza off menu? (y/n) " << endl;
+      cout << endl << "Pizza off menu? (y/n) " << endl;
       cin >> yn;
       legitChoice = false;
 
@@ -197,6 +199,7 @@ void orderService::createNewOrder() {
   uf.clearScreen();
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
   cout << customer << ". Price: " << orderPrice <<  endl;
+    }
 }
 
 void orderService::listOrderOverviewWithIndices() {
@@ -337,6 +340,7 @@ void orderService::markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int loc
         int location_id = stringfunc.stringToInt(orderWords.at(5));
         if(id == orderID && location_id == locationID){
             pizza_service.setActivePizzaStatus(i, "delivered", true);
+            moveToLegacyFile(orderID);
         }
     }
 }
@@ -383,12 +387,36 @@ void orderService::listSpecificOrderWithInfo(int order_id) {
 
   string comment = comment_service.getCommentTextFromOrderID(order_id);
   if(!comment.empty()) {
-    cout << "Comment: " << comment << endl << endl;
+    cout << "Comment: " << comment << endl;
+    cout << endl << "------------------------------" << endl << endl;
+  }
+  vector<string> pizzas;
+  for(int i = 0; i < orderPizzas.size(); i++) {
+    pizzas.push_back(orderPizzas[i].toString(false));
+  }
+  vector<string> pizzasHeaders;
+  pizzasHeaders.push_back("OrderID");
+  pizzasHeaders.push_back("Pizza Name");
+  pizzasHeaders.push_back("Bottom");
+  pizzasHeaders.push_back("BtmType");
+  pizzasHeaders.push_back("Price");
+  pizzasHeaders.push_back("LocationID");
+  pizzasHeaders.push_back("Status...");
+  uf.printItNice(pizzas, pizzasHeaders);
+  cout << endl << endl << "------------------------------" << endl << endl;
+
+
+  vector<AdditionalProduct> orderProducts = additionalProduct_service.getSavedProductFromOrderID(order_id);
+  vector<string> products;
+  for(int i = 0; i < orderProducts.size(); i++) {
+    products.push_back(orderProducts.at(i).toString());
   }
 
-  for(int i = 0; i < orderPizzas.size(); i++) {
-    cout << orderPizzas[i].toString(false) << endl;
-  }
+  vector<string> productsHeaders;
+  productsHeaders.push_back("Name");
+  productsHeaders.push_back("Price");
+  uf.printItNice(products, productsHeaders);
+
 }
 
 int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){

@@ -1,8 +1,13 @@
 #include "additionalProductService.h"
 
 void additionalProductService::listAdditionalProducts(){
-    fo.printLines("data/additionalProducts.txt");
-    uf.pressEnter();
+    //fo.printLines("data/additionalProducts.txt");
+    vector<string> lines = fo.getLinesFromFile("data/additionalProducts.txt");
+    vector<string> headers;
+    headers.push_back("Name");
+    headers.push_back("Price");
+
+    uf.printItNice(lines, headers);
 }
 
 void additionalProductService::listAdditionalProductsWithIndexes(){
@@ -12,9 +17,9 @@ void additionalProductService::listAdditionalProductsWithIndexes(){
 void additionalProductService::createNewAdditionalProduct(){
     string name;
 
-    cout << "Enter product name or 0 to cancel: ";
+    cout << "Enter product name (c to cancel): ";
     cin >> name;
-    if(name != "0"){
+    if(name != "c"){
     int price = 0;
 
     do {
