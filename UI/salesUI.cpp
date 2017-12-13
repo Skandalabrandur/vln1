@@ -54,8 +54,13 @@ void salesUI::selectAndMarkOrderAsPaid(){
       //but is an order in the file it will get changed
 
       listOrders();
-      cout << "Please select a order to mark as PAID (0 to quit): ";
+      cout << "Please select a order to mark as PAID (c to cancel): ";
       cin >> index;
+
+      if(cin.fail()) {
+        cin.clear();    //clear error flags
+        index = 0;  //appropriate quit condition
+      }
   }
   int orderID = order_service.getOrderID(index);
   order_service.markPizzaAsPaidByOrderID(orderID);

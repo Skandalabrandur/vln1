@@ -111,6 +111,9 @@ void orderService::createNewOrder() {
       pizza.setOrderID(orderID);
       yn = tolower(yn);
       legitChoice = (yn == 'y' && vs.menuPizzasExist()) || (yn == 'n');
+      if(!legitChoice){
+        cout << "No menu pizzas exist." << endl;
+      }
     } while(!legitChoice);
       if(yn == 'y'){
         int selection;
@@ -237,7 +240,7 @@ void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
                 }
             }
             if(ready){
-                    cout << orderPizzas[i].getOrderID() << " -\t" << order.getCustomer() << endl;
+                    cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
             }
         }
         //Show all orders
