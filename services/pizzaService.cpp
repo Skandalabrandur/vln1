@@ -72,7 +72,11 @@ void pizzaService::createAndAppendMenuPizza() {
   builder += stringfunc.intToString(numberOfToppings) + " ";
 
   for(int i = 0; i < numberOfToppings; i++) {
-    builder += toppings[i].getName() + " ";
+    if(i == numberOfToppings - 1){
+        builder += toppings[i].getName();
+    }else{
+        builder += toppings[i].getName() + " ";
+    }
   }
 
   fo.appendLineToFile(builder, "data/menuPizzas.txt");
@@ -163,7 +167,7 @@ void pizzaService::listMenuPizzasWithIndices() {
       }
 
       cout << (i+1) << " -\t" << "| " << words[0] << extraSpaces << "|\t";
-      for(int j = 2; j < words.size() - 1; j++) {
+      for(int j = 2; j < words.size(); j++) {
         cout << words[j] << " ";
       }
       cout << endl;
