@@ -19,7 +19,7 @@ Hægt er að skrá aukahluti eins og gos, brauðstangir, ostanammi, sósur og fl
 í MANAGE ADDITIONAL PRODUCTS í ADMIN valmyndinni.
 
     ADMIN
-
+ADMIN valmyndin er password-protected, passwordið er "pw". Þetta er gert til að banna óviðkomandi aðgang. Ef notandi veit lykilorð þá kemst hann inn í valmyndina og getur bætt við, séð lista af og eytt af lista pítsum, álegg, staðsetningar og fleira. 
 
     PANTANIR
 Til að leggja inn pantanir skal fara inn í SALES valmyndina og velja PLACE

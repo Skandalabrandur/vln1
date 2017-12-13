@@ -1,9 +1,0 @@
-2 Tomato 10
-2 Paprika 50
-2 Banana 15
-4 Tomato 10
-4 Paprika 50
-4 Banana 15
-5 Broccoli 20
-5 Broccoli 20
-5 Broccoli 20

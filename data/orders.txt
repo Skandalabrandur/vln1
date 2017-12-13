@@ -1,5 +1,0 @@
-Jane 1 1 p
-Janet 2 1 p
-Joline 3 1 p
-Karmen 4 2 p
-Kristian 5 2 p

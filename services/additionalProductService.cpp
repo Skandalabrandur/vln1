@@ -12,9 +12,9 @@ void additionalProductService::listAdditionalProductsWithIndexes(){
 void additionalProductService::createNewAdditionalProduct(){
     string name;
 
-    cout << "Enter product name: ";
+    cout << "Enter product name or 0 to cancel: ";
     cin >> name;
-
+    if(name != "0"){
     int price = 0;
 
     do {
@@ -33,6 +33,7 @@ void additionalProductService::createNewAdditionalProduct(){
 
     uf.clearScreen();
     cout << "Product: \"" << product.toString() << "\" created!" << endl;
+    }
 }
 
 int additionalProductService::howManyAdditionalProducts(){
@@ -81,10 +82,10 @@ void additionalProductService::deleteAdditionalProduct() {
   int howManyAdditionalProductsExist = howManyAdditionalProducts();
   int selection = -1;
 
-  while(selection < 1 || selection > howManyAdditionalProductsExist) {
+  while(selection < 0 || selection > howManyAdditionalProductsExist) {
     uf.clearScreen();
     listAdditionalProductsWithIndexes();
-    cout << endl << "Select a topping to delete: ";
+    cout << endl << "Select a topping to delete or 0 to cancel: ";
     cin >> selection;
     if(cin.fail()) {
       cin.clear();      //reset error flags
@@ -92,7 +93,7 @@ void additionalProductService::deleteAdditionalProduct() {
       selection = -1;   //set selection to continue
     }
   }
-
+    if( selection > 0){
   vector<string> additionalProductsFile = fo.getLinesFromFile("data/additionalProducts.txt");
 
   //Get name of deleted product
@@ -107,4 +108,5 @@ void additionalProductService::deleteAdditionalProduct() {
   fo.writeFile(additionalProductsFile, "data/additionalProducts.txt");
 
   cout << "Deleted: " << deletedAdditionalProductName << endl;
+    }
 }

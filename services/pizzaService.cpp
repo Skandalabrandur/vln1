@@ -35,9 +35,9 @@ void pizzaService::createAndAppendMenuPizza() {
   int numberOfToppings;
   vector<Topping> toppings;
 
-  cout << "Enter name of pizza: ";
+  cout << "Enter name of pizza or 0 to cancel: ";
   cin >> name;
-
+    if(name != "0"){
   do {
     uf.clearScreen();
     cout << "Enter number of toppings: ";
@@ -82,6 +82,7 @@ void pizzaService::createAndAppendMenuPizza() {
   fo.appendLineToFile(builder, "data/menuPizzas.txt");
   uf.clearScreen();
   cout << "Menu pizza: \"" << builder << "\" created!" << endl;
+    }
 }
 
 void pizzaService::listMenuPizzas() {
@@ -271,9 +272,9 @@ void pizzaService::deleteMenuPizza() {
   int menuSize = howManyPizzasOnMenu();
   int selection = -1;
 
-  while(selection < 1 || selection > menuSize) {
+  while(selection < 0 || selection > menuSize) {
     listMenuPizzasWithIndices();
-    cout << endl << "Select a pizza to delete from menu: ";
+    cout << endl << "Select a pizza to delete from menu or 0 to cancel: ";
     cin >> selection;
     if(cin.fail()) {
       cin.clear();      //reset error flags
@@ -281,6 +282,7 @@ void pizzaService::deleteMenuPizza() {
       selection = -1;   //set selection to continue
     }
   }
+    if(selection > 0){
   //Get this info before delete to show user later
   Pizza selectedPizza = getMenuPizza(selection-1);  //selection is 1-based
 
@@ -293,6 +295,7 @@ void pizzaService::deleteMenuPizza() {
   fo.writeFile(menuPizzaFile, "data/menuPizzas.txt");
 
   cout << "Deleted: " << selectedPizza.getName() << endl;
+    }
 }
 
 int pizzaService::howManyPizzasOnMenu() {
