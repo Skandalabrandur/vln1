@@ -31,6 +31,9 @@ public:
   void saveCustomToppings(Pizza pizza);
   vector<Topping> getCustomToppings(int orderID);
   void deletePizzas(vector<Pizza> pizzas);
+  void markPizzaAsBakedByOrderIDAndLocation(int orderID, int locationID);
+  void markPizzaAsUNBakedByOrderIDAndLocation(int orderID, int locationID);
+  int getOrderIDForPizza(int index);
 
 
 private:

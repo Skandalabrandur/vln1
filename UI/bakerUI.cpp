@@ -12,18 +12,18 @@ void bakerUI::displayBakerMenu() {
         do {
             uf.clearScreen();
             cout << "HOME/BAKER" << endl << endl;
-            cout << "L - LIST PIZZAS FOR YOUR PLACE" << endl;
-            cout << "O - LIST PIZZAS BY ORDERS" << endl;
-            cout << "M - MARK PIZZA AS BAKED" << endl;
-            cout << "U - MARK PIZZA AS UNBAKED" << endl;
+            cout << "1 - LIST PIZZAS FOR YOUR PLACE" << endl;
+            cout << "2 - LIST PIZZAS BY ORDERS" << endl;
+            cout << "3 - MARK PIZZA AS BAKED" << endl;
+            cout << "4 - MARK PIZZA AS UNBAKED" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "mblou"));
+        } while(!uf.goodInput(userInput, "1234b"));
 
         userInput = tolower(userInput);
 
-        if(userInput == 'l') {
+        if(userInput == '1') {
           if(vs.pizzasExistForLocationID(_locationID)) {
             uf.clearScreen();
             cout << "HOME/BAKER/LIST PIZZAS" << endl << endl;
@@ -35,11 +35,12 @@ void bakerUI::displayBakerMenu() {
           }
         }
 
-        if(userInput == 'o') {
+        if(userInput == '2') {
           if(vs.pizzasExistForLocationID(_locationID)) {
             uf.clearScreen();
             cout << "HOME/BAKER/LIST PIZZAS BY ORDERS" << endl << endl;
-            listByOrders();
+            //false to show all orders
+            listByOrders(false);
           } else {
             cout << "No pizzas exist for your location!" << endl;
             cout << "A good opportunity to relax :)" << endl;
@@ -47,7 +48,7 @@ void bakerUI::displayBakerMenu() {
           uf.pressEnter();
         }
 
-        if(userInput == 'm') {
+        if(userInput == '3') {
           if(vs.pizzasExistForLocationID(_locationID)) {
             cout << "HOME/BAKER/MARK BAKED" << endl << endl;
             uf.clearScreen();
@@ -59,7 +60,7 @@ void bakerUI::displayBakerMenu() {
           }
         }
 
-        if(userInput == 'u') {
+        if(userInput == '4') {
           if(vs.pizzasExistForLocationID(_locationID)) {
             cout << "HOME/BAKER/MARK UNBAKED" << endl << endl;
             uf.clearScreen();
@@ -103,12 +104,17 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {
     pizza_service.listActiveWithIndicesForBakeryAndLocation(false, _locationID);
-    cout << "Please select a pizza to mark as BAKED (0 to cancel): ";
+    cout << "Please select a pizza to mark as BAKED (c to cancel): ";
     cin >> index;
+
+    if(cin.fail()) {
+        cin.clear(); //clear error flags
+        index = 0;  //appropriate quit condition
+    }
   }
   if(index != 0) {
-  int adjustedIndex = pizza_service.adjustBakerIndexForBaked(false, _locationID, index);
-    pizza_service.setActivePizzaStatus((adjustedIndex), "baked", true);
+  int orderID = pizza_service.getOrderIDForPizza(index);
+    pizza_service.markPizzaAsBakedByOrderIDAndLocation(orderID, _locationID);
     uf.pressEnter();
   }
 }
@@ -117,24 +123,39 @@ void bakerUI::selectAndMarkPizzaAsUnbaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {
     pizza_service.listActiveWithIndicesForBakeryAndLocation(true, _locationID);
-    cout << "Please select a pizza to mark as UNBAKED (0 to cancel): ";
+    cout << "Please select a pizza to mark as UNBAKED (c to cancel): ";
     cin >> index;
+
+    if(cin.fail()) {
+        cin.clear(); //clear error flags
+        index = 0;   //appropriate quit condition
+    }
   }
   if(index != 0) {
-    int adjustedIndex = pizza_service.adjustBakerIndexForBaked(true, _locationID, index);
-    pizza_service.setActivePizzaStatus(adjustedIndex, "baked", false);
+    //int adjustedIndex = pizza_service.adjustBakerIndexForBaked(true, _locationID, index);
+    int orderID = pizza_service.getOrderIDForPizza(index);
+    pizza_service.markPizzaAsUNBakedByOrderIDAndLocation(orderID, _locationID);
     uf.pressEnter();
   }
 }
 
-void bakerUI::listByOrders() {
-  order_service.listOrderOverviewWithIndicesForLocation(_locationID);
+void bakerUI::listByOrders(bool isReady) {
+    int choice = -1; //So the value is not 0
+    int numOrders = order_service.countOrdersFromLocationWithID(_locationID);
+    do{
+        order_service.listOrderFromLocationWithID(_locationID, isReady);
+        cout << "Select an order for more info (c to cancel): ";
+        cin >> choice;
 
-  int selection;
-  cout << "Select an order for more info: ";
-  cin >> selection;
-
-  int adjustedSelection = order_service.getOrderIdFromIndexSelectionForLocation(selection, _locationID);
-  uf.clearScreen();
-  order_service.listSpecificOrderWithInfo(adjustedSelection);
+        if(cin.fail()) {
+            cin.clear();  //clear error flags
+            choice = 0;   //appropriate quit condition
+        }
+        if(choice >= 1 && choice <= numOrders){
+            uf.clearScreen();
+            order_service.listSpecificOrderFromLocationWithInfo(choice, _locationID);
+            uf.pressEnter();
+            uf.clearScreen();
+        }
+    }while((choice < 0) || (choice > numOrders));
 }

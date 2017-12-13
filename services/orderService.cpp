@@ -248,7 +248,21 @@ void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
   }
 }
 
+int orderService::countOrdersFromLocationWithID(int locationID) {
+  int counter = 0;
+  int numLines = fo.countLines("data/orders.txt");
+  for(int i = 0; i < numLines; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
+    Order order = convertVector(words);
+    if(order.getLocationID() == locationID){
+        counter ++;
+    }
+  }
+  return counter;
+}
+
 void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
+  //-->Function used in delivery and baker
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
   string comment = comment_service.getCommentTextFromOrderID(order_id);
   if(!comment.empty()) {
@@ -269,11 +283,9 @@ int orderService::howManyOrders() {
 }
 
 int orderService::getOrderID(int index){
-    vector<string> orderWords;
-    orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
+    vector<string> orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
     //orderID is at index 1 in line
-    int orderID;
-    orderID = stringfunc.stringToInt(orderWords.at(1));
+    int orderID = stringfunc.stringToInt(orderWords.at(1));
     return orderID;
 }
 
@@ -346,7 +358,6 @@ int orderService::getOrderIdFromIndexSelectionForLocation(int index, int locatio
         return stringfunc.stringToInt(words[1]);
     }
   }
-
 }
 
 vector<Pizza> orderService::getPizzasFromOrderId(int order_id) {

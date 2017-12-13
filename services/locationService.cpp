@@ -29,9 +29,9 @@ void locationService::listLocationsWithIndex() {
 void locationService::createNewLocation() {
     string name;
 
-    cout << "Enter location name: ";
+    cout << "Enter location name or 0 to cancel: ";
     cin >> name;
-
+    if(name != "0"){
     //Find location id
     int id = howManyLocations() + 1;
     cout << name << " ID is " << id << endl;
@@ -40,6 +40,7 @@ void locationService::createNewLocation() {
     fo.appendLineToFile(location.toString(), "data/locations.txt");
 
     cout << "Location: \"" << location.toString() << "\" created!" << endl;
+    }
 }
 
 int locationService::howManyLocations() {
@@ -50,10 +51,10 @@ void locationService::deleteLocation() {
   int howManyLocationsExist = howManyLocations();
   int selection = -1;
 
-  while(selection < 1 || selection > howManyLocationsExist) {
+  while(selection < 0 || selection > howManyLocationsExist) {
     uf.clearScreen();
     listLocationsWithIndex();
-    cout << endl << "Select a topping to delete: ";
+    cout << endl << "Select a location to delete or 0 to cancel: ";
     cin >> selection;
     if(cin.fail()) {
       cin.clear();      //reset error flags
@@ -61,6 +62,7 @@ void locationService::deleteLocation() {
       selection = -1;   //set selection to continue
     }
   }
+    if(selection > 0){
   //Get this info before delete to show user later
   Location selectedLocation = getLocationAt(selection-1);  //selection is 1-based
 
@@ -83,4 +85,5 @@ void locationService::deleteLocation() {
   fo.writeFile(locationFile, "data/locations.txt");
 
   cout << "Deleted: " << selectedLocation.getLocationName() << endl;
+    }
 }

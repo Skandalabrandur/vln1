@@ -9,25 +9,27 @@ void mainUI::displayMainMenu() {
     do {
       uf.clearScreen();               //see UIFunctions.cpp
       cout << "HOME" << endl << endl;
-      cout << "A - ADMIN" << endl;
-      cout << "S - SALES" << endl;
-      cout << "B - BAKER" << endl;
-      cout << "D - DELIVERY" << endl;
+      cout << "1 - ADMIN" << endl;
+      cout << "2 - SALES" << endl;
+      cout << "3 - BAKER" << endl;
+      cout << "4 - DELIVERY" << endl;
       cout << endl << "Q - QUIT" << endl;
       cout << endl << uf.prompt();   //see UIFunctions.cpp
 
       cin >> userInput;
     //see goodInput in customLibraries/UIFunctions.cpp
-    } while(!uf.goodInput(userInput, "asbdq"));
+    } while(!uf.goodInput(userInput, "1234q"));
 
     //tolower is a built-in function for converting to lowercase
     userInput = tolower(userInput);
     //I feel that a bunch of if conditionals are more
     //readable than a case-switch block
-    if(userInput == 'a') {
-      admin_ui.displayAdminMenu();
+    if(userInput == '1') {
+        if(admin_ui.requestPassword()){
+            admin_ui.displayAdminMenu();
+        }
     }
-    if(userInput == 's') {
+    if(userInput == '2') {
       if(vs.salesMenuValid()) {
         sales_ui.displaySalesMenu();
       } else {
@@ -43,7 +45,7 @@ void mainUI::displayMainMenu() {
         uf.pressEnter();
       }
     }
-    if(userInput == 'b') {
+    if(userInput == '3') {
       if(vs.bakerMenuValid()) {
         baker_ui.displayBakerMenu();
       } else {
@@ -60,7 +62,7 @@ void mainUI::displayMainMenu() {
         uf.pressEnter();
       }
     }
-    if(userInput == 'd') {
+    if(userInput == '4') {
       if(vs.deliveryMenuValid()) {
         delivery_ui.displayDeliveryMenu();
       } else {

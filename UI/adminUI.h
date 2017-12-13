@@ -9,6 +9,7 @@
 
 class adminUI {
 public:
+    bool requestPassword();
   void displayAdminMenu();
   void displayPizzaMenu();
   void displayToppingMenu();

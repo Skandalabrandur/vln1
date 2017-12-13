@@ -1,6 +1,5 @@
-Tomato 10
-Paprika 50
-Banana 15
-Mushroom 40
-Spinach 25
-Broccoli 20
+Pepperoni 100
+Mozzarella 250
+Jalapeno 150
+Skinka 50
+Hvitlaukur 100

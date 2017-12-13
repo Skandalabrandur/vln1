@@ -6,24 +6,24 @@ void salesUI::displaySalesMenu() {
     do {
       uf.clearScreen();
       cout << "HOME/SALES" << endl << endl;
-      cout << "P - PLACE ORDER" << endl;
-      cout << "L - LIST ORDERS" << endl;
-      cout << "D - MARK ORDER AS DELIVERED" << endl;
+      cout << "1 - PLACE ORDER" << endl;
+      cout << "2 - LIST ORDERS" << endl;
+      cout << "3 - MARK ORDER AS DELIVERED" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
-    } while(!uf.goodInput(userInput, "plbd"));
+    } while(!uf.goodInput(userInput, "123b"));
 
     userInput = tolower(userInput);
 
-    if(userInput == 'p') {
+    if(userInput == '1') {
       uf.clearScreen();
       cout << "HOME/SALES/PLACE ORDER" << endl << endl;
       order_service.createNewOrder();
       uf.pressEnter();
     }
 
-    else if(userInput == 'l') {
+    else if(userInput == '2') {
       if(vs.ordersExist()) {
         uf.clearScreen();
         cout << "HOME/SALES/LIST ORDERS" << endl << endl;
@@ -34,7 +34,7 @@ void salesUI::displaySalesMenu() {
       uf.pressEnter();
     }
 
-    else if(userInput == 'd') {
+    else if(userInput == '3') {
       if(vs.ordersExist()) {
         uf.clearScreen();
         cout << "HOME/SALES/MARK PAID" << endl << endl;

@@ -35,9 +35,9 @@ void pizzaService::createAndAppendMenuPizza() {
   int numberOfToppings;
   vector<Topping> toppings;
 
-  cout << "Enter name of pizza: ";
+  cout << "Enter name of pizza or 0 to cancel: ";
   cin >> name;
-
+    if(name != "0"){
   do {
     uf.clearScreen();
     cout << "Enter number of toppings: ";
@@ -71,17 +71,18 @@ void pizzaService::createAndAppendMenuPizza() {
   builder += name + " ";
   builder += stringfunc.intToString(numberOfToppings) + " ";
 
-  int totalPrice = 0;
   for(int i = 0; i < numberOfToppings; i++) {
-    builder += toppings[i].getName() + " ";
-    totalPrice += toppings[i].getPrice();
+    if(i == numberOfToppings - 1){
+        builder += toppings[i].getName();
+    }else{
+        builder += toppings[i].getName() + " ";
+    }
   }
-
-  builder += stringfunc.intToString(totalPrice);
 
   fo.appendLineToFile(builder, "data/menuPizzas.txt");
   uf.clearScreen();
   cout << "Menu pizza: \"" << builder << "\" created!" << endl;
+    }
 }
 
 void pizzaService::listMenuPizzas() {
@@ -125,7 +126,7 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
     int numPizzas = howManyActivePizzas();
     string location = stringfunc.intToString(locationID);
 
-    for(unsigned int i = 0; i < numPizzas; i++){
+    for(int i = 0; i < numPizzas; i++){
         vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
         if(words[5] == location){
             cout << words[1] << " " << words[2] << " "
@@ -158,7 +159,7 @@ void pizzaService::saveCustomToppings(Pizza pizza){
 vector<Topping> pizzaService::getCustomToppings(int orderID){
     int numProducts = fo.countLines("data/customPizzaToppings.txt");
     vector<Topping> toppings;
-    for(unsigned int i = 0; i < numProducts; i++){
+    for(int i = 0; i < numProducts; i++){
         vector<string> toppingFromFile = fo.getWordsFromLine(i, "data/customPizzaToppings.txt");
         int ID = stringfunc.stringToInt(toppingFromFile[0]);
         if(ID == orderID){
@@ -196,7 +197,7 @@ void pizzaService::listMenuPizzasWithIndices() {
       }
 
       cout << (i+1) << " -\t" << "| " << words[0] << extraSpaces << "|\t";
-      for(int j = 2; j < words.size() - 1; j++) {
+      for(int j = 2; j < words.size(); j++) {
         cout << words[j] << " ";
       }
       cout << endl;
@@ -231,7 +232,7 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
         extraSpaces += " ";
       }
       if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
-        cout << counter << " -\t" << "| " << words[0] << "-";
+        cout << words[0] << " -\t" << "| ";
         cout << words[1] << extraSpaces << "|\t";
         for(int j = 2; j < words.size(); j++) {
           cout << words[j] << " ";
@@ -262,14 +263,47 @@ int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseud
   }
 }
 
+void pizzaService::markPizzaAsBakedByOrderIDAndLocation(int orderID, int locationID){
+    int numPizzas = howManyActivePizzas();
+
+    for(int i = 0; i < numPizzas; i++){
+        vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+        int id = stringfunc.stringToInt(orderWords.at(0));
+        int location_id = stringfunc.stringToInt(orderWords.at(5));
+        if(id == orderID && location_id == locationID){
+            setActivePizzaStatus(i, "baked", true);
+        }
+    }
+}
+
+void pizzaService::markPizzaAsUNBakedByOrderIDAndLocation(int orderID, int locationID){
+    int numPizzas = howManyActivePizzas();
+
+    for(int i = 0; i < numPizzas; i++){
+        vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+        int id = stringfunc.stringToInt(orderWords.at(0));
+        int location_id = stringfunc.stringToInt(orderWords.at(5));
+        if(id == orderID && location_id == locationID){
+            setActivePizzaStatus(i, "baked", false);
+        }
+    }
+}
+
+int pizzaService::getOrderIDForPizza(int index){
+    vector<string> orderWords = fo.getWordsFromLine(index - 1, "data/activePizzas.txt");
+    //orderID is at index 0 in line
+    int orderID = stringfunc.stringToInt(orderWords.at(0));
+    return orderID;
+}
+
 void pizzaService::deleteMenuPizza() {
 
   int menuSize = howManyPizzasOnMenu();
   int selection = -1;
 
-  while(selection < 1 || selection > menuSize) {
+  while(selection < 0 || selection > menuSize) {
     listMenuPizzasWithIndices();
-    cout << endl << "Select a pizza to delete from menu: ";
+    cout << endl << "Select a pizza to delete from menu or 0 to cancel: ";
     cin >> selection;
     if(cin.fail()) {
       cin.clear();      //reset error flags
@@ -277,6 +311,7 @@ void pizzaService::deleteMenuPizza() {
       selection = -1;   //set selection to continue
     }
   }
+    if(selection > 0){
   //Get this info before delete to show user later
   Pizza selectedPizza = getMenuPizza(selection-1);  //selection is 1-based
 
@@ -289,6 +324,7 @@ void pizzaService::deleteMenuPizza() {
   fo.writeFile(menuPizzaFile, "data/menuPizzas.txt");
 
   cout << "Deleted: " << selectedPizza.getName() << endl;
+    }
 }
 
 int pizzaService::howManyPizzasOnMenu() {
