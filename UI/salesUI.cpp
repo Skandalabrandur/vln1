@@ -37,8 +37,8 @@ void salesUI::displaySalesMenu() {
     else if(userInput == 'd') {
       if(vs.ordersExist()) {
         uf.clearScreen();
-        cout << "HOME/SALES/MARK DELIVERED" << endl << endl;
-        selectAndMarkOrderAsDelivered();
+        cout << "HOME/SALES/MARK PAID" << endl << endl;
+        selectAndMarkOrderAsPaid();
       } else {
         cout << "No orders exist!" << endl;
         uf.pressEnter();
@@ -47,23 +47,18 @@ void salesUI::displaySalesMenu() {
   }
 }
 
-void salesUI::selectAndMarkOrderAsDelivered(){
-    int index = -1;
-    while(index < 0 || index > order_service.howManyOrders()) {
-        order_service.listOrderOverviewWithIndices();
-        cout << "Please select an order to mark as DELIVERED (c to cancel): ";
-        cin >> index;
-        if(cin.fail()) {
-          cin.clear();  //clear error flags
-          index = 0;    //appropriate quit condition
-        }
-    }
-    int orderID = order_service.getOrderID(index);
-    int locationID = order_service.getOrderLocationID(index);
-    order_service.markPizzaAsDeliveredByOrderIDAndLocation(orderID, locationID);
-    //move to legacy file
-    order_service.moveToLegacyFile(orderID);
-    uf.pressEnter();
+void salesUI::selectAndMarkOrderAsPaid(){
+  int index = -1;
+  while(index < 0 || index > order_service.howManyOrders()) {
+      //TO FIX: If user inputs a number that is not on the location list
+      //but is an order in the file it will get changed
+
+      listOrders();
+      cout << "Please select a order to mark as PAID (0 to quit): ";
+      cin >> index;
+  }
+  int orderID = order_service.getOrderID(index);
+  order_service.markPizzaAsPaidByOrderID(orderID);
 }
 
 void salesUI::listOrders() {

@@ -1,100 +1,48 @@
+Þegar forritið er ræst birtist home screen. Þaðan er hægt að velja á milli 4
+mismunandi valmyndir: ADMIN, SALES, BAKER eða DELIVERY. Ef verið er að
+ræsa forrit í fyrsta sinn á einhverri tölvu og mappan merkt "data" er tóm, þá eru
+engar pizzur skráðar á matseðil, engin álegg skráð og engar staðsetningar.
+
+    UPPSETNING KERFIS
+Fyrst af öllu þarf því að setja upp kerfið með því að fara inn í ADMIN
+valmyndina, og skrá álegg undir MANAGE TOPPINGS.
+
+Þegar einhver álegg eru komin á skrá í kerfinu þá er hægt að búa til pítsur til að
+setja á matseðil, en það er einnig gert í ADMIN valmyndinni undir MANAGE
+PIZZAS. Athugið að ekki er hægt að búa til pizzur á matseðli ef engin álegg eru
+á skrá.
+
+Einnig þarf að skrá staðsetningar í kerfið með því að velja MANAGE STORE
+LOCATIONS í ADMIN valmyndinni.
+
+Hægt er að skrá aukahluti eins og gos, brauðstangir, ostanammi, sósur og fleira
+í MANAGE ADDITIONAL PRODUCTS í ADMIN valmyndinni.
+
+    ADMIN
 
 
-Þegar forritið er ræst keyrir forritið mainUI.cpp og það birtir eftirfarandi
-valkosti:
+    PANTANIR
+Til að leggja inn pantanir skal fara inn í SALES valmyndina og velja PLACE
+ORDER. Kerfið biður notanda að stimpla inn nauðsynlegar upplýsingar tengdar
+pöntuninni og vistar það í gagnagrunni. Þaðan sækir kerfið upplýsingar til að
+birta fyrir bökurum o.fl.
 
-    A - ADMIN
-    S - SALES
-    B - BAKER
-    D - DELIVERY
-    Q - QUIT
+Inn í SALES valmyndinni er einnig hægt að birta lista yfir allar pantanir og sjá
+nánari upplýsingar um ákveðnar pantanir, ásamt því að skrá pítsu afhenta en þá
+er pöntunin fjarlægð úr hóp virkra pantana.
+
+    BAKARAR
+Bakarar þurfa að fá nánar upplýsingar um stakar pítsur, þannig í BAKERS
+valmyndinni er hægt að sjá lista af virkum óbökuðum pítsum með öllum
+upplýsingum sem bakarar þurfa á að halda og engar óþarfa upplýsingar. Þegar
+pítsa er komin í ofninn er þá hægt að merkja hana bakaða og þá fjarlægist hún
+af listanum sem bakarar sjá. Einnig er hægt að afmerkja pítsu bakaða, skyldi
+mistök hafa átt sér stað.
+
+    AFHENDING
+DELIVERY valmyndin er tileinkuð fólkinu í afgreiðslu/afhendingu. Þar inni er
+hægt að merkja pítsu greidda og afhenta ásamt því að birta lista yfir allar virkar
+pantanir og allar virkar OG bakaðar pantanir.
     
-Input byggist á að notandi pikkar inn þann char sem á við það menu
-sem hann vill fara inn í, t.d. mundi bakari velja 'b'. Ekki skiptir máli hvort
-char sé uppercase eða lowercase, forritið breytir input í lowercase áður
-en eitthvað annað er keyrt.
-
-Þegar forritið er keyrt í fyrsta sinn á tölvu notanda er "data" folderinn
-tómur og þar með inniheldur kerfið engar pítsur, staðsetningar, álegg
-eða neitt annað og því skal notandi initializea kerfið með því að skrá
-álegg og er það hægt í gegn um ADMIN valkostinn.
-
-Þegar ýtt er á 'a' fer mainUI.cpp í gegn um 4 if-statements til að sjá hvort
-inputið passar við mögulegan valkost á skjá. 'a' samsvarar "A - ADMIN"
-og þá er hreinsað af skjá með því að kalla clearscreen() fallið úr klasanum
-customLibraries/UIFunctions.h. Síðan fer mainUI.cpp inn í adminUI klasann
-og keyrir displayAdminMenu() sem gefur þetta á skjá:
-
-    P - MANAGE PIZZAS
-    T - MANAGE TOPPINGS
-    L - MANAGE LOCATIONS
-    B - BACK
-
-Forritið keyrir hina valkostina á sama hátt með því að fara í þeirra klasa og
-keyra display menu föllin.
-
-    deliveryUI -> displayDeliveryMenu()
-    salesUI -> displaySalesMenu()
-    bakerUI -> displayBakerMenu()
-
-Eftir að farið er inn í admin menu skal búa til toppings eða location. Ekki er
-hægt að búa til pizzu strax þar sem ekki eru nein topping til að setja á pizzur.
-Þegar valkostur er stimplaður inn leitar forritið af tilheyrandi falli
-
-    MANAGE PIZZAS -> displayPizzaMenu()
-    MANAGE TOPPINGS -> displayToppingMenu()
-    MANAGE LOCATIONS -> displayLocationMenu()
-    
-og keyrir það. Þá fæst eitt af þessum þrem menu-um.
-
-    C - CREATE A NEW MENU PIZZA
-    L - LIST MENU PIZZAS
-    D - DELETE MENU PIZZA
-    B - BACK
-    
-    C - CREATE NEW TOPPING
-    L - LIST TOPPINGS
-    B - BACK
-    
-    C - CREATE NEW LOCATION
-    L - LIST LOCATIONS
-    B - BACK
-    
-Ekki er hægt að búa til pizzur án þess að hafa fyrst búið til topping, þannig
-ef MANAGE PIZZAS -> CREATE A NEW MENU PIZZA er valið þá fæst upp
-villuskilaboð um að ekki eru til nein topping og notandi beðinn um að búa
-til topping áður en lengra er haldið.
-
-Ef toppings eru til og notandi vill búa til pizzu skal velja MANAGE PIZZAS
--> CREATE A NEW MENU PIZZA. Þá kallar forritið á pizzaService klasann
-og keyrir fallið createAndAppendMenuPizza(). Þá er beðið um nafn á
-pizzunni (t.d. Eldórado, Meat n' Cheese, Tokyo, ...). Síðan er beðið um
-fjölda áleggja sem skal setja á pizzuna, og þar eftir er birtur listi af öllum
-toppings á skrá með því að fara inn í toppingService.h og kalla á fallið
-listToppingsWithIndex() og notandi beðinn um að stimpla inn hvaða
-topping hann vill setja á pizzuna. Fallið getToppingAt() í toppingService
-klasanum sér um að taka inn input frá notanda og ná í Topping objectið
-sem á við það input. Pizzan er núna geymd í data foldernum í sama file og
-allar hinar menu pizzur.
-
-Ef notandi vill sjá allar pizzur á menu getur hann valið MANAGE PIZZAS
--> LIST MENU PIZZAS þá kallar forritið á pizzaService klasann og þar inni á
-listMenuPizzas() fallið. Þá er fileinn með öllum menu pizzum prentað á skjá línu eftir línu.
-
-Ef notandi vill eyða pizzu af matseðli er hæt að velja MANAGE PIZZAS
--> DELETE MENU PIZZA, þá kallar forritið á pizzaService klasann og þar inni
-á deleteMenuPizza fallið. Það fall kallar á fall sem prentar út allar pítsur á
-matseðli með númerum og síðan er tekið við input frá notanda. Sú pizza er
-síðan eydd úr skránni sem inniheldur allar pizzur á matseðli.
-
-Þá skal velja MANAGE TOPPINGS -> CREATE NEW TOPPING. Þá kallar
-forritið á klasann toppingService.h og þar inni fallið createNewTopping().
-Það fall biður um nafn og verð á áleggi frá notanda, býr til Topping object
-með Topping klasanum og vistar það í skrá í data foldernum. Nú er það
-vistað og mun ekki eyðast þótt kerfið sé endurræst.
-
-Ef MANAGE TOPPINGS -> LIST TOPPINGS er valið þá fer forritið aftur inn
-í toppingService klasann og keyrir listToppings() fallið. Þá birtast öll álegg
-með nafni og verði, hvert í eigin línu.
 
 

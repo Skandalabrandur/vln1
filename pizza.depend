@@ -98,7 +98,7 @@
 	"Pizza.h"
 	"locationService.h"
 
-1513100203 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.h
+1513161058 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.h
 	"fileOperations.h"
 	"UIFunctions.h"
 	"stringFunctions.h"
@@ -108,6 +108,7 @@
 	"locationService.h"
 	"commentService.h"
 	"additionalProductService.h"
+	"validationService.h"
 	<iostream>
 	<vector>
 	<limits>
@@ -167,7 +168,7 @@
 	"orderService.h"
 	<iostream>
 
-1513031298 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\salesui.h
+1513161058 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\salesui.h
 	"UIFunctions.h"
 	"orderService.h"
 	"validationService.h"

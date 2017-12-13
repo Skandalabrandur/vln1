@@ -3,6 +3,13 @@
 void adminUI::displayAdminMenu() {
   char userInput = 'i';     //init to invalid just in case
   while (userInput != 'b') {
+      string id;
+      while(id != "pw"){
+      uf.clearScreen();
+      cout << "Admin password: " << endl;
+      cout << endl << uf.prompt();
+      cin >> id;
+      }
     do {
       uf.clearScreen();
       cout << "HOME/ADMIN" << endl << endl;
@@ -64,14 +71,10 @@ void adminUI::displayPizzaMenu() {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE MENU PIZZAS/CREATE NEW MENU PIZZA" << endl << endl;
         pizza_service.createAndAppendMenuPizza();
-        //ath sýnir ekki cout setnigu í fallinu
-        cin >> ws;
-        uf.pressEnter();
-        uf.clearScreen();
       } else {
         cout << "No toppings exist!" << endl;
-        uf.pressEnter();
       }
+      uf.pressEnter();
     }
 
     if(userInput == 'l') {

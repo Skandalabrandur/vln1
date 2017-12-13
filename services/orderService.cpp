@@ -100,11 +100,18 @@ void orderService::createNewOrder() {
   } while(numberOfPizzas < 1);
   int numberOfMenuPizzas = pizza_service.howManyPizzasOnMenu();
   for(int i = 0; i < numberOfPizzas; i++) {
+    Pizza pizza;
+    char yn;
+    bool legitChoice;
+    do {
       cout << "Pizza off menu? (y/n) " << endl;
-      char yn;
       cin >> yn;
-      Pizza pizza;
+      legitChoice = false;
+
       pizza.setOrderID(orderID);
+      yn = tolower(yn);
+      legitChoice = (yn == 'y' && vs.menuPizzasExist()) || (yn == 'n');
+    } while(!legitChoice);
       if(yn == 'y'){
         int selection;
         do {
@@ -290,6 +297,19 @@ int orderService::getOrderLocationID(int index){
     int locationID;
     locationID = stringfunc.stringToInt(orderWords.at(2));
     return locationID;
+}
+
+void orderService::markPizzaAsPaidByOrderID(int orderID) {
+  int numPizzas = pizza_service.howManyActivePizzas();
+
+  for(int i = 0; i < numPizzas; i++){
+      vector<string> orderWords;
+      orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+      int id = stringfunc.stringToInt(orderWords.at(0));
+      if(id == orderID){
+          pizza_service.setActivePizzaStatus(i, "paid", true);
+      }
+  }
 }
 
 void orderService::markPizzaAsPaidByOrderIDAndLocation(int orderID, int locationID){

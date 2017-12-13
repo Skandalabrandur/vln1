@@ -9,6 +9,7 @@
 #include "locationService.h"
 #include "commentService.h"
 #include "additionalProductService.h"
+#include "validationService.h"
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -36,6 +37,7 @@ public:
   int getOrderPrice(Order order);
   int countOrdersFromLocationWithID(int locationID);
 
+  void markPizzaAsPaidByOrderID(int orderID);
   void markPizzaAsPaidByOrderIDAndLocation(int OrderID, int locationID);
   void markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int locationID);
   void listOrderFromLocationWithID(int locationID, bool isReady);
@@ -47,6 +49,7 @@ private:
   fileOperations fo;
   UIFunctions uf;
   stringFunctions stringfunc;
+  validationService vs;
 
   pizzaService pizza_service;
   locationService location_service;
