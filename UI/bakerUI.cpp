@@ -144,7 +144,7 @@ void bakerUI::listByOrders(bool isReady) {
     int choice = -1; //So the value is not 0
     int numOrders = order_service.countOrdersFromLocationWithID(_locationID);
     do{
-        order_service.listOrderFromLocationWithID(_locationID, isReady);
+        order_service.listOrderFromLocationWithID(_locationID, isReady); //false because this is not for delivery
         cout << "Select an order for more info (c to cancel): ";
         cin >> choice;
 
@@ -154,7 +154,7 @@ void bakerUI::listByOrders(bool isReady) {
         }
         if(choice >= 1 && choice <= numOrders){
             uf.clearScreen();
-            order_service.listSpecificOrderFromLocationWithInfo(choice, _locationID);
+            order_service.listSpecificOrderFromLocationWithInfo(choice, _locationID, false);
             uf.pressEnter();
             uf.clearScreen();
         }

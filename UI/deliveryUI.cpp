@@ -109,7 +109,7 @@ void deliveryUI::viewOrders(bool isReady){
         }
         if(choice >= 1 && choice <= numOrders){
             uf.clearScreen();
-            order_service.listSpecificOrderFromLocationWithInfo(choice, _locationID);
+            order_service.listSpecificOrderFromLocationWithInfo(choice, _locationID, true); //true because this is for delivery
             uf.pressEnter();
             uf.clearScreen();
         }

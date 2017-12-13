@@ -10,3 +10,7 @@
 3 Tomato 30
 3 Tomato 30
 3 Tomato 30
+4 Hvitlaukur 100
+4 Tomato 30
+4 Broccoli 15
+5 Tomato 30

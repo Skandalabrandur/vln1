@@ -243,7 +243,7 @@ void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
                 }
             }
             if(ready){
-                    cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
+                cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
             }
         }
         //Show all orders
@@ -267,7 +267,7 @@ int orderService::countOrdersFromLocationWithID(int locationID) {
   return counter;
 }
 
-void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
+void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID, bool isDelivery) {
   //-->Function used in delivery and baker
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
   string comment = comment_service.getCommentTextFromOrderID(order_id);
@@ -279,8 +279,18 @@ void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int locat
   }
   for(int i = 0; i < orderPizzas.size(); i++) {
     if(orderPizzas[i].getStoreID() == location_ID){
-        cout << orderPizzas[i].toString(false) << endl;
+        cout << orderPizzas[i].toString(false);
+
+        if(isDelivery){
+            vector<AdditionalProduct> products = additionalProduct_service.getSavedProductFromOrderID(order_id);
+            for(unsigned int i = 0; i < products.size(); i++){
+                cout << " " << products[i].toString();
+            }
+        }
+        cout << endl;
+
     }
+
   }
 }
 

@@ -41,7 +41,7 @@ public:
   void markPizzaAsPaidByOrderIDAndLocation(int OrderID, int locationID);
   void markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int locationID);
   void listOrderFromLocationWithID(int locationID, bool isReady);
-  void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID);
+  void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID, bool isDelivery);
   void deleteOrderWithOrderID(int orderID);
   void moveToLegacyFile(int orderID);
 
