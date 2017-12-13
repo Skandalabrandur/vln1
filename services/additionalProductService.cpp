@@ -1,8 +1,13 @@
 #include "additionalProductService.h"
 
 void additionalProductService::listAdditionalProducts(){
-    fo.printLines("data/additionalProducts.txt");
-    uf.pressEnter();
+    //fo.printLines("data/additionalProducts.txt");
+    vector<string> lines = fo.getLinesFromFile("data/additionalProducts.txt");
+    vector<string> headers;
+    headers.push_back("Name");
+    headers.push_back("Price");
+
+    uf.printItNice(lines, headers);
 }
 
 void additionalProductService::listAdditionalProductsWithIndexes(){

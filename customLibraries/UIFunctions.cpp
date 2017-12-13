@@ -73,3 +73,52 @@ void UIFunctions::printLogo() {
     cout << logo.at(i) << endl;
   }
 }
+
+
+void UIFunctions::printItNice(vector<string> lines, vector<string> headers) {
+  vector<int> spaceFormatting;
+  //Get header string length
+  for(int i = 0; i < headers.size(); i++) {
+    spaceFormatting.push_back(headers.at(i).size());
+  }
+
+  //get longest words in lines
+  for(int i = 0; i < lines.size(); i++) {
+    vector<string> words = stringfunc.split(lines.at(i));
+    for(int j = 0; j < headers.size(); j++) {
+      if(words.at(j).size() > spaceFormatting.at(j)) {
+        spaceFormatting.at(j) = words.at(j).size();
+      }
+    }
+  }
+
+
+  for(int i = 0; i < headers.size(); i++) {
+    cout << "|";
+    cout << " " << headers.at(i) << " ";
+    int spaceRemainder = spaceFormatting.at(i) - headers.at(i).size();
+
+    for(int k = spaceRemainder; k > 0; k--) {
+      cout << " ";
+    }
+  }
+  cout << "|";
+  cout << endl << endl;
+
+
+  for(int i = 0; i < lines.size(); i++) {
+    vector<string> words = stringfunc.split(lines.at(i));
+    for(int j = 0; j < words.size(); j++) {
+      cout << "|";
+      cout << " " << words.at(j) << " ";
+      if(j < headers.size()) {
+        int spaceRemainder = spaceFormatting.at(j) - words.at(j).size();
+        for(int k = spaceRemainder; k > 0; k--) {
+          cout << " ";
+        }
+      }
+    }
+    cout << "|";
+    cout << endl;
+  }
+}

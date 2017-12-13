@@ -85,11 +85,40 @@ void pizzaService::createAndAppendMenuPizza() {
 }
 
 void pizzaService::listMenuPizzas() {
-  fo.printLines("data/menuPizzas.txt");
+  //fo.printLines("data/menuPizzas.txt");
+  vector<string> unProcessedlines = fo.getLinesFromFile("data/menuPizzas.txt");
+  vector<string> lines;
+
+
+  for(int i = 0; i < unProcessedlines.size(); i++) {
+    vector<string> words = stringfunc.split(unProcessedlines.at(i));
+    string builder = words.at(0);
+    for(int j = 2; j < words.size(); j++) {
+      builder += " " + words.at(j);
+    }
+    lines.push_back(builder);
+  }
+
+  vector<string> headers;
+  headers.push_back("Name");
+  headers.push_back("Toppings");
+
+  uf.printItNice(lines, headers);
 }
 
 void pizzaService::listActivePizzas() {
-  fo.printLines("data/activePizzas.txt");
+  //fo.printLines("data/activePizzas.txt");
+  vector<string> lines = fo.getLinesFromFile("data/activePizzas.txt");
+  vector<string> headers;
+  headers.push_back("OrderID");
+  headers.push_back("Name");
+  headers.push_back("Bottom");
+  headers.push_back("BtmSize");
+  headers.push_back("Price");
+  headers.push_back("NrOfToppings");
+  headers.push_back("Status");
+
+  uf.printItNice(lines, headers);
 }
 
 void pizzaService::listFromLocationActivePizzas(int locationID){

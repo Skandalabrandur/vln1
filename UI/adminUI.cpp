@@ -3,13 +3,15 @@
 void adminUI::displayAdminMenu() {
   char userInput = 'i';     //init to invalid just in case
   while (userInput != 'b') {
+      /*
       string id;
       while(id != "pw"){
-      uf.clearScreen();
-      cout << "Admin password: " << endl;
-      cout << endl << uf.prompt();
-      cin >> id;
+        uf.clearScreen();
+        cout << "Admin password: " << endl;
+        cout << endl << uf.prompt();
+        id = "pw";
       }
+    */
     do {
       uf.clearScreen();
       cout << "HOME/ADMIN" << endl << endl;
@@ -26,25 +28,21 @@ void adminUI::displayAdminMenu() {
 
     if(userInput == 'p') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl << endl;
       displayPizzaMenu();
     }
 
     if(userInput == 't') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE TOPPINGS" << endl << endl;
       displayToppingMenu();
     }
 
     if(userInput == 'l') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE LOCATIONS" << endl << endl;
       displayLocationMenu();
     }
 
     if(userInput == 'a') {
       uf.clearScreen();
-      cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS" << endl << endl;
       displayAdditionalProductsMenu();
     }
   }
@@ -55,7 +53,7 @@ void adminUI::displayPizzaMenu() {
   while(userInput != 'b') {
     do {
       userInput = 'i'; //for invalid so that we don't end up with an infinte loop
-      cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl;
+      cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl << endl;
       cout << "C - CREATE A NEW MENU PIZZA" << endl;
       cout << "L - LIST MENU PIZZAS" << endl;
       cout << "D - DELETE MENU PIZZA" << endl;
@@ -105,6 +103,7 @@ void adminUI::displayToppingMenu() {
   char userInput = 'i';     //init to invalid just in case
   while(userInput != 'b') {
     do {
+      cout << "HOME/ADMIN/MANAGE TOPPINGS" << endl << endl;
       cout << "C - CREATE NEW TOPPING" << endl;
       cout << "L - LIST TOPPINGS" << endl;
       cout << "D - DELETE TOPPING" << endl;
@@ -126,6 +125,7 @@ void adminUI::displayToppingMenu() {
     if(userInput == 'd') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
+        cout << "HOME/ADMIN/MANAGE TOPPINGS/DELETE TOPPING" << endl << endl;
         topping_service.deleteTopping();
       } else {
         cout << "No toppings exist!" << endl;
@@ -152,6 +152,7 @@ void adminUI::displayLocationMenu() {
     char userInput = 'i';     //init to invalid just in case
     while(userInput != 'b') {
         do {
+            cout << "HOME/ADMIN/MANAGE LOCATIONS" << endl << endl;
             cout << "C - CREATE NEW STORE LOCATION" << endl;
             cout << "L - LIST STORE LOCATIONS" << endl;
             cout << "D - DELETE LOCATION" << endl;
@@ -185,6 +186,7 @@ void adminUI::displayLocationMenu() {
         if(userInput == 'd') {
           if(vs.locationsExist()) {
             uf.clearScreen();
+            cout << "HOME/ADMIN/DELETE LOCATION" << endl << endl;
             location_service.deleteLocation();
           } else {
               cout << "No locations exist!" << endl;
@@ -199,6 +201,8 @@ void adminUI::displayAdditionalProductsMenu(){
     char userInput = 'i';     //init to invalid just in case
     while(userInput != 'b') {
         do {
+            uf.clearScreen();
+            cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS" << endl << endl;
             cout << "C - CREATE NEW ADDITIONAL PRODUCT" << endl;
             cout << "L - LIST ADDITIONAL PRODUCTS" << endl;
             cout << "D - DELETE ADDITIONAL PRODUCT" << endl;
@@ -214,7 +218,6 @@ void adminUI::displayAdditionalProductsMenu(){
             cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS/CREATE NEW PRODUCT" << endl << endl;
             additionalProduct_service.createNewAdditionalProduct();
             uf.pressEnter();
-            uf.clearScreen();
         }
 
         if(userInput == 'l') {
@@ -224,20 +227,19 @@ void adminUI::displayAdditionalProductsMenu(){
             additionalProduct_service.listAdditionalProducts();
           } else {
             cout << "No additional products exist!" << endl;
-            uf.pressEnter();
-            uf.clearScreen();
           }
+          uf.pressEnter();
         }
 
         if(userInput == 'd') {
           if(vs.addProductsExist()) {
             uf.clearScreen();
+            cout << "HOME/ADMIN/DELETE ADDITIONAL PRODUCTS" << endl << endl;
             additionalProduct_service.deleteAdditionalProduct();
           } else {
             cout << "No additional products exist!" << endl;
           }
           uf.pressEnter();
-          uf.clearScreen();
         }
     }
 }
