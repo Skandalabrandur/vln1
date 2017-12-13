@@ -334,6 +334,7 @@ void orderService::markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int loc
         int location_id = stringfunc.stringToInt(orderWords.at(5));
         if(id == orderID && location_id == locationID){
             pizza_service.setActivePizzaStatus(i, "delivered", true);
+            moveToLegacyFile(orderID);
         }
     }
 }
@@ -380,12 +381,36 @@ void orderService::listSpecificOrderWithInfo(int order_id) {
 
   string comment = comment_service.getCommentTextFromOrderID(order_id);
   if(!comment.empty()) {
-    cout << "Comment: " << comment << endl << endl;
+    cout << "Comment: " << comment << endl;
+    cout << endl << "------------------------------" << endl << endl;
+  }
+  vector<string> pizzas;
+  for(int i = 0; i < orderPizzas.size(); i++) {
+    pizzas.push_back(orderPizzas[i].toString(false));
+  }
+  vector<string> pizzasHeaders;
+  pizzasHeaders.push_back("OrderID");
+  pizzasHeaders.push_back("Pizza Name");
+  pizzasHeaders.push_back("Bottom");
+  pizzasHeaders.push_back("BtmType");
+  pizzasHeaders.push_back("Price");
+  pizzasHeaders.push_back("LocationID");
+  pizzasHeaders.push_back("Status...");
+  uf.printItNice(pizzas, pizzasHeaders);
+  cout << endl << endl << "------------------------------" << endl << endl;
+
+
+  vector<AdditionalProduct> orderProducts = additionalProduct_service.getSavedProductFromOrderID(order_id);
+  vector<string> products;
+  for(int i = 0; i < orderProducts.size(); i++) {
+    products.push_back(orderProducts.at(i).toString());
   }
 
-  for(int i = 0; i < orderPizzas.size(); i++) {
-    cout << orderPizzas[i].toString(false) << endl;
-  }
+  vector<string> productsHeaders;
+  productsHeaders.push_back("Name");
+  productsHeaders.push_back("Price");
+  uf.printItNice(products, productsHeaders);
+
 }
 
 int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){
