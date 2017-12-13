@@ -39,6 +39,7 @@ void salesUI::displaySalesMenu() {
         uf.clearScreen();
         cout << "HOME/SALES/MARK PAID" << endl << endl;
         selectAndMarkOrderAsPaid();
+        uf.pressEnter();
       } else {
         cout << "No orders exist!" << endl;
         uf.pressEnter();
@@ -50,16 +51,10 @@ void salesUI::displaySalesMenu() {
 void salesUI::selectAndMarkOrderAsPaid(){
   int index = -1;
   while(index < 0 || index > order_service.howManyOrders()) {
-      //TO FIX: If user inputs a number that is not on the location list
-      //but is an order in the file it will get changed
 
-<<<<<<< HEAD
-      listOrders();
-      cout << "Please select a order to mark as PAID (c to cancel): ";
-=======
       order_service.listOrderOverviewWithIndices();
-      cout << "Please select a order to mark as PAID (0 to quit): ";
->>>>>>> 3acb39908760a78b4ed47c10a6322ac88af5c36e
+      cout << "Please select a order to mark as PAID (c to cancel): ";
+
       cin >> index;
 
       if(cin.fail()) {
