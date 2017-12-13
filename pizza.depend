@@ -93,7 +93,7 @@
 1512566595 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\topping.cpp
 	"Topping.h"
 
-1513161058 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.cpp
+1513165698 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.cpp
 	"orderService.h"
 	"Pizza.h"
 	"locationService.h"
@@ -113,7 +113,7 @@
 	<vector>
 	<limits>
 
-1513098207 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\pizzaservice.h
+1513166265 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\pizzaservice.h
 	"fileOperations.h"
 	"UIFunctions.h"
 	"stringFunctions.h"
@@ -136,7 +136,7 @@
 	<vector>
 	<limits>
 
-1513161614 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\pizzaservice.cpp
+1513166265 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\pizzaservice.cpp
 	"pizzaService.h"
 	"toppingService.h"
 
@@ -173,7 +173,7 @@
 	"orderService.h"
 	"validationService.h"
 
-1513086348 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\bakerui.h
+1513163945 c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\bakerui.h
 	"UIFunctions.h"
 	"pizzaService.h"
 	"locationService.h"
@@ -187,7 +187,7 @@
 1513161058 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\salesui.cpp
 	"salesUI.h"
 
-1513160682 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\bakerui.cpp
+1513165875 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\bakerui.cpp
 	"bakerUI.h"
 
 1512655951 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\src\ui\deliveryui.cpp
