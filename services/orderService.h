@@ -34,7 +34,7 @@ public:
   int howManyOrders();
   int getOrderID(int index);
   int getOrderLocationID(int index);
-  int getOrderPrice(Order order);
+  int getOrderPrice(int orderID);
   int countOrdersFromLocationWithID(int locationID);
 
   void markPizzaAsPaidByOrderID(int orderID);

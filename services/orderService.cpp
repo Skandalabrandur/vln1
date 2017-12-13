@@ -187,7 +187,7 @@ void orderService::createNewOrder() {
     additionalProduct_service.saveAdditionalProducts(orderID);
   }
 
-  int orderPrice = getOrderPrice(order);
+  int orderPrice = getOrderPrice(orderID);
 
   fo.appendLineToFile(order.toString(), "data/orders.txt");
 
@@ -286,11 +286,11 @@ void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int locat
             for(unsigned int i = 0; i < products.size(); i++){
                 cout << " " << products[i].toString();
             }
+            cout << ". Total Price: " << getOrderPrice(order_id) << endl;
+        } else{
+            cout << endl;
         }
-        cout << endl;
-
     }
-
   }
 }
 
@@ -479,9 +479,9 @@ int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){
     return price;
 }
 
-int orderService::getOrderPrice(Order order){
+int orderService::getOrderPrice(int orderID){
     int price = 0;
-    int orderID = order.getOrderID();
+    //int orderID = order.getOrderID();
     vector<Pizza> pizzas = getPizzasFromOrderId(orderID);
     for(unsigned int i = 0; i < pizzas.size(); i++){
         if(pizzas.at(i).getName() == "custom"){
