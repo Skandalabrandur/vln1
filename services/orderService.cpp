@@ -238,7 +238,7 @@ void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
             bool ready = true;
             vector<Pizza> orderPizzas = getPizzasFromOrderId(i + 1);
             for(int i = 0; i < orderPizzas.size(); i++) {
-                if(!(orderPizzas[i].isBaked() && orderPizzas[i].isPaid())){
+                if(!(orderPizzas[i].isBaked())){
                     ready = false;
                 }
             }

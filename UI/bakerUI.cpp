@@ -104,7 +104,7 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {
     pizza_service.listActiveWithIndicesForBakeryAndLocation(false, _locationID);
-    cout << "Please select a pizza to mark as BAKED (0 to cancel): ";
+    cout << "Please select a pizza to mark as BAKED (c to cancel): ";
     cin >> index;
 
       if(cin.fail()) {
