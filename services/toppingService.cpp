@@ -25,9 +25,9 @@ void toppingService::createNewTopping() {
   string name;
   int price;
 
-  cout << "Enter topping name: ";
+  cout << "Enter topping name or 0 to cancel: ";
   cin >> name;
-
+    if(name != "0"){
   do {
     uf.clearScreen();
     cout << "Enter topping price: ";
@@ -46,6 +46,7 @@ void toppingService::createNewTopping() {
 
   uf.clearScreen();
   cout << "Topping: \"" << topping.toString() << "\" created!" << endl;
+    }
 }
 
 //Returns a topping object that matches name EXACTLY
@@ -72,10 +73,10 @@ void toppingService::deleteTopping() {
   int howManyToppingsExist = howManyToppings();
   int selection = -1;
 
-  while(selection < 1 || selection > howManyToppingsExist) {
+  while(selection < 0 || selection > howManyToppingsExist) {
     uf.clearScreen();
     listToppingsWithIndex();
-    cout << endl << "Select a topping to delete: ";
+    cout << endl << "Select a topping to delete or 0 to go cancel: ";
     cin >> selection;
     if(cin.fail()) {
       cin.clear();      //reset error flags
@@ -83,6 +84,7 @@ void toppingService::deleteTopping() {
       selection = -1;   //set selection to continue
     }
   }
+    if(selection > 0){
   //Get this info before delete to show user later
   Topping selectedTopping = getToppingAt(selection-1);  //selection is 1-based
 
@@ -96,4 +98,5 @@ void toppingService::deleteTopping() {
   fo.writeFile(toppingFile, "data/toppings.txt");
 
   cout << "Deleted: " << selectedTopping.getName() << endl;
+    }
 }

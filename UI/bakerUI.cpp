@@ -12,18 +12,18 @@ void bakerUI::displayBakerMenu() {
         do {
             uf.clearScreen();
             cout << "HOME/BAKER" << endl << endl;
-            cout << "L - LIST PIZZAS FOR YOUR PLACE" << endl;
-            cout << "O - LIST PIZZAS BY ORDERS" << endl;
-            cout << "M - MARK PIZZA AS BAKED" << endl;
-            cout << "U - MARK PIZZA AS UNBAKED" << endl;
+            cout << "1 - LIST PIZZAS FOR YOUR PLACE" << endl;
+            cout << "2 - LIST PIZZAS BY ORDERS" << endl;
+            cout << "3 - MARK PIZZA AS BAKED" << endl;
+            cout << "4 - MARK PIZZA AS UNBAKED" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "mblou"));
+        } while(!uf.goodInput(userInput, "1234b"));
 
         userInput = tolower(userInput);
 
-        if(userInput == 'l') {
+        if(userInput == '1') {
           if(vs.pizzasExistForLocationID(_locationID)) {
             uf.clearScreen();
             cout << "HOME/BAKER/LIST PIZZAS" << endl << endl;
@@ -35,7 +35,7 @@ void bakerUI::displayBakerMenu() {
           }
         }
 
-        if(userInput == 'o') {
+        if(userInput == '2') {
           if(vs.pizzasExistForLocationID(_locationID)) {
             uf.clearScreen();
             cout << "HOME/BAKER/LIST PIZZAS BY ORDERS" << endl << endl;
@@ -47,7 +47,7 @@ void bakerUI::displayBakerMenu() {
           uf.pressEnter();
         }
 
-        if(userInput == 'm') {
+        if(userInput == '3') {
           if(vs.pizzasExistForLocationID(_locationID)) {
             cout << "HOME/BAKER/MARK BAKED" << endl << endl;
             uf.clearScreen();
@@ -59,7 +59,7 @@ void bakerUI::displayBakerMenu() {
           }
         }
 
-        if(userInput == 'u') {
+        if(userInput == '4') {
           if(vs.pizzasExistForLocationID(_locationID)) {
             cout << "HOME/BAKER/MARK UNBAKED" << endl << endl;
             uf.clearScreen();

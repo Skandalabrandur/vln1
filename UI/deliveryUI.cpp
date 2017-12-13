@@ -10,18 +10,18 @@ void deliveryUI::displayDeliveryMenu(){
         do {
             uf.clearScreen();
             cout << "HOME/DELIVERY" << endl << endl;
-            cout << "L - LIST ALL ORDERS FOR YOUR PLACE" << endl;
-            cout << "R - LIST READY ORDERS FOR YOUR PLACE" << endl;
-            cout << "P - MARK ORDER AS PAID" << endl;
-            cout << "D - MARK ORDER AS DELIVERED" << endl;
+            cout << "1 - LIST ALL ORDERS FOR YOUR PLACE" << endl;
+            cout << "2 - LIST READY ORDERS FOR YOUR PLACE" << endl;
+            cout << "3 - MARK ORDER AS PAID" << endl;
+            cout << "4 - MARK ORDER AS DELIVERED" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "pbldr"));
+        } while(!uf.goodInput(userInput, "1234b"));
 
         userInput = tolower(userInput);
 
-        if(userInput == 'l') {
+        if(userInput == '1') {
           if(vs.ordersExistForLocationID(_locationID)){
               uf.clearScreen();
               cout << "HOME/DELIVERY/LIST ALL ORDERS" << endl << endl;
@@ -33,7 +33,7 @@ void deliveryUI::displayDeliveryMenu(){
           }
         }
 
-        else if(userInput == 'r') {
+        else if(userInput == '2') {
           if(vs.ordersExistForLocationID(_locationID)){
               uf.clearScreen();
               cout << "HOME/DELIVERY/LIST READY ORDERS" << endl << endl;
@@ -45,7 +45,7 @@ void deliveryUI::displayDeliveryMenu(){
           }
         }
 
-        else if(userInput == 'p') {
+        else if(userInput == '3') {
             if(vs.ordersExistForLocationID(_locationID)){
               uf.clearScreen();
               cout << "HOME/DELIVERY/MARK PAID" << endl << endl;
@@ -56,7 +56,7 @@ void deliveryUI::displayDeliveryMenu(){
             uf.pressEnter();
         }
 
-        else if(userInput == 'd') {
+        else if(userInput == '4') {
             if(vs.ordersExistForLocationID(_locationID)){
               uf.clearScreen();
               cout << "HOME/DELIVERY/MARK DELIVERED" << endl << endl;

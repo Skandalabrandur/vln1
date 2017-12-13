@@ -1,3 +1,2 @@
-Breadsticks 500
-Sauce 100
-Garlicoil 5
+CocaCola 350
+Breadsticks 490

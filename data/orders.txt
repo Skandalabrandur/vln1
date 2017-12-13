@@ -1,4 +1,1 @@
-Janet 1 1 p
-Jane 2 1 p
-Joe 3 1 p
-jkl 4 1 p
+Hlynur 1 1 p
