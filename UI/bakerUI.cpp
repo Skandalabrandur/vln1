@@ -110,7 +110,7 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
       if(cin.fail()) {
           cin.clear();    //clear error flags
           cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
-          index = -1;     //select price to continue
+          index = 0;     //select price to continue
       }
   }
   if(index != 0) {

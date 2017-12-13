@@ -95,7 +95,7 @@
 1512566595 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\models\topping.cpp
 	"Topping.h"
 
-1513170916 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.cpp
+1513173031 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\services\orderservice.cpp
 	"orderService.h"
 	"Pizza.h"
 	"locationService.h"
@@ -189,7 +189,7 @@
 1513171654 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\salesui.cpp
 	"salesUI.h"
 
-1513172639 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\bakerui.cpp
+1513173311 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\ui\bakerui.cpp
 	"bakerUI.h"
 
 1512655951 source:c:\users\helga eyþórsdóttir\desktop\verk1\vln1\src\ui\deliveryui.cpp
