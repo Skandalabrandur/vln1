@@ -72,7 +72,7 @@ void pizzaService::createAndAppendMenuPizza() {
   builder += stringfunc.intToString(numberOfToppings) + " ";
 
   for(int i = 0; i < numberOfToppings; i++) {
-    builder += toppings[i].getName();
+    builder += toppings[i].getName() + " ";
   }
 
   fo.appendLineToFile(builder, "data/menuPizzas.txt");
