@@ -86,18 +86,47 @@ void pizzaService::createAndAppendMenuPizza() {
 }
 
 void pizzaService::listMenuPizzas() {
-  fo.printLines("data/menuPizzas.txt");
+  //fo.printLines("data/menuPizzas.txt");
+  vector<string> unProcessedlines = fo.getLinesFromFile("data/menuPizzas.txt");
+  vector<string> lines;
+
+
+  for(int i = 0; i < unProcessedlines.size(); i++) {
+    vector<string> words = stringfunc.split(unProcessedlines.at(i));
+    string builder = words.at(0);
+    for(int j = 2; j < words.size(); j++) {
+      builder += " " + words.at(j);
+    }
+    lines.push_back(builder);
+  }
+
+  vector<string> headers;
+  headers.push_back("Name");
+  headers.push_back("Toppings");
+
+  uf.printItNice(lines, headers);
 }
 
 void pizzaService::listActivePizzas() {
-  fo.printLines("data/activePizzas.txt");
+  //fo.printLines("data/activePizzas.txt");
+  vector<string> lines = fo.getLinesFromFile("data/activePizzas.txt");
+  vector<string> headers;
+  headers.push_back("OrderID");
+  headers.push_back("Name");
+  headers.push_back("Bottom");
+  headers.push_back("BtmSize");
+  headers.push_back("Price");
+  headers.push_back("NrOfToppings");
+  headers.push_back("Status");
+
+  uf.printItNice(lines, headers);
 }
 
 void pizzaService::listFromLocationActivePizzas(int locationID){
     int numPizzas = howManyActivePizzas();
     string location = stringfunc.intToString(locationID);
 
-    for(unsigned int i = 0; i < numPizzas; i++){
+    for(int i = 0; i < numPizzas; i++){
         vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
         if(words[5] == location){
             cout << words[1] << " " << words[2] << " "
@@ -130,7 +159,7 @@ void pizzaService::saveCustomToppings(Pizza pizza){
 vector<Topping> pizzaService::getCustomToppings(int orderID){
     int numProducts = fo.countLines("data/customPizzaToppings.txt");
     vector<Topping> toppings;
-    for(unsigned int i = 0; i < numProducts; i++){
+    for(int i = 0; i < numProducts; i++){
         vector<string> toppingFromFile = fo.getWordsFromLine(i, "data/customPizzaToppings.txt");
         int ID = stringfunc.stringToInt(toppingFromFile[0]);
         if(ID == orderID){
@@ -203,7 +232,7 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
         extraSpaces += " ";
       }
       if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
-        cout << counter << " -\t" << "| " << words[0] << "-";
+        cout << words[0] << " -\t" << "| ";
         cout << words[1] << extraSpaces << "|\t";
         for(int j = 2; j < words.size(); j++) {
           cout << words[j] << " ";
@@ -232,6 +261,39 @@ int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseud
     }
     adjustedIndex++;
   }
+}
+
+void pizzaService::markPizzaAsBakedByOrderIDAndLocation(int orderID, int locationID){
+    int numPizzas = howManyActivePizzas();
+
+    for(int i = 0; i < numPizzas; i++){
+        vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+        int id = stringfunc.stringToInt(orderWords.at(0));
+        int location_id = stringfunc.stringToInt(orderWords.at(5));
+        if(id == orderID && location_id == locationID){
+            setActivePizzaStatus(i, "baked", true);
+        }
+    }
+}
+
+void pizzaService::markPizzaAsUNBakedByOrderIDAndLocation(int orderID, int locationID){
+    int numPizzas = howManyActivePizzas();
+
+    for(int i = 0; i < numPizzas; i++){
+        vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
+        int id = stringfunc.stringToInt(orderWords.at(0));
+        int location_id = stringfunc.stringToInt(orderWords.at(5));
+        if(id == orderID && location_id == locationID){
+            setActivePizzaStatus(i, "baked", false);
+        }
+    }
+}
+
+int pizzaService::getOrderIDForPizza(int index){
+    vector<string> orderWords = fo.getWordsFromLine(index - 1, "data/activePizzas.txt");
+    //orderID is at index 0 in line
+    int orderID = stringfunc.stringToInt(orderWords.at(0));
+    return orderID;
 }
 
 void pizzaService::deleteMenuPizza() {

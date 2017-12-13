@@ -19,7 +19,7 @@ public:
     void viewPizzas();
     void selectAndMarkPizzaAsBaked();
     void selectAndMarkPizzaAsUnbaked();
-    void listByOrders();
+    void listByOrders(bool isReady);
 
 private:
   int _locationID;

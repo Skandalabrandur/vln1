@@ -265,6 +265,7 @@ int orderService::countOrdersFromLocationWithID(int locationID) {
 }
 
 void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
+  //-->Function used in delivery and baker
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
   string comment = comment_service.getCommentTextFromOrderID(order_id);
   if(!comment.empty()) {
@@ -285,11 +286,9 @@ int orderService::howManyOrders() {
 }
 
 int orderService::getOrderID(int index){
-    vector<string> orderWords;
-    orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
+    vector<string> orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
     //orderID is at index 1 in line
-    int orderID;
-    orderID = stringfunc.stringToInt(orderWords.at(1));
+    int orderID = stringfunc.stringToInt(orderWords.at(1));
     return orderID;
 }
 
@@ -338,6 +337,7 @@ void orderService::markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int loc
         int location_id = stringfunc.stringToInt(orderWords.at(5));
         if(id == orderID && location_id == locationID){
             pizza_service.setActivePizzaStatus(i, "delivered", true);
+            moveToLegacyFile(orderID);
         }
     }
 }
@@ -384,12 +384,36 @@ void orderService::listSpecificOrderWithInfo(int order_id) {
 
   string comment = comment_service.getCommentTextFromOrderID(order_id);
   if(!comment.empty()) {
-    cout << "Comment: " << comment << endl << endl;
+    cout << "Comment: " << comment << endl;
+    cout << endl << "------------------------------" << endl << endl;
+  }
+  vector<string> pizzas;
+  for(int i = 0; i < orderPizzas.size(); i++) {
+    pizzas.push_back(orderPizzas[i].toString(false));
+  }
+  vector<string> pizzasHeaders;
+  pizzasHeaders.push_back("OrderID");
+  pizzasHeaders.push_back("Pizza Name");
+  pizzasHeaders.push_back("Bottom");
+  pizzasHeaders.push_back("BtmType");
+  pizzasHeaders.push_back("Price");
+  pizzasHeaders.push_back("LocationID");
+  pizzasHeaders.push_back("Status...");
+  uf.printItNice(pizzas, pizzasHeaders);
+  cout << endl << endl << "------------------------------" << endl << endl;
+
+
+  vector<AdditionalProduct> orderProducts = additionalProduct_service.getSavedProductFromOrderID(order_id);
+  vector<string> products;
+  for(int i = 0; i < orderProducts.size(); i++) {
+    products.push_back(orderProducts.at(i).toString());
   }
 
-  for(int i = 0; i < orderPizzas.size(); i++) {
-    cout << orderPizzas[i].toString(false) << endl;
-  }
+  vector<string> productsHeaders;
+  productsHeaders.push_back("Name");
+  productsHeaders.push_back("Price");
+  uf.printItNice(products, productsHeaders);
+
 }
 
 int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){

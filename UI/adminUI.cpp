@@ -49,7 +49,7 @@ void adminUI::displayAdminMenu() {
 
 void adminUI::displayPizzaMenu() {
   char userInput;
-    
+
   while(userInput != 'b') {
     do {
         uf.clearScreen();
@@ -130,6 +130,7 @@ void adminUI::displayToppingMenu() {
     if(userInput == '2') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
+        cout << "HOME/ADMIN/MANAGE TOPPINGS/DELETE TOPPING" << endl << endl;
         topping_service.deleteTopping();
       } else {
         cout << "No toppings exist!" << endl;
@@ -191,6 +192,7 @@ void adminUI::displayLocationMenu() {
         if(userInput == '3') {
           if(vs.locationsExist()) {
             uf.clearScreen();
+            cout << "HOME/ADMIN/DELETE LOCATION" << endl << endl;
             location_service.deleteLocation();
           } else {
               cout << "No locations exist!" << endl;
@@ -222,7 +224,6 @@ void adminUI::displayAdditionalProductsMenu(){
             cout << "HOME/ADMIN/MANAGE ADDITIONAL PRODUCTS/CREATE NEW PRODUCT" << endl << endl;
             additionalProduct_service.createNewAdditionalProduct();
             uf.pressEnter();
-            uf.clearScreen();
         }
 
         if(userInput == '2') {
@@ -232,20 +233,19 @@ void adminUI::displayAdditionalProductsMenu(){
             additionalProduct_service.listAdditionalProducts();
           } else {
             cout << "No additional products exist!" << endl;
-            uf.pressEnter();
-            uf.clearScreen();
           }
+          uf.pressEnter();
         }
 
         if(userInput == '3') {
           if(vs.addProductsExist()) {
             uf.clearScreen();
+            cout << "HOME/ADMIN/DELETE ADDITIONAL PRODUCTS" << endl << endl;
             additionalProduct_service.deleteAdditionalProduct();
           } else {
             cout << "No additional products exist!" << endl;
           }
           uf.pressEnter();
-          uf.clearScreen();
         }
     }
 }
