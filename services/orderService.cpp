@@ -279,18 +279,18 @@ void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int locat
   }
   for(int i = 0; i < orderPizzas.size(); i++) {
     if(orderPizzas[i].getStoreID() == location_ID){
-        cout << orderPizzas[i].toString(false);
-
-        if(isDelivery){
-            vector<AdditionalProduct> products = additionalProduct_service.getSavedProductFromOrderID(order_id);
-            for(unsigned int i = 0; i < products.size(); i++){
-                cout << " " << products[i].toString();
-            }
-            cout << ". Total Price: " << getOrderPrice(order_id) << endl;
-        } else{
-            cout << endl;
-        }
+        cout << orderPizzas[i].toString(false) << endl;
     }
+  }
+
+  if(isDelivery){
+    vector<AdditionalProduct> products = additionalProduct_service.getSavedProductFromOrderID(order_id);
+    for(unsigned int i = 0; i < products.size(); i++){
+
+        cout << products[i].toString() << " ";
+
+    }
+    cout << "\t Total Price: " << getOrderPrice(order_id) << endl;
   }
 }
 
