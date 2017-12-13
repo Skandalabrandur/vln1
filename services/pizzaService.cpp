@@ -35,9 +35,9 @@ void pizzaService::createAndAppendMenuPizza() {
   int numberOfToppings;
   vector<Topping> toppings;
 
-  cout << "Enter name of pizza or 0 to cancel: ";
+  cout << "Enter name of pizza (c to cancel): ";
   cin >> name;
-    if(name != "0"){
+    if(name != "c"){
   do {
     uf.clearScreen();
     cout << "Enter number of toppings: ";

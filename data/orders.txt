@@ -1,1 +1,3 @@
 Hlynur 1 1 p
+Test 3 2 d
+Test 4 3 p

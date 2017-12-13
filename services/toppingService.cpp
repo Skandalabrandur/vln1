@@ -25,9 +25,9 @@ void toppingService::createNewTopping() {
   string name;
   int price;
 
-  cout << "Enter topping name or 0 to cancel: ";
+  cout << "Enter topping name (c to cancel): ";
   cin >> name;
-    if(name != "0"){
+    if(name != "c"){
   do {
     uf.clearScreen();
     cout << "Enter topping price: ";

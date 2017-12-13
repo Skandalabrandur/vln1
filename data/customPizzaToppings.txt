@@ -1,0 +1,7 @@
+3 Pepperoni 100
+3 Mozzarella 250
+4 Pepperoni 100
+4 Mozzarella 250
+4 Jalapeno 150
+4 Skinka 50
+4 Hvitlaukur 100

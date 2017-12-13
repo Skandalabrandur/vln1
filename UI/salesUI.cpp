@@ -8,7 +8,7 @@ void salesUI::displaySalesMenu() {
       cout << "HOME/SALES" << endl << endl;
       cout << "1 - PLACE ORDER" << endl;
       cout << "2 - LIST ORDERS" << endl;
-      cout << "3 - MARK ORDER AS DELIVERED" << endl;
+      cout << "3 - MARK ORDER AS PAID" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
@@ -53,7 +53,7 @@ void salesUI::selectAndMarkOrderAsPaid(){
       //TO FIX: If user inputs a number that is not on the location list
       //but is an order in the file it will get changed
 
-      listOrders();
+      order_service.listOrderOverviewWithIndices();
       cout << "Please select a order to mark as PAID (0 to quit): ";
       cin >> index;
   }

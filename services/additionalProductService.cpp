@@ -12,9 +12,9 @@ void additionalProductService::listAdditionalProductsWithIndexes(){
 void additionalProductService::createNewAdditionalProduct(){
     string name;
 
-    cout << "Enter product name or 0 to cancel: ";
+    cout << "Enter product name (c to cancel): ";
     cin >> name;
-    if(name != "0"){
+    if(name != "c"){
     int price = 0;
 
     do {

@@ -29,9 +29,9 @@ void locationService::listLocationsWithIndex() {
 void locationService::createNewLocation() {
     string name;
 
-    cout << "Enter location name or 0 to cancel: ";
+    cout << "Enter location name (c to cancel): ";
     cin >> name;
-    if(name != "0"){
+    if(name != "c"){
     //Find location id
     int id = howManyLocations() + 1;
     cout << name << " ID is " << id << endl;

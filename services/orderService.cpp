@@ -32,14 +32,16 @@ void orderService::createNewOrder() {
   int orderID = 1 + fo.countLines("data/orders.txt");
 
   cout << "Creating order number " << orderID << endl << endl;
-  cout << "Enter customer name: ";
+    cout << "Enter customer name (c to cancel): ";
   cin >> customer;
+    if(customer != "c"){
 
-  cout << "Select location: " << endl;
+  cout << endl << "Select location: " << endl;
   location_service.listLocationsWithIndex();
 
-  int location;
+  int location = 0;
   do {
+      uf.prompt();
     cin >> location;
 
     if(cin.fail()) {
@@ -53,7 +55,7 @@ void orderService::createNewOrder() {
   bool pickUp;
   int choice = 0;
   do{
-      cout << "Select:" << endl;
+      cout << endl << "Select:" << endl;
       cout << "1 - Pick up" << endl;
       cout << "2 - Delivery" << endl;
       cin >> choice;
@@ -69,7 +71,7 @@ void orderService::createNewOrder() {
   //Make the order
   Order order(customer, orderID, location, pickUp);
 
-  cout << "Include comment? (y/n)" << endl;
+  cout << endl << "Include comment? (y/n)" << endl;
   char commentSelection = ' ';
   do {
     cin >> commentSelection;
@@ -79,7 +81,7 @@ void orderService::createNewOrder() {
 
   if(commentSelection == 'y') {
     string comment = "";
-    cout << "Comment: ";
+    cout << endl << "Comment: ";
     cin >> ws;  //flush whitespace and \n in cin buffer before getline()
     getline(cin, comment);
     order.setComment(comment);
@@ -87,7 +89,7 @@ void orderService::createNewOrder() {
 
 
   int numberOfPizzas;
-  cout << "Number of pizzas for order: ";
+  cout << endl << "Number of pizzas for order: ";
 
   do {
     cin >> numberOfPizzas;
@@ -104,7 +106,7 @@ void orderService::createNewOrder() {
     char yn;
     bool legitChoice;
     do {
-      cout << "Pizza off menu? (y/n) " << endl;
+      cout << endl << "Pizza off menu? (y/n) " << endl;
       cin >> yn;
       legitChoice = false;
 
@@ -194,6 +196,7 @@ void orderService::createNewOrder() {
   uf.clearScreen();
   cout << "Placed an order of " << numberOfPizzas << " pizzas for customer ";
   cout << customer << ". Price: " << orderPrice <<  endl;
+    }
 }
 
 void orderService::listOrderOverviewWithIndices() {
