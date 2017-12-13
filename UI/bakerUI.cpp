@@ -103,8 +103,13 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {
     pizza_service.listActiveWithIndicesForBakeryAndLocation(false, _locationID);
-    cout << "Please select a pizza to mark as BAKED (0 to cancel): ";
+    cout << "Please select a pizza to mark as BAKED (c to cancel): ";
     cin >> index;
+
+    if(cin.fail()) {
+        cin.clear(); //clear error flags
+        index = 0;  //appropriate quit condition
+    }
   }
   if(index != 0) {
   int adjustedIndex = pizza_service.adjustBakerIndexForBaked(false, _locationID, index);
@@ -117,8 +122,13 @@ void bakerUI::selectAndMarkPizzaAsUnbaked() {
   int index = -1;
   while(index < 0 || index > pizza_service.howManyActivePizzas()) {
     pizza_service.listActiveWithIndicesForBakeryAndLocation(true, _locationID);
-    cout << "Please select a pizza to mark as UNBAKED (0 to cancel): ";
+    cout << "Please select a pizza to mark as UNBAKED (c to cancel): ";
     cin >> index;
+
+    if(cin.fail()) {
+        cin.clear(); //clear error flags
+        index = 0;   //appropriate quit condition
+    }
   }
   if(index != 0) {
     int adjustedIndex = pizza_service.adjustBakerIndexForBaked(true, _locationID, index);
@@ -134,7 +144,13 @@ void bakerUI::listByOrders() {
   cout << "Select an order for more info: ";
   cin >> selection;
 
-  int adjustedSelection = order_service.getOrderIdFromIndexSelectionForLocation(selection, _locationID);
-  uf.clearScreen();
-  order_service.listSpecificOrderWithInfo(adjustedSelection);
+  if(cin.fail()) {
+    cin.clear();    //clear error flags
+    selection = 0;  //appropriate quit condition
+  }
+  if(selection != 0){
+      int adjustedSelection = order_service.getOrderIdFromIndexSelectionForLocation(selection, _locationID);
+      uf.clearScreen();
+      order_service.listSpecificOrderWithInfo(adjustedSelection);
+  }
 }

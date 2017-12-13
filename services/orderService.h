@@ -34,6 +34,7 @@ public:
   int getOrderID(int index);
   int getOrderLocationID(int index);
   int getOrderPrice(Order order);
+  int countOrdersFromLocationWithID(int locationID);
 
   void markPizzaAsPaidByOrderIDAndLocation(int OrderID, int locationID);
   void markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int locationID);

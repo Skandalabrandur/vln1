@@ -71,13 +71,9 @@ void pizzaService::createAndAppendMenuPizza() {
   builder += name + " ";
   builder += stringfunc.intToString(numberOfToppings) + " ";
 
-  int totalPrice = 0;
   for(int i = 0; i < numberOfToppings; i++) {
-    builder += toppings[i].getName() + " ";
-    totalPrice += toppings[i].getPrice();
+    builder += toppings[i].getName();
   }
-
-  builder += stringfunc.intToString(totalPrice);
 
   fo.appendLineToFile(builder, "data/menuPizzas.txt");
   uf.clearScreen();

@@ -1,6 +1,1 @@
-a 1 1 p
-b 2 1 p
-c 3 2 p
-g 4 3 p
-t 5 2 p
-Lalalal 6 1 p
+aaaaaa 2 1 p
