@@ -125,24 +125,53 @@ void pizzaService::listActivePizzas() {
 }
 
 void pizzaService::listFromLocationActivePizzas(int locationID){
-    int numPizzas = howManyActivePizzas();
-    string location = stringfunc.intToString(locationID);
-
-    for(int i = 0; i < numPizzas; i++){
+    int lineCount = fo.countLines("data/activePizzas.txt");
+    int nof;    //number of fields/words per line
+    
+    //let's sacrifice speed for beauty
+    int longestPizzaNameLength = 0;
+    for(int i = 0; i < lineCount; i++) {
         vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-        if(words[5] == location){
-            cout << words[1] << " " << words[2] << " "
-            << words[3] << " " << words[6] << " ";
-
-
-            if(words[1] == "custom"){
-                int orderID = stringfunc.stringToInt(words[0]);
-                vector<Topping> toppings = getCustomToppings(orderID);
-                for(unsigned int i = 0; i < toppings.size(); i++){
-                    cout << toppings[i].getName() << " ";
-                }
+        if((words[1].length() > longestPizzaNameLength) && stringfunc.stringToInt(words[5]) == locationID) {
+            longestPizzaNameLength = words[1].length();
+            nof = words.size();
+        }
+    }
+    
+    int counter = 1;
+    for(int i = 0; i < lineCount; i++) {
+        vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+        
+        //we know that baked is in 3rd position from right
+        //so words.count - 3 is the index for baked
+        
+        //padding for equal display length
+        string extraSpaces = " ";
+        if(stringfunc.stringToInt(words[5]) == locationID) {
+            for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
+                extraSpaces += " ";
             }
-            cout << endl;
+                cout << words[0] << " -\t" << "| ";
+                cout << words[2] << " |\t";
+                cout << words[3] << " |\t";
+                if(words[1] == "custom"){
+                    int orderID = stringfunc.stringToInt(words[0]);
+                    vector<Topping> toppings = getCustomToppings(orderID);
+                    for(unsigned int i = 0; i < toppings.size(); i++){
+                        cout << toppings[i].getName();
+                        if(i+1 != toppings.size()){
+                            cout << " - ";
+                        }
+                    }
+                }else{
+                    cout << words[1];
+                }
+                
+                cout << "\t|\t";
+                
+                cout << words[4] << " " << words[6];
+                cout << endl;
+                counter++;
         }
     }
 
@@ -235,10 +264,24 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
       }
       if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
         cout << words[0] << " -\t" << "| ";
-        cout << words[1] << extraSpaces << "|\t";
-        for(int j = 2; j < words.size(); j++) {
-          cout << words[j] << " ";
-        }
+          cout << words[2] << " |\t";
+          cout << words[3] << " |\t";
+          if(words[1] == "custom"){
+              int orderID = stringfunc.stringToInt(words[0]);
+              vector<Topping> toppings = getCustomToppings(orderID);
+              for(unsigned int i = 0; i < toppings.size(); i++){
+                  cout << toppings[i].getName();
+                  if(i+1 != toppings.size()){
+                      cout << " - ";
+                  }
+              }
+          }else{
+              cout << words[1];
+          }
+          
+          cout << "\t|\t";
+          
+          cout << words[4] << " " << words[6];
         cout << endl;
         counter++;
       }
