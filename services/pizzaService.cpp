@@ -128,6 +128,7 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
     int lineCount = fo.countLines("data/activePizzas.txt");
     vector<string> lines;
     int counter = 1;
+
     for(int i = 0; i < lineCount; i++) {
         vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
 
@@ -189,44 +190,35 @@ void pizzaService::listMenuPizzasWithIndices() {
 
 void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int locationID) {
   int lineCount = fo.countLines("data/activePizzas.txt");
-  int nof;    //number of fields/words per line
-
-  //let's sacrifice speed for beauty
-  int longestPizzaNameLength = 0;
-  for(int i = 0; i < lineCount; i++) {
-    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-    if((words[1].length() > longestPizzaNameLength) && stringfunc.stringToInt(words[5]) == locationID) {
-      longestPizzaNameLength = words[1].length();
-      nof = words.size();
-    }
-  }
+  vector<string> lines;
 
   int counter = 1;
   for(int i = 0; i < lineCount; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+      if(stringfunc.stringToInt(words[5]) == locationID) {
 
-    //we know that baked is in 3rd position from right
-    //so words.count - 3 is the index for baked
-
-    //padding for equal display length
-    string extraSpaces = " ";
-    if(stringfunc.stringToInt(words[5]) == locationID) {
-      for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
-        extraSpaces += " ";
-      }
-      if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
-        cout << counter << " -\t" << "| ";
-        cout << words[2] << " |\t";
-        cout << words[3] << " |\t";
-        cout << words[1];
-        cout << "\t|\t";
-
-        cout << words[4] << " " << words[6];
-        cout << endl;
+      if((baked && words[words.size() - 3] == "baked") || (!baked && words[words.size() - 3] == "unbaked")) {
+        string builder = stringfunc.intToString(counter);
+        builder += " " + words[0];
+        builder += " " + words[2];
+        builder += " " + words[3];
+        builder += " " + words[1];
+        builder += " " + words[6];
+        lines.push_back(builder);
         counter++;
       }
     }
   }
+
+  vector<string> headers;
+  headers.push_back("SELECTION");
+  headers.push_back("OrderID");
+  headers.push_back("Bottom");
+  headers.push_back("BtmSize");
+  headers.push_back("Pizza Name");
+  headers.push_back("Status");
+
+  uf.printItNice(lines, headers);
 }
 
 int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseudoIndex) {
