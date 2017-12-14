@@ -29,7 +29,7 @@ void additionalProductService::createNewAdditionalProduct(){
       if(cin.fail()) {
         cin.clear();    //reset error flags
         cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
-        price = -1;     //set price to continue
+        price = 0;     //set price to cancel
       }
     } while(price < 0);
 
@@ -90,28 +90,28 @@ void additionalProductService::deleteAdditionalProduct() {
   while(selection < 0 || selection > howManyAdditionalProductsExist) {
     uf.clearScreen();
     listAdditionalProductsWithIndexes();
-    cout << endl << "Select a topping to delete or 0 to cancel: ";
+    cout << endl << "Select a topping to delete (c to cancel): ";
     cin >> selection;
     if(cin.fail()) {
       cin.clear();      //reset error flags
       cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
-      selection = -1;   //set selection to continue
+      selection = -0;   //set selection for cancellation
     }
   }
-    if( selection > 0){
-  vector<string> additionalProductsFile = fo.getLinesFromFile("data/additionalProducts.txt");
+  if( selection > 0){
+    vector<string> additionalProductsFile = fo.getLinesFromFile("data/additionalProducts.txt");
 
-  //Get name of deleted product
-  //reminder: split returns a vector from a string
-  string deletedAdditionalProductName =  stringfunc.split(additionalProductsFile.at(selection-1)).at(0);
+    //Get name of deleted product
+    //reminder: split returns a vector from a string
+    string deletedAdditionalProductName =  stringfunc.split(additionalProductsFile.at(selection-1)).at(0);
 
-  //erase selection from the vector representing the file
-  //file is 0-indexed, selection is 1-indexed
-  additionalProductsFile.erase(additionalProductsFile.begin() + (selection-1));
+    //erase selection from the vector representing the file
+    //file is 0-indexed, selection is 1-indexed
+    additionalProductsFile.erase(additionalProductsFile.begin() + (selection-1));
 
-  //overwrite
-  fo.writeFile(additionalProductsFile, "data/additionalProducts.txt");
+    //overwrite
+    fo.writeFile(additionalProductsFile, "data/additionalProducts.txt");
 
-  cout << "Deleted: " << deletedAdditionalProductName << endl;
-    }
+    cout << "Deleted: " << deletedAdditionalProductName << endl;
+  }
 }

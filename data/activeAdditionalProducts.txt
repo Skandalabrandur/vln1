@@ -1,3 +1,6 @@
+1 CocaColaZero 350
+2 CocaCola 350
+2 CocaCola 350
 4 CocaCola 350
 4 Breadsticks 490
 5 CocaCola 350
@@ -5,6 +8,3 @@
 7 CocaCola 350
 7 CocaCola 350
 7 Breadsticks 490
-8 CocaCola 350
-8 Breadsticks 500
-8 Sauce 100

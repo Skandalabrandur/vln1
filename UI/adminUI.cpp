@@ -30,7 +30,13 @@ void adminUI::displayAdminMenu() {
     userInput = tolower(userInput);
 
     if(userInput == '1') {
-      displayPizzaMenu();
+      if(vs.toppingsExist() || vs.menuPizzasExist()) {
+        displayPizzaMenu();
+      } else {
+        cout << "Neither toppings nor menu-pizzas exist." << endl;
+        cout << "Returning to admin menu..." << endl;
+        uf.pressEnter();
+      }
     }
 
     if(userInput == '2') {
@@ -127,7 +133,7 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
     }
 
-    if(userInput == '2') {
+    if(userInput == '3') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE TOPPINGS/DELETE TOPPING" << endl << endl;
@@ -139,7 +145,7 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
     }
 
-    if(userInput == '3') {
+    if(userInput == '2') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE TOPPINGS/LIST TOPPINGS" << endl << endl;

@@ -1,3 +1,12 @@
-CocaCola 350
-Breadsticks 500
-Sauce 100
+﻿Sprite 350
+Fanta 350
+Toppur 290
+LemonToppur 290
+Braudstangir 400
+Ostagott 500
+Sukkuladigott 500
+Braudstangasosa 100
+HotSauce 200
+HoneyMustard 200
+BBQsósa 200
+Gradostasosa 200

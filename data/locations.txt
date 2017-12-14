@@ -1,3 +1,10 @@
 Skeifan 1
-Keflavik 2
+Mjodd 2
 Selfoss 3
+Akureyri 4
+Egilsstaðir 5
+Ísafjordur 6
+Vestmannaeyjar 7
+Hofn 8
+Neskaupstaður 9
+Grundarfjordur 10
