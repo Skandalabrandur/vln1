@@ -87,3 +87,33 @@ bool validationService::ordersExistForLocationID(int locationID) {
 
   return (counter > 0);
 }
+
+bool validationService::readyOrdersExistForLocationID(int locationID) {
+  vector<string> activePizzas = fo.getLinesFromFile("data/activePizzas.txt");
+  vector<string> orders = fo.getLinesFromFile("data/orders.txt");
+
+  for(int i = 0; i < orders.size(); i++) {
+    vector<string> order = stringfunc.split(orders.at(i));
+    string orderID = order.at(1);
+    int readyPizzas = 0;
+    int totalPizzas = 0;
+
+    for(int j = 0; j < activePizzas.size(); j++) {
+        string builder;
+        vector<string> words = stringfunc.split(activePizzas.at(j));
+        if(orderID == words.at(0)) {
+          builder = words.at(words.size() - 3) + words.at(words.size() - 2);
+          totalPizzas++;
+
+          if(builder == "bakedpaid") {
+            readyPizzas++;
+          }
+        }
+
+    }
+    if (readyPizzas != 0 && (readyPizzas == totalPizzas)) {
+      return true;
+    }
+  }
+  return false;
+}

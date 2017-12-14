@@ -34,13 +34,13 @@ void deliveryUI::displayDeliveryMenu(){
         }
 
         else if(userInput == '2') {
-          if(vs.ordersExistForLocationID(_locationID)){
+          if(vs.readyOrdersExistForLocationID(_locationID)){
               uf.clearScreen();
               cout << "HOME/DELIVERY/LIST READY ORDERS" << endl << endl;
               //True to show only ready orders
               viewOrders(true);
           } else{
-              cout << "No orders exist for your location!" << endl;
+              cout << "No ready orders exist for your location!" << endl;
               uf.pressEnter();
           }
         }
@@ -57,7 +57,7 @@ void deliveryUI::displayDeliveryMenu(){
         }
 
         else if(userInput == '4') {
-            if(vs.ordersExistForLocationID(_locationID)){
+            if(vs.readyOrdersExistForLocationID(_locationID)){
               uf.clearScreen();
               cout << "HOME/DELIVERY/MARK DELIVERED" << endl << endl;
               selectAndMarkOrderAsDelivered();
