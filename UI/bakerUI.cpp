@@ -155,7 +155,7 @@ void bakerUI::listByOrders(bool isReady) {
         }
         if(choice >= 1 && choice <= numOrders){
             uf.clearScreen();
-            int orderID = order_service.getOrderID(choice);
+            int orderID = order_service.getOrderIdFromIndexSelectionForLocation(choice, _locationID);
             order_service.listSpecificOrderFromLocationWithInfo(orderID, _locationID);
             uf.pressEnter();
             uf.clearScreen();
