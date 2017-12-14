@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-1 Baka pítsu extra lengi
-2 Koma inn um aðalinngang, Secutiry hleypir inn
-=======
->>>>>>> c8f4b6b6cec028ca87f495a9365a48d84387efbd

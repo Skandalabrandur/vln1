@@ -6,6 +6,7 @@
 #include "locationService.h"
 #include "additionalProductService.h"
 #include "validationService.h"
+#include "orderService.h"
 
 class adminUI {
 public:
@@ -22,6 +23,7 @@ private:
   toppingService topping_service;
   locationService location_service;
   additionalProductService additionalProduct_service;
+  orderService order_service;
   validationService vs;
 };
 

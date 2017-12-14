@@ -20,9 +20,11 @@ public:
   bool locationsExist();
   bool ordersExist();
   bool addProductsExist();
+  bool legacyFileExists();
   bool pizzasExistForOrderID(int orderID);
   bool pizzasExistForLocationID(int locationID);
   bool ordersExistForLocationID(int locationID);
+
 
 private:
   fileOperations fo;

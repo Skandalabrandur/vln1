@@ -22,10 +22,11 @@ void adminUI::displayAdminMenu() {
       cout << "2 - MANAGE TOPPINGS" << endl;
       cout << "3 - MANAGE STORE LOCATIONS" << endl;
       cout << "4 - MANAGE ADDITIONAL PRODUCTS" << endl;
+      cout << "5 - VIEW LEGACY ORDERS" << endl;
       cout << "B - BACK" << endl;
       cout << endl << uf.prompt();
       cin >> userInput;
-    } while(!uf.goodInput(userInput, "1234b"));
+    } while(!uf.goodInput(userInput, "12345b"));
 
     userInput = tolower(userInput);
 
@@ -50,6 +51,15 @@ void adminUI::displayAdminMenu() {
     if(userInput == '4') {
       displayAdditionalProductsMenu();
     }
+
+    if(userInput == '5') {
+      if(vs.legacyFileExists()) {
+        order_service.printLegacyFile();
+      } else {
+        cout << "No legacy file exists!" << endl;
+      }
+      uf.pressEnter();
+    }
   }
 }
 
@@ -58,7 +68,7 @@ void adminUI::displayPizzaMenu() {
 
   while(userInput != 'b') {
     do {
-        uf.clearScreen();
+      uf.clearScreen();
       userInput = 'i'; //for invalid so that we don't end up with an infinte loop
       cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl;
       cout << "1 - CREATE A NEW MENU PIZZA" << endl;
@@ -104,7 +114,7 @@ void adminUI::displayPizzaMenu() {
         cout << "No menu pizzas exist!" << endl;
       }
       uf.pressEnter();
-        uf.clearScreen();
+      uf.clearScreen();
     }
   }
 }
@@ -137,7 +147,7 @@ void adminUI::displayToppingMenu() {
       if(vs.toppingsExist()) {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE TOPPINGS/DELETE TOPPING" << endl << endl;
-        topping_service.deleteTopping();
+        topping_service.listToppings();
       } else {
         cout << "No toppings exist!" << endl;
       }
@@ -149,7 +159,7 @@ void adminUI::displayToppingMenu() {
       if(vs.toppingsExist()) {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE TOPPINGS/LIST TOPPINGS" << endl << endl;
-        topping_service.listToppings();
+        topping_service.deleteTopping();
       } else {
         cout << "No toppings exist!" << endl;
       }

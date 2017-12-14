@@ -27,6 +27,7 @@ public:
   Pizza getMenuPizza(int index);
   void storeOrderPizza(Pizza pizza);
   void setActivePizzaStatus(int index, string field, bool truthValue);
+  bool isDelivered(int index);
   void listFromLocationActivePizzas(int locationID);
   void saveCustomToppings(Pizza pizza);
   vector<Topping> getCustomToppings(int orderID);

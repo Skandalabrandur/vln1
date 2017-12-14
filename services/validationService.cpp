@@ -33,7 +33,11 @@ bool validationService::ordersExist() {
 }
 
 bool validationService::addProductsExist() {
-  return (fo.countLines("data/additionalProducts.txt"));
+  return (fo.countLines("data/additionalProducts.txt") != 0);
+}
+
+bool validationService::legacyFileExists() {
+  return (fo.countLines("data/legacy.txt") != 0);
 }
 
 bool validationService::pizzasExistForOrderID(int orderID) {
