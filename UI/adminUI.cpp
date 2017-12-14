@@ -112,8 +112,8 @@ void adminUI::displayPizzaMenu() {
         pizza_service.deleteMenuPizza();
       } else {
         cout << "No menu pizzas exist!" << endl;
+        uf.pressEnter();
       }
-      uf.pressEnter();
       uf.clearScreen();
     }
   }
