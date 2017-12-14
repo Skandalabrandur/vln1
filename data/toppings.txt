@@ -1,6 +1,0 @@
-Jalapeno 150
-Hvitlaukur 100
-Tomato 30
-Broccoli 15
-Banana 30
-Paprika 50

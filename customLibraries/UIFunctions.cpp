@@ -109,16 +109,17 @@ void UIFunctions::printItNice(vector<string> lines, vector<string> headers) {
   for(int i = 0; i < lines.size(); i++) {
     vector<string> words = stringfunc.split(lines.at(i));
     for(int j = 0; j < words.size(); j++) {
-      cout << "|";
-      cout << " " << words.at(j) << " ";
       if(j < headers.size()) {
+        cout << "|";
+        cout << " " << words.at(j) << " ";
         int spaceRemainder = spaceFormatting.at(j) - words.at(j).size();
         for(int k = spaceRemainder; k > 0; k--) {
           cout << " ";
         }
+      } else {
+        cout << ", " << words.at(j);
       }
     }
-    cout << "|";
     cout << endl;
   }
 }

@@ -44,6 +44,7 @@ public:
   void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID, bool isDelivery);
   void deleteOrderWithOrderID(int orderID);
   void moveToLegacyFile(int orderID);
+  void printLegacyFile();
 
 private:
   fileOperations fo;

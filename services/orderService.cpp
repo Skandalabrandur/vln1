@@ -350,7 +350,9 @@ void orderService::markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int loc
         int location_id = stringfunc.stringToInt(orderWords.at(5));
         if(id == orderID && location_id == locationID){
             pizza_service.setActivePizzaStatus(i, "delivered", true);
-            moveToLegacyFile(orderID);
+            if(pizza_service.isDelivered(i)) {
+              moveToLegacyFile(orderID);
+            }
         }
     }
 }
@@ -532,4 +534,8 @@ void orderService::moveToLegacyFile(int orderID) {
   //once moved, delete from relevant files
   deleteOrderWithOrderID(orderID);
 
+}
+
+void orderService::printLegacyFile() {
+  fo.printLines("data/legacy.txt");
 }

@@ -304,28 +304,31 @@ void pizzaService::deleteMenuPizza() {
   while(selection < 0 || selection > menuSize) {
     uf.clearScreen();
     listMenuPizzasWithIndices();
-    cout << endl << "Select a pizza to delete from menu (c to cancel): ";
+    cout <<  "Select a pizza to delete from menu (c to cancel): " << endl;
+      uf.pressEnter();
     cin >> selection;
     if(cin.fail()) {    //c er ekki int
       cin.clear();      //reset error flags
-      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+      //Don't dump input here
+      //The buffer will contain '/n' and skip over the press Enter to continue
+      //which is convenient for cancellation
       selection = 0;   //set selection for cancellation
     }
   }
   if(selection > 0){
-  //Get this info before delete to show user later
-  Pizza selectedPizza = getMenuPizza(selection-1);  //selection is 1-based
+    //Get this info before delete to show user later
+    Pizza selectedPizza = getMenuPizza(selection-1);  //selection is 1-based
 
-  vector<string> menuPizzaFile = fo.getLinesFromFile("data/menuPizzas.txt");
+    vector<string> menuPizzaFile = fo.getLinesFromFile("data/menuPizzas.txt");
 
-  //erase selection from the vector representing the file
-  menuPizzaFile.erase(menuPizzaFile.begin() + (selection-1));
+    //erase selection from the vector representing the file
+    menuPizzaFile.erase(menuPizzaFile.begin() + (selection-1));
 
-  //overwrite
-  fo.writeFile(menuPizzaFile, "data/menuPizzas.txt");
+    //overwrite
+    fo.writeFile(menuPizzaFile, "data/menuPizzas.txt");
 
-  cout << "Deleted: " << selectedPizza.getName() << endl;
-    }
+    cout << "Deleted: " << selectedPizza.getName() << endl;
+  }
 }
 
 int pizzaService::howManyPizzasOnMenu() {
@@ -411,7 +414,13 @@ void pizzaService::setActivePizzaStatus(int index, string field, bool truthValue
 
   fo.writeFile(lines, "data/activePizzas.txt");
 
-  cout << "New pizza status: " << lineReplacement << endl;
+  cout << "Pizza status: " << lineReplacement << endl;
+}
+
+bool pizzaService::isDelivered(int index) {
+  vector<string> words = fo.getWordsFromLine(index, "data/activePizzas.txt");
+
+  return (words[(words.size() - 1)] == "delivered");
 }
 
 
