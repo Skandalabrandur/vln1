@@ -110,7 +110,7 @@ void deliveryUI::viewOrders(bool isReady){
         }
         if(choice >= 1 && choice <= numOrders){
             uf.clearScreen();
-            int orderID = order_service.getOrderID(choice);
+            int orderID = order_service.getOrderIdFromIndexSelectionForLocation(choice, _locationID);
             order_service.deliveryListSpecificOrderFromLocationWithInfo(orderID, _locationID);
             uf.pressEnter();
             uf.clearScreen();
@@ -131,7 +131,7 @@ void deliveryUI::selectAndMarkOrderAsPaid(){
             index = 0;    //appropriate quit condition
         }
     }
-    int orderID = order_service.getOrderID(index);
+    int orderID = order_service.getOrderIdFromIndexSelectionForLocation(index, _locationID);
     order_service.markPizzaAsPaidByOrderIDAndLocation(orderID, _locationID);
 }
 
@@ -148,6 +148,6 @@ void deliveryUI::selectAndMarkOrderAsDelivered(){
             index = 0;      //appropriate quit condition
         }
     }
-    int orderID = order_service.getOrderID(index);
+    int orderID = order_service.getOrderIdFromIndexSelectionForLocation(index, _locationID);
     order_service.markPizzaAsDeliveredByOrderIDAndLocation(orderID, _locationID);
 }

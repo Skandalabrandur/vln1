@@ -219,31 +219,30 @@ void orderService::listOrderOverviewWithIndicesForLocation(int locationID) {
 void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
   vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
   int nol = fo.countLines("data/orders.txt");
-  int counter = 1;
+  int counter = 0;
   for(int i = 0; i < nol; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/orders.txt");
     Order order = convertVector(words);
+    int orderID = order.getOrderID();
     if(order.getLocationID() == locationID){
+        counter++;
         //If we only want show ready orders
         if(isReady){
             bool ready = true;
-            vector<Pizza> orderPizzas = getPizzasFromOrderId(i + 1);
+            vector<Pizza> orderPizzas = getPizzasFromOrderId(orderID);
             for(int i = 0; i < orderPizzas.size(); i++) {
                 if(!(orderPizzas[i].isBaked())){
                     ready = false;
                 }
             }
             if(ready){
-                //cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
                 cout << counter << " -\t" << order.getCustomer() << endl;
             }
         }
         //Show all orders
         else{
-            //cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
             cout << counter << " -\t" << order.getCustomer() << endl;
         }
-        counter++;
     }
   }
 }
