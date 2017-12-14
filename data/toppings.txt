@@ -1,0 +1,4 @@
+Tomato 100
+Broccoli 50
+Garlic 20
+Spinach 15

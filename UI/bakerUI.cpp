@@ -142,7 +142,7 @@ void bakerUI::selectAndMarkPizzaAsUnbaked() {
 
 void bakerUI::listByOrders(bool isReady) {
     int choice = -1; //So the value is not 0
-    int numOrders = order_service.countOrdersFromLocationWithID(_locationID);
+    int numOrders = order_service.howManyOrders();
     do{
         uf.clearScreen();
         order_service.listOrderFromLocationWithID(_locationID, isReady);
@@ -155,7 +155,8 @@ void bakerUI::listByOrders(bool isReady) {
         }
         if(choice >= 1 && choice <= numOrders){
             uf.clearScreen();
-            order_service.listSpecificOrderFromLocationWithInfo(choice, _locationID);
+            int orderID = order_service.getOrderID(choice);
+            order_service.listSpecificOrderFromLocationWithInfo(orderID, _locationID);
             uf.pressEnter();
             uf.clearScreen();
         }
