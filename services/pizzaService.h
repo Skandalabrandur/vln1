@@ -30,7 +30,7 @@ public:
   bool isDelivered(int index);
   void listFromLocationActivePizzas(int locationID);
   void saveCustomToppings(Pizza pizza);
-  vector<Topping> getCustomToppings(int orderID);
+  vector<Topping> getCustomToppings(int orderID, int whatOccurance);
   void deletePizzas(vector<Pizza> pizzas);
   void markPizzaAsBakedByOrderIDAndLocation(int orderID, int locationID);
   void markPizzaAsUNBakedByOrderIDAndLocation(int orderID, int locationID);
