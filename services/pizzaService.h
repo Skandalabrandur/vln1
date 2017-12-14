@@ -25,6 +25,7 @@ public:
   int howManyPizzasOnMenu();
   int howManyActivePizzas();
   int howManyActivePizzasForLocation(int locationID);
+  int howManyActivePizzasForLocationAndStatus(int locationID, string status);
   Pizza getMenuPizza(int index);
   void storeOrderPizza(Pizza pizza);
   void setActivePizzaStatus(int index, string field, bool truthValue);

@@ -102,7 +102,7 @@ void bakerUI::viewPizzas() {
 
 void bakerUI::selectAndMarkPizzaAsBaked() {
   int index = -1;
-  while(index < 0 || index > pizza_service.howManyActivePizzasForLocation(_locationID)) {
+  while(index < 0 || index > pizza_service.howManyActivePizzasForLocationAndStatus(_locationID, "unbaked")) {
     pizza_service.listActiveWithIndicesForBakeryAndLocation(false, _locationID);
     cout << "Please select a pizza to mark as BAKED (c to cancel): ";
     cin >> index;
@@ -122,7 +122,7 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
 
 void bakerUI::selectAndMarkPizzaAsUnbaked() {
   int index = -1;
-  while(index < 0 || index > pizza_service.howManyActivePizzasForLocation(_locationID)) {
+  while(index < 0 || index > pizza_service.howManyActivePizzasForLocationAndStatus(_locationID, "baked")) {
     pizza_service.listActiveWithIndicesForBakeryAndLocation(true, _locationID);
     cout << "Please select a pizza to mark as UNBAKED (c to cancel): ";
     cin >> index;

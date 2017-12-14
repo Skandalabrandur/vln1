@@ -330,6 +330,29 @@ int pizzaService::howManyActivePizzasForLocation(int locationID) {
   return counter;
 }
 
+int pizzaService::howManyActivePizzasForLocationAndStatus(int locationID, string status) {
+  int numberOfLines = fo.countLines("data/activePizzas.txt");
+
+  int counter = 0;
+  int reverseIndex = 1;
+  if(status == "baked" || status == "unbaked") {
+    reverseIndex = 3;
+  }
+  if(status == "paid" || status == "unpaid") {
+    reverseIndex = 2;
+  }
+  for(int i = 0; i < numberOfLines; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+    if(stringfunc.stringToInt(words.at(5)) == locationID) {
+      if(status == words.at(words.size() - reverseIndex)) {
+        counter++;
+      }
+    }
+  }
+
+  return counter;
+}
+
 Pizza pizzaService::getMenuPizza(int index) {
   vector<string> words = fo.getWordsFromLine(index, "data/menuPizzas.txt");
 
