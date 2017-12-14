@@ -35,6 +35,7 @@ public:
   void markPizzaAsBakedByOrderIDAndLocation(int orderID, int locationID);
   void markPizzaAsUNBakedByOrderIDAndLocation(int orderID, int locationID);
   int getOrderIDForPizza(int index);
+  void deleteActivePizzasWithOrderID(int orderID);
 
 
 private:

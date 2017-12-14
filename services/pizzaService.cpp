@@ -464,7 +464,6 @@ void pizzaService::setActivePizzaStatus(int index, string field, bool truthValue
 
 bool pizzaService::isDelivered(int index) {
   vector<string> words = fo.getWordsFromLine(index, "data/activePizzas.txt");
-
   return (words[(words.size() - 1)] == "delivered");
 }
 
@@ -478,4 +477,17 @@ void pizzaService::deletePizzas(vector<Pizza> pizzas) {
       }
     }
   }
+}
+
+void pizzaService::deleteActivePizzasWithOrderID(int orderID) {
+  vector<string> pizzaFile = fo.getLinesFromFile("data/activePizzas.txt");
+
+  for(int i = 0; i < pizzaFile.size(); i++) {
+    vector<string> words = stringfunc.split(pizzaFile.at(i));
+    if(stringfunc.stringToInt(words.at(0)) == orderID) {
+      pizzaFile.erase(pizzaFile.begin() + i);
+    }
+  }
+
+  fo.writeFile(pizzaFile, "data/activePizzas.txt");
 }
