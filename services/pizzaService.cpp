@@ -37,52 +37,54 @@ void pizzaService::createAndAppendMenuPizza() {
 
   cout << "Enter name of pizza (c to cancel): ";
   cin >> name;
-    if(name != "c"){
-  do {
-    uf.clearScreen();
-    cout << "Enter number of toppings: ";
-    cin >> numberOfToppings;
+  if(name != "c"){
+      do {
+        uf.clearScreen();
+        cout << "Enter number of toppings: ";
+        cin >> numberOfToppings;
 
-    if(cin.fail()) {
-      cin.clear();              //reset error flags
-      cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
-      numberOfToppings = -1;    //continue selection
-    }
-  } while(numberOfToppings <= 0);
+        if(cin.fail()) {
+          cin.clear();              //reset error flags
+          cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
+          numberOfToppings = -1;    //continue selection
+        }
+      } while(numberOfToppings <= 0);
 
-  int howManyToppingsExist = fo.countLines("data/toppings.txt");
+      int howManyToppingsExist = fo.countLines("data/toppings.txt");
 
 
-  for(int i = 0; i < numberOfToppings; i++) {
-    int selection;
+      for(int i = 0; i < numberOfToppings; i++) {
+        int selection;
 
-    do {
+        do {
+          uf.clearScreen();
+          selection = -1;
+          cout << "Select topping!" << endl;
+          topping_service.listToppingsWithIndex();
+          cin >> selection;
+        } while(selection < 1 || selection > howManyToppingsExist);
+
+        Topping topping = topping_service.getToppingAt(selection - 1);
+        toppings.push_back(topping);
+      }
+
+      builder += name + " ";
+      builder += stringfunc.intToString(numberOfToppings) + " ";
+
+      for(int i = 0; i < numberOfToppings; i++) {
+        if(i == numberOfToppings - 1){
+            builder += toppings[i].getName();
+        }else{
+            builder += toppings[i].getName() + " ";
+        }
+      }
+
+      fo.appendLineToFile(builder, "data/menuPizzas.txt");
       uf.clearScreen();
-      selection = -1;
-      cout << "Select topping!" << endl;
-      topping_service.listToppingsWithIndex();
-      cin >> selection;
-    } while(selection < 1 || selection > howManyToppingsExist);
-
-    Topping topping = topping_service.getToppingAt(selection - 1);
-    toppings.push_back(topping);
-  }
-
-  builder += name + " ";
-  builder += stringfunc.intToString(numberOfToppings) + " ";
-
-  for(int i = 0; i < numberOfToppings; i++) {
-    if(i == numberOfToppings - 1){
-        builder += toppings[i].getName();
-    }else{
-        builder += toppings[i].getName() + " ";
+      cout << "Menu pizza: \"" << builder << "\" created!" << endl;
     }
-  }
-
-  fo.appendLineToFile(builder, "data/menuPizzas.txt");
-  uf.clearScreen();
-  cout << "Menu pizza: \"" << builder << "\" created!" << endl;
-    }
+    cin.ignore();
+    cin.get();
 }
 
 void pizzaService::listMenuPizzas() {
@@ -463,7 +465,6 @@ bool pizzaService::isDelivered(int index) {
   vector<string> words = fo.getWordsFromLine(index, "data/activePizzas.txt");
   return (words[(words.size() - 1)] == "delivered");
 }
-
 
 void pizzaService::deletePizzas(vector<Pizza> pizzas) {
   vector<string> pizzaFile = fo.getLinesFromFile("data/activePizzas.txt");
