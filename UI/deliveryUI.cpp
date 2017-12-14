@@ -137,7 +137,7 @@ void deliveryUI::selectAndMarkOrderAsPaid(){
 
 void deliveryUI::selectAndMarkOrderAsDelivered(){
     int index = -1;
-    while(index < 0 || index > order_service.howManyOrders()) {
+    while(index < 0 || index > pizza_service.howManyActivePizzasForLocation(_locationID)) {
         uf.clearScreen();
         //False to show all orders not just ready orders
         order_service.listOrderFromLocationWithID(_locationID, false);

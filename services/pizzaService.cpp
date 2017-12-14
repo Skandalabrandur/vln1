@@ -349,7 +349,6 @@ int pizzaService::howManyActivePizzasForLocationAndStatus(int locationID, string
       }
     }
   }
-
   return counter;
 }
 
@@ -449,14 +448,21 @@ void pizzaService::deletePizzas(vector<Pizza> pizzas) {
 }
 
 void pizzaService::deleteActivePizzasWithOrderID(int orderID) {
-  vector<string> pizzaFile = fo.getLinesFromFile("data/activePizzas.txt");
 
-  for(int i = 0; i < pizzaFile.size(); i++) {
-    vector<string> words = stringfunc.split(pizzaFile.at(i));
-    if(stringfunc.stringToInt(words.at(0)) == orderID) {
-      pizzaFile.erase(pizzaFile.begin() + i);
+  bool reachedEnd = false;
+  while(!reachedEnd) {
+    vector<string> pizzaFile = fo.getLinesFromFile("data/activePizzas.txt");
+    for(int i = 0; i < pizzaFile.size(); i++) {
+      if(pizzaFile.size() - 1 == i) {
+        reachedEnd = true;
+      }
+      vector<string> words = stringfunc.split(pizzaFile.at(i));
+      if(stringfunc.stringToInt(words.at(0)) == orderID) {
+        pizzaFile.erase(pizzaFile.begin() + i);
+        fo.writeFile(pizzaFile, "data/activePizzas.txt");
+        break;
+      }
     }
   }
 
-  fo.writeFile(pizzaFile, "data/activePizzas.txt");
 }
