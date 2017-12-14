@@ -1,3 +1,9 @@
 1 Paris l l 1500 1 baked paid undelivered
-2 101 p m 1400 2 unbaked paid undelivered
-2 101 p m 1400 2 unbaked paid undelivered
+2 101 p m 1400 2 baked paid undelivered
+2 101 p m 1400 2 baked paid undelivered
+3 Manjana l l 1500 3 unbaked unpaid undelivered
+3 Manjana p m 1400 3 unbaked unpaid undelivered
+3 Manjana c m 1400 3 unbaked unpaid undelivered
+4 Paris l l 1500 1 unbaked unpaid undelivered
+4 101 l l 1500 1 unbaked unpaid undelivered
+4 Manjana l l 1500 1 unbaked unpaid undelivered
