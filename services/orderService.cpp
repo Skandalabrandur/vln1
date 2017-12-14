@@ -442,16 +442,18 @@ void orderService::listSpecificOrderWithInfo(int order_id) {
 
   vector<AdditionalProduct> orderProducts = additionalProduct_service.getSavedProductFromOrderID(order_id);
   vector<string> products;
-  for(int i = 0; i < orderProducts.size(); i++) {
-    products.push_back(orderProducts.at(i).toString());
+  if(orderProducts.size() > 0) {
+    for(int i = 0; i < orderProducts.size(); i++) {
+      products.push_back(orderProducts.at(i).toString());
+    }
+
+    vector<string> productsHeaders;
+    productsHeaders.push_back("Name");
+    productsHeaders.push_back("Price");
+    uf.printItNice(products, productsHeaders);
+
+    cout << endl << "|Total Price  | " << getOrderPrice(order_id) << endl;
   }
-
-  vector<string> productsHeaders;
-  productsHeaders.push_back("Name");
-  productsHeaders.push_back("Price");
-  uf.printItNice(products, productsHeaders);
-
-  cout << endl << "|Total Price  | " << getOrderPrice(order_id) << endl;
 }
 
 int orderService::generatePizzaPrice(Pizza pizza){
