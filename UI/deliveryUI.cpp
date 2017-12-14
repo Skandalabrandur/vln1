@@ -62,7 +62,7 @@ void deliveryUI::displayDeliveryMenu(){
               cout << "HOME/DELIVERY/MARK DELIVERED" << endl << endl;
               selectAndMarkOrderAsDelivered();
             } else{
-              cout << "No orders exist for your location!" << endl;
+              cout << "No ready orders exist for your location!" << endl;
             }
             uf.pressEnter();
         }
