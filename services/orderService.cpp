@@ -365,17 +365,22 @@ void orderService::markPizzaAsPaidByOrderIDAndLocation(int orderID, int location
 
 void orderService::markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int locationID){
     int numPizzas = pizza_service.howManyActivePizzas();
-
+    int customerPizzas = 0;
+    int customerPizzasDelivered = 0;
     for(int i = 0; i < numPizzas; i++){
         vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
         int id = stringfunc.stringToInt(orderWords.at(0));
         int location_id = stringfunc.stringToInt(orderWords.at(5));
         if(id == orderID && location_id == locationID){
+            customerPizzas++;
             pizza_service.setActivePizzaStatus(i, "delivered", true);
             if(pizza_service.isDelivered(i)) {
-              moveToLegacyFile(orderID);
+              customerPizzasDelivered++;
             }
         }
+    }
+    if((customerPizzas == customerPizzasDelivered) && (customerPizzas > 0)) {
+      moveToLegacyFile(orderID);
     }
 }
 
