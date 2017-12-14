@@ -302,6 +302,7 @@ void pizzaService::deleteMenuPizza() {
   int selection = -1;
 
   while(selection < 0 || selection > menuSize) {
+    uf.clearScreen();
     listMenuPizzasWithIndices();
     cout << endl << "Select a pizza to delete from menu (c to cancel): ";
     cin >> selection;

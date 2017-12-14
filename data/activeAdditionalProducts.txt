@@ -1,21 +1,6 @@
-<<<<<<< HEAD
 1 CocaColaZero 350
 2 CocaCola 350
 2 CocaCola 350
-2 CocaCola 350
-2 CocaCola 350
-2 CocaCola 350
-2 Braudstangir 400
-2 Braudstangir 400
-2 Braudstangir 400
-2 Braudstangir 400
-2 Braudstangir 400
-2 Braudstangir 400
-2 Braudstangir 400
-2 Braudstangir 400
-2 Braudstangir 400
-2 Braudstangir 400
-=======
 4 CocaCola 350
 4 Breadsticks 490
 5 CocaCola 350
@@ -23,4 +8,3 @@
 7 CocaCola 350
 7 CocaCola 350
 7 Breadsticks 490
->>>>>>> c8f4b6b6cec028ca87f495a9365a48d84387efbd

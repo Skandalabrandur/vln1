@@ -1,7 +1,4 @@
-CocaColaZero 350
-CocaColaLight 350
-CocaCola 350
-Sprite 350
+﻿Sprite 350
 Fanta 350
 Toppur 290
 LemonToppur 290
