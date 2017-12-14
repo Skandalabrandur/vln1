@@ -131,7 +131,7 @@ void adminUI::displayToppingMenu() {
       if(vs.toppingsExist()) {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE TOPPINGS/DELETE TOPPING" << endl << endl;
-        topping_service.deleteTopping();
+        topping_service.listToppings();
       } else {
         cout << "No toppings exist!" << endl;
       }
@@ -143,7 +143,7 @@ void adminUI::displayToppingMenu() {
       if(vs.toppingsExist()) {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE TOPPINGS/LIST TOPPINGS" << endl << endl;
-        topping_service.listToppings();
+        topping_service.deleteTopping();
       } else {
         cout << "No toppings exist!" << endl;
       }

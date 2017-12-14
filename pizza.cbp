@@ -16,6 +16,8 @@
 					<Add option="-g" />
 					<Add directory="include/UI" />
 					<Add directory="UI" />
+					<Add directory="models" />
+					<Add directory="services" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -40,6 +42,10 @@
 		<Unit filename="customLibraries/stringFunctions.cpp" />
 		<Unit filename="customLibraries/stringFunctions.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="models/AdditionalProduct.cpp" />
+		<Unit filename="models/AdditionalProduct.h" />
+		<Unit filename="models/Comment.cpp" />
+		<Unit filename="models/Comment.h" />
 		<Unit filename="models/Location.cpp" />
 		<Unit filename="models/Location.h" />
 		<Unit filename="models/Order.cpp" />
@@ -48,14 +54,22 @@
 		<Unit filename="models/Pizza.h" />
 		<Unit filename="models/Topping.cpp" />
 		<Unit filename="models/Topping.h" />
+		<Unit filename="services/additionalProductService.cpp" />
+		<Unit filename="services/additionalProductService.h" />
+		<Unit filename="services/commentService.cpp" />
+		<Unit filename="services/commentService.h" />
 		<Unit filename="services/locationService.cpp" />
 		<Unit filename="services/locationService.h" />
+		<Unit filename="services/logoService.cpp" />
+		<Unit filename="services/logoService.h" />
 		<Unit filename="services/orderService.cpp" />
 		<Unit filename="services/orderService.h" />
 		<Unit filename="services/pizzaService.cpp" />
 		<Unit filename="services/pizzaService.h" />
 		<Unit filename="services/toppingService.cpp" />
 		<Unit filename="services/toppingService.h" />
+		<Unit filename="services/validationService.cpp" />
+		<Unit filename="services/validationService.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

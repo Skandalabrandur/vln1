@@ -1,7 +1,6 @@
-Pepperoni 100
-Mozzarella 250
 Jalapeno 150
-Skinka 50
 Hvitlaukur 100
 Tomato 30
 Broccoli 15
+Banana 30
+Paprika 50

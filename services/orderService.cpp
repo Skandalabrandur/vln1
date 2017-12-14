@@ -268,7 +268,7 @@ int orderService::countOrdersFromLocationWithID(int locationID) {
 }
 
 void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID, bool isDelivery) {
-  //-->Function used in delivery and baker
+  //--->Function used in delivery and baker<---
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
   string comment = comment_service.getCommentTextFromOrderID(order_id);
   if(!comment.empty()) {

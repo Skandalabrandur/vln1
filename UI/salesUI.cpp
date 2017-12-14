@@ -51,7 +51,7 @@ void salesUI::displaySalesMenu() {
 void salesUI::selectAndMarkOrderAsPaid(){
   int index = -1;
   while(index < 0 || index > order_service.howManyOrders()) {
-
+      uf.clearScreen();
       order_service.listOrderOverviewWithIndices();
       cout << "Please select a order to mark as PAID (c to cancel): ";
 
@@ -67,9 +67,11 @@ void salesUI::selectAndMarkOrderAsPaid(){
 }
 
 void salesUI::listOrders() {
-  order_service.listOrderOverviewWithIndices();
+
   int selection = -1;
   do{
+      uf.clearScreen();
+      order_service.listOrderOverviewWithIndices();
       cout << "Select an order for more info (c to cancel): ";
       cin >> selection;
       if(cin.fail()) {
