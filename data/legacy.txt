@@ -1,2 +1,2 @@
-Hlyhnur 2 1 p
-	2 Frankenstein Pepperoni Skinka Jalapeno Hvitlaukur l l 1500 1 unbaked unpaid undelivered
+Hlynur 1 1 p
+	1 PEPPeroni Pepperoni Pepperoni p m 1400 1 baked paid delivered

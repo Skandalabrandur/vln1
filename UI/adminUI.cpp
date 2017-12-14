@@ -127,7 +127,7 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
     }
 
-    if(userInput == '2') {
+    if(userInput == '3') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE TOPPINGS/DELETE TOPPING" << endl << endl;
@@ -139,7 +139,7 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
     }
 
-    if(userInput == '3') {
+    if(userInput == '2') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
         cout << "HOME/ADMIN/MANAGE TOPPINGS/LIST TOPPINGS" << endl << endl;

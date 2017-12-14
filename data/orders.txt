@@ -1,6 +1,1 @@
-<<<<<<< HEAD
-Hlynur 1 1 p
-Test 3 2 d
-Test 4 3 p
-=======
->>>>>>> 041b3c80f0745a5687ef7cd15499e06d41789593
+Laugardalshöll 2 1 d
