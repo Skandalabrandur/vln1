@@ -58,7 +58,7 @@ void adminUI::displayPizzaMenu() {
 
   while(userInput != 'b') {
     do {
-        uf.clearScreen();
+      uf.clearScreen();
       userInput = 'i'; //for invalid so that we don't end up with an infinte loop
       cout << "HOME/ADMIN/MANAGE MENU PIZZAS" << endl;
       cout << "1 - CREATE A NEW MENU PIZZA" << endl;
@@ -104,7 +104,7 @@ void adminUI::displayPizzaMenu() {
         cout << "No menu pizzas exist!" << endl;
       }
       uf.pressEnter();
-        uf.clearScreen();
+      uf.clearScreen();
     }
   }
 }
