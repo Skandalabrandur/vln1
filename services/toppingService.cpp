@@ -87,7 +87,7 @@ void toppingService::deleteTopping() {
     if(cin.fail()) {
       cin.clear();      //reset error flags
       cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
-      selection = 0;   // set selection for cancellation 
+      selection = 0;   // set selection for cancellation
     }
   }
   if(selection > 0){

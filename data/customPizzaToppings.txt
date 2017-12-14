@@ -1,0 +1,5 @@
+1 Broccoli 35
+1 Banana 20
+1 Garlic 10
+2 Broccoli 35
+2 Banana 20

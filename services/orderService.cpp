@@ -106,7 +106,8 @@ void orderService::createNewOrder() {
     char yn;
     bool legitChoice;
     do {
-      cout << endl << "Pizza off menu? (y/n) " << endl;
+      uf.clearScreen();
+      cout << endl << "Pizza number " << (i+1) << " off menu? (y/n) " << endl;
       cin >> yn;
       legitChoice = false;
 
@@ -179,6 +180,7 @@ void orderService::createNewOrder() {
 
   //Additional products
   char addProducts;
+  uf.clearScreen();
   cout << "Do you want to add any products to your order? (y/n): ";
   cin >> addProducts;
   if(addProducts == 'y'){

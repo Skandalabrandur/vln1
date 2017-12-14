@@ -90,7 +90,7 @@ void adminUI::displayPizzaMenu() {
         cout << "No toppings exist!" << endl;
       }
       uf.pressEnter();
-        uf.clearScreen();
+      uf.clearScreen();
     }
 
     if(userInput == '2') {
@@ -102,7 +102,7 @@ void adminUI::displayPizzaMenu() {
         cout << "No menu pizzas exist!" << endl;
       }
       uf.pressEnter();
-        uf.clearScreen();
+      uf.clearScreen();
     }
 
     if(userInput == '3') {
@@ -143,10 +143,10 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
     }
 
-    if(userInput == '3') {
+    if(userInput == '2') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
-        cout << "HOME/ADMIN/MANAGE TOPPINGS/DELETE TOPPING" << endl << endl;
+        cout << "HOME/ADMIN/MANAGE TOPPINGS/LIST TOPPINGS" << endl << endl;
         topping_service.listToppings();
       } else {
         cout << "No toppings exist!" << endl;
@@ -155,10 +155,10 @@ void adminUI::displayToppingMenu() {
       uf.clearScreen();
     }
 
-    if(userInput == '2') {
+    if(userInput == '3') {
       if(vs.toppingsExist()) {
         uf.clearScreen();
-        cout << "HOME/ADMIN/MANAGE TOPPINGS/LIST TOPPINGS" << endl << endl;
+        cout << "HOME/ADMIN/MANAGE TOPPINGS/DELETE TOPPING" << endl << endl;
         topping_service.deleteTopping();
       } else {
         cout << "No toppings exist!" << endl;

@@ -1,0 +1,4 @@
+Broccoli 35
+Banana 20
+Garlic 10
+Paprika 100
