@@ -82,27 +82,27 @@ void toppingService::deleteTopping() {
   while(selection < 0 || selection > howManyToppingsExist) {
     uf.clearScreen();
     listToppingsWithIndex();
-    cout << endl << "Select a topping to delete or 0 to go cancel: ";
+    cout << endl << "Select a topping to delete (c to cancel): ";
     cin >> selection;
     if(cin.fail()) {
       cin.clear();      //reset error flags
       cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
-      selection = -1;   //set selection to continue
+      selection = 0;   // set selection for cancellation 
     }
   }
-    if(selection > 0){
-  //Get this info before delete to show user later
-  Topping selectedTopping = getToppingAt(selection-1);  //selection is 1-based
+  if(selection > 0){
+    //Get this info before delete to show user later
+    Topping selectedTopping = getToppingAt(selection-1);  //selection is 1-based
 
-  vector<string> toppingFile = fo.getLinesFromFile("data/toppings.txt");
+    vector<string> toppingFile = fo.getLinesFromFile("data/toppings.txt");
 
-  //erase selection from the vector representing the file
-  //file is 0-indexed, selection is 1-indexed
-  toppingFile.erase(toppingFile.begin() + (selection-1));
+    //erase selection from the vector representing the file
+    //file is 0-indexed, selection is 1-indexed
+    toppingFile.erase(toppingFile.begin() + (selection-1));
 
-  //overwrite
-  fo.writeFile(toppingFile, "data/toppings.txt");
+    //overwrite
+    fo.writeFile(toppingFile, "data/toppings.txt");
 
-  cout << "Deleted: " << selectedTopping.getName() << endl;
-    }
+    cout << "Deleted: " << selectedTopping.getName() << endl;
+  }
 }

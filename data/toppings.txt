@@ -11,6 +11,7 @@ Tomatar 100
 Spinat 150
 Laukur 100
 Jalapeno 150
+<<<<<<< HEAD
 Chili 200
 Sveppir 150
 Ananas 100
@@ -20,3 +21,9 @@ Chilipipar 150
 BBQsosa 150
 Bernaisesosa 200
 Hvitlauksolia 100
+=======
+Skinka 50
+Hvitlaukur 100
+Tomato 30
+Broccoli 15
+>>>>>>> c8f4b6b6cec028ca87f495a9365a48d84387efbd

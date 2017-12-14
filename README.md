@@ -28,8 +28,7 @@ pöntuninni og vistar það í gagnagrunni. Þaðan sækir kerfið upplýsingar 
 birta fyrir bökurum o.fl.
 
 Inn í SALES valmyndinni er einnig hægt að birta lista yfir allar pantanir og sjá
-nánari upplýsingar um ákveðnar pantanir, ásamt því að skrá pítsu afhenta en þá
-er pöntunin fjarlægð úr hóp virkra pantana.
+nánari upplýsingar um ákveðnar pantanir, ásamt því að skrá pöntun greidda.
 
     BAKARAR
 Bakarar þurfa að fá nánar upplýsingar um stakar pítsur, þannig í BAKERS

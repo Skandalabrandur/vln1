@@ -303,15 +303,15 @@ void pizzaService::deleteMenuPizza() {
 
   while(selection < 0 || selection > menuSize) {
     listMenuPizzasWithIndices();
-    cout << endl << "Select a pizza to delete from menu or 0 to cancel: ";
+    cout << endl << "Select a pizza to delete from menu (c to cancel): ";
     cin >> selection;
-    if(cin.fail()) {
+    if(cin.fail()) {    //c er ekki int
       cin.clear();      //reset error flags
       cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
-      selection = -1;   //set selection to continue
+      selection = 0;   //set selection for cancellation
     }
   }
-    if(selection > 0){
+  if(selection > 0){
   //Get this info before delete to show user later
   Pizza selectedPizza = getMenuPizza(selection-1);  //selection is 1-based
 

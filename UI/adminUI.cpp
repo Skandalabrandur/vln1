@@ -30,7 +30,13 @@ void adminUI::displayAdminMenu() {
     userInput = tolower(userInput);
 
     if(userInput == '1') {
-      displayPizzaMenu();
+      if(vs.toppingsExist() || vs.menuPizzasExist()) {
+        displayPizzaMenu();
+      } else {
+        cout << "Neither toppings nor menu-pizzas exist." << endl;
+        cout << "Returning to admin menu..." << endl;
+        uf.pressEnter();
+      }
     }
 
     if(userInput == '2') {

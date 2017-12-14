@@ -113,6 +113,9 @@ void orderService::createNewOrder() {
       pizza.setOrderID(orderID);
       yn = tolower(yn);
       legitChoice = (yn == 'y' && vs.menuPizzasExist()) || (yn == 'n');
+      if(!legitChoice){
+        cout << "No menu pizzas exist." << endl;
+      }
     } while(!legitChoice);
       if(yn == 'y'){
         int selection;
@@ -184,7 +187,7 @@ void orderService::createNewOrder() {
     additionalProduct_service.saveAdditionalProducts(orderID);
   }
 
-  int orderPrice = getOrderPrice(order);
+  int orderPrice = getOrderPrice(orderID);
 
   fo.appendLineToFile(order.toString(), "data/orders.txt");
 
@@ -235,12 +238,12 @@ void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
             bool ready = true;
             vector<Pizza> orderPizzas = getPizzasFromOrderId(i + 1);
             for(int i = 0; i < orderPizzas.size(); i++) {
-                if(!(orderPizzas[i].isBaked() && orderPizzas[i].isPaid())){
+                if(!(orderPizzas[i].isBaked())){
                     ready = false;
                 }
             }
             if(ready){
-                    cout << orderPizzas[i].getOrderID() << " -\t" << order.getCustomer() << endl;
+                cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
             }
         }
         //Show all orders
@@ -264,7 +267,7 @@ int orderService::countOrdersFromLocationWithID(int locationID) {
   return counter;
 }
 
-void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
+void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID, bool isDelivery) {
   //-->Function used in delivery and baker
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
   string comment = comment_service.getCommentTextFromOrderID(order_id);
@@ -278,6 +281,16 @@ void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int locat
     if(orderPizzas[i].getStoreID() == location_ID){
         cout << orderPizzas[i].toString(false) << endl;
     }
+  }
+
+  if(isDelivery){
+    vector<AdditionalProduct> products = additionalProduct_service.getSavedProductFromOrderID(order_id);
+    for(unsigned int i = 0; i < products.size(); i++){
+
+        cout << products[i].toString() << " ";
+
+    }
+    cout << "\t Total Price: " << getOrderPrice(order_id) << endl;
   }
 }
 
@@ -466,9 +479,9 @@ int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){
     return price;
 }
 
-int orderService::getOrderPrice(Order order){
+int orderService::getOrderPrice(int orderID){
     int price = 0;
-    int orderID = order.getOrderID();
+    //int orderID = order.getOrderID();
     vector<Pizza> pizzas = getPizzasFromOrderId(orderID);
     for(unsigned int i = 0; i < pizzas.size(); i++){
         if(pizzas.at(i).getName() == "custom"){

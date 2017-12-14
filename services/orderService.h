@@ -34,14 +34,14 @@ public:
   int howManyOrders();
   int getOrderID(int index);
   int getOrderLocationID(int index);
-  int getOrderPrice(Order order);
+  int getOrderPrice(int orderID);
   int countOrdersFromLocationWithID(int locationID);
 
   void markPizzaAsPaidByOrderID(int orderID);
   void markPizzaAsPaidByOrderIDAndLocation(int OrderID, int locationID);
   void markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int locationID);
   void listOrderFromLocationWithID(int locationID, bool isReady);
-  void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID);
+  void listSpecificOrderFromLocationWithInfo(int order_id, int location_ID, bool isDelivery);
   void deleteOrderWithOrderID(int orderID);
   void moveToLegacyFile(int orderID);
 

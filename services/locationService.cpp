@@ -54,36 +54,37 @@ void locationService::deleteLocation() {
   while(selection < 0 || selection > howManyLocationsExist) {
     uf.clearScreen();
     listLocationsWithIndex();
-    cout << endl << "Select a location to delete or 0 to cancel: ";
+    cout << endl << "Select a location to delete (c to cancel): ";
     cin >> selection;
     if(cin.fail()) {
       cin.clear();      //reset error flags
       cin.ignore(numeric_limits<streamsize>::max(),'\n'); //dump input
-      selection = -1;   //set selection to continue
+      selection = 0;   //set selection to cancel
     }
   }
-    if(selection > 0){
-  //Get this info before delete to show user later
-  Location selectedLocation = getLocationAt(selection-1);  //selection is 1-based
 
-  vector<string> locationFile = fo.getLinesFromFile("data/locations.txt");
+  if(selection > 0){
+    //Get this info before delete to show user later
+    Location selectedLocation = getLocationAt(selection-1);  //selection is 1-based
 
-  //erase selection from the vector representing the file
-  //file is 0-indexed, selection is 1-indexed
-  locationFile.erase(locationFile.begin() + (selection-1));
+    vector<string> locationFile = fo.getLinesFromFile("data/locations.txt");
 
-  //todo: write to legacy file what that id meant previously
+    //erase selection from the vector representing the file
+    //file is 0-indexed, selection is 1-indexed
+    locationFile.erase(locationFile.begin() + (selection-1));
 
-  //reset location ids
-  for(int i = (selection-1); i < locationFile.size(); i++) {
-    Location wrongIndexLocation = convertLocationVector(stringfunc.split(locationFile.at(i)));
-    wrongIndexLocation.setID(i+1);
-    locationFile.at(i) = wrongIndexLocation.toString();
-  }
+    //todo: write to legacy file what that id meant previously
 
-  //overwrite
-  fo.writeFile(locationFile, "data/locations.txt");
-
-  cout << "Deleted: " << selectedLocation.getLocationName() << endl;
+    //reset location ids
+    for(int i = (selection-1); i < locationFile.size(); i++) {
+      Location wrongIndexLocation = convertLocationVector(stringfunc.split(locationFile.at(i)));
+      wrongIndexLocation.setID(i+1);
+      locationFile.at(i) = wrongIndexLocation.toString();
     }
+
+    //overwrite
+    fo.writeFile(locationFile, "data/locations.txt");
+
+    cout << "Deleted: " << selectedLocation.getLocationName() << endl;
+  }
 }
