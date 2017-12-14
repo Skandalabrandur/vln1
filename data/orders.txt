@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+Laugardalshöll 2 1 d
+=======
 Janet 1 1 p
 Karmen 2 1 p
 LAlalala 3 1 p
@@ -5,3 +8,4 @@ aaaaaa 4 1 p
 bbb 5 1 p
 Ann 6 1 p
 Frankie 7 1 p
+>>>>>>> c8f4b6b6cec028ca87f495a9365a48d84387efbd

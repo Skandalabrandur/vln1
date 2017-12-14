@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+Hlynur 1 1 p
+	1 PEPPeroni Pepperoni Pepperoni p m 1400 1 baked paid delivered
+=======
+>>>>>>> c8f4b6b6cec028ca87f495a9365a48d84387efbd
