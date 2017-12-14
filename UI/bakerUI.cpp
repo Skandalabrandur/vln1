@@ -50,8 +50,8 @@ void bakerUI::displayBakerMenu() {
 
         if(userInput == '3') {
           if(vs.pizzasExistForLocationID(_locationID)) {
+              uf.clearScreen();
             cout << "HOME/BAKER/MARK BAKED" << endl << endl;
-            uf.clearScreen();
             selectAndMarkPizzaAsBaked();
           } else {
             cout << "No pizzas exist for your location!" << endl;
@@ -62,8 +62,8 @@ void bakerUI::displayBakerMenu() {
 
         if(userInput == '4') {
           if(vs.pizzasExistForLocationID(_locationID)) {
+              uf.clearScreen();
             cout << "HOME/BAKER/MARK UNBAKED" << endl << endl;
-            uf.clearScreen();
             selectAndMarkPizzaAsUnbaked();
           } else {
             cout << "No pizzas exist for your location!" << endl;

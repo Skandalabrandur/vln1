@@ -1,22 +1,2 @@
-<<<<<<< HEAD
-1 PEPPeroni p m 1400 1 baked paid delivered
-2 Kjotveisla 8 l 500 1 unbaked unpaid undelivered
-2 Kjotveisla c l 1700 1 unbaked unpaid undelivered
-2 Vegeta c l 1700 1 unbaked unpaid undelivered
-2 Vegeta c l 1700 1 unbaked unpaid undelivered
-2 PEPPeroni c l 1700 1 unbaked unpaid undelivered
-2 PEPPeroni c l 1700 1 unbaked unpaid undelivered
-2 BBQ c l 1700 1 unbaked unpaid undelivered
-2 2HOT2HANDLE c l 1700 1 unbaked unpaid undelivered
-2 2HOT2HANDLE c l 1700 1 unbaked unpaid undelivered
-2 BBQ c l 1700 1 unbaked unpaid undelivered
-=======
-1 custom l l 1060 1 unbaked paid undelivered
-2 custom l l 1300 1 baked paid undelivered
-3 custom c m 1050 1 baked unpaid undelivered
-4 custom c l 1345 1 baked paid undelivered
-5 custom l m 780 1 unbaked unpaid undelivered
-6 custom l l 1400 1 unbaked unpaid undelivered
-7 custom c l 1800 1 unbaked unpaid undelivered
-7 custom l l 1830 1 unbaked unpaid undelivered
->>>>>>> c8f4b6b6cec028ca87f495a9365a48d84387efbd
+1 Skywalker p m 1400 1 baked unpaid undelivered
+2 custom p m 1400 1 unbaked unpaid undelivered
