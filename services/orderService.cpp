@@ -31,6 +31,17 @@ void orderService::createNewOrder() {
   string customer;
   int orderID = 1 + fo.countLines("data/orders.txt");
 
+  if(vs.legacyFileExists()) {
+    vector<string> lines = fo.getLinesFromFile("data/legacy.txt");
+
+    for(int i = 0; i < lines.size(); i++) {
+      if(lines.at(i)[0] != '\t') {
+        cout << "Doing " << lines.at(i)[0] << endl;
+        orderID++;
+      }
+    }
+  }
+
   cout << "Creating order number " << orderID << endl << endl;
     cout << "Enter customer name (c to cancel): ";
   cin >> customer;
@@ -141,6 +152,7 @@ void orderService::createNewOrder() {
 
       char size;
       char bottomType;
+      bool legit = false;
       do {
         uf.clearScreen();
         cout << "For pizza " << (i+1) << " of " << numberOfPizzas << endl;
@@ -157,8 +169,10 @@ void orderService::createNewOrder() {
         } else {
           size = 'm';
         }
-      } while(!(size == 'l' || size == 'm' || size == 's') &&
-              !(bottomType == 'p' || bottomType == 'c' || bottomType == 'l'));
+
+        legit = (bottomType == 'p') || (bottomType == 'l') || (bottomType == 'c');
+        legit = legit && ((size == 'l') || (size == 'm') || (size=='s'));
+      } while(!legit);
 
       pizza.setOrderID(orderID);
       pizza.setStoreID(location);
@@ -559,6 +573,7 @@ void orderService::moveToLegacyFile(int orderID) {
 
   //once moved, delete from relevant files
   deleteOrderWithOrderID(orderID);
+  pizza_service.deleteActivePizzasWithOrderID(orderID);
 
 }
 
