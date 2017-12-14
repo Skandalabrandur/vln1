@@ -99,6 +99,7 @@ void deliveryUI::viewOrders(bool isReady){
     int choice = -1; //So the value is not 0
     int numOrders = order_service.countOrdersFromLocationWithID(_locationID);
     do{
+        uf.clearScreen();
         order_service.listOrderFromLocationWithID(_locationID, isReady);
         cout << "Select an order for more info (c to cancel): ";
         cin >> choice;
@@ -109,7 +110,7 @@ void deliveryUI::viewOrders(bool isReady){
         }
         if(choice >= 1 && choice <= numOrders){
             uf.clearScreen();
-            order_service.listSpecificOrderFromLocationWithInfo(choice, _locationID, true); //true because this is for delivery
+            order_service.deliveryListSpecificOrderFromLocationWithInfo(choice, _locationID);
             uf.pressEnter();
             uf.clearScreen();
         }
@@ -119,6 +120,7 @@ void deliveryUI::viewOrders(bool isReady){
 void deliveryUI::selectAndMarkOrderAsPaid(){
     int index = -1;
     while(index < 0 || index > order_service.howManyOrders()) {
+        uf.clearScreen();
         //False to show all orders not just ready orders
         order_service.listOrderFromLocationWithID(_locationID, false);
         cout << "Please select a order to mark as PAID (c to cancel): ";
@@ -135,6 +137,7 @@ void deliveryUI::selectAndMarkOrderAsPaid(){
 void deliveryUI::selectAndMarkOrderAsDelivered(){
     int index = -1;
     while(index < 0 || index > order_service.howManyOrders()) {
+        uf.clearScreen();
         //False to show all orders not just ready orders
         order_service.listOrderFromLocationWithID(_locationID, false);
         cout << "Please select a order to mark as DELIVERED (c to cancel): ";
@@ -146,5 +149,4 @@ void deliveryUI::selectAndMarkOrderAsDelivered(){
     }
     int orderID = order_service.getOrderID(index);
     order_service.markPizzaAsDeliveredByOrderIDAndLocation(orderID, _locationID);
-    order_service.moveToLegacyFile(orderID);
 }
