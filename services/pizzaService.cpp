@@ -126,45 +126,31 @@ void pizzaService::listActivePizzas() {
 
 void pizzaService::listFromLocationActivePizzas(int locationID){
     int lineCount = fo.countLines("data/activePizzas.txt");
-    int nof;    //number of fields/words per line
-
-    //let's sacrifice speed for beauty
-    int longestPizzaNameLength = 0;
-    for(int i = 0; i < lineCount; i++) {
-        vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-        if((words[1].length() > longestPizzaNameLength) && stringfunc.stringToInt(words[5]) == locationID) {
-            longestPizzaNameLength = words[1].length();
-            nof = words.size();
-        }
-    }
-
+    vector<string> lines;
     int counter = 1;
-    int occurance = 1;
+
     for(int i = 0; i < lineCount; i++) {
         vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
 
-        //we know that baked is in 3rd position from right
-        //so words.count - 3 is the index for baked
-
-        //padding for equal display length
-        string extraSpaces = " ";
         if(stringfunc.stringToInt(words[5]) == locationID) {
-            for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
-                extraSpaces += " ";
-            }
-                cout << words[0] << " -\t" << "| ";
-                cout << words[2] << " |\t";
-                cout << words[3] << " |\t";
-                cout << words[1];
-
-                cout << "\t|\t";
-
-                cout << words[4] << " " << words[6];
-                cout << endl;
-                counter++;
+          string builder = words[0];
+          builder += " " + words[2];
+          builder += " " + words[3];
+          builder += " " + words[1];
+          builder += " " + words[6];
+          lines.push_back(builder);
+          counter++;
         }
     }
 
+    vector<string> headers;
+    headers.push_back("OrderID");
+    headers.push_back("Bottom");
+    headers.push_back("BtmSize");
+    headers.push_back("Pizza Name");
+    headers.push_back("Bake Status");
+
+    uf.printItNice(lines, headers);
 }
 
 
@@ -204,47 +190,36 @@ void pizzaService::listMenuPizzasWithIndices() {
 
 void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int locationID) {
   int lineCount = fo.countLines("data/activePizzas.txt");
-  int nof;    //number of fields/words per line
-
-  //let's sacrifice speed for beauty
-  int longestPizzaNameLength = 0;
-  for(int i = 0; i < lineCount; i++) {
-    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-    if((words[1].length() > longestPizzaNameLength) && stringfunc.stringToInt(words[5]) == locationID) {
-      longestPizzaNameLength = words[1].length();
-      nof = words.size();
-    }
-  }
+  vector<string> lines;
 
   int counter = 1;
-  int occurance = 1;
   for(int i = 0; i < lineCount; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-
-    //we know that baked is in 3rd position from right
-    //so words.count - 3 is the index for baked
-
-    //padding for equal display length
-    string extraSpaces = " ";
-    if(stringfunc.stringToInt(words[5]) == locationID) {
-      for(int j = 0; j < (longestPizzaNameLength - words[1].length()); j++) {
-        extraSpaces += " ";
-      }
-      if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
-        cout << counter << " -\t" << "| ";
-          cout << words[2] << " |\t";
-          cout << words[3] << " |\t";
-          cout << words[1];
+      if(stringfunc.stringToInt(words[5]) == locationID) {
 
 
-        cout << "\t|\t";
-
-        cout << words[4] << " " << words[6];
-        cout << endl;
+      if((baked && words[words.size() - 3] == "baked") || (!baked && words[words.size() - 3] == "unbaked")) {
+        string builder = stringfunc.intToString(counter);
+        builder += " " + words[0];
+        builder += " " + words[2];
+        builder += " " + words[3];
+        builder += " " + words[1];
+        builder += " " + words[6];
+        lines.push_back(builder);
         counter++;
       }
     }
-}
+  }
+
+  vector<string> headers;
+  headers.push_back("SELECTION");
+  headers.push_back("OrderID");
+  headers.push_back("Bottom");
+  headers.push_back("BtmSize");
+  headers.push_back("Pizza Name");
+  headers.push_back("Status");
+
+  uf.printItNice(lines, headers);
 }
 
 int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseudoIndex) {
@@ -266,28 +241,28 @@ int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseud
   }
 }
 
-void pizzaService::markPizzaAsBakedByOrderIDAndLocation(int orderID, int locationID){
+void pizzaService::markPizzaAsBakedByIndexAndLocation(int index, int locationID){
     int numPizzas = howManyActivePizzas();
 
     for(int i = 0; i < numPizzas; i++){
         vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
-        int id = stringfunc.stringToInt(orderWords.at(0));
         int location_id = stringfunc.stringToInt(orderWords.at(5));
-        if(id == orderID && location_id == locationID){
+        if(i == index && location_id == locationID){
             setActivePizzaStatus(i, "baked", true);
+            break;
         }
     }
 }
 
-void pizzaService::markPizzaAsUNBakedByOrderIDAndLocation(int orderID, int locationID){
+void pizzaService::markPizzaAsUNBakedByIndexAndLocation(int index, int locationID){
     int numPizzas = howManyActivePizzas();
 
     for(int i = 0; i < numPizzas; i++){
         vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
-        int id = stringfunc.stringToInt(orderWords.at(0));
         int location_id = stringfunc.stringToInt(orderWords.at(5));
-        if(id == orderID && location_id == locationID){
+        if(i == index && location_id == locationID){
             setActivePizzaStatus(i, "baked", false);
+            break;
         }
     }
 }
@@ -339,6 +314,43 @@ int pizzaService::howManyPizzasOnMenu() {
 
 int pizzaService::howManyActivePizzas() {
   return fo.countLines("data/activePizzas.txt");
+}
+
+int pizzaService::howManyActivePizzasForLocation(int locationID) {
+  int numberOfLines = fo.countLines("data/activePizzas.txt");
+
+  int counter = 0;
+  for(int i = 0; i < numberOfLines; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+
+    if(stringfunc.stringToInt(words.at(5)) == locationID) {
+      counter++;
+    }
+  }
+
+  return counter;
+}
+
+int pizzaService::howManyActivePizzasForLocationAndStatus(int locationID, string status) {
+  int numberOfLines = fo.countLines("data/activePizzas.txt");
+
+  int counter = 0;
+  int reverseIndex = 1;
+  if(status == "baked" || status == "unbaked") {
+    reverseIndex = 3;
+  }
+  if(status == "paid" || status == "unpaid") {
+    reverseIndex = 2;
+  }
+  for(int i = 0; i < numberOfLines; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+    if(stringfunc.stringToInt(words.at(5)) == locationID) {
+      if(status == words.at(words.size() - reverseIndex)) {
+        counter++;
+      }
+    }
+  }
+  return counter;
 }
 
 Pizza pizzaService::getMenuPizza(int index) {
@@ -437,14 +449,21 @@ void pizzaService::deletePizzas(vector<Pizza> pizzas) {
 }
 
 void pizzaService::deleteActivePizzasWithOrderID(int orderID) {
-  vector<string> pizzaFile = fo.getLinesFromFile("data/activePizzas.txt");
 
-  for(int i = 0; i < pizzaFile.size(); i++) {
-    vector<string> words = stringfunc.split(pizzaFile.at(i));
-    if(stringfunc.stringToInt(words.at(0)) == orderID) {
-      pizzaFile.erase(pizzaFile.begin() + i);
+  bool reachedEnd = false;
+  while(!reachedEnd) {
+    vector<string> pizzaFile = fo.getLinesFromFile("data/activePizzas.txt");
+    for(int i = 0; i < pizzaFile.size(); i++) {
+      if(pizzaFile.size() - 1 == i) {
+        reachedEnd = true;
+      }
+      vector<string> words = stringfunc.split(pizzaFile.at(i));
+      if(stringfunc.stringToInt(words.at(0)) == orderID) {
+        pizzaFile.erase(pizzaFile.begin() + i);
+        fo.writeFile(pizzaFile, "data/activePizzas.txt");
+        break;
+      }
     }
   }
 
-  fo.writeFile(pizzaFile, "data/activePizzas.txt");
 }

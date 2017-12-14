@@ -24,6 +24,8 @@ public:
   void deleteMenuPizza();
   int howManyPizzasOnMenu();
   int howManyActivePizzas();
+  int howManyActivePizzasForLocation(int locationID);
+  int howManyActivePizzasForLocationAndStatus(int locationID, string status);
   Pizza getMenuPizza(int index);
   void storeOrderPizza(Pizza pizza);
   void setActivePizzaStatus(int index, string field, bool truthValue);
@@ -32,8 +34,8 @@ public:
   void saveCustomToppings(Pizza pizza);
   vector<Topping> getCustomToppings(int orderID, int whatOccurance);
   void deletePizzas(vector<Pizza> pizzas);
-  void markPizzaAsBakedByOrderIDAndLocation(int orderID, int locationID);
-  void markPizzaAsUNBakedByOrderIDAndLocation(int orderID, int locationID);
+  void markPizzaAsBakedByIndexAndLocation(int index, int locationID);
+  void markPizzaAsUNBakedByIndexAndLocation(int index, int locationID);
   int getOrderIDForPizza(int index);
   void deleteActivePizzasWithOrderID(int orderID);
 

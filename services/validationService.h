@@ -24,6 +24,7 @@ public:
   bool pizzasExistForOrderID(int orderID);
   bool pizzasExistForLocationID(int locationID);
   bool ordersExistForLocationID(int locationID);
+  bool readyOrdersExistForLocationID(int locationID);
 
 
 private:
