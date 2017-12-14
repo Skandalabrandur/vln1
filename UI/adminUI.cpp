@@ -177,11 +177,10 @@ void adminUI::displayLocationMenu() {
             cout << "HOME/ADMIN/MANAGE LOCATIONS" << endl << endl;
             cout << "1 - CREATE NEW STORE LOCATION" << endl;
             cout << "2 - LIST STORE LOCATIONS" << endl;
-            cout << "3 - DELETE LOCATION" << endl;
             cout << "B - BACK" << endl;
             cout << endl << uf.prompt();
             cin >> userInput;
-        } while(!uf.goodInput(userInput, "123b"));
+        } while(!uf.goodInput(userInput, "12b"));
 
         userInput = tolower(userInput);
 
@@ -205,17 +204,6 @@ void adminUI::displayLocationMenu() {
           uf.clearScreen();
         }
 
-        if(userInput == '3') {
-          if(vs.locationsExist()) {
-            uf.clearScreen();
-            cout << "HOME/ADMIN/DELETE LOCATION" << endl << endl;
-            location_service.deleteLocation();
-          } else {
-              cout << "No locations exist!" << endl;
-          }
-          uf.pressEnter();
-          uf.clearScreen();
-        }
     }
 }
 

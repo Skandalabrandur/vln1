@@ -20,8 +20,6 @@ public:
     void listLocationsWithIndex();
     void createNewLocation();
     int howManyLocations();
-    void deleteLocation();
-
 private:
     fileOperations fo;
     stringFunctions stringfunc;

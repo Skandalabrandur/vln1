@@ -123,7 +123,7 @@ void deliveryUI::selectAndMarkOrderAsPaid(){
         uf.clearScreen();
         //False to show all orders not just ready orders
         order_service.listOrderFromLocationWithID(_locationID, false);
-        cout << "Please select a order to mark as PAID (c to cancel): ";
+        cout << "Please select an order to mark as PAID (c to cancel): ";
         cin >> index;
         if(cin.fail()) {
             cin.clear();  //clear error flags
