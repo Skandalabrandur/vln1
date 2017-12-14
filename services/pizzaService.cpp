@@ -217,7 +217,6 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
   }
 
   int counter = 1;
-  int occurance = 1;
   for(int i = 0; i < lineCount; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
 
@@ -231,12 +230,10 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
         extraSpaces += " ";
       }
       if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
-        cout << words[0] << " -\t" << "| ";
-          cout << words[2] << " |\t";
-          cout << words[3] << " |\t";
-          cout << words[1];
-
-
+        cout << counter << " -\t" << "| ";
+        cout << words[2] << " |\t";
+        cout << words[3] << " |\t";
+        cout << words[1];
         cout << "\t|\t";
 
         cout << words[4] << " " << words[6];
@@ -244,7 +241,7 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
         counter++;
       }
     }
-}
+  }
 }
 
 int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseudoIndex) {
@@ -266,28 +263,28 @@ int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseud
   }
 }
 
-void pizzaService::markPizzaAsBakedByOrderIDAndLocation(int orderID, int locationID){
+void pizzaService::markPizzaAsBakedByIndexAndLocation(int index, int locationID){
     int numPizzas = howManyActivePizzas();
 
     for(int i = 0; i < numPizzas; i++){
         vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
-        int id = stringfunc.stringToInt(orderWords.at(0));
         int location_id = stringfunc.stringToInt(orderWords.at(5));
-        if(id == orderID && location_id == locationID){
+        if(i == index && location_id == locationID){
             setActivePizzaStatus(i, "baked", true);
+            break;
         }
     }
 }
 
-void pizzaService::markPizzaAsUNBakedByOrderIDAndLocation(int orderID, int locationID){
+void pizzaService::markPizzaAsUNBakedByIndexAndLocation(int index, int locationID){
     int numPizzas = howManyActivePizzas();
 
     for(int i = 0; i < numPizzas; i++){
         vector<string> orderWords = fo.getWordsFromLine(i, "data/activePizzas.txt");
-        int id = stringfunc.stringToInt(orderWords.at(0));
         int location_id = stringfunc.stringToInt(orderWords.at(5));
-        if(id == orderID && location_id == locationID){
+        if(i == index && location_id == locationID){
             setActivePizzaStatus(i, "baked", false);
+            break;
         }
     }
 }
@@ -339,6 +336,21 @@ int pizzaService::howManyPizzasOnMenu() {
 
 int pizzaService::howManyActivePizzas() {
   return fo.countLines("data/activePizzas.txt");
+}
+
+int pizzaService::howManyActivePizzasForLocation(int locationID) {
+  int numberOfLines = fo.countLines("data/activePizzas.txt");
+
+  int counter = 0;
+  for(int i = 0; i < numberOfLines; i++) {
+    vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
+
+    if(stringfunc.stringToInt(words.at(5)) == locationID) {
+      counter++;
+    }
+  }
+
+  return counter;
 }
 
 Pizza pizzaService::getMenuPizza(int index) {
