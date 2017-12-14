@@ -560,7 +560,7 @@ void orderService::moveToLegacyFile(int orderID) {
   for(int i = 0; i < ordersFile.size(); i++) {
 
     if(getOrderID(i+1) == orderID) {
-      fo.appendLineToFile(ordersFile.at(i), "data/legacy.txt");
+      fo.appendLineToFile(ordersFile.at(i) + ": " + comment_service.getCommentTextFromOrderID(orderID), "data/legacy.txt");
       vector<Pizza> pizzas = getPizzasFromOrderId(orderID);
 
       for(int j = 0; j < pizzas.size(); j++) {

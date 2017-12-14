@@ -348,7 +348,6 @@ void pizzaService::deleteMenuPizza() {
     uf.clearScreen();
     listMenuPizzasWithIndices();
     cout <<  "Select a pizza to delete from menu (c to cancel): " << endl;
-      uf.pressEnter();
     cin >> selection;
     if(cin.fail()) {    //c er ekki int
       cin.clear();      //reset error flags
