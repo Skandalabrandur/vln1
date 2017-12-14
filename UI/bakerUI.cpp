@@ -114,7 +114,7 @@ void bakerUI::selectAndMarkPizzaAsBaked() {
       }
   }
   if(index != 0) {
-  int orderID = pizza_service.getOrderIDForPizza(index);
+  int orderID = order_service.getOrderIdFromIndexSelectionForLocation(index, _locationID);
     pizza_service.markPizzaAsBakedByOrderIDAndLocation(orderID, _locationID);
     uf.pressEnter();
   }
@@ -134,7 +134,7 @@ void bakerUI::selectAndMarkPizzaAsUnbaked() {
   }
   if(index != 0) {
     //int adjustedIndex = pizza_service.adjustBakerIndexForBaked(true, _locationID, index);
-    int orderID = pizza_service.getOrderIDForPizza(index);
+    int orderID = order_service.getOrderIdFromIndexSelectionForLocation(index, _locationID);
     pizza_service.markPizzaAsUNBakedByOrderIDAndLocation(orderID, _locationID);
     uf.pressEnter();
   }

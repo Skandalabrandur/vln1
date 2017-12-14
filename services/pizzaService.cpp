@@ -231,7 +231,7 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
         extraSpaces += " ";
       }
       if((baked && words[nof - 3] == "baked") || (!baked && words[nof - 3] == "unbaked")) {
-        cout << words[0] << " -\t" << "| ";
+        cout << counter << " -\t" << "| ";
           cout << words[2] << " |\t";
           cout << words[3] << " |\t";
           cout << words[1];
