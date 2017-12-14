@@ -97,7 +97,7 @@ int deliveryUI::getLocationID(){
 
 void deliveryUI::viewOrders(bool isReady){
     int choice = -1; //So the value is not 0
-    int numOrders = order_service.countOrdersFromLocationWithID(_locationID);
+    int numOrders = order_service.howManyOrders();
     do{
         uf.clearScreen();
         order_service.listOrderFromLocationWithID(_locationID, isReady);
@@ -105,7 +105,7 @@ void deliveryUI::viewOrders(bool isReady){
         cin >> choice;
 
         if(cin.fail()) {
-            cin.clear();    //clear error flags
+            cin.clear(); //clear error flags
             choice = 0;  //appropriate quit condition
         }
         if(choice >= 1 && choice <= numOrders){

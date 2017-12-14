@@ -260,11 +260,13 @@ void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
             }
             if(ready){
                 cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
+                //cout << i+1 << " -\t" << order.getCustomer() << endl;
             }
         }
         //Show all orders
         else{
             cout << order.getOrderID() << " -\t" << order.getCustomer() << endl;
+            //cout << i+1 << " -\t" << order.getCustomer() << endl;
         }
     }
   }
@@ -308,7 +310,9 @@ void orderService::deliveryListSpecificOrderFromLocationWithInfo(int order_id, i
     vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
     vector<string> pizzas;
     for(int i = 0; i < orderPizzas.size(); i++) {
-        pizzas.push_back(orderPizzas[i].toString(false));
+        //if(orderPizzas[i].getStoreID() == location_ID){
+            pizzas.push_back(orderPizzas[i].toString(false));
+        //}
     }
 
     vector<string> pizzasHeaders;
@@ -333,7 +337,7 @@ void orderService::deliveryListSpecificOrderFromLocationWithInfo(int order_id, i
     productsHeaders.push_back("Price");
     uf.printItNice(products, productsHeaders);
 
-    cout << endl << "|Total Price: | " << getOrderPrice(order_id) << "  |"<< endl;
+    cout << endl << "|Total Price  | " << getOrderPrice(order_id) << endl;
 }
 
 int orderService::howManyOrders() {
@@ -471,6 +475,7 @@ void orderService::listSpecificOrderWithInfo(int order_id) {
   productsHeaders.push_back("Price");
   uf.printItNice(products, productsHeaders);
 
+  cout << endl << "|Total Price  | " << getOrderPrice(order_id) << endl;
 }
 
 int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){

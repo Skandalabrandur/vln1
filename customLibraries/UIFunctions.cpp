@@ -102,7 +102,7 @@ void UIFunctions::printItNice(vector<string> lines, vector<string> headers) {
       cout << " ";
     }
   }
-  cout << "|";
+  //cout << "|";
   cout << endl << endl;
 
 
@@ -117,7 +117,7 @@ void UIFunctions::printItNice(vector<string> lines, vector<string> headers) {
           cout << " ";
         }
       } else {
-        cout << ", " << words.at(j);
+        cout << " - " << words.at(j);
       }
     }
     cout << endl;
