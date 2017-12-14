@@ -32,6 +32,7 @@ public:
   void listSpecificOrderWithInfo(int order_id);
   int generatePizzaPrice(Pizza pizza);
   int howManyOrders();
+  int howManyOrdersForLocation(int locationID);
   int getOrderID(int index);
   int getOrderLocationID(int index);
   int getOrderPrice(int orderID);

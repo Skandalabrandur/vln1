@@ -319,6 +319,17 @@ int orderService::howManyOrders() {
   return fo.countLines("data/orders.txt");
 }
 
+int orderService::howManyOrdersForLocation(int locationID) {
+  int numberOfLines = fo.countLines("data/orders.txt");
+  int counter = 0;
+  for(int i = 1; i <= numberOfLines; i++) {
+    if(locationID == getOrderLocationID(i)) {
+      counter++;
+    }
+  }
+  return counter;
+}
+
 int orderService::getOrderID(int index){
     vector<string> orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
     //orderID is at index 1 in line

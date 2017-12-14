@@ -97,7 +97,7 @@ int deliveryUI::getLocationID(){
 
 void deliveryUI::viewOrders(bool isReady){
     int choice = -1; //So the value is not 0
-    int numOrders = order_service.howManyOrders();
+    int numOrders = order_service.howManyOrdersForLocation(_locationID);
     do{
         uf.clearScreen();
         order_service.listOrderFromLocationWithID(_locationID, isReady);
@@ -120,7 +120,7 @@ void deliveryUI::viewOrders(bool isReady){
 
 void deliveryUI::selectAndMarkOrderAsPaid(){
     int index = -1;
-    while(index < 0 || index > order_service.howManyOrders()) {
+    while(index < 0 || index > order_service.howManyOrdersForLocation(_locationID)) {
         uf.clearScreen();
         //False to show all orders not just ready orders
         order_service.listOrderFromLocationWithID(_locationID, false);
