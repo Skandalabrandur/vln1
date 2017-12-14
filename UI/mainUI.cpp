@@ -33,8 +33,8 @@ void mainUI::displayMainMenu() {
       if(vs.salesMenuValid()) {
         sales_ui.displaySalesMenu();
       } else {
-        if(!vs.toppingsExist()) {
-          cout << "There are no toppings in the system. " << endl;
+        if(!vs.menuPizzasExist()) {
+          cout << "There are no menu pizzas in the system. " << endl;
         }
         cout << endl;
         if(!vs.locationsExist()) {

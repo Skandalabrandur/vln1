@@ -105,25 +105,6 @@ int Pizza::getStoreID(){
     return _storeID;
 }
 
-void Pizza::setCustomToppings(){
-    toppingService ts;
-    _name = "custom";
-    int i = 0;
-    int input = -1;
-    int howManyToppingsExist = ts.howManyToppings();
-    ts.listToppingsWithIndex();
-
-    while(true){
-        cin >> input;
-        if(input != 0){
-            if(input <= howManyToppingsExist) {
-              _toppings.push_back(ts.getToppingAt(input-1));
-            }
-        }else{
-            break;
-        }
-    }
-}
 
 string Pizza::toString(bool showToppings) {
   string builder = "";

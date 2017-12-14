@@ -127,7 +127,7 @@ void pizzaService::listActivePizzas() {
 void pizzaService::listFromLocationActivePizzas(int locationID){
     int lineCount = fo.countLines("data/activePizzas.txt");
     int nof;    //number of fields/words per line
-    
+
     //let's sacrifice speed for beauty
     int longestPizzaNameLength = 0;
     for(int i = 0; i < lineCount; i++) {
@@ -137,14 +137,15 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
             nof = words.size();
         }
     }
-    
+
     int counter = 1;
+    int occurance = 1;
     for(int i = 0; i < lineCount; i++) {
         vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
-        
+
         //we know that baked is in 3rd position from right
         //so words.count - 3 is the index for baked
-        
+
         //padding for equal display length
         string extraSpaces = " ";
         if(stringfunc.stringToInt(words[5]) == locationID) {
@@ -154,21 +155,10 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
                 cout << words[0] << " -\t" << "| ";
                 cout << words[2] << " |\t";
                 cout << words[3] << " |\t";
-                if(words[1] == "custom"){
-                    int orderID = stringfunc.stringToInt(words[0]);
-                    vector<Topping> toppings = getCustomToppings(orderID);
-                    for(unsigned int i = 0; i < toppings.size(); i++){
-                        cout << toppings[i].getName();
-                        if(i+1 != toppings.size()){
-                            cout << " - ";
-                        }
-                    }
-                }else{
-                    cout << words[1];
-                }
-                
+                cout << words[1];
+
                 cout << "\t|\t";
-                
+
                 cout << words[4] << " " << words[6];
                 cout << endl;
                 counter++;
@@ -177,29 +167,6 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
 
 }
 
-void pizzaService::saveCustomToppings(Pizza pizza){
-    string ID = stringfunc.intToString(pizza.getOrderID());
-    vector<Topping> toppings = pizza.getToppings();
-    for(unsigned int i = 0; i < toppings.size(); i++){
-        string price = stringfunc.intToString(toppings[i].getPrice());
-        string builder = ID + " " + toppings[i].getName() + " " + price;
-        fo.appendLineToFile(builder, "data/customPizzaToppings.txt");
-    }
-}
-
-vector<Topping> pizzaService::getCustomToppings(int orderID){
-    int numProducts = fo.countLines("data/customPizzaToppings.txt");
-    vector<Topping> toppings;
-    for(int i = 0; i < numProducts; i++){
-        vector<string> toppingFromFile = fo.getWordsFromLine(i, "data/customPizzaToppings.txt");
-        int ID = stringfunc.stringToInt(toppingFromFile[0]);
-        if(ID == orderID){
-          Topping topping(toppingFromFile[1], stringfunc.stringToInt(toppingFromFile[2]));
-          toppings.push_back(topping);
-        }
-    }
-    return toppings;
-}
 
 void pizzaService::listMenuPizzasWithIndices() {
   //we could use:
@@ -250,6 +217,7 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
   }
 
   int counter = 1;
+  int occurance = 1;
   for(int i = 0; i < lineCount; i++) {
     vector<string> words = fo.getWordsFromLine(i, "data/activePizzas.txt");
 
@@ -266,27 +234,17 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
         cout << words[0] << " -\t" << "| ";
           cout << words[2] << " |\t";
           cout << words[3] << " |\t";
-          if(words[1] == "custom"){
-              int orderID = stringfunc.stringToInt(words[0]);
-              vector<Topping> toppings = getCustomToppings(orderID);
-              for(unsigned int i = 0; i < toppings.size(); i++){
-                  cout << toppings[i].getName();
-                  if(i+1 != toppings.size()){
-                      cout << " - ";
-                  }
-              }
-          }else{
-              cout << words[1];
-          }
-          
-          cout << "\t|\t";
-          
-          cout << words[4] << " " << words[6];
+          cout << words[1];
+
+
+        cout << "\t|\t";
+
+        cout << words[4] << " " << words[6];
         cout << endl;
         counter++;
       }
     }
-  }
+}
 }
 
 int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseudoIndex) {

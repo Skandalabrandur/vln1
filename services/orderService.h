@@ -30,7 +30,7 @@ public:
   int getOrderIdFromIndexSelectionForLocation(int index, int locationID);
   vector<Pizza> getPizzasFromOrderId(int order_id);
   void listSpecificOrderWithInfo(int order_id);
-  int generatePizzaPrice(Pizza pizza, bool isMenuPizza);
+  int generatePizzaPrice(Pizza pizza);
   int howManyOrders();
   int getOrderID(int index);
   int getOrderLocationID(int index);
