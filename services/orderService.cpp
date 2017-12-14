@@ -192,15 +192,17 @@ void orderService::createNewOrder() {
       pizza_service.storeOrderPizza(pizza);
   }
 
-  //Additional products
-  char addProducts;
-  uf.clearScreen();
-  cout << "Do you want to add any products to your order? (y/n): ";
-  cin >> addProducts;
-  if(addProducts == 'y'){
-    //TO DO: generate price for additional products
-    cout << "Select products, press 0 to confirm: " << endl;
-    additionalProduct_service.saveAdditionalProducts(orderID);
+  if(vs.addProductsExist()) {
+    //Additional products
+    char addProducts;
+    uf.clearScreen();
+    cout << "Do you want to add any products to your order? (y/n): ";
+    cin >> addProducts;
+    if(addProducts == 'y'){
+      //TO DO: generate price for additional products
+      cout << "Select products, press 0 to confirm: " << endl;
+      additionalProduct_service.saveAdditionalProducts(orderID);
+    }
   }
 
   int orderPrice = getOrderPrice(orderID);

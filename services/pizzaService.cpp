@@ -59,7 +59,7 @@ void pizzaService::createAndAppendMenuPizza() {
         do {
           uf.clearScreen();
           selection = -1;
-          cout << "Select topping!" << endl;
+          cout << "Select topping " << (i+1) << " of " << numberOfToppings << endl;
           topping_service.listToppingsWithIndex();
           cin >> selection;
         } while(selection < 1 || selection > howManyToppingsExist);
