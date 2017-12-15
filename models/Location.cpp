@@ -10,6 +10,8 @@ Location::Location(string name, int id) {
   _id = id;
 }
 
+//Most if not all toString() methods are the ones who will ultimately get written
+//out to a file
 string Location::toString() {
   return _name + " " + stringfunc.intToString(_id);
 }

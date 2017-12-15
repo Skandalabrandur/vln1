@@ -75,6 +75,17 @@ void UIFunctions::printLogo() {
 }
 
 
+//vector<string> lines  : Lines to be printed
+//vector<string> headers: Headers for those lines
+//Example        : | item | longnameitem  |
+//
+//                 | blah | printMePretty |
+//                 | it24 | randomWord    |
+//
+//The function calculates spaces between words in each line
+//in regards to headers
+//If a line contains more words than the header it will simply be
+//appended to the last column
 void UIFunctions::printItNice(vector<string> lines, vector<string> headers) {
   vector<int> spaceFormatting;
   //Get header string length

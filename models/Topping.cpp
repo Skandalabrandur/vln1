@@ -26,6 +26,8 @@ void Topping::setPrice(int price) {
   _price = price;
 }
 
+//Most if not all toString() methods are the ones who will ultimately get written
+//out to a file
 string Topping::toString() {
   return _name + " " + stringfunc.intToString(_price);
 }

@@ -58,6 +58,8 @@ Comment Order::getComment() {
 }
 
 
+//Most if not all toString() methods are the ones who will ultimately get written
+//out to a file
 string Order::toString() {
   char pickup_delivery = ' ';
   if(_pickUp){

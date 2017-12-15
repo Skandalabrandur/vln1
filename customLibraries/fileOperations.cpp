@@ -6,6 +6,10 @@ using namespace std;
 
 //const char file[] works basically like const string
 //but the ifstream.open and ostream.open ask for const char instead of string
+
+//Returns all the lines from a file into a string vector
+//f.x.
+//  vector<string> lines = fo.getLinesFromFile("data/legacy.txt")
 vector<string> fileOperations::getLinesFromFile(const char file[]) {
   ifstream fin;
   fin.open(file);
@@ -27,11 +31,21 @@ vector<string> fileOperations::getLinesFromFile(const char file[]) {
   return lines;
 }
 
+//Since almost everything in our files is space separated it is very
+//convenient to have a function that returns from line number n, all the words
+//from within that line
+//Example, say line 3 contains "Pizza party pugs and platters"
+//Then the output for getWordsFromLine(3, file):
+//  vector<string> words
+//    at(0): Pizza
+//    at(1): party
+//    etc...
 vector<string> fileOperations::getWordsFromLine(int index, const char file[]) {
   string line = getLineAt(index, file);
   return stringFunc.split(line);
 }
 
+//Writes the "string line" at the end of the file designated by our filepath
 void fileOperations::appendLineToFile(string line, const char file[]) {
   ofstream fout;
   //no check needed since fileNotExists triggers file creation
@@ -42,7 +56,10 @@ void fileOperations::appendLineToFile(string line, const char file[]) {
   fout.close();
 }
 
-//WARNING: This function overwrites files
+//WARNING: This function overwrites files completely
+//Blank file, and then
+//For every element in vector<string> lines,
+//write element in one line
 void fileOperations::writeFile(vector<string> lines, const char file[]) {
   ofstream fout;
   fout.open(file);  //don't flag for ios::app to overwrite
@@ -54,6 +71,7 @@ void fileOperations::writeFile(vector<string> lines, const char file[]) {
   fout.close();
 }
 
+//Prints an entire file, line by line
 void fileOperations::printLines(const char file[]) {
   vector<string> lines;
   lines = getLinesFromFile(file);
@@ -87,6 +105,7 @@ void fileOperations::printLinesWithIndices(const char file[]) {
   }
 }
 
+//Flagged as deprecated, would've been stripped next refactoring
 string fileOperations::getLineAt(int index, const char file[]) {
   vector<string> lines = getLinesFromFile(file);
   if(index < 0 || index >= lines.size()) {

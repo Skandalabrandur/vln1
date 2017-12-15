@@ -2,6 +2,9 @@
 #include "toppingService.h"
 using namespace std;
 
+//A reverse of a tostring()
+//Input : A string vector representing a line from the menuPizza file
+//Output: A limited pizza model
 Pizza pizzaService::convertActivePizzaVector(vector<string> pizzaWords) {
   int numberOfLines = fo.countLines("data/menuPizzas.txt");
   vector<Topping> toppings;
@@ -29,6 +32,8 @@ Pizza pizzaService::convertActivePizzaVector(vector<string> pizzaWords) {
   return pizza;
 }
 
+//Evoked from admin only.
+//Menu pizzas are one of the building blocks of orders
 void pizzaService::createAndAppendMenuPizza() {
   string builder = "";
   string name;
@@ -124,6 +129,7 @@ void pizzaService::listActivePizzas() {
   uf.printItNice(lines, headers);
 }
 
+//Abstracts the database for localized staff
 void pizzaService::listFromLocationActivePizzas(int locationID){
     int lineCount = fo.countLines("data/activePizzas.txt");
     vector<string> lines;
@@ -188,6 +194,7 @@ void pizzaService::listMenuPizzasWithIndices() {
   }
 }
 
+//Abstracts the database for the bakers
 void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int locationID) {
   int lineCount = fo.countLines("data/activePizzas.txt");
   vector<string> lines;
@@ -222,6 +229,9 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
   uf.printItNice(lines, headers);
 }
 
+//This function corrects a selection from an abstracted view.
+//This is so that we can maintain a pleasant 1-indexed operation almost
+//throughout the program
 int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseudoIndex) {
   int lineCount = fo.countLines("data/activePizzas.txt");
   int adjustedIndex = 0;
@@ -241,6 +251,7 @@ int pizzaService::adjustBakerIndexForBaked(bool baked, int locationID, int pseud
   }
 }
 
+//A singular pizza is marked as baked by the baker
 void pizzaService::markPizzaAsBakedByIndexAndLocation(int index, int locationID){
     int numPizzas = howManyActivePizzas();
 
@@ -254,6 +265,7 @@ void pizzaService::markPizzaAsBakedByIndexAndLocation(int index, int locationID)
     }
 }
 
+//Mistakes happen and therefore a baker is allowed to revert his changes
 void pizzaService::markPizzaAsUNBakedByIndexAndLocation(int index, int locationID){
     int numPizzas = howManyActivePizzas();
 
@@ -267,6 +279,7 @@ void pizzaService::markPizzaAsUNBakedByIndexAndLocation(int index, int locationI
     }
 }
 
+//Returns the order id of a given active pizza
 int pizzaService::getOrderIDForPizza(int index){
     vector<string> orderWords = fo.getWordsFromLine(index - 1, "data/activePizzas.txt");
     //orderID is at index 0 in line
@@ -274,6 +287,11 @@ int pizzaService::getOrderIDForPizza(int index){
     return orderID;
 }
 
+
+//Administrator
+//Note: Will create inconsistencies if used when
+//active pizzas still depend on this
+//Legacy file does not matter
 void pizzaService::deleteMenuPizza() {
 
   int menuSize = howManyPizzasOnMenu();
@@ -308,14 +326,17 @@ void pizzaService::deleteMenuPizza() {
   }
 }
 
+
 int pizzaService::howManyPizzasOnMenu() {
   return fo.countLines("data/menuPizzas.txt");
 }
 
+//An active pizza is owned by an order
 int pizzaService::howManyActivePizzas() {
   return fo.countLines("data/activePizzas.txt");
 }
 
+//Used for indexing purposes
 int pizzaService::howManyActivePizzasForLocation(int locationID) {
   int numberOfLines = fo.countLines("data/activePizzas.txt");
 
@@ -331,6 +352,7 @@ int pizzaService::howManyActivePizzasForLocation(int locationID) {
   return counter;
 }
 
+//Used for indexing purposes
 int pizzaService::howManyActivePizzasForLocationAndStatus(int locationID, string status) {
   int numberOfLines = fo.countLines("data/activePizzas.txt");
 
@@ -372,6 +394,7 @@ Pizza pizzaService::getMenuPizza(int index) {
   return pizza;
 
 }
+
 
 void pizzaService::storeOrderPizza(Pizza pizza) {
   fo.appendLineToFile(pizza.toString(false), "data/activePizzas.txt");
@@ -431,6 +454,7 @@ void pizzaService::setActivePizzaStatus(int index, string field, bool truthValue
   cout << "Pizza status: " << lineReplacement << endl;
 }
 
+//Checks the delivered status of a particularly chosen active pizza
 bool pizzaService::isDelivered(int index) {
   vector<string> words = fo.getWordsFromLine(index, "data/activePizzas.txt");
   return (words[(words.size() - 1)] == "delivered");
@@ -448,6 +472,9 @@ void pizzaService::deletePizzas(vector<Pizza> pizzas) {
   }
 }
 
+//Removes by OrderID
+//Note how a reset must take place for every deletion
+//Vectors are bound to act up when they have elements deleted from them
 void pizzaService::deleteActivePizzasWithOrderID(int orderID) {
 
   bool reachedEnd = false;

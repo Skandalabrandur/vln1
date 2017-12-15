@@ -21,16 +21,22 @@ Order orderService::convertVector(vector<string> input) {
   return order;
 }
 
+//Returns a full Order model from file at the chosen index
 Order orderService::getOrderAt(int index) {
   vector<string> orders = fo.getLinesFromFile("data/orders.txt");
   vector<string> orderWords = stringfunc.split(orders.at(index));
   return convertVector(orderWords);
 }
 
+//This function is the big one
+//When an order is created, everything is funneled into it since
+//OrderID is used as a unique identifier
 void orderService::createNewOrder() {
   string customer;
   int orderID = 1 + fo.countLines("data/orders.txt");
 
+  //to keep orderID unique, we need to keep tabs of how many orders
+  //have been before
   if(vs.legacyFileExists()) {
     vector<string> lines = fo.getLinesFromFile("data/legacy.txt");
 
@@ -163,7 +169,6 @@ void orderService::createNewOrder() {
 
       pizza_service.storeOrderPizza(pizza);
   }
-
   if(vs.addProductsExist()) {
     //Additional products
     char addProducts;
@@ -192,6 +197,8 @@ void orderService::createNewOrder() {
     }
 }
 
+//For neat interfaces:
+//Only displays an abstracted number (instead of OrderID) and a customer name
 void orderService::listOrderOverviewWithIndices() {
   vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
   int nol = fo.countLines("data/orders.txt");
@@ -202,6 +209,9 @@ void orderService::listOrderOverviewWithIndices() {
   }
 }
 
+//Only displays an abstracted number (instead of OrderID) but also has
+//the caveat that a locationID be set. This abstracts the database further
+//for localized staff
 void orderService::listOrderOverviewWithIndicesForLocation(int locationID) {
   vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
   int nol = fo.countLines("data/orders.txt");
@@ -216,6 +226,7 @@ void orderService::listOrderOverviewWithIndicesForLocation(int locationID) {
   }
 }
 
+//Numbered list of customer names whose orders are ready
 void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
   vector<string> orderLines = fo.getLinesFromFile("data/orders.txt");
   int nol = fo.countLines("data/orders.txt");
@@ -247,6 +258,8 @@ void orderService::listOrderFromLocationWithID(int locationID, bool isReady) {
   }
 }
 
+//Returns number of active orders from a location (legacy file is always excluded from logic)
+//except when generating the unique OrderID
 int orderService::countOrdersFromLocationWithID(int locationID) {
   int counter = 0;
   int numLines = fo.countLines("data/orders.txt");
@@ -260,6 +273,7 @@ int orderService::countOrdersFromLocationWithID(int locationID) {
   return counter;
 }
 
+//Brings up a fully detailed view of how data is actually stored in the database for orders
 void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
   string comment = comment_service.getCommentTextFromOrderID(order_id);
@@ -276,6 +290,7 @@ void orderService::listSpecificOrderFromLocationWithInfo(int order_id, int locat
   }
 }
 
+//Brings up full details of an order, but makes it nice looking
 void orderService::deliveryListSpecificOrderFromLocationWithInfo(int order_id, int location_ID) {
     string comment = comment_service.getCommentTextFromOrderID(order_id);
     if(!comment.empty()) {
@@ -315,10 +330,13 @@ void orderService::deliveryListSpecificOrderFromLocationWithInfo(int order_id, i
     cout << endl << "|Total Price  | " << getOrderPrice(order_id) << endl;
 }
 
+//Caution: Does not count inactive orders.
 int orderService::howManyOrders() {
   return fo.countLines("data/orders.txt");
 }
 
+//Counts how many orders are for a specific LocationID
+//Caution: Does not count inactive orders.
 int orderService::howManyOrdersForLocation(int locationID) {
   int numberOfLines = fo.countLines("data/orders.txt");
   int counter = 0;
@@ -330,6 +348,7 @@ int orderService::howManyOrdersForLocation(int locationID) {
   return counter;
 }
 
+//A 1-indexed getter for retrieving the unique OrderID
 int orderService::getOrderID(int index){
     vector<string> orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
     //orderID is at index 1 in line
@@ -337,6 +356,7 @@ int orderService::getOrderID(int index){
     return orderID;
 }
 
+//A 1-indexed getter for retrieving a locationID
 int orderService::getOrderLocationID(int index){
     vector<string> orderWords;
     orderWords = fo.getWordsFromLine(index - 1, "data/orders.txt");
@@ -346,6 +366,7 @@ int orderService::getOrderLocationID(int index){
     return locationID;
 }
 
+//Caution: Marks multiple pizzas
 void orderService::markPizzaAsPaidByOrderID(int orderID) {
   int numPizzas = pizza_service.howManyActivePizzas();
 
@@ -359,6 +380,7 @@ void orderService::markPizzaAsPaidByOrderID(int orderID) {
   }
 }
 
+//Caution: Marks multiple pizzas
 void orderService::markPizzaAsPaidByOrderIDAndLocation(int orderID, int locationID){
     int numPizzas = pizza_service.howManyActivePizzas();
 
@@ -373,6 +395,7 @@ void orderService::markPizzaAsPaidByOrderIDAndLocation(int orderID, int location
     }
 }
 
+//Caution: marks multiple pizzas
 void orderService::markPizzaAsDeliveredByOrderIDAndLocation(int orderID, int locationID){
     int numPizzas = pizza_service.howManyActivePizzas();
     int customerPizzas = 0;
@@ -401,6 +424,9 @@ int orderService::getOrderIdFromIndexSelection(int index) {
   return stringfunc.stringToInt(words[1]);
 }
 
+//Adjusts an abstracted selection with regards to location.
+//This is so that we can keep selections 1-indexed and correctly numbered, no matter
+//the order ID.
 int orderService::getOrderIdFromIndexSelectionForLocation(int index, int locationID) {
   vector<string> lines = fo.getLinesFromFile("data/orders.txt");
 
@@ -416,6 +442,7 @@ int orderService::getOrderIdFromIndexSelectionForLocation(int index, int locatio
   }
 }
 
+//Returns a list of pizzas for a given unique orderID
 vector<Pizza> orderService::getPizzasFromOrderId(int order_id) {
   vector<Pizza> pizzas;
 
@@ -431,6 +458,7 @@ vector<Pizza> orderService::getPizzasFromOrderId(int order_id) {
   return pizzas;
 }
 
+//A detailed nice-i-fied printing of how data is stored in the database
 void orderService::listSpecificOrderWithInfo(int order_id) {
   vector<Pizza> orderPizzas = getPizzasFromOrderId(order_id);
 
@@ -471,6 +499,7 @@ void orderService::listSpecificOrderWithInfo(int order_id) {
   }
 }
 
+//TODO: implement toppings
 int orderService::generatePizzaPrice(Pizza pizza){
     char size = pizza.getSize();
     char bottom = pizza.getBottomType();
@@ -519,6 +548,7 @@ int orderService::getOrderPrice(int orderID){
     return price;
 }
 
+//removes a specific order from the order database
 void orderService::deleteOrderWithOrderID(int orderID) {
   vector<string> ordersFile = fo.getLinesFromFile("data/orders.txt");
   for(int i = 0; i < ordersFile.size(); i++) {
@@ -532,6 +562,8 @@ void orderService::deleteOrderWithOrderID(int orderID) {
   fo.writeFile(ordersFile, "data/orders.txt");
 }
 
+//Gathers and moves all relevant orderID files to a legacyFile when an
+//order is delivered
 void orderService::moveToLegacyFile(int orderID) {
   vector<string> ordersFile = fo.getLinesFromFile("data/orders.txt");
   for(int i = 0; i < ordersFile.size(); i++) {

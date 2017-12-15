@@ -38,7 +38,7 @@ string stringFunctions::intToString(int integer) {
   return str;
 }
 
-//I cannot believe that the + operator doesn't do this
+//The + operator doesn't seem to do this
 //by default
 string stringFunctions::cToStr(char c) {
   stringstream sout;
@@ -47,6 +47,7 @@ string stringFunctions::cToStr(char c) {
   return str;
 }
 
+//C++98 compliant for multiplatform purposes
 int stringFunctions::stringToInt(string str) {
   int value;
   stringstream sin(str);
@@ -54,6 +55,8 @@ int stringFunctions::stringToInt(string str) {
   return value;
 }
 
+//Returns boolean as a string
+//Used for writing to files in a more friendly manner than simply 1 or 0
 string stringFunctions::boolToString(bool ean) {
   if(ean) {
     return "true";

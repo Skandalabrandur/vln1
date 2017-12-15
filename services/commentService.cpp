@@ -4,6 +4,7 @@ void commentService::writeComment(Comment comment) {
   fo.appendLineToFile(comment.toString(), "data/comments.txt");
 }
 
+//orderID is a unique Identifier and by extension, the comment
 Comment commentService::getCommentFromOrderID(int orderID) {
   vector<string> lines =  fo.getLinesFromFile("data/comments.txt");
   string commentText = "";

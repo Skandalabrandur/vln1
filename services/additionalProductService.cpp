@@ -10,10 +10,13 @@ void additionalProductService::listAdditionalProducts(){
     uf.printItNice(lines, headers);
 }
 
+//Prints indices for easier counting
 void additionalProductService::listAdditionalProductsWithIndexes(){
     fo.printLinesWithIndices("data/additionalProducts.txt");
 }
 
+//Takes user through the steps of creating the additionalProduct model
+//and then stashes it to a file
 void additionalProductService::createNewAdditionalProduct(){
     string name;
 
@@ -45,6 +48,8 @@ int additionalProductService::howManyAdditionalProducts(){
     return fo.countLines("data/additionalProducts.txt");
 }
 
+//Returns a model of AdditionalProduct from its representative file at
+//the chosen index
 AdditionalProduct additionalProductService::getAdditionalProductAt(int index) {
   vector<string> productFromFile = fo.getWordsFromLine(index, "data/additionalProducts.txt");
   AdditionalProduct product(productFromFile[0], stringfunc.stringToInt(productFromFile[1]));
@@ -52,6 +57,8 @@ AdditionalProduct additionalProductService::getAdditionalProductAt(int index) {
   return product;
 }
 
+//Consumes cin until a 0 is encountered
+//Used when a new order is created
 void additionalProductService::saveAdditionalProducts(int orderID){
     string ID = stringfunc.intToString(orderID);
     AdditionalProduct product;
@@ -83,6 +90,8 @@ vector<AdditionalProduct> additionalProductService::getSavedProductFromOrderID(i
     return products;
 }
 
+//Allows the user to select and delete an additional product from the
+//correct file
 void additionalProductService::deleteAdditionalProduct() {
   int howManyAdditionalProductsExist = howManyAdditionalProducts();
   int selection = -1;

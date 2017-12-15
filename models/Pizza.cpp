@@ -105,7 +105,8 @@ int Pizza::getStoreID(){
     return _storeID;
 }
 
-
+//Most if not all toString() methods are the ones who will ultimately get written
+//out to a file
 string Pizza::toString(bool showToppings) {
   string builder = "";
   builder += stringfunc.intToString(_orderID) + " ";

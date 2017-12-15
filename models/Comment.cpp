@@ -26,6 +26,8 @@ void Comment::setOrderID(int orderID) {
   _orderID = orderID;
 }
 
+//Most if not all toString() methods are the ones who will ultimately get written
+//out to a file
 string Comment::toString() {
   return stringfunc.intToString(_orderID) + " " + _comment;
 }
