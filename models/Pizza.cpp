@@ -13,6 +13,26 @@ Pizza::Pizza() {
   _size = ' ';
 }
 
+void Pizza::setCustomToppings(){
+     toppingService ts;
+     _name = "custom";
+     int i = 0;
+     int input = -1;
+     int howManyToppingsExist = ts.howManyToppings();
+     ts.listToppingsWithIndex();
+ 
+     while(true){
+         cin >> input;
+         if(input != 0){
+             if(input <= howManyToppingsExist) {
+               _toppings.push_back(ts.getToppingAt(input-1));
+             }
+         }else{
+             break;
+         }
+     }
+ }
+
 Pizza::Pizza(string name, vector<Topping> toppings, int price) {
   _name = name;
   _toppings = toppings;

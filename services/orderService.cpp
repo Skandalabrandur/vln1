@@ -119,6 +119,22 @@ void orderService::createNewOrder() {
   int numberOfMenuPizzas = pizza_service.howManyPizzasOnMenu();
   for(int i = 0; i < numberOfPizzas; i++) {
     Pizza pizza;
+    char yn;
+    bool legitChoice;
+    do {
+        uf.clearScreen();
+        cout << endl << "Pizza number " << (i  + 1) << " off menu? (y/n) " << endl;
+        cin >> yn;
+        legitChoice = false;
+
+        pizza.setOrderID(orderID);
+        yn = tolower(yn);
+        legitChoice = (yn == 'y' && vs.menuPizzasExist()) || (yn == 'n');
+        if(!legitChoice) {
+            cout << "No menu pizzas exist." << endl;
+        }
+    } while(!legitChoice);
+    if(yn == 'y') {
     int selection;
         do {
             uf.clearScreen();
@@ -134,6 +150,11 @@ void orderService::createNewOrder() {
             }
         } while(selection < 1 || selection > numberOfMenuPizzas);
         pizza = pizza_service.getMenuPizza(selection - 1);
+     } else {
+        cout << "Select toppings, press 0 to confirm: " << endl;
+        pizza.setCustomToppings();
+        pizza_service.saveCustomToppings(pizza);
+    }
 
       char size;
       char bottomType;
@@ -165,7 +186,12 @@ void orderService::createNewOrder() {
       pizza.setBottomType(bottomType);
 
       //Generate price for pizza on menu
-      pizza.setPrice(generatePizzaPrice(pizza));
+      if(yn == 'y') {
+        pizza.setPrice(generatePizzaPrice(pizza, true));
+      } else {
+        //generate custom pizza
+        pizza.setPrice(generatePizzaPrice(pizza, false));
+      }
 
       pizza_service.storeOrderPizza(pizza);
   }
@@ -500,7 +526,7 @@ void orderService::listSpecificOrderWithInfo(int order_id) {
 }
 
 //TODO: implement toppings
-int orderService::generatePizzaPrice(Pizza pizza){
+int orderService::generatePizzaPrice(Pizza pizza, bool isMenuPizza){
     char size = pizza.getSize();
     char bottom = pizza.getBottomType();
     int orderID = pizza.getOrderID();
@@ -519,15 +545,31 @@ int orderService::generatePizzaPrice(Pizza pizza){
         sizeMultiplier = 1;
     }
 
-    price += priceMenuPizza;
-    if(bottom == 'p'){
-        price = priceMenuPizza + panBottomPrice;
-    }
-    else if(bottom == 'c'){
-        price += sizeMultiplier * classicBottomPrice;
-    }
-    else if(bottom == 'l'){
-        price += sizeMultiplier * lightBottomPrice;
+    if(isMenuPizza) {
+        price += priceMenuPizza;
+        if(bottom == 'p'){
+            price = priceMenuPizza + panBottomPrice;
+        }
+        else if(bottom == 'c'){
+            price += sizeMultiplier * classicBottomPrice;
+        }
+        else if(bottom == 'l'){
+            price += sizeMultiplier * lightBottomPrice;
+        }
+    } else {
+        price = 0;
+        if(bottom == 'p') {
+            price += panBottomPrice;
+        } else if (bottom == 'c') {
+            price += sizeMultiplier * classicBottomPrice;
+        } else if (bottom == 'l') {
+            price += sizeMultiplier * lightBottomPrice;
+        }
+
+        toppings = pizza_service.getCustomToppings(orderID);
+        for(unsigned int i = 0; i < toppings.size(); i++) {
+            price += toppings.at(i).getPrice();
+        }
     }
     return price;
 }
@@ -537,7 +579,14 @@ int orderService::getOrderPrice(int orderID){
     //int orderID = order.getOrderID();
     vector<Pizza> pizzas = getPizzasFromOrderId(orderID);
     for(unsigned int i = 0; i < pizzas.size(); i++){
-        price += generatePizzaPrice(pizzas.at(i));
+
+        if(pizzas.at(i).getName() == "custom"){
+             price += generatePizzaPrice(pizzas.at(i), false);
+         }
+         else{
+             price += generatePizzaPrice(pizzas.at(i), true);
+         }
+
     }
 
     vector<AdditionalProduct> products = additionalProduct_service.getSavedProductFromOrderID(orderID);

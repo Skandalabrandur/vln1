@@ -142,8 +142,17 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
           string builder = words[0];
           builder += " " + words[2];
           builder += " " + words[3];
-          builder += " " + words[1];
           builder += " " + words[6];
+          if(words[1] == "custom") {
+            int orderID = stringfunc.stringToInt(words[0]);
+            vector<Topping> toppings = getCustomToppings(orderID);
+
+            for(int i = 0; i < toppings.size(); i++) {
+              builder += " " + toppings[i].getName();
+            }
+          } else {
+            builder += " " + words[1];
+          }
           lines.push_back(builder);
           counter++;
         }
@@ -153,12 +162,35 @@ void pizzaService::listFromLocationActivePizzas(int locationID){
     headers.push_back("OrderID");
     headers.push_back("Bottom");
     headers.push_back("BtmSize");
-    headers.push_back("Pizza Name");
     headers.push_back("Bake Status");
+    headers.push_back("Pizza Name");
 
     uf.printItNice(lines, headers);
 }
 
+void pizzaService::saveCustomToppings(Pizza pizza){
+     string ID = stringfunc.intToString(pizza.getOrderID());
+     vector<Topping> toppings = pizza.getToppings();
+     for(unsigned int i = 0; i < toppings.size(); i++){
+         string price = stringfunc.intToString(toppings[i].getPrice());
+         string builder = ID + " " + toppings[i].getName() + " " + price;
+         fo.appendLineToFile(builder, "data/customPizzaToppings.txt");
+     }
+ }
+ 
+ vector<Topping> pizzaService::getCustomToppings(int orderID){
+     int numProducts = fo.countLines("data/customPizzaToppings.txt");
+     vector<Topping> toppings;
+     for(int i = 0; i < numProducts; i++){
+         vector<string> toppingFromFile = fo.getWordsFromLine(i, "data/customPizzaToppings.txt");
+         int ID = stringfunc.stringToInt(toppingFromFile[0]);
+         if(ID == orderID){
+           Topping topping(toppingFromFile[1], stringfunc.stringToInt(toppingFromFile[2]));
+           toppings.push_back(topping);
+         }
+     }
+     return toppings;
+ }
 
 void pizzaService::listMenuPizzasWithIndices() {
   //we could use:
@@ -210,8 +242,18 @@ void pizzaService::listActiveWithIndicesForBakeryAndLocation(bool baked, int loc
         builder += " " + words[0];
         builder += " " + words[2];
         builder += " " + words[3];
-        builder += " " + words[1];
         builder += " " + words[6];
+        if(words[1] == "custom") {
+            int orderID = stringfunc.stringToInt(words[0]);
+            vector<Topping> toppings = getCustomToppings(orderID);
+
+            for(int i = 0; i < toppings.size(); i++) {
+              builder += " " + toppings[i].getName();
+            }
+          } else {
+            builder += " " + words[1];
+          }
+
         lines.push_back(builder);
         counter++;
       }
